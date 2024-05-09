@@ -24,14 +24,13 @@
 	
 		
 		if( changepw == 1){
-			//추가성공
+			//변경성공
 			System.out.println("추가성공");
 			response.sendRedirect("/Semi_F_GDCC/customer/myPage.jsp");
 			
 		}else{
-			//추가실패
+			//변경실패
 			response.sendRedirect("/Semi_F_GDCC/customer/updateMyInfoForm.jsp");
-			
 		}
 	
 %>

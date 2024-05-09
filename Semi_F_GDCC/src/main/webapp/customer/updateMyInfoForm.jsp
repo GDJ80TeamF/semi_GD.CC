@@ -37,7 +37,7 @@
 				<div>
 				    <!-- 새로운 프로필 사진 업로드 필드 -->
 				    <label for="filename">프로필 사진 변경:</label>
-				    <input type="file" id="filename" name="cusProfile">
+				    <input type="file" id="filename" name="cusProfile" value="<%=info.get("cusProfile")%>">
 				</div>
 					<table>
 						<tr>
@@ -47,7 +47,7 @@
 								</label>
 							</th>
 							<td>
-								<input type="text" id="mail" name="cusMail"  value="" readonly>
+								<input type="text" id="mail" name="cusMail"  value="<%=info.get("cusMail") %>" readonly>
 							</td>
 						</tr>
 						<tr>
@@ -57,7 +57,7 @@
 								</label>
 							</th>
 							<td>
-								<input type="text" id="name" name="cusName" value="">
+								<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
 							</td>
 						</tr>
 						<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->
@@ -68,7 +68,7 @@
 								</label>
 							</th>
 							<td>
-								<input type="text" id="contact" name="cusContact" value="">
+								<input type="text" id="contact" name="cusContact" value="<%=info.get("cusContact") %>">
 							</td>
 						</tr>
 						<tr>
@@ -79,8 +79,8 @@
 							</th>
 							<td>
 								<select name="cusGender">
-									<option value="남">남성</option>
-									<option value="여">여성</option>
+								    <option value="남" <%= info.get("cusGender").equals("남") ? "selected" : "" %>>남성</option>
+								    <option value="여" <%= info.get("cusGender").equals("여") ? "selected" : "" %>>여성</option>
 								</select>
 							</td>
 						</tr>
@@ -91,7 +91,7 @@
 								</label>
 							</th>
 							<td>
-								<input type="date" id="birth" name="cusBirth" value="" readonly>
+								<input type="date" id="birth" name="cusBirth" value="<%=info.get("cusBirth") %>" readonly>
 							</td>
 						</tr>
 					</table>

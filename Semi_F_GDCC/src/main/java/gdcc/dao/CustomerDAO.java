@@ -74,11 +74,10 @@ public class CustomerDAO {
 	
 	
 	//고객정보 불러오기
-	//호출 : 
-	//1. customer/myPage.jsp
-	//2. customer/updateMyInfoForm.jsp
-	//param : String cusMail
-	//return : HahshMap<String,Object>
+	//호출 1. customer/myPage.jsp
+	//호출 2. customer/updateMyInfoForm.jsp
+		//param : String cusMail
+		//return : HahshMap<String,Object>
 	public static HashMap<String,Object> selectCustomerInfo(
 			String cusMail) throws Exception{
 		HashMap<String, Object> info = 
@@ -99,13 +98,14 @@ public class CustomerDAO {
 		
 		  if(rs.next()) { 
 		  info.put("cusMail", rs.getString("cusMail"));
-		  info.put("cusName", rs.getString("cusName")); info.put("cusPw",
-		  rs.getString("cusPw")); info.put("cusGender", rs.getString("cusGender"));
-		  info.put("cusBirth", rs.getString("cusBirth")); info.put("cusContact",
-		  rs.getString("cusContact")); info.put("cusProfile",
-		  rs.getString("cusProfile")); }
+		  info.put("cusName", rs.getString("cusName")); 
+		  info.put("cusPw", rs.getString("cusPw")); 
+		  info.put("cusGender", rs.getString("cusGender"));
+		  info.put("cusBirth", rs.getString("cusBirth")); 
+		  info.put("cusContact", rs.getString("cusContact")); 
+		  info.put("cusProfile", rs.getString("cusProfile")); }
 		 
-		
+		  conn.close();
 		return info;
 	}
 	
@@ -135,7 +135,7 @@ public class CustomerDAO {
 				stmt.setString(5, "cusMail");
 				
 			row= stmt.executeUpdate();
-			
+			conn.close();
 		return row;
 		
 		
@@ -158,7 +158,7 @@ public class CustomerDAO {
 				stmt.setString(1, mail);
 				stmt.setString(2, newPw);
 			row = stmt.executeUpdate();
-		
+			conn.close();
 		return row;
 	}
 	
@@ -181,7 +181,30 @@ public class CustomerDAO {
 			
 				row = stmt.executeUpdate();
 			
+				conn.close();
 				
 		return row;
 	}
+	
+	//회원 탈퇴를 위해 개인정보 일치하는지 확인
+	//호출 : customer/action/deleteCustomerAction.jsp
+	
+	public static int deleteCus(String cusMail, String pw) throws Exception{
+		int row = 0;
+			
+			Connection conn = DBHelper.getConnection();
+			
+			String sql ="DELETE FROM customer WHERE cus_mail = ? AND cus_pw = ?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setString(1, cusMail);
+				stmt.setString(2, pw);
+				
+			row = stmt.executeUpdate();
+			
+			conn.close();
+		return row;
+	}
+	
+	
 }
