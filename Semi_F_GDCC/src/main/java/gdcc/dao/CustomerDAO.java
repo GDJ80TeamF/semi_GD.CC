@@ -71,4 +71,117 @@ public class CustomerDAO {
 		conn3.close();
 		return row3;	
 	}
+	
+	
+	//고객정보 불러오기
+	//호출 : 
+	//1. customer/myPage.jsp
+	//2. customer/updateMyInfoForm.jsp
+	//param : String cusMail
+	//return : HahshMap<String,Object>
+	public static HashMap<String,Object> selectCustomerInfo(
+			String cusMail) throws Exception{
+		HashMap<String, Object> info = 
+				new HashMap<String, Object>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="SELECT cus_mail cusMail, cus_name cusName, cus_pw cusPw, cus_gender cusGender, "
+					+ "cus_birth cusBirth, cus_contact cusContact, cus_profile cusProfile "
+					+ "FROM customer "
+					+ "WHERE cus_mail = ?";
+		
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		 stmt.setString(1, cusMail);
+		ResultSet rs = stmt.executeQuery();
+		
+		
+		  if(rs.next()) { 
+		  info.put("cusMail", rs.getString("cusMail"));
+		  info.put("cusName", rs.getString("cusName")); info.put("cusPw",
+		  rs.getString("cusPw")); info.put("cusGender", rs.getString("cusGender"));
+		  info.put("cusBirth", rs.getString("cusBirth")); info.put("cusContact",
+		  rs.getString("cusContact")); info.put("cusProfile",
+		  rs.getString("cusProfile")); }
+		 
+		
+		return info;
+	}
+	
+	
+	//고객정보 변경
+	//호출 : customer/action/updateMyInfoAction.jsp
+	//param : String
+	//return : int
+	
+	public static int updateCustomerInfo(
+			String cusName, String cusGender, String cusContact, String cusProfile, String cusMail) throws Exception{
+		int row = 0;
+		
+			Connection conn = DBHelper.getConnection();
+			
+			String sql = "UPDATE customer "
+						+ "SET cus_name=?, cus_gender=?, cus_contact=?, cus_profile=?, update_date = NOW() "
+						+ "WHERE cus_mail=?";
+						
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+				//값 들어오면 "" 자리에 넣어주기 
+				stmt.setString(1, "cusName");
+				stmt.setString(2, "cusGender");
+				stmt.setString(3, "cusContact");
+				stmt.setString(4, "cusProfile");
+				stmt.setString(5, "cusMail");
+				
+			row= stmt.executeUpdate();
+			
+		return row;
+		
+		
+	}
+	//고객 비밀번호 history_pw에 추가
+	//호출 : customer/action/updatePwAction.jsp
+	//param : String(mail, newPw)
+	//return : int
+	
+	
+	public static int updatePw(String mail, String newPw) throws Exception{
+		int row = 0;
+		
+			Connection conn = DBHelper.getConnection();
+			
+			String sql ="INSERT INTO customer_pw_history(cus_mail, cus_pw, create_date) "
+					+ "VALUES(?, ?, NOW())";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setString(1, mail);
+				stmt.setString(2, newPw);
+			row = stmt.executeUpdate();
+		
+		return row;
+	}
+	
+	//historyPw과 기존 customer테이블 연결하기
+	//호출 : customer/action/updatePwAction.jsp
+	//param : String mail
+	//return : int
+	
+	public static int updatePw2(String mail) throws Exception{
+		int row = 0;
+		
+			Connection conn = DBHelper.getConnection();
+			
+			String sql ="UPDATE customer "
+					+ "SET cus_pw = (SELECT h.cus_pw FROM customer c INNER JOIN customer_pw_history h ON c.cus_mail = h.cus_mail ORDER BY h.create_date DESC LIMIT 1) "
+					+ "WHERE cus_mail = ?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setString(1, mail);
+			
+				row = stmt.executeUpdate();
+			
+				
+		return row;
+	}
 }
