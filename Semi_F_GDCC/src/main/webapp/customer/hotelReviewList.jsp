@@ -22,8 +22,8 @@
 	//int totalRow = 0;
 	//int lastPage = 0;
 	
-	//QnA리스트 출력하는 메서드
-	ArrayList<HashMap<String, Object>> list = QnaDAO.selectQnAList(startRow, rowPerPage);
+	//호텔리뷰 출력하는 메서드
+	ArrayList<HashMap<String, Object>> hotelReviewList = ReviewDAO.selectHotelReviewList(startRow, rowPerPage);
 %>
 <!DOCTYPE html>
 <html>
@@ -34,36 +34,30 @@
 <body>
 
 <div>
-<h1>QnA 게시판</h1>
+<h1>HotelRiview리스트</h1>
 	<table border="1">
 		<tr>
-			<th>qnaNo</th>
-			<th>qnaTitle</th>
-			<th>cusMail</th>
+			<th>reviewNo</th>
+			<th>reviewTitle</th>
 		</tr>
 		<%
-			for(HashMap m : list) {
+			for(HashMap m : hotelReviewList) {
 		%>
 			<tr>
 				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
-						<%=(Integer)(m.get("qnaNo"))%></a>
+					<a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?reviewNo=<%=(Integer)(m.get("reviewNo"))%>">
+						<%=(Integer)(m.get("reviewNo"))%></a>
 				</td>
 				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
-						<%=(String)(m.get("qnaTitle"))%></a>
-				</td>
-				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
-						<%=(String)(m.get("cusMail"))%></a>
+					<a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?reviewNo=<%=(Integer)(m.get("reviewNo"))%>">
+						<%=(String)(m.get("reviewTitle"))%></a>
 				</td>
 			</tr>
 		<%
 			}
 		%>
-			<a href="/Semi_F_GDCC/customer/insertQnAForm.jsp">글 쓰기</a>
+			<a href="/Semi_F_GDCC/customer/insertHotelReviewForm.jsp">리뷰 쓰기</a>
 	</table>
-
 </div>
 </body>
 </html>

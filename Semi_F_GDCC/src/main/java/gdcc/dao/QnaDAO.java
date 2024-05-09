@@ -145,4 +145,23 @@ public class QnaDAO {
 		conn.close();
 		return row;
 	}	
+	// qnaNo가 ?인 QnA 삭제하는 메서드
+	public static int deleteQnA(int qnaNo) throws Exception {
+		// 매개값 디버깅
+		System.out.println(qnaNo + "<-- qnaNo QnaDAO.updateQnA param");
+				
+		int row = 0;
+		// DB 접근
+		Connection  conn = DBHelper.getConnection();
+
+		String sql = "DELETE from qna WHERE qna_no = ?";
+				
+		PreparedStatement stmt =  conn.prepareStatement(sql);
+		stmt.setInt(1, qnaNo);
+
+		row = stmt.executeUpdate();
+
+		conn.close();
+		return row;
+	}	
 }

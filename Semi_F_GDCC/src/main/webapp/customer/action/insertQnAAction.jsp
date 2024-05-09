@@ -12,14 +12,14 @@
 	
 	String content = request.getParameter("content");
 	System.out.println(content + "<--content insertQnAAction.jsp param");
-	
+	// QnA 작성하는 메서드
 	int row = QnaDAO.insertQnA(cusMail, title, content);
 	
 	if(row == 1){
-		System.out.println("성공");
+		System.out.println("입력성공");
 		response.sendRedirect("/Semi_F_GDCC/customer/QnAList.jsp"); //성공시 QnA게시판으로
 	} else {
-		System.out.println("실패");
+		System.out.println("입력실패");
 		response.sendRedirect("/Semi_F_GDCC/customer/insertQnAForm.jsp"); //실패시 다시 입력 페이지로			
 	}
 

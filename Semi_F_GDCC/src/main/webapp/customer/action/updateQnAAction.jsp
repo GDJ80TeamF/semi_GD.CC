@@ -13,14 +13,15 @@
 	int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 	System.out.println(qnaNo + "<--qnaNo insertQnAAction.jsp param");
 	
+	// qnaNo가 ?인 QnA 수정하는 메서드
 	int row = QnaDAO.updateQnA(qnaTitle, qnaContent, qnaNo);
 	
 	if(row == 1){
-		System.out.println("성공");
+		System.out.println("수정성공");
 		response.sendRedirect("/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo="+qnaNo); //성공시
 	} else {
-		System.out.println("실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo="+qnaNo); //실패시 다시 입력 페이지로			
+		System.out.println("수정실패");
+		response.sendRedirect("/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo="+qnaNo); //실패시 다시 입력페이지로			
 	}
 
 %>

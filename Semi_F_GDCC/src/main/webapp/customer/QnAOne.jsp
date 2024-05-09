@@ -18,7 +18,7 @@
 </head>
 <body>
 
-	<div>
+<div>
 	<h1>QnA 상세보기</h1>
 		<table border="1">
 			<tr>
@@ -29,23 +29,22 @@
 				<th>createDate</th>
 				<th>updateDate</th>
 			</tr>
+			<tr>
+				<td><%=(Integer)(m.get("qnaNo"))%></td>	
+				<td><%=(String)(m.get("cusMail"))%></td>	
+				<td><%=(String)(m.get("qnaTitle"))%></td>	
+				<td><%=(String)(m.get("qnaContent"))%></td>	
+				<td><%=(String)(m.get("createDate"))%></td>
+				<td><%=(String)(m.get("updateDate"))%></td>
+			</tr>
 
-				<tr>
-					<td><%=(Integer)(m.get("qnaNo"))%></td>	
-					<td><%=(String)(m.get("cusMail"))%></td>	
-					<td><%=(String)(m.get("qnaTitle"))%></td>	
-					<td><%=(String)(m.get("qnaContent"))%></td>	
-					<td><%=(String)(m.get("createDate"))%></td>
-					<td><%=(String)(m.get("updateDate"))%></td>
-				</tr>
-
-				<a href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=qnaNo%>">글 수정</a>
-				<br>
-				<a href="/Semi_F_GDCC/customer/deleteQnAAction.jsp">글 삭제</a>
-		</table>
+			<a href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=qnaNo%>">글 수정</a>
+			<br>
+			<a href="/Semi_F_GDCC/customer/action/deleteQnAAction.jsp?qnaNo=<%=qnaNo%>">글 삭제</a>
+	</table>
 	
-	</div>
-</form>
+</div>
+
 <div>
 <h1>QnA 댓글</h1>
 	<table border="1">
@@ -56,7 +55,7 @@
 			<th>commentContent</th>
 			<th>createDate</th>
 			<th>updateDate</th>
-
+		</tr>
 	</table>
 
 </div>
