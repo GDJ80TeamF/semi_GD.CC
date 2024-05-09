@@ -11,7 +11,7 @@
 	}
 %>
 <%
-	//1.세션에서 고객 mail,pw가져오기
+	//1.세션에서 고객 mail가져오기
 	 HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 	 
 
 	 String cusMail = (String)(login.get("cusMail"));
@@ -55,14 +55,6 @@
 					</tr>
 					<tr>
 						<th>
-							비밀번호
-						</th>
-						<td>
-							<%=profile.get("cusPw") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
 							연락처
 						</th>
 						<td>
@@ -93,6 +85,9 @@
 					</a>
 					<a href="/Semi_F_GDCC/customer/updatePwForm.jsp">
 						비밀번호 변경하기
+					</a>
+					<a href="/Semi_F_GDCC/customer/deleteCustomerForm.jsp">
+						회원탈퇴하기
 					</a>
 				</div>
 			
