@@ -20,7 +20,7 @@
 %>
 
 <%
-	ArrayList<HashMap<String, Object>> list = NoticeDAO.selectNotice(startRow, rowPerPage);
+	ArrayList<HashMap<String, Object>> List = NoticeDAO.selectNotice(startRow, rowPerPage);
 %>
 
 <!DOCTYPE html>
@@ -31,6 +31,10 @@
 </head>
 <body>
 	<h1>공지사항</h1>
+
+<%
+	for(HashMap<String, Object>  m : List){
+%>
 		<table border="1">
 			<tr>
 				<th>공지 번호</th>
@@ -38,18 +42,22 @@
 				<th>공지 제목</th>
 				<th>공지 내용</th>
 			</tr>
+			<tr>
+				<td>
+					<a href="/Semi_F_GDCC/admin/noticeOne.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>">
+					<%=(Integer)(m.get("noticeNo"))%></a>
+				</td>
+				<td><%=(Integer)(m.get("adminNo"))%></td>
+				<td><%=(String)(m.get("noticeTitle"))%></td>
+				<td><%=(String)(m.get("noticeContent"))%></td>
+			</tr>
 		</table>
-		<%
-			for(HashMap m : list){
-		%>
-			<td><%=(Integer)(m.get("noticeNo"))%></td>
-			<td><%=(Integer)(m.get("adminNo"))%></td>
-			<td><%=(String)(m.get("noticeTitle"))%></td>
-			<td><%=(String)(m.get("noticeContent"))%></td>
+			
 		<%
 			}
 		%>
 	
 	<a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp">글 작성하기</a>
+	<a href="/Semi_F_GDCC/admin/mainBoard.jsp">취소</a>
 </body>
 </html>																				                                                                                

@@ -1,6 +1,8 @@
-<%@page import="java.util.HashMap"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="gdcc.dao.NoticeDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.net.*"%>
+<%@ page import="java.util.*"%>
 <%
 	if(session.getAttribute("loginAdmin") == null){
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
@@ -8,8 +10,9 @@
 	}
 %>
 <%
-	HashMap<String,Object>  loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
+	HashMap<String,Object> loginAdmin = (HashMap<String,Object>)(session.getAttribute("loginAdmin"));
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +24,7 @@
 	<form method="post" action="/Semi_F_GDCC/admin/action/insertNoticeAction.jsp">
 		<div>
 			관리자 번호:
-			<input type="text" name="adminNo" value=<%=(int)(loginAdmin.get("adminNo"))%> readonly="readonly">
+			<input type="text" name="adminNo" value=<%=(Integer)(loginAdmin.get("adminNo"))%> readonly="readonly">
 		</div>
 		<div>
 			공지 제목:
@@ -34,8 +37,8 @@
 		</div>
 		<div>
 			<button type="submit">제출하기</button>
+			<a href="/Semi_F_GDCC/admin/noticeList.jsp">취소</a>
 		</div>
 	</form>
-	<a href="/Semi_F_GDCC/admin/noticeList.jsp">취소</a>
 </body>
 </html>
