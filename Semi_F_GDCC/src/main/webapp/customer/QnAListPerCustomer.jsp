@@ -4,11 +4,19 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
-	HashMap<String,Object> loginMember 
-	= (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
 
-	String cusMail = request.getParameter("cusMail");
-	System.out.println(cusMail+ "<<==cusMail");
+	// 인증 분기 세션 변수 이름 : loginCustomer
+	if(session.getAttribute("loginCustomer") == null){
+		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		return;
+	}
+%>
+<%
+	// 세션에서 고객 mail가져오기
+	HashMap<String,Object> login = (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
+
+	String cusMail = (String)(login.get("cusMail"));
+	System.out.println(cusMail+ "<--cusMail QnAListPerCustomer.jsp param");
 	
 	//고객 본인이 작성한 QnA 조회하는 메서드
 	ArrayList<HashMap<String, Object>> list = QnaDAO.selectQnAPerCus(cusMail);
@@ -36,7 +44,7 @@
 			for(HashMap m : list) {
 		%>
 			<tr>
-				<td><%=(String)(m.get("qnaNo"))%></td>
+				<td><%=(Integer)(m.get("qnaNo"))%></td>
 				<td><%=(String)(m.get("cusMail"))%></td>
 				<td><%=(String)(m.get("qnaTitle"))%></td>
 				<td><%=(String)(m.get("qnaContent"))%></td>

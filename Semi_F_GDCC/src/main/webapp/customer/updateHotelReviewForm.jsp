@@ -13,12 +13,12 @@
 	HashMap<String,Object> login = (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
 %>
 <%
-	int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
-	System.out.println(qnaNo + "<-- qnaNo updateQnAForm.jsp param");
+	int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+	System.out.println(reviewNo + "<-- reviewNo updateHotelReviewForm.jsp param");
 	
-	// qnaNo에 따라QnA 출력하는 메서드 / 상세보기
-	HashMap<String, Object> m = QnaDAO.selectQnAOne(qnaNo);
-	System.out.println(m + "<-- m updateQnAForm.jsp param");
+	// reviewNo에 따라GolfReview 출력하는 메서드
+	HashMap<String, Object> m = ReviewDAO.selectHotelReviewOne(reviewNo);
+	System.out.println(m + "<-- m updateHotelReviewForm.jsp param");
 %>
 <!DOCTYPE html>
 <html>
@@ -28,26 +28,25 @@
 </head>
 <body>
 <div>
-<h1>QnA 글 수정</h1>
-<form method="post" action="/Semi_F_GDCC/customer/action/updateQnAAction.jsp">
+<h1>호텔리뷰 수정</h1>
+<form method="post" action="/Semi_F_GDCC/customer/action/updateHotelReviewAction.jsp">
 	<table>
-
 		<tr>
-			<th>아이디 :</th>
-			<td><input type="text" value="<%=(String)(m.get("cusMail"))%>" name="cusMail"></td>
+			<th>reviewNo :</th>
+			<td><input type="text" value="<%=reviewNo%>" name="reviewNo"></td>
 		</tr>
 		<tr>
-			<th>qnaNo :</th>
-			<td><input type="text" value="<%=qnaNo%>" name="qnaNo"></td>
+			<th>별점 :</th>
+			<td><input type="text" value="<%=(String)(m.get("reviewScore"))%>" name="reviewScore"></td>
 		</tr>
 		<tr>
 			<th>제목 :</th>
-			<td><input type="text" value="<%=(String)(m.get("qnaTitle"))%>" name="qnaTitle"></td>
+			<td><input type="text" value="<%=(String)(m.get("reviewTitle"))%>" name="reviewTitle"></td>
 		</tr>
 		<tr>
 			<th>내용 :</th>
 			<td><textarea  style="width: 550px; height: 300px;"
-						 name="qnaContent"><%=(String)(m.get("qnaContent"))%></textarea></td>
+						 name="reviewContent"><%=(String)(m.get("reviewContent"))%></textarea></td>
 		</tr>
 
 		<tr>

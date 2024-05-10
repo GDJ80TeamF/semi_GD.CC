@@ -5,13 +5,13 @@
 <%@ page import="java.util.*"%>
 <%
 	String qnaTitle = request.getParameter("qnaTitle");
-	System.out.println(qnaTitle + "<--qnaTitle insertQnAAction.jsp param");
+	System.out.println(qnaTitle + "<--qnaTitle updateQnAAction.jsp param");
 	
 	String qnaContent = request.getParameter("qnaContent");
-	System.out.println(qnaContent + "<--qnaContent insertQnAAction.jsp param");
+	System.out.println(qnaContent + "<--qnaContent updateQnAAction.jsp param");
 	
 	int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
-	System.out.println(qnaNo + "<--qnaNo insertQnAAction.jsp param");
+	System.out.println(qnaNo + "<--qnaNo updateQnAAction.jsp param");
 	
 	// qnaNo가 ?인 QnA 수정하는 메서드
 	int row = QnaDAO.updateQnA(qnaTitle, qnaContent, qnaNo);
@@ -21,7 +21,7 @@
 		response.sendRedirect("/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo="+qnaNo); //성공시
 	} else {
 		System.out.println("수정실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo="+qnaNo); //실패시 다시 입력페이지로			
+		response.sendRedirect("/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo="+qnaNo); //실패시 다시 수정페이지로			
 	}
 
 %>

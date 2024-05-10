@@ -4,11 +4,19 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
-	HashMap<String,Object> loginMember 
-	= (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
+
+	// 인증 분기 세션 변수 이름 : loginCustomer
+	if(session.getAttribute("loginCustomer") == null){
+		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		return;
+	}
+%>
+<%
+	// 세션에서 고객 mail가져오기
+	HashMap<String,Object> login = (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
 	
-	String cusMail = request.getParameter("cusMail");
-	System.out.println(cusMail+ "<<==cusMail");
+	String cusMail = (String)(login.get("cusMail"));
+	System.out.println(cusMail+ "<--cusMail reviewListPerCustomer.jsp param");
 	
 	//고객 본인이 작성한 hotelReview 조회하는 메서드
 	ArrayList<HashMap<String, Object>> hotelReviewList = ReviewDAO.selectHotelReviewPerCus(cusMail);
@@ -63,10 +71,10 @@
 			for(HashMap m : golfReviewList) {
 		%>
 			<tr>
-				<td><%=(String)(m.get("reviewNo"))%></td>
+				<td><%=(Integer)(m.get("reviewNo"))%></td>
 				<td><%=(String)(m.get("reviewTitle"))%></td>
 				<td><%=(String)(m.get("reviewContent"))%></td>
-				<td><%=(String)(m.get("reviewScore"))%></td>
+				<td><%=(Integer)(m.get("reviewScore"))%></td>
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
 			</tr>

@@ -56,7 +56,7 @@
 		<%
 			}
 		%>
-			<a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp">리뷰 쓰기</a>
+		<!-- 위치조정필 ex 마이페이지  --><a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp">리뷰 쓰기</a>
 	</table>
 </div>
 </body>

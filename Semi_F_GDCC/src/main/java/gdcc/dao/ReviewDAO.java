@@ -33,7 +33,7 @@ public class ReviewDAO {
 			m.put("reviewNo", rs.getInt("reviewNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewContent", rs.getString("reviewContent"));
-			m.put("reviewScore", rs.getString("reviewScore"));
+			m.put("reviewScore", rs.getInt("reviewScore"));
 			m.put("createDate", rs.getString("createDate"));
 			m.put("updateDate", rs.getString("updateDate"));
 			list.add(m);
@@ -67,7 +67,7 @@ public class ReviewDAO {
 			m.put("reviewNo", rs.getInt("reviewNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewContent", rs.getString("reviewContent"));
-			m.put("reviewScore", rs.getString("reviewScore"));
+			m.put("reviewScore", rs.getInt("reviewScore"));
 			m.put("createDate", rs.getString("createDate"));
 			m.put("updateDate", rs.getString("updateDate"));
 			list.add(m);
@@ -248,4 +248,94 @@ public class ReviewDAO {
 		conn.close();
 		return row;
 	}
+	// reviewNo가 ?인 HotelReview 수정하는 메서드
+	public static int updateHotelReview(String reviewTitle, String reviewContent, int reviewScore, int reviewNo) throws Exception {
+		// 매개값 디버깅
+		System.out.println(reviewTitle + "<-- reviewTitle ReviewDAO.updateHotelReview param");
+		System.out.println(reviewContent + "<-- reviewContent ReviewDAO.updateHotelReview param");
+		System.out.println(reviewScore + "<-- reviewScore ReviewDAO.updateHotelReview param");
+		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.updateHotelReview param");
+			
+		int row = 0;
+		// DB 접근
+		Connection  conn = DBHelper.getConnection();
+
+		String sql = "UPDATE review_hotel SET review_title = ?, review_content = ?, review_score = ?, update_date = NOW()"
+					+ "WHERE review_no = ?";
+			
+		PreparedStatement stmt =  conn.prepareStatement(sql);
+		stmt.setString(1, reviewTitle);
+		stmt.setString(2, reviewContent);
+		stmt.setInt(3, reviewScore);
+		stmt.setInt(4, reviewNo);
+
+		row = stmt.executeUpdate();
+
+		conn.close();
+		return row;
+	}	
+	// reviewNo가 ?인 GolfReview 수정하는 메서드
+	public static int updateGolfReview(String reviewTitle, String reviewContent, int reviewScore, int reviewNo) throws Exception {
+		// 매개값 디버깅
+		System.out.println(reviewTitle + "<-- reviewTitle ReviewDAO.updateGolfReview param");
+		System.out.println(reviewContent + "<-- reviewContent ReviewDAO.updateGolfReview param");
+		System.out.println(reviewScore + "<-- reviewScore ReviewDAO.updateGolfReview param");
+		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.updateGolfReview param");
+			
+		int row = 0;
+		// DB 접근
+		Connection  conn = DBHelper.getConnection();
+
+		String sql = "UPDATE review_golf SET review_title = ?, review_content = ?, review_score = ?, update_date = NOW()"
+					+ "WHERE review_no = ?";
+			
+		PreparedStatement stmt =  conn.prepareStatement(sql);
+		stmt.setString(1, reviewTitle);
+		stmt.setString(2, reviewContent);
+		stmt.setInt(3, reviewScore);
+		stmt.setInt(4, reviewNo);
+
+		row = stmt.executeUpdate();
+
+		conn.close();
+		return row;
+	}	
+	// ReviewNo가 ?인 HotelReview 삭제하는 메서드
+	public static int deleteHotelReview(int reviewNo) throws Exception {
+		// 매개값 디버깅
+		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.deleteHotelReview param");
+				
+		int row = 0;
+		// DB 접근
+		Connection  conn = DBHelper.getConnection();
+
+		String sql = "DELETE from review_hotel WHERE review_no = ?";
+				
+		PreparedStatement stmt =  conn.prepareStatement(sql);
+		stmt.setInt(1, reviewNo);
+
+		row = stmt.executeUpdate();
+
+		conn.close();
+		return row;
+	}
+	// ReviewNo가 ?인 GolfReview 삭제하는 메서드
+	public static int deleteGolfReview(int reviewNo) throws Exception {
+		// 매개값 디버깅
+		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.deleteGolfReview param");
+				
+		int row = 0;
+		// DB 접근
+		Connection  conn = DBHelper.getConnection();
+
+		String sql = "DELETE from review_golf WHERE review_no = ?";
+				
+		PreparedStatement stmt =  conn.prepareStatement(sql);
+		stmt.setInt(1, reviewNo);
+
+		row = stmt.executeUpdate();
+
+		conn.close();
+		return row;
+	}	
 }

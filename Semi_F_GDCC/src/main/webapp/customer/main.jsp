@@ -18,5 +18,9 @@
 <a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">로그아웃</a>
 <a href="/Semi_F_GDCC/customer/myPage.jsp">마이페이지</a>
 <a href="/Semi_F_GDCC/customer/golf/rsvGolfList.jsp">골프예약 상세페이지</a>
+<br>
+<a href="/Semi_F_GDCC/customer/QnAList.jsp">QnA</a>
+<a href="/Semi_F_GDCC/customer/hotelReviewList.jsp">hotelReview</a>
+<a href="/Semi_F_GDCC/customer/golfReviewList.jsp">golfReview</a>
 </body>
 </html>

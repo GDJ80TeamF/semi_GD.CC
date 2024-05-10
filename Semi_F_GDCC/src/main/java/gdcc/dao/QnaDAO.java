@@ -132,7 +132,7 @@ public class QnaDAO {
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
-		String sql = " UPDATE qna SET qna_title = ?, qna_content = ? "
+		String sql = " UPDATE qna SET qna_title = ?, qna_content = ?, update_date = NOW() "
 					+ " WHERE qna_no = ? ";
 			
 		PreparedStatement stmt =  conn.prepareStatement(sql);
@@ -148,19 +148,26 @@ public class QnaDAO {
 	// qnaNo가 ?인 QnA 삭제하는 메서드
 	public static int deleteQnA(int qnaNo) throws Exception {
 		// 매개값 디버깅
-		System.out.println(qnaNo + "<-- qnaNo QnaDAO.updateQnA param");
+		System.out.println(qnaNo + "<-- qnaNo QnaDAO.deleteQnA param");
 				
 		int row = 0;
+		
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
 		String sql = "DELETE from qna WHERE qna_no = ?";
-				
+		
 		PreparedStatement stmt =  conn.prepareStatement(sql);
 		stmt.setInt(1, qnaNo);
 
 		row = stmt.executeUpdate();
-
+		if(row==1) { // QnA가 삭제되면 해당comment도 전부삭제
+			
+			String sql2 = "DELETE from qna_comment WHERE qna_no = ?";
+			
+			PreparedStatement stmt2 =  conn.prepareStatement(sql2);
+			stmt2.setInt(1, qnaNo);
+		}
 		conn.close();
 		return row;
 	}	

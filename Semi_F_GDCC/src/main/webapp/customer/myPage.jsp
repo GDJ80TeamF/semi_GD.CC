@@ -89,6 +89,12 @@
 					<a href="/Semi_F_GDCC/customer/deleteCustomerForm.jsp">
 						회원탈퇴하기
 					</a>
+					<a href="/Semi_F_GDCC/customer/reviewListPerCustomer.jsp">
+						my후기
+					</a>
+					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp">
+						MyQnA
+					</a>
 				</div>
 			
 </body>

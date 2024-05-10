@@ -8,7 +8,10 @@
 	System.out.println(qnaNo + "<-- qnaNo QnAOne.jsp param ");
 
 	// qnaNo에 따라QnA 출력하는 메서드 / 상세보기
-	HashMap<String, Object> m = QnaDAO.selectQnAOne(qnaNo);
+	HashMap<String, Object> map = QnaDAO.selectQnAOne(qnaNo);
+	
+	//comment리스트 출력하는 메서드
+	ArrayList<HashMap<String, Object>> list = CommentDAO.selectComment(qnaNo);
 %>
 <!DOCTYPE html>
 <html>
@@ -30,12 +33,12 @@
 				<th>updateDate</th>
 			</tr>
 			<tr>
-				<td><%=(Integer)(m.get("qnaNo"))%></td>	
-				<td><%=(String)(m.get("cusMail"))%></td>	
-				<td><%=(String)(m.get("qnaTitle"))%></td>	
-				<td><%=(String)(m.get("qnaContent"))%></td>	
-				<td><%=(String)(m.get("createDate"))%></td>
-				<td><%=(String)(m.get("updateDate"))%></td>
+				<td><%=(Integer)(map.get("qnaNo"))%></td>	
+				<td><%=(String)(map.get("cusMail"))%></td>	
+				<td><%=(String)(map.get("qnaTitle"))%></td>	
+				<td><%=(String)(map.get("qnaContent"))%></td>	
+				<td><%=(String)(map.get("createDate"))%></td>
+				<td><%=(String)(map.get("updateDate"))%></td>
 			</tr>
 
 			<a href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=qnaNo%>">글 수정</a>
@@ -50,12 +53,22 @@
 	<table border="1">
 		<tr>
 			<th>commentNo</th>
-			<th>qnaNo</th>
-			<th>adminNo</th>
 			<th>commentContent</th>
 			<th>createDate</th>
 			<th>updateDate</th>
 		</tr>
+		<%
+			for(HashMap m : list) { 
+		%>
+			<tr>
+				<th><%=(Integer)(m.get("commentNo"))%></th>
+				<th><%=(String)(m.get("commentContent"))%></th>
+				<th><%=(String)(m.get("createDate"))%></th>
+				<th><%=(String)(m.get("updateDate"))%></th>
+			</tr>
+		<%
+			}
+		%>
 	</table>
 
 </div>
