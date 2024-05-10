@@ -40,7 +40,7 @@
 	int row = AdminDAO.insertAdmin(adminMail, adminPw, adminName, adminGender, adminBirth, adminContact, adminProfile);
 	
 	if(row != 0){
-		String uploadPath = request.getServletContext().getRealPath("upload");
+		String uploadPath = request.getServletContext().getRealPath("admin/upload");
 		System.out.println(uploadPath);
 		/// 저장될 위치를 현재 프로젝트(톰켓 컨텍스트)안으로 지정
 		File file = new File(uploadPath, adminProfile);

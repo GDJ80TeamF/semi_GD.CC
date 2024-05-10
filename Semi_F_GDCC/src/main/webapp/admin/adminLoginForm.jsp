@@ -21,5 +21,7 @@
 		비밀번호 : <input type="password" name="adminPw">
 		<button type="submit">로그인하기 </button>
 </form>
+<div><a href="/Semi_F_GDCC/admin/adminResetPwForm.jsp">비밀번호 찾기</a></div>
+<div><a href="/Semi_F_GDCC/admin/insertAdminForm.jsp">회원가입 </a></div>
 </body>
 </html>

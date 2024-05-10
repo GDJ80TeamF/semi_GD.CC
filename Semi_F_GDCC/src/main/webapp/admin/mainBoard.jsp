@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%
 	//만약세션이 비어있다면 로그인이 되지 않은 것 -> 메인페이지에 접근 불가능 -> 로그인 폼으로 리다이렉
@@ -7,10 +6,11 @@
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
 		return;
 	}
-	
-	HashMap<String,Object>  loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
-	
 
+	
+	HashMap<String,Object> loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,7 @@
 	<div>로그인 성공 </div>
 	<div><a href="/Semi_F_GDCC/admin/action/adminLogoutAction.jsp">로그아웃</a></div>
 	<div><a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminNo=<%=(Integer)loginAdmin.get("adminNo")%>">공지 폼 </a></div>
-
+	<div><a href="/Semi_F_GDCC/admin/adminList.jsp">사원 리스트 </a></div>
+	<div><a href="/Semi_F_GDCC/admin/myPage.jsp?adminNo=<%=(Integer)loginAdmin.get("adminNo")%>">마이 페이지  </a></div>
 </body>
 </html>
