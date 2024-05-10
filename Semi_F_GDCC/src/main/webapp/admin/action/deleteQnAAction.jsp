@@ -4,7 +4,7 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
-	
+	//<- 커밋
 	int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 	System.out.println(qnaNo + "<--qnaNo deleteQnAAction.jsp param");
 	

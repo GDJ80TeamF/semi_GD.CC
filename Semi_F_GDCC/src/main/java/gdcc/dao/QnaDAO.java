@@ -191,7 +191,7 @@ public class QnaDAO {
 		conn.close();
 		return row;
 	}
-	// 아이디 비번 확인하는 메서드 / 삭제확인폼
+	// 아이디 비번 확인하는 메서드 / 삭제확인폼 <커밋
 	public static boolean selectIdPwCk(String checkId, int checkPw) throws Exception{
 		boolean ck = false;
 		//db접근

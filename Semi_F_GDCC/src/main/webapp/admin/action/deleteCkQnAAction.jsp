@@ -3,7 +3,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="gdcc.dao.*" %>
 <%
-
+	// <- 커밋
 	//form에서 입력한 아이디 비번 값 가져오기
 	String checkId = request.getParameter("checkId");
 	System.out.println(checkId+"<-- checkId deleteCkQnAAction.jsp param");
