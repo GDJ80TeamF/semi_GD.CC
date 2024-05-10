@@ -76,8 +76,66 @@ public class RsvGolfDAO {
 				one.put("rsvState", rs.getString("rsvState"));
 				one.put("rsvTtime", rs.getString("rsvTtime"));
 			}
-			
+		conn.close();
 		return one;
 	}
+	
+	//골프 코스 가져오기
+	//호출 : /customer/golf/inserNewRsvForm.jsp
+	//param : void
+	//return: ArrayList
+	
+	public static ArrayList<HashMap<String,Object>> courseList() throws Exception{
+		ArrayList<HashMap<String,Object>> list 
+			= new ArrayList<HashMap<String,Object>>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT * FROM golf_course";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			m.put("courseName", rs.getString("course_name"));
+			m.put("courseInfo", rs.getString("course_info"));
+			
+			list.add(m);
+		}
+		
+		conn.close();
+		return list;
+		
+	}
+	
+	//예약정보 테이블에 넣기
+	//호출 : /customer/action/insertNewRsvAction.jsp
+	
+	public static int insertNewRsv(
+			String rsvCourse, String rsvMail, String rsvDate, int rsvMember, String rsvRequest, String rsvTtime ) throws Exception{
+				int row = 0;
+				
+				Connection conn = DBHelper.getConnection();
+				
+				String sql ="INSERT INTO rsv_golf(rsv_course, rsv_mail, rsv_date, rsv_member, rsv_request, rsv_Ttime, "
+							+ "create_date, update_date) "
+							+"VALUES (?,?,?,?,?,?,NOW(), NOW())";
+				
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				 stmt.setString(1, rsvCourse);
+				 stmt.setString(2, rsvMail);
+				 stmt.setString(3, rsvDate);
+				 stmt.setInt(4, rsvMember);
+				 stmt.setString(5, rsvRequest);
+				 stmt.setString(6, rsvTtime);
+				 
+				 row = stmt.executeUpdate();
+				 
+				 conn.close();
+				return row;
+	}
+	
+	
 	
 }
