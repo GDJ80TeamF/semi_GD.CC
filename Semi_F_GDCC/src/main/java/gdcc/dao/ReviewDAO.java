@@ -129,6 +129,46 @@ public class ReviewDAO {
 		conn.close();
 		return list;
 	}
+	// 호텔리뷰 총 개수 구하는 메서드 /Page
+	public static int hotelReviewPage () throws Exception{
+		int lastPage = 0;
+		int rowPerPage = 1;
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT COUNT(*) FROM review_hotel";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		int totalRow = 0;
+		if(rs.next()){
+			totalRow = rs.getInt("count(*)");
+		}
+		lastPage = totalRow/rowPerPage;
+		if(totalRow%rowPerPage != 0){
+			lastPage = lastPage +1;
+		}
+		conn.close();
+		return lastPage;
+	}
+	// 골프리뷰 총 개수 구하는 메서드 /Page
+	public static int golfReviewPage () throws Exception{
+		int lastPage = 0;
+		int rowPerPage = 1;
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT COUNT(*) FROM review_golf";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		int totalRow = 0;
+		if(rs.next()){
+			totalRow = rs.getInt("count(*)");
+		}
+		lastPage = totalRow/rowPerPage;
+		if(totalRow%rowPerPage != 0){
+			lastPage = lastPage +1;
+		}
+		conn.close();
+		return lastPage;
+	}
 	// reviewNo에 따라 HotelReview 출력하는 메서드 / 상세보기
 	public static HashMap<String, Object> selectHotelReviewOne(int reviewNo) throws Exception {
 		// 매개값 디버깅

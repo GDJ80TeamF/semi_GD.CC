@@ -66,7 +66,27 @@ public class QnaDAO {
 		}
 		conn.close();
 		return list;
-	}	
+	}
+	// QnA 총 개수 구하는 메서드 /Page
+	public static int page () throws Exception{
+		int lastPage = 0;
+		int rowPerPage = 1;
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT COUNT(*) FROM qna";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		int totalRow = 0;
+		if(rs.next()){
+			totalRow = rs.getInt("count(*)");
+		}
+		lastPage = totalRow/rowPerPage;
+		if(totalRow%rowPerPage != 0){
+			lastPage = lastPage +1;
+		}
+		conn.close();
+		return lastPage;
+	}
 	// QnA 작성하는 메서드
 	public static int insertQnA(String cusMail, String title, String content) throws Exception {
 		// 매개값 디버깅
@@ -170,5 +190,23 @@ public class QnaDAO {
 		}
 		conn.close();
 		return row;
-	}	
+	}
+	// 아이디 비번 확인하는 메서드 / 삭제확인폼
+	public static boolean selectIdPwCk(String checkId, int checkPw) throws Exception{
+		boolean ck = false;
+		//db접근
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT admin_mail adminMail FROM admin where admin_mail = ? AND admin_pw = PASSWORD(?) ";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, checkId);
+		stmt.setInt(2, checkPw);
+		ResultSet rs = stmt.executeQuery();
+		//읽어올 행이있으면 -> 이미 존재하는 아이디 ck = true , 없음 ck = false
+		if(rs.next()) { // 인증완료 
+			ck = true;
+		}
+		conn.close();
+		return ck;
+	}
 }

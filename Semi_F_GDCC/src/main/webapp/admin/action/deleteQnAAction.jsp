@@ -13,10 +13,10 @@
 	
 	if(row == 1){
 		System.out.println("삭제성공");
-		response.sendRedirect("/Semi_F_GDCC/customer/QnAList.jsp"); //성공시
+		response.sendRedirect("/Semi_F_GDCC/admin/QnAList.jsp"); //성공시
 	} else {
 		System.out.println("삭제실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo="+qnaNo); //실패시 다시 상세페이지로			
+		response.sendRedirect("/Semi_F_GDCC/admin/QnAOne.jsp?qnaNo="+qnaNo); //실패시 다시 상세페이지로			
 	}
 
 %>

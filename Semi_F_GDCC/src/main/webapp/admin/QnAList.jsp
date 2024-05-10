@@ -4,11 +4,17 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
-	HashMap<String,Object> loginMember 
-	= (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
-	
-	String cusMail = request.getParameter("cusMail");
-	System.out.println(cusMail+ "<<==cusMail");
+	//만약세션이 비어있다면 로그인이 되지 않은 것 -> 메인페이지에 접근 불가능 -> 로그인 폼으로 리다이렉
+	if(session.getAttribute("loginAdmin") == null){
+		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
+		return;
+	}
+	//세션에 저장되있는 회원 메일 가져오기 
+	HashMap<String,Object>  loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
+	String adminMail = (String)loginAdmin.get("adminMail");
+	int adminGrade = (Integer)loginAdmin.get("adminGrade");
+	System.out.println(adminMail);
+	System.out.println(adminGrade);
 	
 	
 	int currentPage = 1;
@@ -33,8 +39,8 @@
 </head>
 <body>
 
-<div>
-<h1>QnA 게시판</h1>
+<div style="display: table;margin-left: auto; margin-right: auto;">
+<h1>QnA 게시판관리</h1>
 	<table border="1">
 		<tr>
 			<th>qnaNo</th>
@@ -46,35 +52,35 @@
 		%>
 			<tr>
 				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+					<a href="/Semi_F_GDCC/admin/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
 						<%=(Integer)(m.get("qnaNo"))%></a>
 				</td>
 				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+					<a href="/Semi_F_GDCC/admin/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
 						<%=(String)(m.get("qnaTitle"))%></a>
 				</td>
 				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+					<a href="/Semi_F_GDCC/admin/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
 						<%=(String)(m.get("cusMail"))%></a>
 				</td>
 			</tr>
 		<%
 			}
 		%>
-			<a href="/Semi_F_GDCC/customer/insertQnAForm.jsp">글 쓰기</a>
+			
 	</table>
 	<!-- 페이징 버튼 -->
 	<div style="display: table;margin-left: auto; margin-right: auto;">														
 		<%
 			if(currentPage > 1){			
 		%>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>											
+			<a href="/Semi_F_GDCC/admin/QnAList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
+			<a href="/Semi_F_GDCC/admin/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>											
 		<%						
 			}if(currentPage < lastPage){
 		%>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
+			<a href="/Semi_F_GDCC/admin/QnAList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
+			<a href="/Semi_F_GDCC/admin/QnAList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
 		<%
 			}					
 		%>		

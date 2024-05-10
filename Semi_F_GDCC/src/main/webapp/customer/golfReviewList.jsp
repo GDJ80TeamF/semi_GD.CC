@@ -10,17 +10,16 @@
 	String cusMail = request.getParameter("cusMail");
 	System.out.println(cusMail+ "<<==cusMail");
 	
-	
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
-
-	int rowPerPage = 10;
-	int startRow = (currentPage-1) * rowPerPage;
 	
-	//int totalRow = 0;
-	//int lastPage = 0;
+	int rowPerPage = 1;
+	int startRow = (currentPage-1) * rowPerPage;
+	//페이징 lastPage 구하는 dao 호출 
+	int lastPage = ReviewDAO.golfReviewPage();
+	System.out.println(lastPage + "<--lastPage golfReviewList param");
 	
 	//골프리뷰 출력하는 메서드
 	ArrayList<HashMap<String, Object>> golfReviewList = ReviewDAO.selectGolfReviewList(startRow, rowPerPage);
@@ -58,6 +57,22 @@
 		%>
 		<!-- 위치조정필 ex 마이페이지  --><a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp">리뷰 쓰기</a>
 	</table>
+	<!-- 페이징 버튼 -->
+	<div style="display: table;margin-left: auto; margin-right: auto;">														
+		<%
+			if(currentPage > 1){			
+		%>
+			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
+			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>											
+		<%						
+			}if(currentPage < lastPage){
+		%>
+			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
+			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
+		<%
+			}					
+		%>		
+	</div>
 </div>
 </body>
 </html>
