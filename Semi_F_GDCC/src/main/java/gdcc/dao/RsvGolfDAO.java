@@ -49,7 +49,9 @@ public class RsvGolfDAO {
 	}
 	
 	//예약한 회원의 상세보기 페이지
-	//호출 : /customer/golf/rsvGolfOne.jsp
+	//호출 : 
+	// 1. customer/golf/rsvGolfOne.jsp
+	// 2. customer/golf/udpateRsvForm.jsp
 	//param : int
 	//return : HashMap<String,Object>
 	
@@ -108,9 +110,45 @@ public class RsvGolfDAO {
 		return list;
 		
 	}
+	//예약코스, 시간, 날짜에 값이 있는지 확인하기
+	//호출 : /customer/action/insertNewRsvAction.jsp
+	//param : String
+	//return : boolean
+	
+	public static boolean checkList(
+			String rsvCourseCheck, String rsvDateCheck, String rsvTtimeCheck) throws Exception{
+		boolean result = false;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT rsv_course, rsv_date, rsv_Ttime "
+					+ "FROM rsv_golf "
+					+ "WHERE rsv_course = ? AND rsv_date = ? AND rsv_Ttime = ? ";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, rsvCourseCheck);
+			stmt.setString(2, rsvDateCheck);
+			stmt.setString(3, rsvTtimeCheck);
+		
+		ResultSet rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				//해당행이 존재하는 것이기 때문에 true값이지만 결과는 실패
+				 result = false;
+			}else {
+				result = true;
+				//해당행이 존재하지 않기 때문에 false값이지만
+				//예약가능
+			}
+			
+		return result;
+	}
+	
 	
 	//예약정보 테이블에 넣기
 	//호출 : /customer/action/insertNewRsvAction.jsp
+	//param : String, int
+	//return : int
 	
 	public static int insertNewRsv(
 			String rsvCourse, String rsvMail, String rsvDate, int rsvMember, String rsvRequest, String rsvTtime ) throws Exception{
@@ -136,6 +174,60 @@ public class RsvGolfDAO {
 				return row;
 	}
 	
+	//예약테이블에서 rsv_Ttime가져오기
+	//호출 : /customer/golf/insertNewRsvForm.jsp
+	//param : String
+	//return : ArrayList
 	
+	public static ArrayList<HashMap<String,Object>> selectRsvTtime(
+			String checkCourse, String checkDate) throws Exception{
+		ArrayList<HashMap<String,Object>> time = new ArrayList<HashMap<String,Object>>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT rsv_Ttime "
+					+ "FROM rsv_golf "
+					+ "WHERE rsv_course =? AND rsv_date =?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, checkCourse);
+			stmt.setString(2, checkDate);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			m.put("rsvTtime", rs.getString("rsv_Ttime"));
+			time.add(m);
+		}
+		
+		return time;
+	}
+	//골프 예약 변경update
+	//호출 : /customer/update/updateRsvAction.jsp
+	//param : String,int
+	//retunr : int
+
+	public static int updateRsv(
+			String rsvCourse, String rsvDate, int rsvMember ,String rsvTtime, int rsvNo) throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="UPDATE rsv_golf "
+				+ "SET rsv_course=?, rsv_date=?, rsv_member=?, rsv_Ttime=?, "
+				+ "create_date = NOW() WHERE rsv_no =?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, rsvCourse);
+			stmt.setString(2, rsvDate);
+			stmt.setInt(3, rsvMember);
+			stmt.setString(4, rsvTtime);
+			stmt.setInt(5, rsvNo);
+			
+		row = stmt.executeUpdate();
+		
+		return row;
+	}
 	
 }

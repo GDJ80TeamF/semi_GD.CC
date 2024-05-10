@@ -100,6 +100,12 @@
 					<td><%=rsvList.get("rsvState") %></td>
 				</tr>
 			</table>
+		<a href="/Semi_F_GDCC/customer/golf/updateRsvForm.jsp?rsvNo=<%=rsvNo%>">
+			예약변경신청
+		</a>
+		<a href="/Semi_F_GDCC/customer/golf/rsvCancelForm.jsp?rsvNo=<%=rsvNo%>"">
+			예약취소
+		</a>
 	</div>
 	
 		

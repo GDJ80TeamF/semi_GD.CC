@@ -23,7 +23,7 @@
 	int rsv = RsvGolfDAO.insertNewRsv(
 			rsvCourse, rsvMail, rsvDate, rsvMember, rsvRequest, rsvTtime);
 	
-	if(rsv == 1){//추가성공
+	if(rsv == 1){//추가성공 
 		System.out.println("예약추가성공");
 		response.sendRedirect("/Semi_F_GDCC/customer/golf/rsvGolfList.jsp");
 	}else{
