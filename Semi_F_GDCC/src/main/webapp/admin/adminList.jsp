@@ -101,26 +101,16 @@
 				%>
 					<li ><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
 					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>
-				<%
-					}else{
-				%>	
-					<li ><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
-					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage-1%>"> &nbsp;< 이전 </a></li>
-					
+	
 				<%	
 					}
+				
 					if(currentPage<lastPage){
 				%>
 					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
 					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
 				<%
-					}else{
-						
-				%>
-					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage+1%>"> &nbsp;다음 ></a></li>
-					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
 				
-				<% 
 					}
 				
 				%>

@@ -24,5 +24,6 @@
 	<div><a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminNo=<%=(Integer)loginAdmin.get("adminNo")%>">공지 폼 </a></div>
 	<div><a href="/Semi_F_GDCC/admin/adminList.jsp">사원 리스트 </a></div>
 	<div><a href="/Semi_F_GDCC/admin/myPage.jsp?adminNo=<%=(Integer)loginAdmin.get("adminNo")%>">마이 페이지  </a></div>
+	<div><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">호텔 조식 관리 </a></div>
 </body>
 </html>

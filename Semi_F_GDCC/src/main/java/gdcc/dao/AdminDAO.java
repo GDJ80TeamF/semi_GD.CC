@@ -189,6 +189,25 @@ public class AdminDAO {
 		}
 		conn.close();
 		return m;
+		
+		}
+		//호출 - updateMyPageForm.jsp
+		//param - adminMail, adminName,adminGender,adminContact,adminProfile
+		//return int
+		public static int updateMyPage (String adminMail,String adminName,String adminGender,String adminContact,String adminProfile) throws Exception{
+			int row = 0;
+			Connection conn = DBHelper.getConnection();
+			String sql = "UPDATE admin SET admin_name =? ,admin_gender =?, admin_contact=?, admin_profile=?, update_date = now() WHERE admin_mail =?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, adminName);
+			stmt.setString(2, adminGender);
+			stmt.setString(3, adminContact);
+			stmt.setString(4, adminProfile);
+			stmt.setString(5, adminMail);
+			row = stmt.executeUpdate();
+			
+			conn.close();
+			return row;
 	}
 	
 }
