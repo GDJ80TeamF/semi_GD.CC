@@ -93,14 +93,41 @@ public class NoticeDAO {
 		return resuMap;
 	}
 	
-	/*
-	 * // 공지 업데이트 public static int updateNotice(int noticeNo, int adminNo) throws
-	 * Exception { int row = 0;
-	 * 
-	 * Connection conn = DBHelper.getConnection();
-	 * 
-	 * String sql3 = "update set notice()"
-	 * 
-	 * return row; }
-	 */
+	
+	  // 공지 수정 
+	  public static int updateNotice(int noticeNo, int adminNo, String noticeTitle, String noticeContent) throws Exception{ 
+		  int row3 = 0;
+	  
+		  Connection conn3 = DBHelper.getConnection();
+		  
+		  String sql3 = "UPDATE notice SET admin_no=?, notice_title=?, notice_content=? where notice_no=? ";
+		  PreparedStatement stmt3 = null;
+		  stmt3  = conn3.prepareStatement(sql3);
+		  stmt3.setInt(1, adminNo);
+		  stmt3.setString(2, noticeTitle);
+		  stmt3.setString(3, noticeContent);
+		  stmt3.setInt(4, noticeNo);
+		  
+		  row3 = stmt3.executeUpdate();
+		  
+		  conn3.close();
+		  return row3; 
+	  }
+	  
+	  // 공지 삭제
+	   public static int deleteNotice(int noticeNo) throws Exception{
+		   int row = 0;
+		   Connection conn = DBHelper.getConnection();
+		   
+		   String sql = "DELETE FROM notice WHERE notice_no=? ";                                  
+		   PreparedStatement stmt = null;
+		   stmt = conn.prepareStatement(sql);
+		   stmt.setInt(1, noticeNo);
+		   
+		   row = stmt.executeUpdate();
+		   
+		   conn.close();
+		   return row;
+	   }
+	  
 }
