@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 
 <%
-	int adminNo = Integer.parseInt(request.getParameter("adminNo"));
+	
 	String adminMail = request.getParameter("adminMail");
 	String adminName = request.getParameter("adminName");
 	String adminGender = request.getParameter("adminGender");
@@ -15,7 +15,7 @@
 	Part part = request.getPart("adminProfile");
 	String profileOriginal = part.getSubmittedFileName();
 
-	System.out.println(adminName);
+	System.out.println(adminMail);
 	System.out.println(adminGender);
 	System.out.println(adminName);
 	System.out.println(adminContact);
@@ -41,10 +41,10 @@
 		OutputStream outputStream = Files.newOutputStream(file.toPath()); // 메모리로 불러온 파일(바이너리)을 빈파일에 저장
 		inputStream.transferTo(outputStream);
 		System.out.println("사원 정보 수정 성공");
-		response.sendRedirect("/Semi_F_GDCC/admin/myPage.jsp?adminNo="+adminNo);
+		response.sendRedirect("/Semi_F_GDCC/admin/myPage.jsp?adminMail="+adminMail);
 	}else{
 		System.out.println("사원 정보  실패");
-		response.sendRedirect("/Semi_F_GDCC/admin/myPage.jsp?adminNo="+adminNo);
+		response.sendRedirect("/Semi_F_GDCC/admin/myPage.jsp?adminMail="+adminMail);
 	}
 	
 	//이미지 수정 

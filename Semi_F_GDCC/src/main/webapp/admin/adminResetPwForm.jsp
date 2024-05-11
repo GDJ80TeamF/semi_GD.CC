@@ -37,7 +37,6 @@
 	if(ck.equals("")|| ck.equals("F")){
 %>
 	<form method="post" action="/Semi_F_GDCC/admin/action/adminCheckAction.jsp">
-			사원번호: <input type="text" name="adminNo">
 			아이디 메일: <input type="email" name="adminMail">
 			생년월일 : <input type="date" name="adminBirth">
 			전화번호: <input type="text" name="adminContact">

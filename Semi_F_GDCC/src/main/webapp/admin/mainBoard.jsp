@@ -9,6 +9,8 @@
 
 	
 	HashMap<String,Object> loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
+	String adminName = (String) loginAdmin.get("adminName");
+	String adminMail = (String) loginAdmin.get("adminMail");
 	
 	
 %>
@@ -20,10 +22,11 @@
 </head>
 <body>
 	<div>로그인 성공 </div>
+	<div><%=adminName%>님 안녕하세요 :)</div>
 	<div><a href="/Semi_F_GDCC/admin/action/adminLogoutAction.jsp">로그아웃</a></div>
-	<div><a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminNo=<%=(Integer)loginAdmin.get("adminNo")%>">공지 폼 </a></div>
+	<div><a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminMail=<%=adminMail%>">공지 폼 </a></div>
 	<div><a href="/Semi_F_GDCC/admin/adminList.jsp">사원 리스트 </a></div>
-	<div><a href="/Semi_F_GDCC/admin/myPage.jsp?adminNo=<%=(Integer)loginAdmin.get("adminNo")%>">마이 페이지  </a></div>
+	<div><a href="/Semi_F_GDCC/admin/myPage.jsp?adminMail=<%=adminMail%>">마이 페이지  </a></div>
 	<div><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">호텔 조식 관리 </a></div>
 </body>
 </html>

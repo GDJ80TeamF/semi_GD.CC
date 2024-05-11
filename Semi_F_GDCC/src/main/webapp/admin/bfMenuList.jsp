@@ -3,6 +3,18 @@
 <%@ page import="java.util.*" %>
 <%
 
+	if(session.getAttribute("loginAdmin") == null){
+		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
+		return;
+	}
+
+	//세션에 저장되있는 사원 번호 가져오기 
+	HashMap<String,Object>  loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
+	
+	
+%>
+<%
+
 	ArrayList<HashMap<String,Object>> list = BfDAO.selectBfMenu();
 
 
@@ -23,8 +35,8 @@
 			<th>메뉴 번호</th>
 			<th>시즌 </th>
 			<th>메인 메뉴 </th>
-			<th>설명</th>
 			<th>업데이트 날짜</th>
+			<th>상세보기 </th>
 		
 		</tr>
 		<tr>
@@ -34,9 +46,8 @@
 			<td><%=(Integer)m.get("menuNo") %></td>
 			<td><%=(String)m.get("menuSeason") %></td>
 			<td><%=(String)m.get("menuMain") %></td>
-			<td><%=(String)m.get("menuInfo") %></td>
 			<td><%=(String)m.get("updateDate") %></td>
-		
+			<td><a href="/Semi_F_GDCC/admin/bfOne.jsp?menuNo=<%=(Integer)m.get("menuNo")%>">상세보기 </a></td>
 		
 		</tr>
 		
@@ -53,5 +64,6 @@
 	
 	
 	</table>
+	<div><a href="/Semi_F_GDCC/admin/mainBoard.jsp">돌아가기 </a></div>
 </body>
 </html>

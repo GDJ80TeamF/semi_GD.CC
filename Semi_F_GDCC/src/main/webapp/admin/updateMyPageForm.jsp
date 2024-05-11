@@ -2,7 +2,7 @@
 <%@ page import="gdcc.dao.*" %>
 <%@ page import="java.util.*" %>
 <%
-	//만약세션이 비어있다면 로그인이 되지 않은 것 -> 메인페이지에 접근 불가능 -> 로그인 폼으로 리다이렉
+	//만약세션이 비어있다면 로그인이 되지 않은 것 -> 페이지에 접근 불가능 -> 로그인 폼으로 리다이렉
 	if(session.getAttribute("loginAdmin") == null){
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
 		return;
@@ -10,10 +10,10 @@
 	
 	
 	
-	int adminNo = Integer.parseInt(request.getParameter("adminNo"));
-	System.out.println(adminNo);
+	String adminMail = request.getParameter("adminMail");
+	System.out.println(adminMail);
 	//사원 개인정보 DAO
-	HashMap<String,Object> m = AdminDAO.selectMyPage(adminNo);
+	HashMap<String,Object> m = AdminDAO.selectMyPage(adminMail);
 
 %>
 <!DOCTYPE html>
@@ -25,10 +25,7 @@
 <body>
 	<form method="post" action="/Semi_F_GDCC/admin/action/updateMyPageAction.jsp" enctype="multipart/form-data">
 		<table>
-		<tr>
-			<td>사원 번호 </td>
-			<td><input name="adminNo" value="<%=(Integer)m.get("adminNo") %>" readonly></td>
-		</tr>
+		
 		<tr>
 			<td>아이디(메일)</td>
 			<td><input name="adminMail" value="<%=(String)m.get("adminMail") %>" readonly></td>
@@ -88,6 +85,6 @@
 	
 		<button type="submit">수정하기! </button>
 	</form>
-	<a href="/Semi_F_GDCC/admin/myPage.jsp?adminNo=<%=adminNo%>">취소 </a>
+	<a href="/Semi_F_GDCC/admin/myPage.jsp?adminMail=<%=adminMail%>">취소 </a>
 </body>
 </html>

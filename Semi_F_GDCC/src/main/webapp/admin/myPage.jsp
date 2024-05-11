@@ -10,10 +10,10 @@
 	
 	
 	
-	int adminNo = Integer.parseInt(request.getParameter("adminNo"));
-	System.out.println(adminNo);
+	String adminMail = request.getParameter("adminMail");
+	System.out.println(adminMail);
 	//사원 개인정보 DAO
-	HashMap<String,Object> m = AdminDAO.selectMyPage(adminNo);
+	HashMap<String,Object> m = AdminDAO.selectMyPage(adminMail);
 
 %>
 <!DOCTYPE html>
@@ -24,10 +24,7 @@
 </head>
 <body>
 	<table>
-		<tr>
-			<td>사원 번호 </td>
-			<td><%=(Integer)m.get("adminNo") %></td>
-		</tr>
+		
 		<tr>
 			<td>아이디(메일)</td>
 			<td><%=(String)m.get("adminMail") %></td>
@@ -60,6 +57,6 @@
 	
 	</table>
 	<a href="/Semi_F_GDCC/admin/mainBoard.jsp">돌아가기</a>
-	<div><a href="/Semi_F_GDCC/admin/updateMyPageForm.jsp?adminNo=<%=adminNo%>">사원 정보 수정하기 </a></div>
+	<div><a href="/Semi_F_GDCC/admin/updateMyPageForm.jsp?adminMail=<%=adminMail%>">사원 정보 수정하기 </a></div>
 </body>
 </html>

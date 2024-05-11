@@ -13,7 +13,7 @@ public class AdminDAO {
 		//db접근
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT admin_no adminNo, admin_mail adminMail,admin_name adminName, admin_pw adminPw,admin_grade adminGrade FROM admin WHERE admin_mail =? AND admin_pw=password(?) AND admin_active='ON'";
+		String sql = "SELECT admin_mail adminMail,admin_name adminName, admin_pw adminPw,admin_grade adminGrade FROM admin WHERE admin_mail =? AND admin_pw=password(?) AND admin_active='ON'";
 		PreparedStatement stmt  = conn.prepareStatement(sql);
 		stmt.setString(1, adminMail);
 		stmt.setString(2, adminPw);
@@ -22,7 +22,6 @@ public class AdminDAO {
 		if(rs.next()) {
 			//결과물이 있으면resultmap에채우기
 			m = new HashMap<String,Object>();
-			m.put("adminNo", rs.getInt("adminNo"));
 			m.put("adminMail", rs.getString("adminMail"));
 			m.put("adminName", rs.getString("adminName"));
 			m.put("adminGrade", rs.getInt("adminGrade"));
@@ -69,17 +68,16 @@ public class AdminDAO {
 		return row;
 	}
 	//호출 - adminCheckAction.jsp
-	//param - adminNo, adminMail,adminBirth, adminContact
+	//param -  adminMail,adminBirth, adminContact
 	//return boolean 
-	public static boolean selectResetPw(int adminNo,String adminMail,String adminBirth,String adminContact) throws Exception{
+	public static boolean selectResetPw(String adminMail,String adminBirth,String adminContact) throws Exception{
 		boolean ck = false;
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT * FROM admin WHERE admin_no=? and admin_mail =? and admin_birth=? and admin_contact=?";
+		String sql = "SELECT * FROM admin WHERE admin_mail =? and admin_birth=? and admin_contact=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, adminNo);
-		stmt.setString(2, adminMail);
-		stmt.setString(3, adminBirth);
-		stmt.setString(4, adminContact);
+		stmt.setString(1, adminMail);
+		stmt.setString(2, adminBirth);
+		stmt.setString(3, adminContact);
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) { //읽어올 행이 있을 시 -> 즉 관리자 확인될때 
 			ck = true;
@@ -168,16 +166,15 @@ public class AdminDAO {
 	//호출 -myPage.jsp
 	//param - int adminNo
 	//return HashMap<String,Object>
-	public static HashMap<String,Object> selectMyPage (int adminNo) throws Exception{
+	public static HashMap<String,Object> selectMyPage (String adminMail) throws Exception{
 		HashMap<String,Object> m = new HashMap<String,Object>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT * FROM admin WHERE admin_no =?";
+		String sql = "SELECT * FROM admin WHERE admin_mail =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, adminNo);
+		stmt.setString(1, adminMail);
 		ResultSet rs = stmt.executeQuery();
 		
 		if(rs.next()) {
-			m.put("adminNo", rs.getInt("admin_no"));
 			m.put("adminMail", rs.getString("admin_mail"));
 			m.put("adminName", rs.getString("admin_name"));
 			m.put("adminGender", rs.getString("admin_gender"));
@@ -227,5 +224,6 @@ public class AdminDAO {
 		conn.close();
 		return ck;
 	}		
+	
 	
 }
