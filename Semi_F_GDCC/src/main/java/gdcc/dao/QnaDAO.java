@@ -191,22 +191,5 @@ public class QnaDAO {
 		conn.close();
 		return row;
 	}
-	// 아이디 비번 확인하는 메서드 / 삭제확인폼 <커밋
-	public static boolean selectIdPwCk(String checkId, int checkPw) throws Exception{
-		boolean ck = false;
-		//db접근
-		Connection conn = DBHelper.getConnection();
-		
-		String sql = "SELECT admin_mail adminMail FROM admin where admin_mail = ? AND admin_pw = PASSWORD(?) ";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, checkId);
-		stmt.setInt(2, checkPw);
-		ResultSet rs = stmt.executeQuery();
-		//읽어올 행이있으면 -> 이미 존재하는 아이디 ck = true , 없음 ck = false
-		if(rs.next()) { // 인증완료 
-			ck = true;
-		}
-		conn.close();
-		return ck;
-	}
+
 }

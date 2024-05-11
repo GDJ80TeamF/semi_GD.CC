@@ -55,7 +55,6 @@
 			<th>commentNo</th>
 			<th>commentContent</th>
 			<th>createDate</th>
-			<th>updateDate</th>
 		</tr>
 		<%
 			for(HashMap m : list) { 
@@ -64,7 +63,6 @@
 				<th><%=(Integer)(m.get("commentNo"))%></th>
 				<th><%=(String)(m.get("commentContent"))%></th>
 				<th><%=(String)(m.get("createDate"))%></th>
-				<th><%=(String)(m.get("updateDate"))%></th>
 			</tr>
 		<%
 			}

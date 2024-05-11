@@ -191,23 +191,41 @@ public class AdminDAO {
 		return m;
 		
 		}
-		//호출 - updateMyPageForm.jsp
-		//param - adminMail, adminName,adminGender,adminContact,adminProfile
-		//return int
-		public static int updateMyPage (String adminMail,String adminName,String adminGender,String adminContact,String adminProfile) throws Exception{
-			int row = 0;
-			Connection conn = DBHelper.getConnection();
-			String sql = "UPDATE admin SET admin_name =? ,admin_gender =?, admin_contact=?, admin_profile=?, update_date = now() WHERE admin_mail =?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, adminName);
-			stmt.setString(2, adminGender);
-			stmt.setString(3, adminContact);
-			stmt.setString(4, adminProfile);
-			stmt.setString(5, adminMail);
-			row = stmt.executeUpdate();
+	//호출 - updateMyPageForm.jsp
+	//param - adminMail, adminName,adminGender,adminContact,adminProfile
+	//return int
+	public static int updateMyPage (String adminMail,String adminName,String adminGender,String adminContact,String adminProfile) throws Exception{
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql = "UPDATE admin SET admin_name =? ,admin_gender =?, admin_contact=?, admin_profile=?, update_date = now() WHERE admin_mail =?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, adminName);
+		stmt.setString(2, adminGender);
+		stmt.setString(3, adminContact);
+		stmt.setString(4, adminProfile);
+		stmt.setString(5, adminMail);
+		row = stmt.executeUpdate();
 			
-			conn.close();
-			return row;
+		conn.close();
+		return row;
 	}
+	// 아이디 비번 확인하는 메서드 / 삭제확인폼
+	public static boolean selectIdPwCk(String checkId, int checkPw) throws Exception{
+		boolean ck = false;
+		//db접근
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT admin_mail adminMail FROM admin where admin_mail = ? AND admin_pw = PASSWORD(?) ";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, checkId);
+		stmt.setInt(2, checkPw);
+		ResultSet rs = stmt.executeQuery();
+		//읽어올 행이있으면 -> 이미 존재하는 아이디 ck = true , 없음 ck = false
+		if(rs.next()) { // 인증완료 
+			ck = true;
+		}
+		conn.close();
+		return ck;
+	}		
 	
 }
