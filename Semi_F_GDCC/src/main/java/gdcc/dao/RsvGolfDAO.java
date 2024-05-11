@@ -206,7 +206,7 @@ public class RsvGolfDAO {
 	//골프 예약 변경update
 	//호출 : /customer/update/updateRsvAction.jsp
 	//param : String,int
-	//retunr : int
+	//return : int
 
 	public static int updateRsv(
 			String rsvCourse, String rsvDate, int rsvMember ,String rsvTtime, int rsvNo) throws Exception{
@@ -224,6 +224,27 @@ public class RsvGolfDAO {
 			stmt.setInt(3, rsvMember);
 			stmt.setString(4, rsvTtime);
 			stmt.setInt(5, rsvNo);
+			
+		row = stmt.executeUpdate();
+		
+		return row;
+	}
+	
+	//골프예약 취소
+	//호출 : customer/golf/action/rsvCancelAction.jsp
+	//param : int rsvNo
+	//return : int
+	
+	public static int deleteRsv(int rsvNo) throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="DELETE FROM rsv_golf "
+					+ "WHERE rsv_no = ? ";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, rsvNo);
 			
 		row = stmt.executeUpdate();
 		

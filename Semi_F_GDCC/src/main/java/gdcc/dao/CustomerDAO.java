@@ -206,5 +206,39 @@ public class CustomerDAO {
 		return row;
 	}
 	
+	//예약취소를 위해 고객 비밀번호 확인작업
+	//호출 : customer/golf/rsvCancelPwCk.jsp
+	//param : String(cusMail, ckPw)
+	//return : boolean
+	
+	public static boolean selectCustomePwCk(
+			String cusMail, String ckPw) throws Exception{
+		
+		boolean result = false;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="SELECT cus_pw "
+				+ "FROM customer "
+				+ "WHERE cus_mail=? AND cus_pw=?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, cusMail);
+			stmt.setString(2, ckPw);
+			
+		ResultSet rs = stmt.executeQuery();
+		
+			if(rs.next()) {
+				//값이 존재함 비밀번호가 일치함!
+				result = true;
+			}else {
+				//결과값이 없음
+				result = false;
+			}
+		
+		conn.close();
+		return result;
+	}
+	
 	
 }

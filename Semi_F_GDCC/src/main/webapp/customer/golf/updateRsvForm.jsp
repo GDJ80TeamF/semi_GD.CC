@@ -80,7 +80,7 @@
 		%>
 			<br>
 			<!-- 여기서 부터 다시 action페이지로 넘길 값을 넣어줘야함 위의 코스랑, 날짜는 숨겨서 -->
-			<form method="post" action="/Semi_F_GDCC/customer/action/updateRsvAction.jsp">
+			<form method="post" action="/Semi_F_GDCC/customer/golf/action/updateRsvAction.jsp">
 				<%
 					if(checkSession != null && checkSession.equals("T")){
 				%>
