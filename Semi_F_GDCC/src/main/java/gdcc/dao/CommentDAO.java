@@ -37,22 +37,22 @@ public class CommentDAO {
 		return list;
 	}
 	// QnAComment 작성하는 메서드
-	public static int insertQnAComment(int qnaNo, int adminNo, String commentContent) throws Exception {
+	public static int insertQnAComment(int qnaNo, String adminMail, String commentContent) throws Exception {
 		// 매개값 디버깅
 		System.out.println(qnaNo + "<-- qnaNo CommentDAO.insertQnAComment param");
-		System.out.println(adminNo + "<-- adminNo CommentDAO.insertQnAComment param");
+		System.out.println(adminMail + "<-- adminMail CommentDAO.insertQnAComment param");
 		System.out.println(commentContent + "<-- commentContent CommentDAO.insertQnAComment param");
 		
 		int row = 0;
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
-		String sql = "INSERT INTO qna_comment (qna_no, admin_no, comment_content, create_date, update_date) "
+		String sql = "INSERT INTO qna_comment (qna_no, admin_mail, comment_content, create_date, update_date) "
 					+ " VALUES(?, ?, ?, NOW(), NOW())";
 		
 		PreparedStatement stmt =  conn.prepareStatement(sql);
 		stmt.setInt(1, qnaNo);
-		stmt.setInt(2, adminNo);
+		stmt.setString(2, adminMail);
 		stmt.setString(3, commentContent);
 
 		row = stmt.executeUpdate();

@@ -48,7 +48,7 @@
 		</tr>
 
 		<br>
-		<a href="/Semi_F_GDCC/admin/action/deleteHotelReviewForm.jsp?reviewNo=<%=reviewNo%>">리뷰 삭제</a>
+		<a href="/Semi_F_GDCC/admin/deleteHotelReviewForm.jsp?reviewNo=<%=reviewNo%>">리뷰 삭제</a>
 	</table>
 </div>
 

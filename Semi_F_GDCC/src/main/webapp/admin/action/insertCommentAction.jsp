@@ -7,14 +7,14 @@
 	int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 	System.out.println(qnaNo + "<--qnaNo insertCommentAction.jsp param");
 	
-	int adminNo = Integer.parseInt(request.getParameter("adminNo"));
-	System.out.println(adminNo + "<--adminNo insertCommentAction.jsp param");
+	String adminMail = request.getParameter("adminMail");
+	System.out.println(adminMail + "<--adminMail insertCommentAction.jsp param");
 	
 	String commentContent = request.getParameter("commentContent");
 	System.out.println(commentContent + "<--commentContent insertCommentAction.jsp param");
 	
 	// QnA 작성하는 메서드
-	int row = CommentDAO.insertQnAComment(qnaNo, adminNo, commentContent);
+	int row = CommentDAO.insertQnAComment(qnaNo, adminMail, commentContent);
 	
 	if(row == 1){
 		System.out.println("입력성공");

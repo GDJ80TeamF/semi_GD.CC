@@ -14,7 +14,7 @@ public class CustomerDAO {
 		Connection conn1 = null;
 		conn1 = DBHelper.getConnection();
 	
-		String sql1 = "SELECT cus_mail cusMail, cus_pw cusPW FROM customer WHERE cus_mail=? AND cus_pw=?";
+		String sql1 = "SELECT cus_mail cusMail, cus_pw cusPW FROM customer WHERE cus_mail=? AND cus_pw=PASSWORD(?)";
 		PreparedStatement stmt1 = null;
 		stmt1 = conn1.prepareStatement(sql1);
 		stmt1.setString(1, cusMail);
@@ -240,5 +240,22 @@ public class CustomerDAO {
 		return result;
 	}
 	
-	
+	// 아이디 비번 확인하는 메서드 / 삭제확인폼
+	public static boolean selectIdPwCk(String checkId, int checkPw) throws Exception{
+		boolean ck = false;
+		//db접근
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT cus_mail cusMail FROM customer where cus_mail = ? AND cus_pw = PASSWORD(?) ";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, checkId);
+		stmt.setInt(2, checkPw);
+		ResultSet rs = stmt.executeQuery();
+		//읽어올 행이있으면 -> 이미 존재하는 아이디 ck = true , 없음 ck = false
+		if(rs.next()) { // 인증완료 
+			ck = true;
+		}
+		conn.close();
+		return ck;
+	}	
 }

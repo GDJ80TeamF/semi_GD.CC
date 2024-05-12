@@ -97,8 +97,8 @@
 				<th><input type="text" value="<%=qnaNo%>" name="qnaNo"></th>
 			</tr>
 			<tr>
-				<th>adminNo</th>
-				<th><input type="text" value="<%=(Integer)loginAdmin.get("adminNo")%>" name="adminNo"></th>
+				<th>adminMail</th>
+				<th><input type="text" value="<%=adminMail%>" name="adminMail"></th>
 			</tr>
 			<tr>
 				<th>commentContent</th>
