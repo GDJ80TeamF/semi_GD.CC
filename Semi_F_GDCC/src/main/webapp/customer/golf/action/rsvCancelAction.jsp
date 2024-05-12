@@ -7,7 +7,7 @@
 		
 	//예약 취소 쿼리 가져오기
 
-	int cancel = RsvGolfDAO.deleteRsv(rsvNo);
+	int cancel = RsvGolfDAO.updateCancelRsv(rsvNo);
 		
 	
 	if(cancel == 1){

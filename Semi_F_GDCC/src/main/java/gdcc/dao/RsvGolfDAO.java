@@ -200,7 +200,7 @@ public class RsvGolfDAO {
 			m.put("rsvTtime", rs.getString("rsv_Ttime"));
 			time.add(m);
 		}
-		
+		 conn.close();
 		return time;
 	}
 	//골프 예약 변경update
@@ -227,6 +227,7 @@ public class RsvGolfDAO {
 			
 		row = stmt.executeUpdate();
 		
+		 conn.close();
 		return row;
 	}
 	
@@ -235,20 +236,142 @@ public class RsvGolfDAO {
 	//param : int rsvNo
 	//return : int
 	
-	public static int deleteRsv(int rsvNo) throws Exception{
+	public static int updateCancelRsv(int rsvNo) throws Exception{
 		int row = 0;
 		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql ="DELETE FROM rsv_golf "
-					+ "WHERE rsv_no = ? ";
+		String sql ="UPDATE rsv_golf "
+				+ "SET rsv_state = '예약취소' "
+				+ "WHERE rsv_no = ?";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, rsvNo);
 			
 		row = stmt.executeUpdate();
 		
+		 conn.close();
 		return row;
 	}
 	
+	
+	//여기서부터는 ADMIN쪽 DAO
+	
+	//고객 골프예약리스트를 위한 정보 가져오기
+	//호출 : /admin/golf/rsvGolfList.jsp
+	//param : int startRow, int rowPerPage
+	//return : ArrayList
+	
+	public static ArrayList<HashMap<String,Object>> selectRsvgolf(int startRow, int rowPerPage) throws Exception{
+		ArrayList<HashMap<String,Object>> list = 
+				new ArrayList<HashMap<String,Object>>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT r.rsv_no rsvNo, c.cus_name cusName, r.rsv_date rsvDate, r.rsv_state rsvState, r.rsv_Ttime rsvTtime "
+				+ "FROM rsv_golf r INNER JOIN customer c "
+				+ "ON r.rsv_mail = c.cus_mail ORDER BY rsv_date desc limit ?,? ";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, startRow);
+			stmt.setInt(2, rowPerPage);
+			
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+					m.put("rsvNo", rs.getInt("rsvNo"));
+					m.put("cusName", rs.getString("cusName"));
+					m.put("rsvDate", rs.getString("rsvDate"));
+					m.put("rsvTtime", rs.getString("rsvTtime"));
+					m.put("rsvState", rs.getString("rsvState"));
+					
+					list.add(m);
+				}
+		
+		 conn.close();
+		return list;
+	}
+	//golfList 총갯수 구하기
+	//호출 : admin/golf/rsvGolfList.jsp
+	//param : void
+	//return : return int cnt
+
+	public static int allGolfList() throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT COUNT(*) cnt "
+				+ "FROM rsv_golf";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+			if(rs.next()) {
+				row = rs.getInt("cnt");
+			}
+			
+		conn.close();
+		return row;
+	}
+	
+	//회원골프예약 상세보기
+	//호출 : /admim/golf/rsvGolfOne.jsp
+	//param : void
+	//return : HashMap
+	
+	public static HashMap<String,Object>selectRsvGolfOne() throws Exception{
+		HashMap<String,Object>one = new HashMap<String,Object>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="SELECT c.cus_name cusName, c.cus_contact cusContact, "
+				+ "r.rsv_no rsvNo, r.rsv_mail rsvMail, r.rsv_date rsvDate, r.rsv_course rsvCourse, r.rsv_member rsvMember, "
+				+ "r.rsv_request rsvRequest, r.rsv_Ttime rsvTtime "
+				+ "FROM rsv_golf r "
+				+ "INNER JOIN customer c "
+				+ "ON r.rsv_mail = c.cus_mail";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			one.put("cusName", rs.getString("cusName"));
+			one.put("cusContact", rs.getString("cusContact"));
+			one.put("rsvNo", rs.getInt("rsvNo"));
+			one.put("rsvMail", rs.getString("rsvMail"));
+			one.put("rsvDate", rs.getString("rsvDate"));
+			one.put("rsvCourse", rs.getString("rsvCourse"));
+			one.put("rsvMember", rs.getString("rsvMember"));
+			one.put("rsvRequest", rs.getString("rsvRequest"));
+			one.put("rsvTtime", rs.getString("rsvTtime"));
+			
+		}
+		
+		conn.close();
+		return one;
+		
+	}
+	//회원 골프예약 상태변경처리
+	//호출 : admin/action/rsvGolfStateAction.jsp
+	//param : String rsvState, int rsvNo
+	//return : int
+	
+	public static int updateRsvGolfState(String rsvState, int rsvNo) throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="UPDATE rsv_golf "
+				+ "SET rsv_state = ? "
+				+ "WHERE rsv_no = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, rsvState);
+			stmt.setInt(2, rsvNo);
+			
+			row = stmt.executeUpdate();
+		
+		return row;
+	}
 }
