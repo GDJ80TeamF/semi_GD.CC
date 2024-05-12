@@ -30,11 +30,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="/Semi_F_GDCC/admin/updateBfOneAction.jsp">
+	<form method="post" action="/Semi_F_GDCC/admin/action/updateBfOneAction.jsp" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td>메뉴 번호</td>
-			<td><input name="menuNo" value="<%=(Integer)m.get("menuNo")%>" readonly></td>
+			<td><input type="text" name="menuNo" value="<%=(Integer)m.get("menuNo")%>" readonly></td>
 		</tr>
 		<tr>
 			<td>시즌</td>
@@ -68,13 +68,16 @@
 		</tr>
 		<tr>
 			<td>메인 메뉴</td>
-			<td><input name="menuMain" value="<%=(String)m.get("menuMain") %>"></td>
+			<td><input type="text" name="menuMain" value="<%=(String)m.get("menuMain") %>"></td>
 		</tr>
 		<tr>
 			<td>설명 </td>
-			<td><input name="menuInfo" value="<%=(String)m.get("menuInfo") %>"></td>
+			<td><input type="text" name="menuInfo" value="<%=(String)m.get("menuInfo") %>"></td>
 		</tr>
-		
+		<tr>
+			<td>이미지  </td>
+			<td><input type="file" name="menuImg" value="<%=(String)m.get("menuImg") %>" required></td>
+		</tr>
 	
 	
 	</table>

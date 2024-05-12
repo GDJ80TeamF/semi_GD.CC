@@ -49,6 +49,14 @@
 			<td><%=(String)m.get("menuInfo") %></td>
 		</tr>
 		<tr>
+			<td>이미지 </td>
+			<td>
+			<img src="/Semi_F_GDCC/admin/upload/<%=(String)m.get("menuImg") %>" width="300" height="200">
+			
+			
+			</td>
+		</tr>
+		<tr>
 			<td>생성 날짜</td>
 			<td><%=(String)m.get("createDate") %></td>
 		</tr>
@@ -59,7 +67,7 @@
 	
 	
 	</table>
-	<div><a href="/Semi_F_GDCC/admin/updateBfForm.jsp?menuNo=<%=menuNo%>">수정하기</a></div>
+	<div><a href="/Semi_F_GDCC/admin/updateBfOneForm.jsp?menuNo=<%=menuNo%>">수정하기</a></div>
 	<br>
 	<div><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">돌아가기 </a></div>
 </body>
