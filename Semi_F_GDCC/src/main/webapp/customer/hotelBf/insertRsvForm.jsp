@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="gdcc.dao.*" %>
+<%@ page import="java.util.*" %>
 <%
+	// get으로 rsvNo 던져줘야함
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") == null){
 		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
@@ -17,6 +20,11 @@
 		}   
 	}
 	System.out.println(rsvMenu+"<-- rsvMenu insertRsvForm.jsp param");
+	
+	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
+	
+	HashMap <String,Object> m = RsvHotelDAO.selectdate(rsvNo);
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -34,10 +42,12 @@
 	<div class="col"></div>          
 		<div class="mt-5 col-7 bg-white border shadow-sm p-3 mb-5 bg-body-tertiary rounded">
 		<h1>조식 예약</h1>
+		<h3>머무시는 일정</h3>
+		<div><%=(String)m.get("checkinDate")%> ~ <%=(String)m.get("checkoutDate")%></div>
 		<form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/customerLoginAction.jsp">
         	<div class="mb-3 mt-3">
 				<label for="rsvNo" class="form-label">예약 번호:</label>
-				<input type="number" class="form-control" placeholder="예약 번호" name="rsvNo" min="1">
+				<input type="number" class="form-control" value="<%=rsvNo%>" name="rsvNo">
 			</div>   
             <div class="mb-3">
             <%
