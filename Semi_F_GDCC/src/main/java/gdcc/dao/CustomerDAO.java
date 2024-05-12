@@ -240,22 +240,76 @@ public class CustomerDAO {
 		return result;
 	}
 	
-	// 아이디 비번 확인하는 메서드 / 삭제확인폼
-	public static boolean selectIdPwCk(String checkId, int checkPw) throws Exception{
-		boolean ck = false;
-		//db접근
+	//회원 아이디 찾기
+	//호출 : customer/action/findIdAction.jsp
+	//param :
+	//return : 
+	
+	public static HashMap<String,Object>selectFindId(
+			String cusName, String cusBirth, String cusContact) throws Exception{
+		HashMap<String,Object>find = new HashMap<String,Object>();
+		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT cus_mail cusMail FROM customer where cus_mail = ? AND cus_pw = PASSWORD(?) ";
+		String sql ="SELECT cus_mail "
+				+ "FROM customer "
+				+ "WHERE cus_name = ? AND cus_birth = ? AND cus_contact = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, checkId);
-		stmt.setInt(2, checkPw);
-		ResultSet rs = stmt.executeQuery();
-		//읽어올 행이있으면 -> 이미 존재하는 아이디 ck = true , 없음 ck = false
-		if(rs.next()) { // 인증완료 
-			ck = true;
-		}
+			stmt.setString(1, cusName);
+			stmt.setString(2, cusBirth);
+			stmt.setString(3, cusContact);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				find.put("cusMail", rs.getString("cus_mail"));
+			}
 		conn.close();
-		return ck;
-	}	
+		return find;
+	}
+	//회원 비밀번호 찾기
+	//호출 : customer/action/findPwAction.jsp
+	//param : 
+	//return : HashMap<String,Object>
+	
+	public static HashMap<String,Object>selectFindPw(String cusMail, String cusName, String cusContact) throws Exception{
+		HashMap<String,Object> find = new HashMap<String,Object>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT cus_pw FROM customer WHERE cus_mail = ? AND cus_name =? AND cus_contact =?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, cusMail);
+			stmt.setString(2, cusName);
+			stmt.setString(3, cusContact);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				find.put("cusPw", rs.getString("cus_pw"));
+			}
+		
+		return find;
+		
+	}
+	
+	// 아이디 비번 확인하는 메서드 / 삭제확인폼
+	public static boolean selectIdPwCk(String checkId, int checkPw) throws Exception{
+	boolean ck = false;
+	//db접근
+	Connection conn = DBHelper.getConnection();
+	
+	String sql = "SELECT cus_mail cusMail FROM customer where cus_mail = ? AND cus_pw = PASSWORD(?) ";
+	PreparedStatement stmt = conn.prepareStatement(sql);
+	stmt.setString(1, checkId);
+	stmt.setInt(2, checkPw);
+	ResultSet rs = stmt.executeQuery();
+	//읽어올 행이있으면 -> 이미 존재하는 아이디 ck = true , 없음 ck = false
+	if(rs.next()) { // 인증완료 
+		ck = true;
+	}
+	conn.close();
+	return ck;
+}	
 }

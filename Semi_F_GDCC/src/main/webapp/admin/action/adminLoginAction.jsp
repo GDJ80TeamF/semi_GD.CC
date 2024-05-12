@@ -4,8 +4,6 @@
 <%@ page import="gdcc.dao.*" %>
 <%
 
-	
-
 	//form에서 입력한 아이디 비번 값 가져오기
 	String adminMail = request.getParameter("adminMail");
 	String adminPw = request.getParameter("adminPw");
