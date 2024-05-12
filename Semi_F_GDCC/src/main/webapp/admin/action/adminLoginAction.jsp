@@ -12,6 +12,7 @@
 	System.out.println(adminPw);
 	
 	HashMap<String,Object> loginAdmin = AdminDAO.selectAdminLogin(adminMail, adminPw);
+	
 	if(loginAdmin == null){
 		System.out.println("로그인 실패");
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class RsvHotelDAO {
 	// rsvNo에 따라 체크인 체크아웃 출력하는 메서드
@@ -32,4 +33,66 @@ public class RsvHotelDAO {
 		conn.close();
 		return m;		
 	}
+	
+	//호텔 예약 관련 카테고리 생성
+	//호출 : admin/rsvHotelList.jsp
+	//param :void
+	//return : ArrayList<HashMap<String,Object>>
+	
+	public static ArrayList<HashMap<String,Object>> selectRsvHotelList() throws Exception{
+		ArrayList<HashMap<String,Object>> list = 
+				 new ArrayList<HashMap<String,Object>>();
+		
+		Connection  conn = DBHelper.getConnection();
+		
+		String sql ="SELECT h.rsv_no hotelRsvNo, b.rsv_bf_no bfRsvNo, c.rsv_comno comRsvNo "
+				+ "FROM rsv_hotel h "
+				+ "CROSS JOIN rsv_bf b "
+				+ "CROSS JOIN rsv_complex c";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+				m.put("hotel", rs.getInt("hotelRsvNo"));
+				m.put("bf", rs.getInt("bfRsvNo"));
+				m.put("complex", rs.getInt("comRsvNo"));
+			
+				list.add(m);
+		}
+		
+		conn.close();
+		return list;
+	}
+	//전체 예약 리스트 출력
+	//호출 : admin/rsvHotelList.jsp
+	//param : void
+	//return : ArrayList
+
+	public static ArrayList<HashMap<String,Object>> allRsvList() throws Exception{
+		ArrayList<HashMap<String,Object>> list = 
+				 new ArrayList<HashMap<String,Object>>();
+		
+		Connection  conn = DBHelper.getConnection();
+		
+		String sql = "SELECT (SELECT COUNT(*) FROM rsv_hotel)"
+				+ " + (SELECT COUNT(*) FROM rsv_bf"
+				+ " + (SELECT COUNT(*) FROM rsv_complex) total_count";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			
+				m.put("cnt", rs.getInt("total_count"));
+				
+				list.add(m);
+		}
+		
+		conn.close();
+		return list;
+	}
+			
+	
 }
