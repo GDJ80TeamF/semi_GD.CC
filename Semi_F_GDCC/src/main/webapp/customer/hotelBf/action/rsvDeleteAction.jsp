@@ -9,7 +9,7 @@
 	System.out.println(rsvNo + "<--rsvNo deleteQnAAction.jsp param");
 	
 	// rsvNo가 ?인 조식예약 삭제하는 메서드
-	int row = BfDAO.deleteRsv(rsvNo);
+	int row = RsvBfDAO.deleteRsv(rsvNo);
 	
 	if(row == 1){
 		System.out.println("삭제성공");

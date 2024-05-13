@@ -25,8 +25,11 @@
 	}
 	System.out.println(rsvMenu+"<-- rsvMenu insertRsvForm.jsp param");
 	
+	// cusMail에 따라 예약번호, 체크인, 체크아웃 출력하는 메서드
 	HashMap <String,Object> map = RsvBfDAO.selectdate(cusMail);
 	System.out.println(map+"<-- map insertRsvForm.jsp param");
+	int rsvBfno = Integer.parseInt(request.getParameter("rsvBfno"));
+	System.out.println(rsvBfno+"<-- rsvBfno insertRsvForm.jsp param");
 	
 %>
 <!DOCTYPE html>
@@ -44,13 +47,15 @@
 	<div class="row">
 	<div class="col"></div>          
 		<div class="mt-5 col-7 bg-white border shadow-sm p-3 mb-5 bg-body-tertiary rounded">
-		<h1>조식 예약</h1>
+		<h1>조식 예약 수정</h1>
 		<h3>머무시는 일정</h3>
 		<div><%=(String)map.get("checkinDate")%> ~ <%=(String)map.get("checkoutDate")%></div>
-		<form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/insertRsvAction.jsp">
+		<form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/rsvUpdateAction.jsp">
         	<div class="mb-3 mt-3">
 				<label for="rsvNo" class="form-label">예약 번호:</label>
 				<input type="number" class="form-control" value="<%=(Integer)map.get("rsvNo")%>" name="rsvNo">
+				<label for="rsvNo" class="form-label">조식예약 번호:</label>
+				<input type="number" class="form-control" value="<%=rsvBfno%>" name="rsvBfNo">
 			</div>   
             <div class="mb-3">
             <%
@@ -73,11 +78,11 @@
 			</div>
             <div class="mb-3">
             	<label for="rsvMember" class="form-label">예약 인원:</label>
-            	<input type="number" class="form-control" placeholder="인원 수" name="rsvMember" min="1">
+            	<input type="number" class="form-control" value="<%=(String)map.get("rsvMember")%>" name="rsvMember" min="1">
             </div>                  
             	<input type="hidden" value="<%=rsvMenu%>" name="rsvMenu">
 
-            	<button type="submit" class="btn btn-primary">예약</button>
+            	<button type="submit" class="btn btn-primary">예약 수정</button>
 		</form>
         </div>
 	<div class="col"></div>

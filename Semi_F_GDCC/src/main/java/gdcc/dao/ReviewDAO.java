@@ -377,5 +377,57 @@ public class ReviewDAO {
 
 		conn.close();
 		return row;
-	}	
+	}
+	// 호출 : /customer/reviewListPerCustomer.jsp
+	// cusMail에 따라 hotelRsvState 출력하는 메서드
+	public static String hotelRsvState(String cusMail) throws Exception {
+		// 매개값 디버깅
+		System.out.println(cusMail + "<-- cusMail ReviewDAO.hotelRsvState param");
+			
+		String s = null;
+			
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+				
+		String sql = "SELECT h.rsv_state state "
+					+ "FROM rsv_hotel h "
+					+ "INNER JOIN customer c ON h.rsv_mail = c.cus_mail "
+					+ "WHERE c.cus_mail = ?";
+				
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, cusMail);
+		ResultSet rs = stmt.executeQuery();
+			
+		if(rs.next()) {
+			s = (String)(rs.getString("state"));
+		}
+		conn.close();
+		return s;		
+	}
+	// 호출 : /customer/reviewListPerCustomer.jsp
+	// cusMail에 따라 golfRsvState 출력하는 메서드
+	public static String golfRsvState(String cusMail) throws Exception {
+		// 매개값 디버깅
+		System.out.println(cusMail + "<-- cusMail ReviewDAO.golfRsvState param");
+			
+		String s = null;
+			
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+				
+		String sql = "SELECT g.rsv_state state "
+					+ "FROM rsv_golf g "
+					+ "INNER JOIN customer c ON g.rsv_mail = c.cus_mail "
+					+ "WHERE c.cus_mail = ?";
+				
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, cusMail);
+		ResultSet rs = stmt.executeQuery();
+			
+		if(rs.next()) {
+			s = (String)(rs.getString("state"));
+		}
+		conn.close();
+		return s;		
+	}
 }

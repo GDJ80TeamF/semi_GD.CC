@@ -55,7 +55,7 @@
 		<%
 			}
 		%>
-			<a href="/Semi_F_GDCC/customer/insertHotelReviewForm.jsp">리뷰 쓰기</a>
+			
 	</table>
 	<!-- 페이징 버튼 -->
 	<div style="display: table;margin-left: auto; margin-right: auto;">														

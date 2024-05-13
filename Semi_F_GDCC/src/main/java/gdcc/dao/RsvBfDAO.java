@@ -6,11 +6,11 @@ public class RsvBfDAO {
 	// 조식예약 작성하는 메서드
 	public static int insertRsv(int rsvNo, String rsvDate, String rsvTime, int rsvMember,int rsvMenu) throws Exception {
 		// 매개값 디버깅
-		System.out.println(rsvNo + "<-- rsvNo BfDAO.insertRsv param");
-		System.out.println(rsvDate + "<-- rsvDate BfDAO.insertRsv param");
-		System.out.println(rsvTime + "<-- rsvTime BfDAO.insertRsv param");
-		System.out.println(rsvMember + "<-- rsvMember BfDAO.insertRsv param");
-		System.out.println(rsvMenu + "<-- rsvMenu BfDAO.insertRsv param");
+		System.out.println(rsvNo + "<-- rsvNo RsvBfDAO.insertRsv param");
+		System.out.println(rsvDate + "<-- rsvDate RsvBfDAO.insertRsv param");
+		System.out.println(rsvTime + "<-- rsvTime RsvBfDAO.insertRsv param");
+		System.out.println(rsvMember + "<-- rsvMember RsvBfDAO.insertRsv param");
+		System.out.println(rsvMenu + "<-- rsvMenu RsvBfDAO.insertRsv param");
 		
 		int row = 0;
 		// DB 접근
@@ -32,16 +32,16 @@ public class RsvBfDAO {
 		return row;
 	}
 	// rsvNo가 ?인 조식예약정보 출력하는 메서드 / 상세보기
-	public static HashMap<String, Object> selectRsvOne(int rsvNo) throws Exception {
+	public static ArrayList<HashMap<String, Object>> selectRsvOne(int rsvNo) throws Exception {
 		// 매개값 디버깅
-		System.out.println(rsvNo + "<-- rsvNo BfDAO.selectRsv param");
+		System.out.println(rsvNo + "<-- rsvNo RsvBfDAO.selectRsv param");
 		
-		HashMap<String, Object> resultMap = null;
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 			
-		String sql = "SELECT rsv.rsv_no rsvNo, rsv.rsv_date rsvDate, rsv.rsv_time rsvTime, rsv.rsv_member rsvMember, "
+		String sql = "SELECT rsv.rsv_bfno rsvBfno, rsv.rsv_no rsvNo, rsv.rsv_date rsvDate, rsv.rsv_time rsvTime, rsv.rsv_member rsvMember, "
 				+ " rsv.rsv_state rsvState, menu.menu_main menuMain, menu.menu_info menuInfo, "
 				+ " menu.menu_img menuImg "
 				+ " FROM rsv_bf rsv INNER JOIN bf_menu menu "
@@ -52,19 +52,21 @@ public class RsvBfDAO {
 		stmt.setInt(1, rsvNo);
 		ResultSet rs = stmt.executeQuery();
 		
-		if(rs.next()) {
-			resultMap = new HashMap<String, Object>();
-			resultMap.put("rsvNo", rs.getInt("rsvNo"));
-			resultMap.put("rsvDate", rs.getString("rsvDate"));
-			resultMap.put("rsvTime", rs.getString("rsvTime"));
-			resultMap.put("rsvMember", rs.getInt("rsvMember"));
-			resultMap.put("rsvState", rs.getString("rsvState"));
-			resultMap.put("menuMain", rs.getString("menuMain"));
-			resultMap.put("menuInfo", rs.getString("menuInfo"));
-			resultMap.put("menuImg", rs.getString("menuImg"));
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("rsvBfno", rs.getInt("rsvBfno"));
+			m.put("rsvNo", rs.getInt("rsvNo"));
+			m.put("rsvDate", rs.getString("rsvDate"));
+			m.put("rsvTime", rs.getString("rsvTime"));
+			m.put("rsvMember", rs.getInt("rsvMember"));
+			m.put("rsvState", rs.getString("rsvState"));
+			m.put("menuMain", rs.getString("menuMain"));
+			m.put("menuInfo", rs.getString("menuInfo"));
+			m.put("menuImg", rs.getString("menuImg"));
+			list.add(m);
 		}
 		conn.close();
-		return resultMap;		
+		return list;		
 	}
 	// rsvNo가 ?인 조식예약 삭제하는 메서드
 	public static int deleteRsv(int rsvNo) throws Exception {
@@ -86,30 +88,63 @@ public class RsvBfDAO {
 		conn.close();
 		return row;
 	}
-	// rsvNo가 ?인 조식예약 수정하는 메서드
-	public static int updateQnA(String rsvDate, String rsvTime, int rsvMember, int rsvNo) throws Exception {
+	// 호출 : /customer/hotelBf/action/rsvUpdateAction.jsp
+	// rsv_bfno가 ?인 조식예약 수정하는 메서드
+	public static int updateRsv(String rsvDate, String rsvTime, int rsvMember, int rsvBfno) throws Exception {
 		// 매개값 디버깅
-		System.out.println(rsvDate + "<-- rsvDate BfDAO.updateRsv param");
-		System.out.println(rsvTime + "<-- rsvTime BfDAO.updateRsv param");
-		System.out.println(rsvMember + "<-- rsvMember BfDAO.updateRsv param");
-		System.out.println(rsvNo + "<-- rsvNo BfDAO.updateRsv param");
+		System.out.println(rsvDate + "<-- rsvDate RsvBfDAO.updateRsv param");
+		System.out.println(rsvTime + "<-- rsvTime RsvBfDAO.updateRsv param");
+		System.out.println(rsvMember + "<-- rsvMember RsvBfDAO.updateRsv param");
+		System.out.println(rsvBfno + "<-- rsvBfno RsvBfDAO.updateRsv param");
 			
 		int row = 0;
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
-		String sql = " UPDATE qna SET qna_title = ?, qna_content = ?, update_date = NOW() "
-					+ " WHERE qna_no = ? ";
+		String sql = "UPDATE rsv_bf SET rsv_date = ?, rsv_time = ?, rsv_member = ?, update_date = NOW() WHERE rsv_bfno = ? ";
 			
 		PreparedStatement stmt =  conn.prepareStatement(sql);
 		stmt.setString(1, rsvDate);
 		stmt.setString(2, rsvTime);
 		stmt.setInt(3, rsvMember);
-		stmt.setInt(4, rsvNo);
+		stmt.setInt(4, rsvBfno);
 
 		row = stmt.executeUpdate();
 
 		conn.close();
 		return row;
-	}		
+	}
+	// 호출 : /customer/hotelBf/insertRsvForm.jsp
+	// 호출 : /customer/hotelBf/rsvUpdateForm.jsp
+	// cusMail에 따라 예약번호, 체크인, 체크아웃 출력하는 메서드
+	public static HashMap<String, Object> selectdate(String cusMail) throws Exception {
+		// 매개값 디버깅
+		System.out.println(cusMail + "<-- cusMail RsvBfDAO.selectdate param");
+		
+		HashMap<String, Object> m = null;
+		
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+			
+		String sql = "SELECT b.rsv_bfno rsvBfno, h.rsv_no rsvNo, c.cus_mail cusMail, h.checkin_date checkinDate, h.checkout_date checkoutDate, b.rsv_member rsvMember "
+					+ "FROM rsv_bf b "
+					+ "INNER JOIN rsv_hotel h ON b.rsv_no = h.rsv_no "
+					+ "INNER JOIN customer c ON h.rsv_mail = c.cus_mail WHERE c.cus_mail = ? ";
+			
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, cusMail);
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			m = new HashMap<String, Object>();
+			m.put("rsvBfno", rs.getInt("rsvBfno"));
+			m.put("rsvNo", rs.getInt("rsvNo"));
+			m.put("cusMail", rs.getString("cusMail"));
+			m.put("checkinDate", rs.getString("checkinDate"));
+			m.put("checkoutDate", rs.getString("checkoutDate"));
+			m.put("rsvMember", rs.getString("rsvMember"));
+		}
+		conn.close();
+		return m;		
+	}
 }

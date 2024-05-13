@@ -22,6 +22,13 @@
 	ArrayList<HashMap<String, Object>> hotelReviewList = ReviewDAO.selectHotelReviewPerCus(cusMail);
 	//고객 본인이 작성한 golfReview 조회하는 메서드
 	ArrayList<HashMap<String, Object>> golfReviewList = ReviewDAO.selectGolfReviewPerCus(cusMail);
+	
+	// cusMail에 따라 hotelRsvState 출력하는 메서드
+	String hs = ReviewDAO.golfRsvState(cusMail);
+	System.out.println(hs + "<-- hs reviewListPerCustomer.jsp param");
+	// cusMail에 따라 golfRsvState 출력하는 메서드
+	String gs = ReviewDAO.golfRsvState(cusMail);
+	System.out.println(gs + "<-- gs reviewListPerCustomer.jsp param");
 %>
 <!DOCTYPE html>
 <html>
@@ -34,6 +41,13 @@
 <div>
 <h1>나의 호텔리뷰 목록</h1>
 	<table border="1">
+		<%
+			if(hs.equals("예약만료")) {
+		%>
+			<a href="/Semi_F_GDCC/customer/insertHotelReviewForm.jsp">리뷰 쓰기</a>
+		<%
+			}
+		%>
 		<tr>
 			<th>reviewNo</th>
 			<th>reviewTitle</th>
@@ -59,6 +73,14 @@
 	</table>
 <h1>나의 골프리뷰 목록</h1>
 	<table border="1">
+		<%
+			if(gs.equals("예약만료")) {
+		%>
+			<a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp">리뷰 쓰기</a>
+		<%
+			}
+		%>
+		
 		<tr>
 			<th>reviewNo</th>
 			<th>reviewTitle</th>

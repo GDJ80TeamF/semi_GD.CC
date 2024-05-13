@@ -15,7 +15,7 @@
 	System.out.println(rsvNo + "<-- rsvNo rsvOne.jsp param ");
 
 	// rsvNo에 따라 조식예약정보 출력하는 메서드 / 상세보기
-	HashMap<String, Object> map = BfDAO.selectRsvOne(rsvNo);
+	ArrayList<HashMap<String, Object>> list = RsvBfDAO.selectRsvOne(rsvNo);
 	
 %>
 <!DOCTYPE html>
@@ -39,20 +39,27 @@
 				<th>menuInfo</th>
 				<th>menuImg</th>
 			</tr>
+			<%
+				for(HashMap m : list) {
+			%>
 			<tr>
-				<td><%=(Integer)(map.get("rsvNo"))%></td>	
-				<td><%=(String)(map.get("rsvDate"))%></td>	
-				<td><%=(String)(map.get("rsvTime"))%></td>
-				<td><%=(Integer)(map.get("rsvMember"))%></td>	
-				<td><%=(String)(map.get("rsvState"))%></td>	
-				<td><%=(String)(map.get("menuMain"))%></td>
-				<td><%=(String)(map.get("menuInfo"))%></td>
-				<td><%=(String)(map.get("menuImg"))%></td>
+				<td><%=(Integer)(m.get("rsvNo"))%></td>	
+				<td><%=(String)(m.get("rsvDate"))%></td>	
+				<td><%=(String)(m.get("rsvTime"))%></td>
+				<td><%=(Integer)(m.get("rsvMember"))%></td>	
+				<td><%=(String)(m.get("rsvState"))%></td>	
+				<td><%=(String)(m.get("menuMain"))%></td>
+				<td><%=(String)(m.get("menuInfo"))%></td>
+				<td><%=(String)(m.get("menuImg"))%></td>
 			</tr>
 
-			<a href="/Semi_F_GDCC/customer/hotelBf/rsvUpdateForm.jsp?rsvNo=<%=rsvNo%>">예약 수정</a>
+			<a href="/Semi_F_GDCC/customer/hotelBf/rsvUpdateForm.jsp?rsvNo=<%=rsvNo%>&
+						rsvBfno=<%=(Integer)(m.get("rsvBfno"))%>">예약 수정</a>
 			<br>
 			<a href="/Semi_F_GDCC/customer/hotelBf/rsvDeleteForm.jsp?rsvNo=<%=rsvNo%>">예약 삭제</a>
+			<%
+				}
+			%>
 	</table>
 	
 </div>
