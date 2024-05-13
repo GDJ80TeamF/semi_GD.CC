@@ -3,13 +3,24 @@
 <%@ page import="java.util.*" %>
 <%
 
-	if(session.getAttribute("loginAdmin") == null){
-		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
-		return;
+	//인증 분기 세션 변수 이름 : loginCustomer
+		if(session.getAttribute("loginCustomer") == null){
+			response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+			return;
 	}
-
+	HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 	 
 	
-
+	String cusMail = (String)(login.get("cusMail"));
+	//고객 아이디로 예약된 예약 번호 불러오기 
+	
+	ArrayList <HashMap<String,Object>> list = RsvHotelDAO.selectRsvNo(cusMail);
+	ArrayList <HashMap<String,Object>> complexList = ComplexDAO.selectComplexNo();
+	
+	String rsvNo = request.getParameter("rsvNo");
+	if (rsvNo == null){
+		rsvNo = " ";
+	}
+	
 
 %>
 <!DOCTYPE html>
@@ -19,31 +30,99 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form>
-	<table>
+<!-- 예약번호 선택하기   -->
+<%
+	if(rsvNo == " "){
+%>
+<form method="post" action="/Semi_F_GDCC/customer/hotelComplex/checkRsvNo.jsp">
+	<table>		
 		<tr>
 			<td>호텔 예약번호</td>
-			<td></td>
-		</tr>
+			<td>
+			<select name="rsvNo">
+			<%
+				for(HashMap<String,Object> m:list){
+			%>
+			<option value="<%=(Integer)m.get("rsvNo")%>"><%=(Integer)m.get("rsvNo")%></option>
+			
+			<%
+				}
+			
+			%>
+			</select>
+			</td>
+		</tr>	
+	</table>
+	<button type="submit">예약번호 선택 </button>
+</form>
+<%
+	}else{
+		int rsvNoparam = Integer.parseInt(rsvNo);
+		HashMap<String,Object> date = RsvHotelDAO.selectdate(rsvNoparam);
+%>
+	
+<form method="post" action="/Semi_F_GDCC/customer/hotelComplex/insertRsvAction.jsp">
+<table>
+		<tr>
+			<td>호텔 예약번호</td>
+			<td>
+			<input name="rsvNo" value="<%=rsvNo%>" readonly>
+			</td>
+		</tr>	
 		<tr>
 			<td>예약날짜</td>
-			<td></td>
+			<td>
+			<input type="date" name="rsvDate" min="<%=(String)date.get("checkinDate")%>" max="<%=(String)date.get("checkoutDate")%>">
+			
+			</td>
+	
 		</tr>
 		<tr>
 			<td>이용 시설 </td>
-			<td></td>
+			<td>
+			<select name="rsvPlace">
+			<%
+				for(HashMap<String,Object> n:complexList){
+			%>
+			<option value="<%=(Integer)n.get("complexNo")%>"><%=(String)n.get("complexName")%></option>
+			<%
+				}
+			%>
+			
+			</select>
+			
+			</td>
+			
 		</tr>
 		<tr>
 			<td>예약 시간</td>
-			<td></td>
+			<td>
+			<select name="rsvTime">
+				<option value="12시">12시</option>
+				<option value="13시">13시</option>
+				<option value="14시">14시</option>
+				<option value="15시">15시</option>
+				<option value="16시">16시</option>
+				<option value="17시">17시</option>
+				<option value="18시">18시</option>
+			</select>
+			</td>
 		</tr>
 		<tr>
 			<td>예약 인원 </td>
-			<td></td>
+			<td><input type="number" name="rsvMember"></td>
 		</tr>
 	
 	</table>
-	<button type="submit"></button>
+	<button type="submit">예약하기 </button>
 </form>
+
+		
+		
+<% 		
+	}
+
+%>
+
 </body>
 </html>

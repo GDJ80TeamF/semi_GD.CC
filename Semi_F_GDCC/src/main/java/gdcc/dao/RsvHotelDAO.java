@@ -94,6 +94,30 @@ public class RsvHotelDAO {
 		conn.close();
 		return list;
 	}
+	//호출 - insertRsvForm.jsp
+	//param - cusMail
+	//return ArrayList<HashMap<String,Object>>
+	public static ArrayList<HashMap<String,Object>> selectRsvNo (String cusMail) throws Exception{
+	ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>> ();
+	Connection conn = DBHelper.getConnection();
+				
+	String sql = "SELECT rsv_no,checkin_date,checkout_date FROM rsv_hotel WHERE rsv_mail = ? AND rsv_state='예약완료'";
+	PreparedStatement stmt = conn.prepareStatement(sql);
+	stmt.setString(1, cusMail);
+	ResultSet rs = stmt.executeQuery();
+	while(rs.next()) {
+		HashMap<String,Object> m = new HashMap<String,Object>();
+					
+		m.put("rsvNo", rs.getInt("rsv_no"));
+					
+		list.add(m);
+					
+		}
+		conn.close();
+		return list;
+			}
+			
+	
 			
 	
 }

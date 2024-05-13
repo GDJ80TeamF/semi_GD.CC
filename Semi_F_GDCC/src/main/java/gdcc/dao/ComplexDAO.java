@@ -87,4 +87,26 @@ public class ComplexDAO {
 		conn.close();
 		return row;
 	}
+	//호출 /hotelComplex/insertRsvForm.jsp
+		//param- X
+		//return ArrayList<HashMap<String,Object>>
+		public static ArrayList<HashMap<String,Object>> selectComplexNo () throws Exception {
+			ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>> ();
+			Connection conn = DBHelper.getConnection();
+			String sql = "SELECT complex_no, complex_name FROM hotel_complex WHERE complex_state = '사용가능'";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				HashMap<String,Object> m = new HashMap<String,Object>();
+				
+				m.put("complexNo", rs.getInt("complex_no"));
+				m.put("complexName", rs.getString("complex_name"));
+				
+				list.add(m);
+				
+			}
+			conn.close();
+			return list;
+		}
 }

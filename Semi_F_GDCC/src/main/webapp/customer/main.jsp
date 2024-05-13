@@ -22,5 +22,6 @@
 <a href="/Semi_F_GDCC/customer/QnAList.jsp">QnA</a>
 <a href="/Semi_F_GDCC/customer/hotelReviewList.jsp">hotelReview</a>
 <a href="/Semi_F_GDCC/customer/golfReviewList.jsp">golfReview</a>
+<a href="/Semi_F_GDCC/customer/hotelComplex/rsvComplexList.jsp">호텔 시설 예약 리스트 </a>
 </body>
 </html>
