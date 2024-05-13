@@ -23,8 +23,8 @@
 	<h1>공지사항 추가</h1>
 	<form method="post" action="/Semi_F_GDCC/admin/action/insertNoticeAction.jsp">
 		<div>
-			관리자 번호:
-			<input type="text" name="adminNo" value=<%=(Integer)(loginAdmin.get("adminNo"))%> readonly="readonly">
+			관리자 이메일:
+			<input type="text" name="adminEmail" value="<%=(String)(loginAdmin.get("adminEmail"))%>" readonly="readonly">
 		</div>
 		<div>
 			공지 제목:

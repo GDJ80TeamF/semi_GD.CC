@@ -9,16 +9,16 @@ import java.sql.*;
 
 public class NoticeDAO {
 	// 공지 추가
-	public static int insertNotice(int adminNo, String noticeTitle, String noticeContent) throws Exception{
+	public static int insertNotice(int adminEmail, String noticeTitle, String noticeContent) throws Exception{
 		int row = 0;
 		
 		Connection conn = null;
 		conn = DBHelper.getConnection();
 		
-		String sql = "INSERT INTO notice(admin_no, notice_title, notice_content) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO notice(admin_email, notice_title, notice_content) VALUES(?, ?, ?)";
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, adminNo);
+		stmt.setInt(1, adminEmail);
 		stmt.setString(2, noticeTitle);
 		stmt.setString(3, noticeContent);
 		
@@ -36,7 +36,7 @@ public class NoticeDAO {
 		
 		Connection conn1 = DBHelper.getConnection();
 		
-		String sql1 = "SELECT notice_no noticeNo, admin_no adminNo, "
+		String sql1 = "SELECT notice_no noticeNo, admin_email adminEmail, "
 				+ "notice_title noticeTitle, notice_content noticeContent "
 				+ "FROM notice "
 				+ "ORDER BY noticeNo ASC LIMIT ?, ? ";
@@ -50,7 +50,7 @@ public class NoticeDAO {
 		while(rs1.next()) {
 			HashMap<String, Object> m1 = new HashMap<String, Object>();
 			m1.put("noticeNo", rs1.getInt("noticeNo"));
-			m1.put("adminNo", rs1.getInt("adminNo"));
+			m1.put("adminEmail", rs1.getInt("adminEmail"));
 			m1.put("noticeTitle", rs1.getString("noticeTitle"));
 			m1.put("noticeContent", rs1.getString("noticeContent"));
 			List.add(m1);
@@ -69,7 +69,7 @@ public class NoticeDAO {
 		// db연결
 		Connection conn2 = DBHelper.getConnection();
 		
-		String sql2 = "SELECT notice_no noticeNo, admin_no adminNO, "
+		String sql2 = "SELECT notice_no noticeNo, admin_email adminEmail, "
 				+ "notice_title noticeTitle, notice_content noticeContent "
 				+ "FROM notice WHERE notice_no=? ";
 		
@@ -84,7 +84,7 @@ public class NoticeDAO {
 		if(rs2.next()) {
 			resuMap = new HashMap<String, Object>();
 			resuMap.put("noticeNo", rs2.getInt("noticeNo"));
-			resuMap.put("adminNO", rs2.getInt("adminNO"));
+			resuMap.put("adminEmail", rs2.getInt("adminEmail"));
 			resuMap.put("noticeTitle", rs2.getString("noticeTitle"));
 			resuMap.put("noticeContent", rs2.getString("noticeContent"));
 		}
@@ -95,15 +95,15 @@ public class NoticeDAO {
 	
 	
 	  // 공지 수정 
-	  public static int updateNotice(int noticeNo, int adminNo, String noticeTitle, String noticeContent) throws Exception{ 
+	  public static int updateNotice(int noticeNo, int adminEmail, String noticeTitle, String noticeContent) throws Exception{ 
 		  int row3 = 0;
 	  
 		  Connection conn3 = DBHelper.getConnection();
 		  
-		  String sql3 = "UPDATE notice SET admin_no=?, notice_title=?, notice_content=? where notice_no=? ";
+		  String sql3 = "UPDATE notice SET admin_email=?, notice_title=?, notice_content=? WHERE notice_no=? ";
 		  PreparedStatement stmt3 = null;
 		  stmt3  = conn3.prepareStatement(sql3);
-		  stmt3.setInt(1, adminNo);
+		  stmt3.setInt(1, adminEmail);
 		  stmt3.setString(2, noticeTitle);
 		  stmt3.setString(3, noticeContent);
 		  stmt3.setInt(4, noticeNo);

@@ -69,4 +69,22 @@ public class ComplexDAO {
 		conn.close();
 		return resMap;
 	}
+	
+	// complex 수정
+	public static int updateComplex(int complexNo, String complexState, String complexInfo) throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		String sql = "UPDATE hotel_complex SET complex_state=?, complex_info=? WHERE complex_no=? ";
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, complexState);
+		stmt.setString(2, complexInfo);
+		stmt.setInt(3, complexNo);
+		
+		row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
 }

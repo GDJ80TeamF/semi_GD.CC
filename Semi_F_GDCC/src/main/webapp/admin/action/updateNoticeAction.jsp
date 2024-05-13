@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.sql.*"%>
 <%@ page import = "java.util.*" %>
+<%@ page import="java.net.*"%>
 <%@page import="gdcc.dao.NoticeDAO"%>
 <%
 	// 인증 분기 세션 변수 이름 : loginAdmin
@@ -12,17 +13,17 @@
 <%
 	// 파라미터값
 	int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));	
-	int adminNo = Integer.parseInt(request.getParameter("adminNo"));
+	int adminEmail = Integer.parseInt(request.getParameter("adminEmail"));
 	String noticeTitle = request.getParameter("noticeTitle");
 	String noticeContent = request.getParameter("noticeContent");
 	
 	// 디버깅
 	System.out.println("noticeNo: " + noticeNo);
-	System.out.println("adminNo: " + adminNo);
+	System.out.println("adminEmail: " + adminEmail);
 	System.out.println("noticeTitle: " + noticeTitle);
 	System.out.println("noticeContent: " + noticeContent);
 	
-	int row = NoticeDAO.updateNotice(noticeNo, adminNo, noticeTitle, noticeContent);
+	int row = NoticeDAO.updateNotice(noticeNo, adminEmail, noticeTitle, noticeContent);
 	
 	if(row == 1){
 		System.out.println("수정 성공");

@@ -36,8 +36,8 @@
 			<input type="" name="noticeNo" value="<%=(Integer)(m.get("noticeNo"))%>" readonly="readonly">
 		</div>
 		<div>
-			관리자 번호:
-			<input type="text" name="adminNo" value="<%=(Integer)(loginAdmin.get("adminNo"))%>" readonly="readonly">
+			관리자 이메일:
+			<input type="text" name="adminEmail" value="<%=(Integer)(loginAdmin.get("adminEmail"))%>" readonly="readonly">
 		</div>
 		<div>
 			공지 제목:

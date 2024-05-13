@@ -23,13 +23,13 @@
 	<table border="1">
 		<tr>
 			<td>공지 번호</td>
-			<td>관리자 번호</td>
+			<td>관리자 이메일</td>
 			<td>공지 제목</td>
 			<td>공지 내용</td>
 		</tr>
 		<tr>
 			<td><%=(Integer)(m.get("noticeNo"))%></td>
-			<td><%=(Integer)(m.get("adminNO"))%></td>
+			<td><%=(Integer)(m.get("adminEmail"))%></td>
 			<td><%=(String)(m.get("noticeTitle"))%></td>
 			<td><%=(String)(m.get("noticeContent"))%></td>
 		</tr>

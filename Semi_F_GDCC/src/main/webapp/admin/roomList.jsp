@@ -1,6 +1,5 @@
 <%@page import="gdcc.dao.RoomDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 <%-- <%
@@ -30,8 +29,9 @@
 </head>
 <body>
 	<h1>룸 리스트</h1>
+	<a href="/Semi_F_GDCC/admin/insertRoomForm.jsp">글쓰기</a>
 	<table border="1">
-		<tr>
+		<tr bgcolor="pink">
 			<td>룸 no</td>
 			<td>룸 등급</td>
 			<td>룸 가격</td>
@@ -45,12 +45,25 @@
 				for(HashMap<String, Object> m : List){
 			%>
 				<tr>
-					<td><%=(Integer)(m.get("roomNo"))%></td>
+					<td><a href="/Semi_F_GDCC/admin/roomOne.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>"><%=(Integer)(m.get("roomNo"))%></a></td>
 					<td><%=(Integer)(m.get("roomGrade"))%></td>
 					<td><%=(Integer)(m.get("roomPrice"))%></td>
 					<td><%=(Integer)(m.get("roomMax"))%></td>
-					<td><%=(String)(m.get("roomState"))%></td>
-					<td><%=(String)(m.get("roomImg"))%></td>
+					<td>
+						현재상태: <%=(String)(m.get("roomState"))%><br>
+						<form method="post" action="/Semi_F_GDCC/admin/action/updateRoomState.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>">
+							변경할 상태 선택하기: 
+							<select name="roomState">
+								<option value="공사중">공사중</option>
+								<option value="투숙가능">투숙가능</option>
+							</select>
+								<button type="submit">변경하기</button>
+						</form>
+						
+					</td>
+					<td>
+					<img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>">
+					</td>
 					<td><%=(String)(m.get("create_date"))%></td>
 					<td><%=(String)(m.get("update_date"))%></td>
 				</tr>
@@ -58,6 +71,5 @@
 				}
 			%>
 	</table>
-	<a href="/Semi_F_GDCC/admin/insertRoomForm.jsp">글쓰기</a>
 </body>
 </html>
