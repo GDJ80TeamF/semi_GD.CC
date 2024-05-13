@@ -72,11 +72,12 @@ public class RsvHotelDAO {
 	public static ArrayList<HashMap<String,Object>> allRsvList() throws Exception{
 		ArrayList<HashMap<String,Object>> list = 
 				 new ArrayList<HashMap<String,Object>>();
+
 		
 		Connection  conn = DBHelper.getConnection();
 		
 		String sql = "SELECT (SELECT COUNT(*) FROM rsv_hotel)"
-				+ " + (SELECT COUNT(*) FROM rsv_bf"
+				+ " + (SELECT COUNT(*) FROM rsv_bf)"
 				+ " + (SELECT COUNT(*) FROM rsv_complex) total_count";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
