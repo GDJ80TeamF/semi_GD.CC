@@ -9,6 +9,9 @@ import java.util.HashMap;
 public class RsvComplexDAO {
 	
 	//부대시설 예약 총 갯수 출력
+	//호출 : rsvHotelList.jsp
+	//param : void
+	//return : HashMap
 	public static HashMap<String,Object> rsvComplexCnt() throws Exception{
 			HashMap<String,Object> cnt = 
 				new HashMap<String,Object>();
@@ -33,8 +36,10 @@ public class RsvComplexDAO {
 	
 	//부대시설 예약리스트 출력
 	//호출 : rsvHotelList.jsp
+	//param : void
+	//return : ArrayList
 
-	public static ArrayList<HashMap<String,Object>> rsvList(int comCount) throws Exception{
+	public static ArrayList<HashMap<String,Object>> rsvList() throws Exception{
 		ArrayList<HashMap<String,Object>> list
 			= new ArrayList<HashMap<String,Object>>();
 		
@@ -44,8 +49,7 @@ public class RsvComplexDAO {
 				+ "FROM rsv_complex c ";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, comCount);
-			
+
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
@@ -60,6 +64,34 @@ public class RsvComplexDAO {
 		
 		return list;
 	}
+	
+	//부대시설 카테고리 생성하기
+	//호출 : rsvHotelList.jsp
+	//param : 
+	//return
+	/*
+	 * public static ArrayList<HashMap<String,Object>> comCategory() throws
+	 * Exception{ ArrayList<HashMap<String,Object>> category = new
+	 * ArrayList<HashMap<String,Object>>();
+	 * 
+	 * Connection conn = DBHelper.getConnection();
+	 * 
+	 * String sql ="SELECT rsv_comno rsvComno, rsv_no rsvNo, rsv_place rsvPlace, " +
+	 * "COUNT(*) cnt " + "FROM rsv_complex " + "GROUP BY rsv_place " +
+	 * "ORDER BY rsv_place ASC";
+	 * 
+	 * PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs =
+	 * stmt.executeQuery();
+	 * 
+	 * while(rs.next()) { HashMap<String,Object> m = new HashMap<String,Object>();
+	 * m.put("rsvPlace", rs.getInt("rsvPlace")); m.put("cnt", rs.getInt("cnt"));
+	 * 
+	 * category.add(m); }
+	 * 
+	 * return category; }
+	 */
+	
+	
 	//호출 - /hotelComplex/insertRsvAction.jsp
 	//param - int rsvNo,String rsvDate,int rsvPlace, rsvtime,rsvMember
 	//return - int row 
@@ -145,5 +177,6 @@ public class RsvComplexDAO {
 		conn.close();
 		return row;
 	}
+	
 
 }

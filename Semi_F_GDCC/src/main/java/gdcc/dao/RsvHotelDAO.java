@@ -117,7 +117,99 @@ public class RsvHotelDAO {
 		return list;
 			}
 			
+	//임아영
 	
-			
+	//호텔예약 총 갯수 구하기
+	//호출 : /admin/rsvHotelList.jsp
+	//param : void
+	//return : ArrayList
+	public static HashMap<String,Object> rsvHotelCnt() throws Exception{
+		HashMap<String,Object> cnt = 
+			new HashMap<String,Object>();
+	
+	Connection conn = DBHelper.getConnection();
+	
+	String sql ="SELECT COUNT(*) cnt FROM rsv_hotel";
+	
+	PreparedStatement stmt = conn.prepareStatement(sql);
+	ResultSet rs = stmt.executeQuery();
+	
+		while(rs.next()) {
+			cnt.put("hotelCnt", rs.getInt("cnt"));
+		}
+		
+	conn.close();
+	return cnt;
+	}
+	
+	
+	//호텔 예약리스트 가져오기
+	//호출 : /admin/rsvHotelList.jsp
+	//param : void
+	//retunr : ArrayList
+	
+	public static ArrayList<HashMap<String,Object>>rsvList() throws Exception{
+		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql = "SELECT c.cus_name cusName, c.cus_contact cusContact, r.rsv_no rsvNo, "
+				+ "r.room_no roomNo, r.checkin_date checkinDate, r.rsv_state rsvState "
+				+ "FROM rsv_hotel r "
+				+ "INNER JOIN customer c "
+				+ "ON c.cus_mail = r.rsv_mail";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+				m.put("name", rs.getString("cusName"));
+				m.put("contact", rs.getString("cusContact"));
+				m.put("rsvNo", rs.getInt("rsvNo"));
+				m.put("roomNo", rs.getInt("roomNo"));
+				m.put("rsvState", rs.getString("rsvState"));
+				
+				list.add(m);
+		}
+		
+		conn.close();
+		return list;
+	}
+	
+	//고객예약 상세페이지
+	//호출 : admin/rsvHotelOne.jsp
+	//param : rsvNo
+	//return : HashMap
+
+	public static HashMap<String,Object> rsvHotelOne(int rsvNo) throws Exception{
+		HashMap<String,Object>one = new HashMap<String,Object>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="SELECT c.cus_name name, c.cus_mail mail, c.cus_contact contact, r.checkin_date checkin, "
+				+ "r.checkout_date checkout, r.rsv_member member, r.rsv_request request "
+				+ "FROM rsv_hotel r INNER JOIN customer c "
+				+ "ON r.rsv_mail = c.cus_mail "
+				+ "WHERE rsv_no = ? ";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, rsvNo);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			one.put("name", rs.getString("name"));
+			one.put("mail", rs.getString("mail"));
+			one.put("contact", rs.getString("contact"));
+			one.put("checkin", rs.getString("checkin"));
+			one.put("checkout", rs.getString("checkout"));
+			one.put("member", rs.getString("member"));
+			one.put("request", rs.getString("request"));
+		}
+		
+		return one;
+	}
 	
 }
