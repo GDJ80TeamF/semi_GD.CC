@@ -6,7 +6,7 @@
 <%@ page import="java.io.*" %>
 <%@ page import="java.nio.file.*" %>
 <%
-	int roomGrade = Integer.parseInt(request.getParameter("roomGrade"));
+	String roomGrade = request.getParameter("roomGrade");
 	int roomPrice = Integer.parseInt(request.getParameter("roomPrice"));
 	int roomMax = Integer.parseInt(request.getParameter("roomMax"));
 	String roomState = request.getParameter("roomState");

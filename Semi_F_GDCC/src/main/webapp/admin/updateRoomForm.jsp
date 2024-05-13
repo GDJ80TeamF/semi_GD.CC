@@ -25,7 +25,7 @@
 		</div>
 		<div>
 			룸 등급:
-			<input type="text" name="roomGrade" value="<%=(Integer)(m.get("roomGrade"))%>">
+			<input type="text" name="roomGrade" value="<%=(String)(m.get("roomGrade"))%>">
 		</div>
 		<div>
 			룸 가격:

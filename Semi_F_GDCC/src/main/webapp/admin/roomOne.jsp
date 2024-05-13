@@ -28,7 +28,7 @@
 	</tr>
 	<tr>
 		<td><%=(Integer)(m.get("roomNo"))%></td>
-		<td><%=(Integer)(m.get("roomGrade"))%></td>
+		<td><%=(String)(m.get("roomGrade"))%></td>
 		<td><%=(Integer)(m.get("roomPrice"))%></td>
 		<td><%=(String)(m.get("roomInfo"))%></td>
 		<td><%=(Integer)(m.get("roomMax"))%></td>
@@ -37,5 +37,6 @@
 	</tr>
 	</table>
 	<a href="/Semi_F_GDCC/admin/updateRoomForm.jsp?roomNo=<%=roomNo%>">수정하기</a>
+	<a href="/Semi_F_GDCC/admin/deleteCkRoomForm.jsp?roomNo=<%=roomNo%>">삭제하기</a>
 </body>
 </html>

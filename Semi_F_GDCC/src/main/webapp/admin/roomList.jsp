@@ -46,7 +46,7 @@
 			%>
 				<tr>
 					<td><a href="/Semi_F_GDCC/admin/roomOne.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>"><%=(Integer)(m.get("roomNo"))%></a></td>
-					<td><%=(Integer)(m.get("roomGrade"))%></td>
+					<td><%=(String)(m.get("roomGrade"))%></td>
 					<td><%=(Integer)(m.get("roomPrice"))%></td>
 					<td><%=(Integer)(m.get("roomMax"))%></td>
 					<td>
