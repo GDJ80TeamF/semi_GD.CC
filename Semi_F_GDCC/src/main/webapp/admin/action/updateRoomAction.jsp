@@ -42,9 +42,9 @@
 			
 			os.close();
 			is.close();
-			response.sendRedirect("/Semi_F_GDCC/admin/roomOne.jsp?roomNo= " + roomNo);
+			response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp");
 	}else{
 		System.out.println("수정 실패");
-		response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp?roomNo= " + roomNo);
+		response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp?");
 	}
 %>

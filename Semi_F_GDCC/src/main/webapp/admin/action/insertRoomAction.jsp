@@ -10,7 +10,7 @@
 
 <%
 	// 받는 파라미터값
-	int roomGrade = Integer.parseInt(request.getParameter("roomGrade"));
+	String roomGrade = request.getParameter("roomGrade");
 	int roomPrice = Integer.parseInt(request.getParameter("roomPrice"));
 	String roomInfo = request.getParameter("roomInfo");
 	int roomMax = Integer.parseInt(request.getParameter("roomMax"));

@@ -139,4 +139,27 @@ public class RoomDAO {
 		conn.close();
 		return row;
 	}
+	
+	// 아이디 비번체크하여 룸 삭제
+	public static boolean roomCheckIdPw(String checkId, String checkPw) throws Exception{
+		boolean result = false;
+		
+		// db 연결
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT admin_mail adminMail FROM admin WHERE admin_mail=? AND admin_pw=? ";
+		
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, checkId);
+		stmt.setString(2, checkPw);
+		
+		ResultSet rs = null;
+		rs = stmt.executeQuery();
+		if(rs.next()) {
+			result = true;
+		}
+		
+		conn.close();
+		return result;
+	}
 }

@@ -37,6 +37,7 @@
 	</tr>
 	</table>
 	<a href="/Semi_F_GDCC/admin/updateRoomForm.jsp?roomNo=<%=roomNo%>">수정하기</a>
-	<a href="/Semi_F_GDCC/admin/deleteCkRoomForm.jsp?roomNo=<%=roomNo%>">삭제하기</a>
+	<a href="/Semi_F_GDCC/admin/deleteRoomForm.jsp?roomNo=<%=roomNo%>">삭제하기</a>
+	<a href="/Semi_F_GDCC/admin/roomList.jsp">취소하기</a>
 </body>
 </html>
