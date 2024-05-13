@@ -12,14 +12,21 @@
 
 	int comCount = (int)comCnt.get("comCnt");
 
-	System.out.println(comCount + "<===부대시설갯수");
+	System.out.println(comCount + "<===부대시설예약갯수");
 	
-	//리스트목록
+	String table= request.getParameter("table");
 	
-	ArrayList<HashMap<String,Object>> comList 
-		= RsvComplexDAO.rsvList(comCount);
+	ArrayList<HashMap<String,Object>> comList = new ArrayList<HashMap<String,Object>>();
 
+	//리스트목록
+	if(table !=null && table.equals("rsv_complex")){
+		
+ 		comList = RsvComplexDAO.rsvList(comCount);
+	}
 	
+	System.out.println(comList + "<==부대시설예약리스트");
+
+
 	
 %>
 <!DOCTYPE html>
@@ -32,35 +39,54 @@
 	<div>
 		<h1>호텔관련 예약리스트</h1>
 		
-		<!-- 숙박 조식 부대시설 순으로 총 예약갯수 출력 -->
+		<!-- 숙박 부대시설 조식 순으로 총 예약갯수 출력 -->
 		
-		<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?cnt=<%=comCount%>">		
-			부대시설(<%=comCount%>)
+		<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel">
+			호텔 (총)
+		</a>
+		<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_complex">		
+			부대시설(총 <%=comCount%>)
+		</a>
+		<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf">
+			조식
 		</a>
 	</div>
-	
+
 	<div>
 		<%
-		
-			for(HashMap<String,Object>m : comList){
+		if(table != null && table.equals("rsv_complex")){
 		%>
-				<table>
-					<tr>
-						<th>예약번호 </th>
-						<th>시설</th>
-						<th>날짜</th>
-						<th>시간</th>
-					</tr>
-					<tr>
-						<td>
-							<%=m.get("rsvComNo") %>
-						</td>
-					</tr>
-				</table>
+			<table>
+				  <tr>
+	                  <th>예약번호</th>
+	                  <th>시설</th>
+	                  <th>날짜</th>
+	                  <th>시간</th>
+	              </tr>
+	              <%
+	              	for(HashMap<String,Object> m : comList) {
+	              %>
+	              	<tr>
+	                    <td>
+	                        <%=m.get("rsvComNo") %>
+	                    </td>
+	                    <td>
+	                    	<%=m.get("rsvPlace") %>
+	                    </td>
+	                    <td>
+	                    	<%=m.get("rsvDate") %>
+	                    </td>
+	                    <td>
+	                    	<%=m.get("rsvTime") %>
+	                    </td>
+	                </tr>
+	              <%
+	              	}
+	              %>
+			</table>
 		<%
-			}
+		}
 		%>
 	</div>
-
 </body>
 </html>
