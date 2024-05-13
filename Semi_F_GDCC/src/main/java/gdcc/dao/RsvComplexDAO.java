@@ -40,7 +40,7 @@ public class RsvComplexDAO {
 		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql ="SELECT r.rsv_comno rsvComNo, c.rsv_place rsvPlace, c.rsv_date rsvDate, c.rsv_time rsvTime "
+		String sql ="SELECT c.rsv_comno rsvComNo, c.rsv_place rsvPlace, c.rsv_date rsvDate, c.rsv_time rsvTime "
 				+ "FROM rsv_complex c "
 				+ "HAVING COUNT(*) = ? ";
 		PreparedStatement stmt = conn.prepareStatement(sql);

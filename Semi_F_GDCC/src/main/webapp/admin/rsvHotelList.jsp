@@ -53,7 +53,7 @@
 					</tr>
 					<tr>
 						<td>
-							<%=m.get("") %>
+							<%=m.get("rsvComNo") %>
 						</td>
 					</tr>
 				</table>
