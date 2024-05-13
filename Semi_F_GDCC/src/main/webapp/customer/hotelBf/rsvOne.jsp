@@ -51,12 +51,16 @@
 				<td><%=(String)(m.get("menuMain"))%></td>
 				<td><%=(String)(m.get("menuInfo"))%></td>
 				<td><%=(String)(m.get("menuImg"))%></td>
+		
+				<td>
+					<a href="/Semi_F_GDCC/customer/hotelBf/rsvUpdateForm.jsp?rsvNo=<%=rsvNo%>&
+								rsvBfno=<%=(Integer)(m.get("rsvBfno"))%>">예약 수정</a>
+				</td>
+				<td>		
+				<a href="/Semi_F_GDCC/customer/hotelBf/rsvDeleteForm.jsp?rsvNo=<%=rsvNo%>&
+								rsvBfno=<%=(Integer)(m.get("rsvBfno"))%>">예약 삭제</a>
+				</td>	
 			</tr>
-
-			<a href="/Semi_F_GDCC/customer/hotelBf/rsvUpdateForm.jsp?rsvNo=<%=rsvNo%>&
-						rsvBfno=<%=(Integer)(m.get("rsvBfno"))%>">예약 수정</a>
-			<br>
-			<a href="/Semi_F_GDCC/customer/hotelBf/rsvDeleteForm.jsp?rsvNo=<%=rsvNo%>">예약 삭제</a>
 			<%
 				}
 			%>

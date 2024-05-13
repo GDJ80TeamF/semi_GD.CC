@@ -68,20 +68,21 @@ public class RsvBfDAO {
 		conn.close();
 		return list;		
 	}
-	// rsvNo가 ?인 조식예약 삭제하는 메서드
-	public static int deleteRsv(int rsvNo) throws Exception {
+	// 호출 : /customer/hotelBf/action/rsvDeleteAction.jsp
+	// rsvBfno가 ?인 조식예약 삭제하는 메서드
+	public static int deleteRsv(int rsvBfno) throws Exception {
 		// 매개값 디버깅
-		System.out.println(rsvNo + "<-- rsvNo BfDAO.deleteRsv param");
+		System.out.println(rsvBfno + "<-- rsvNo BfDAO.deleteRsv param");
 				
 		int row = 0;
 		
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
-		String sql = "DELETE from rsv_bf WHERE rsv_no = ?";
+		String sql = "DELETE from rsv_bf WHERE rsv_bfno = ?";
 		
 		PreparedStatement stmt =  conn.prepareStatement(sql);
-		stmt.setInt(1, rsvNo);
+		stmt.setInt(1, rsvBfno);
 
 		row = stmt.executeUpdate();
 
@@ -126,10 +127,9 @@ public class RsvBfDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 			
-		String sql = "SELECT b.rsv_bfno rsvBfno, h.rsv_no rsvNo, c.cus_mail cusMail, h.checkin_date checkinDate, h.checkout_date checkoutDate, b.rsv_member rsvMember "
-					+ "FROM rsv_bf b "
-					+ "INNER JOIN rsv_hotel h ON b.rsv_no = h.rsv_no "
-					+ "INNER JOIN customer c ON h.rsv_mail = c.cus_mail WHERE c.cus_mail = ? ";
+		String sql = "SELECT h.rsv_no rsvNo, c.cus_mail cusMail, h.checkin_date checkinDate, h.checkout_date checkoutDate, h.rsv_member rsvMember "
+					+ "FROM rsv_hotel h INNER JOIN customer c ON h.rsv_mail = c.cus_mail "
+					+ "WHERE c.cus_mail = ? order BY h.create_date DESC;";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, cusMail);
@@ -137,7 +137,6 @@ public class RsvBfDAO {
 		
 		if(rs.next()) {
 			m = new HashMap<String, Object>();
-			m.put("rsvBfno", rs.getInt("rsvBfno"));
 			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("cusMail", rs.getString("cusMail"));
 			m.put("checkinDate", rs.getString("checkinDate"));

@@ -26,6 +26,9 @@
 	}
 	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
 	System.out.println(rsvNo + "<-- rsvNo rsvDeleteForm.jsp param ");
+	
+	int rsvBfno = Integer.parseInt(request.getParameter("rsvBfno"));
+	System.out.println(rsvBfno + "<-- rsvBfno rsvDeleteForm.jsp param ");
 %>
 <!DOCTYPE html>
 <html>
@@ -40,6 +43,7 @@
 <form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/rsvDeleteCkAction.jsp">
 	<div>ID :<input type="text" name="checkId">
 					<input type="hidden" name="rsvNo" value="<%=rsvNo%>">
+					<input type="hidden" name="rsvBfno" value="<%=rsvBfno%>">
 	</div>
 	<div>PW :<input type="password" name="checkPw">
 					<button type="submit">입력</button>
@@ -53,7 +57,8 @@
 		 <%
 			if(ck.equals("T")) {
 		 %>
-			<a href="/Semi_F_GDCC/customer/hotelBf/action/rsvDeleteAction.jsp?rsvNo=<%=rsvNo%>">취소</a>
+			<a href="/Semi_F_GDCC/customer/hotelBf/action/rsvDeleteAction.jsp?rsvNo=<%=rsvNo%>&
+						rsvBfno=<%=rsvBfno%>">취소</a>
 		 <%
 			} 
 		 %>

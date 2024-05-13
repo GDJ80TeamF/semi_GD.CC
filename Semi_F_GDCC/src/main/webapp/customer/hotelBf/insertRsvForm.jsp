@@ -73,7 +73,7 @@
 			</div>
             <div class="mb-3">
             	<label for="rsvMember" class="form-label">예약 인원:</label>
-            	<input type="number" class="form-control" placeholder="인원 수" name="rsvMember" min="1">
+            	<input type="number" class="form-control" value="<%=(String)map.get("rsvMember")%>" name="rsvMember" min="1">
             </div>                  
             	<input type="hidden" value="<%=rsvMenu%>" name="rsvMenu">
 
