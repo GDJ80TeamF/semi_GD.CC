@@ -220,7 +220,7 @@ public class CustomerDAO {
 		
 		String sql ="SELECT cus_pw "
 				+ "FROM customer "
-				+ "WHERE cus_mail=? AND cus_pw=?";
+				+ "WHERE cus_mail=? AND cus_pw=password(?)";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, cusMail);

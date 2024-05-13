@@ -39,6 +39,8 @@
 			<th>예약날짜 </th>
 			<th>예약시간  </th>
 			<th>예약 상태  </th>
+			<th>상세보기 </th>
+			<th>예약취소 </th>
 			
 		</tr>
 		<tr>
@@ -47,11 +49,12 @@
 		%>
 		<td><%= (Integer)m.get("comNo")%></td>
 		<td><%= (Integer)m.get("rsvNo")%></td>
-		<td><%= (Integer)m.get("rsvPlace")%></td>
+		<td><%= (String)m.get("rsvPlace")%></td>
 		<td><%= (String)m.get("rsvDate")%></td>
 		<td><%= (String)m.get("rsvTime")%></td>
 		<td><%= (String)m.get("rsvState")%></td>
-		
+		<td><a href="/Semi_F_GDCC/customer/hotelComplex/rsvComplexOne.jsp?rsvComNo=<%=(Integer)m.get("comNo")%>">상세보기 </a></td>
+		<td><a href="/Semi_F_GDCC/customer/hotelComplex/cancelRsvForm.jsp?rsvComNo=<%=(Integer)m.get("comNo")%>">취소하기 </a></td>
 		</tr>
 		<%
 			}
@@ -62,6 +65,7 @@
 	</table>
 	
 	<div><a href="/Semi_F_GDCC/customer/hotelComplex/insertRsvForm.jsp">호텔 시설 새로운 예약하기 !</a></div>
+	
 	
 </body>
 </html>

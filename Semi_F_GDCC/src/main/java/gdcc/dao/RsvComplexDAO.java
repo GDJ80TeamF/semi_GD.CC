@@ -80,13 +80,13 @@ public class RsvComplexDAO {
 		
 		}
 	//회원 아이디로 예약된 complexlist 출력하기 
-	//호출 - /hotelComplex/rsvComplexList.jsp
+	//호출 - /hotelComplex/rsvComplexList.jsp,
 	//param - cusMail
 	//return ArrayList<HashMap<String,Object>>
 	public static ArrayList<HashMap<String,Object>> selectRsvList (String cusMail) throws Exception{
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT c.*, h.rsv_mail FROM rsv_complex c INNER JOIN rsv_hotel h ON c.rsv_no = h.rsv_no WHERE h.rsv_mail =?";
+		String sql = "SELECT c.*,hc.complex_name FROM rsv_complex c INNER JOIN rsv_hotel h ON c.rsv_no = h.rsv_no INNER JOIN hotel_complex hc ON c.rsv_place = hc.complex_no WHERE h.rsv_mail =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1,cusMail);
 		ResultSet rs = stmt.executeQuery();
@@ -94,16 +94,56 @@ public class RsvComplexDAO {
 			HashMap<String,Object> m = new HashMap<String,Object>();
 			m.put("comNo",rs.getInt("c.rsv_comno"));
 			m.put("rsvNo",rs.getInt("c.rsv_no"));
-			m.put("rsvPlace",rs.getInt("c.rsv_place"));
+			m.put("rsvPlace",rs.getString("hc.complex_name"));
 			m.put("rsvDate",rs.getString("c.rsv_date"));
 			m.put("rsvTime",rs.getString("c.rsv_time"));
+			m.put("rsvMember",rs.getString("c.rsv_member"));
 			m.put("rsvState",rs.getString("c.rsv_state"));
+			m.put("createDate",rs.getString("c.create_date"));
 			list.add(m);
 			
 		}
 		conn.close();
 		return list;
 	}
-
+	//호출 - /hotelComplex/rsvComplexOne.jsp,
+		//param - rsvComNo
+		//return ArrayList<HashMap<String,Object>>
+		public static HashMap<String,Object> selectRsvOne (int rsvComNo) throws Exception{
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			Connection conn = DBHelper.getConnection();
+			String sql = "SELECT c.*,hc.complex_name FROM rsv_complex c INNER JOIN hotel_complex hc ON c.rsv_place = hc.complex_no WHERE c.rsv_comno=?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1,rsvComNo);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				
+				m.put("comNo",rs.getInt("c.rsv_comno"));
+				m.put("rsvNo",rs.getInt("c.rsv_no"));
+				m.put("rsvPlace",rs.getString("hc.complex_name"));
+				m.put("rsvDate",rs.getString("c.rsv_date"));
+				m.put("rsvTime",rs.getString("c.rsv_time"));
+				m.put("rsvMember",rs.getInt("c.rsv_member"));
+				m.put("createDate",rs.getString("c.create_date"));
+				
+				
+			}
+			conn.close();
+			return m;
+		}
+	//호출 - cancelRsvAction.jsp
+	//param - int rsvComNo
+	//return int
+	public static int deleteRsv(int rsvComNo) throws Exception {
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql ="DELETE FROM rsv_complex WHERE rsv_comno =?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1,rsvComNo);
+		row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
 
 }
