@@ -9,7 +9,7 @@ import java.sql.*;
 
 public class NoticeDAO {
 	// 공지 추가
-	public static int insertNotice(int adminEmail, String noticeTitle, String noticeContent) throws Exception{
+	public static int insertNotice(String adminMail, String noticeTitle, String noticeContent) throws Exception{
 		int row = 0;
 		
 		Connection conn = null;
@@ -18,7 +18,7 @@ public class NoticeDAO {
 		String sql = "INSERT INTO notice(admin_email, notice_title, notice_content) VALUES(?, ?, ?)";
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, adminEmail);
+		stmt.setString(1, adminMail);
 		stmt.setString(2, noticeTitle);
 		stmt.setString(3, noticeContent);
 		
@@ -36,7 +36,7 @@ public class NoticeDAO {
 		
 		Connection conn1 = DBHelper.getConnection();
 		
-		String sql1 = "SELECT notice_no noticeNo, admin_email adminEmail, "
+		String sql1 = "SELECT notice_no noticeNo, admin_email adminMail, "
 				+ "notice_title noticeTitle, notice_content noticeContent "
 				+ "FROM notice "
 				+ "ORDER BY noticeNo ASC LIMIT ?, ? ";
@@ -50,7 +50,7 @@ public class NoticeDAO {
 		while(rs1.next()) {
 			HashMap<String, Object> m1 = new HashMap<String, Object>();
 			m1.put("noticeNo", rs1.getInt("noticeNo"));
-			m1.put("adminEmail", rs1.getInt("adminEmail"));
+			m1.put("adminMail", rs1.getString("adminMail"));
 			m1.put("noticeTitle", rs1.getString("noticeTitle"));
 			m1.put("noticeContent", rs1.getString("noticeContent"));
 			List.add(m1);
@@ -69,7 +69,7 @@ public class NoticeDAO {
 		// db연결
 		Connection conn2 = DBHelper.getConnection();
 		
-		String sql2 = "SELECT notice_no noticeNo, admin_email adminEmail, "
+		String sql2 = "SELECT notice_no noticeNo, admin_email adminMail, "
 				+ "notice_title noticeTitle, notice_content noticeContent "
 				+ "FROM notice WHERE notice_no=? ";
 		
@@ -84,7 +84,7 @@ public class NoticeDAO {
 		if(rs2.next()) {
 			resuMap = new HashMap<String, Object>();
 			resuMap.put("noticeNo", rs2.getInt("noticeNo"));
-			resuMap.put("adminEmail", rs2.getInt("adminEmail"));
+			resuMap.put("adminMail", rs2.getString("adminMail"));
 			resuMap.put("noticeTitle", rs2.getString("noticeTitle"));
 			resuMap.put("noticeContent", rs2.getString("noticeContent"));
 		}
@@ -95,7 +95,7 @@ public class NoticeDAO {
 	
 	
 	  // 공지 수정 
-	  public static int updateNotice(int noticeNo, int adminEmail, String noticeTitle, String noticeContent) throws Exception{ 
+	  public static int updateNotice(int noticeNo, String adminMail, String noticeTitle, String noticeContent) throws Exception{ 
 		  int row3 = 0;
 	  
 		  Connection conn3 = DBHelper.getConnection();
@@ -103,7 +103,7 @@ public class NoticeDAO {
 		  String sql3 = "UPDATE notice SET admin_email=?, notice_title=?, notice_content=? WHERE notice_no=? ";
 		  PreparedStatement stmt3 = null;
 		  stmt3  = conn3.prepareStatement(sql3);
-		  stmt3.setInt(1, adminEmail);
+		  stmt3.setString(1, adminMail);
 		  stmt3.setString(2, noticeTitle);
 		  stmt3.setString(3, noticeContent);
 		  stmt3.setInt(4, noticeNo);
@@ -112,6 +112,26 @@ public class NoticeDAO {
 		  
 		  conn3.close();
 		  return row3; 
+	  }
+	  
+	  // 공지 삭제 전 비번 체크 확인
+	  public static boolean noticeCheckIdPw(String checkId, String checkPw) throws Exception{
+		  boolean result = false; 
+		  
+		  // db 사용
+		  Connection conn = DBHelper.getConnection();
+		  String sql = "SELECT admin_mail adminMail FROM admin WHERE admin_mail =? AND admin_pw=PASSWORD(?) ";
+		  PreparedStatement stmt = null;
+		  stmt = conn.prepareStatement(sql);
+		  stmt.setString(1, checkId);
+		  stmt.setString(2, checkPw);
+		  ResultSet rs = null;
+		  rs = stmt.executeQuery();
+		  if(rs.next()) {
+			  result = true;
+		  }
+		  conn.close();
+		  return result;
 	  }
 	  
 	  // 공지 삭제

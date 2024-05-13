@@ -13,17 +13,17 @@
 <%
 	// 파라미터값
 	int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));	
-	int adminEmail = Integer.parseInt(request.getParameter("adminEmail"));
+	String adminMail = request.getParameter("adminMail");
 	String noticeTitle = request.getParameter("noticeTitle");
 	String noticeContent = request.getParameter("noticeContent");
 	
 	// 디버깅
 	System.out.println("noticeNo: " + noticeNo);
-	System.out.println("adminEmail: " + adminEmail);
+	System.out.println("adminMail: " + adminMail);
 	System.out.println("noticeTitle: " + noticeTitle);
 	System.out.println("noticeContent: " + noticeContent);
 	
-	int row = NoticeDAO.updateNotice(noticeNo, adminEmail, noticeTitle, noticeContent);
+	int row = NoticeDAO.updateNotice(noticeNo, adminMail, noticeTitle, noticeContent);
 	
 	if(row == 1){
 		System.out.println("수정 성공");

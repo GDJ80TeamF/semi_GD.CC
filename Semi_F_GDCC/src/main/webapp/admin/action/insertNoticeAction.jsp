@@ -4,16 +4,16 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
-	int adminNo = Integer.parseInt(request.getParameter("adminNo"));
+	String adminMail = request.getParameter("adminMail");
 	String noticeTitle = request.getParameter("noticeTitle");
 	String noticeContent = request.getParameter("noticeContent");
 	
 	
-	System.out.println("adminNo: " + adminNo);
+	System.out.println("adminMail: " + adminMail);
 	System.out.println("noticeTitle: " + noticeTitle);
 	System.out.println("noticeContent: " + noticeContent);
 	
-	int NT = NoticeDAO.insertNotice(adminNo, noticeTitle, noticeContent);
+	int NT = NoticeDAO.insertNotice(adminMail, noticeTitle, noticeContent);
 	
 	if(NT == 1){
 		System.out.println("게시판 등록 완료"); 

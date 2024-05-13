@@ -37,7 +37,7 @@
 		</div>
 		<div>
 			관리자 이메일:
-			<input type="text" name="adminEmail" value="<%=(Integer)(loginAdmin.get("adminEmail"))%>" readonly="readonly">
+			<input type="text" name="adminMail" value="<%=(String)(loginAdmin.get("adminMail"))%>" readonly="readonly">
 		</div>
 		<div>
 			공지 제목:

@@ -25,7 +25,6 @@
 <%
 	ArrayList<HashMap<String, Object>> List = NoticeDAO.selectNotice(startRow, rowPerPage);
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +38,6 @@
 				<th>공지 번호</th>
 				<th>관리자 이메일</th>
 				<th>공지 제목</th>
-				<th>공지 내용</th>
 			</tr>
 			<%
 				for(HashMap<String, Object>  m : List){
@@ -49,16 +47,14 @@
 						<a href="/Semi_F_GDCC/admin/noticeOne.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>">
 						<%=(Integer)(m.get("noticeNo"))%></a>
 					</td>
-					<td><%=(String)(m.get("adminEmail"))%></td>
+					<td><%=(String)(m.get("adminMail"))%></td>
 					<td><%=(String)(m.get("noticeTitle"))%></td>
-					<td><%=(String)(m.get("noticeContent"))%></td>
 				</tr>
-			
 			<%
 				}
 			%>
 		</table>
-	<a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminEmail=<%=(String)(loginAdmin.get("adminEmail"))%>">글 작성하기</a>
+	<a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminMail=<%=(String)(loginAdmin.get("adminMail"))%>">글 작성하기</a>
 	<a href="/Semi_F_GDCC/admin/mainBoard.jsp">취소</a>
 </body>
 </html>																				                                                                                
