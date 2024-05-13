@@ -36,57 +36,57 @@
 <title>HotelList</title>
 </head>
 <body>
-	<div>
-		<h1>호텔관련 예약리스트</h1>
-		
-		<!-- 숙박 부대시설 조식 순으로 총 예약갯수 출력 -->
-		
-		<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel">
-			호텔 (총)
-		</a>
-		<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_complex">		
-			부대시설(총 <%=comCount%>)
-		</a>
-		<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf">
-			조식
-		</a>
-	</div>
-
-	<div>
-		<%
-		if(table != null && table.equals("rsv_complex")){
-		%>
-			<table>
-				  <tr>
-	                  <th>예약번호</th>
-	                  <th>시설</th>
-	                  <th>날짜</th>
-	                  <th>시간</th>
-	              </tr>
-	              <%
-	              	for(HashMap<String,Object> m : comList) {
-	              %>
-	              	<tr>
-	                    <td>
-	                        <%=m.get("rsvComNo") %>
-	                    </td>
-	                    <td>
-	                    	<%=m.get("rsvPlace") %>
-	                    </td>
-	                    <td>
-	                    	<%=m.get("rsvDate") %>
-	                    </td>
-	                    <td>
-	                    	<%=m.get("rsvTime") %>
-	                    </td>
-	                </tr>
-	              <%
-	              	}
-	              %>
-			</table>
-		<%
-		}
-		%>
+	<h1>호텔관련 예약리스트</h1>
+		<div>
+			
+			<!-- 숙박 부대시설 조식 순으로 총 예약갯수 출력 -->
+			
+			<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel">
+				호텔 (총)
+			</a>
+			<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_complex">		
+				부대시설(총 <%=comCount%>)
+			</a>
+			<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf">
+				조식 (총)
+			</a>
+		</div>
+	
+		<div>
+			<%
+			if(table != null && table.equals("rsv_complex")){
+			%>
+				<table>
+					  <tr>
+		                  <th>예약번호</th>
+		                  <th>시설</th>
+		                  <th>날짜</th>
+		                  <th>시간</th>
+		              </tr>
+		              <%
+		              	for(HashMap<String,Object> m : comList) {
+		              %>
+		              	<tr>
+		                    <td>
+		                        <%=m.get("rsvComNo") %>
+		                    </td>
+		                    <td>
+		                    	<%=m.get("rsvPlace") %>
+		                    </td>
+		                    <td>
+		                    	<%=m.get("rsvDate") %>
+		                    </td>
+		                    <td>
+		                    	<%=m.get("rsvTime") %>
+		                    </td>
+		                </tr>
+		              <%
+		              	}
+		              %>
+				</table>
+			<%
+			}
+			%>
 	</div>
 </body>
 </html>
