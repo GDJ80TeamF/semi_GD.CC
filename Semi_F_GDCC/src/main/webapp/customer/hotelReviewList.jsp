@@ -44,11 +44,11 @@
 		%>
 			<tr>
 				<td>
-					<a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?reviewNo=<%=(Integer)(m.get("reviewNo"))%>">
-						<%=(Integer)(m.get("reviewNo"))%></a>
+					<a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
+						<%=(Integer)(m.get("rsvNo"))%></a>
 				</td>
 				<td>
-					<a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?reviewNo=<%=(Integer)(m.get("reviewNo"))%>">
+					<a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
 						<%=(String)(m.get("reviewTitle"))%></a>
 				</td>
 			</tr>

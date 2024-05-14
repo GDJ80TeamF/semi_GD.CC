@@ -13,7 +13,7 @@
 	String reviewContent = request.getParameter("content");
 	System.out.println(reviewContent + "<--reviewContent insertHotelReviewAction.jsp param");
 	
-	int reviewScore = Integer.parseInt(request.getParameter("score"));
+	int reviewScore = Integer.parseInt(request.getParameter("reviewScore"));
 	System.out.println(reviewScore + "<--reviewScore insertHotelReviewAction.jsp param");
 	// QnA 작성하는 메서드
 	int row = ReviewDAO.insertHotelReview( rsvNo, reviewTitle, reviewContent, reviewScore);

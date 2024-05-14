@@ -4,11 +4,11 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
-	int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-	System.out.println(reviewNo + "<-- reviewNo hotelReviewOne.jsp param ");
+	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
+	System.out.println(rsvNo + "<-- rsvNo hotelReviewOne.jsp param ");
 
-	// reviewNo에 따라 review 출력하는 메서드 / 상세보기
-	HashMap<String, Object> m = ReviewDAO.selectHotelReviewOne(reviewNo);
+	// rsvNo 따라 review 출력하는 메서드 / 상세보기
+	HashMap<String, Object> m = ReviewDAO.selectHotelReviewOne(rsvNo);
 %>
 <!DOCTYPE html>
 <html>
@@ -16,13 +16,21 @@
 <meta charset="UTF-8">
 <title></title>
 </head>
+<style>
+	.rate{
+	width: 121px;height: 20px;position: relative;}
+	
+	.rate span{
+	position: absolute;
+	background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);
+	width: auto;height: 20px;}
+</style>
 <body>
 
 <div>
 	<h1>hotelReview 상세보기</h1>
 		<table border="1">
 			<tr>
-				<th>reviewNo</th>
 				<th>rsvNo</th>
 				<th>reviewTitle</th>
 				<th>reviewContent</th>
@@ -31,18 +39,74 @@
 				<th>updateDate</th>	
 			</tr>
 			<tr>
-				<td><%=(Integer)(m.get("reviewNo"))%></td>
 				<td><%=(Integer)(m.get("rsvNo"))%></td>	
 				<td><%=(String)(m.get("reviewTitle"))%></td>	
 				<td><%=(String)(m.get("reviewContent"))%></td>	
-				<td><%=(String)(m.get("reviewScore"))%></td>	
+				<td>
+					<div class="rate">
+					<%
+						switch((Integer)(m.get("reviewScore"))){
+						case 1:
+					%>							
+	        			<span style="width: 10%"></span>	    					
+	    			<% 
+	    				break;
+						case 2:
+					%>					
+	        			<span style="width: 20%"></span>	    				
+					<% 
+						break;
+						case 3:
+					%>							
+	        			<span style="width: 30%"></span>	    					
+					<% 
+						break;
+						case 4:
+					%>					
+	        			<span style="width: 40%"></span>	    				
+					<% 	
+						break;
+						case 5:
+					%>							
+	        			<span style="width: 50%"></span>	    					
+					<% 
+						break;
+						case 6:
+					%>					
+	        			<span style="width: 60%"></span>	    				
+					<% 
+						break;
+						case 7:
+					%>					
+	        			<span style="width: 70%"></span>	    				
+					<% 
+						break;
+						case 8:
+					%>					
+	        			<span style="width: 80%"></span>	    			
+					<% 
+						break;
+						case 9:
+					%>					
+	        			<span style="width: 90%"></span>	    				
+					<% 
+						break;
+						case 10:
+					%>					
+	        			<span style="width: 100%"></span>
+	    			</div>
+					<% 
+					break;
+						}		
+					%>	
+				</td>	
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
 			</tr>
 
-			<a href="/Semi_F_GDCC/customer/updateHotelReviewForm.jsp?reviewNo=<%=reviewNo%>">리뷰 수정</a>
+			<a href="/Semi_F_GDCC/customer/updateHotelReviewForm.jsp?rsvNo=<%=rsvNo%>">리뷰 수정</a>
 			<br>
-			<a href="/Semi_F_GDCC/customer/action/deleteHotelReviewAction.jsp?reviewNo=<%=reviewNo%>">리뷰 삭제</a>
+			<a href="/Semi_F_GDCC/customer/action/deleteHotelReviewAction.jsp?rsvNo=<%=rsvNo%>">리뷰 삭제</a>
 		</table>
 </div>
 
