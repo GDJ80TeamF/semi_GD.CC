@@ -4,8 +4,8 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
-	int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-	System.out.println(reviewNo + "<--reviewNo updateGolfReviewAction.jsp param");
+	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
+	System.out.println(rsvNo + "<--rsvNo updateGolfReviewAction.jsp param");
 	
 	int reviewScore = Integer.parseInt(request.getParameter("reviewScore"));
 	System.out.println(reviewScore + "<--reviewScore updateGolfReviewAction.jsp param");
@@ -18,14 +18,14 @@
 	
 	
 	// reviewNo가 ?인 GolfReview 수정하는 메서드
-	int row = ReviewDAO.updateGolfReview(reviewTitle, reviewContent, reviewScore, reviewNo);
+	int row = ReviewDAO.updateGolfReview(reviewTitle, reviewContent, reviewScore, rsvNo);
 	
 	if(row == 1){
 		System.out.println("수정성공");
 		response.sendRedirect("/Semi_F_GDCC/customer/reviewListPerCustomer.jsp"); //성공시
 	} else {
 		System.out.println("수정실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/updateGolfReviewForm.jsp?reviewNo="+reviewNo); //실패시 다시 수정페이지로			
+		response.sendRedirect("/Semi_F_GDCC/customer/updateGolfReviewForm.jsp?rsvNo="+rsvNo); //실패시 다시 수정페이지로			
 	}
 
 %>

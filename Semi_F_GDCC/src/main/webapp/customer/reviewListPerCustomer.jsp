@@ -41,6 +41,15 @@
 <meta charset="UTF-8">
 <title></title>
 </head>
+<style>
+	.rate{
+	width: 121px;height: 20px;position: relative;}
+	
+	.rate span{
+	position: absolute;
+	background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);
+	width: auto;height: 20px;}
+</style>
 <body>
 
 <div>
@@ -62,24 +71,70 @@
 				<td><%=(Integer)(m.get("rsvNo"))%></td>
 				<td><%=(String)(m.get("reviewTitle"))%></td>
 				<td><%=(String)(m.get("reviewContent"))%></td>
-				<%
-				    int reviewScore = (Integer) m.get("reviewScore");
-				    String star = "";
-				    switch (reviewScore) {
-				        case 1: star = "★"; break;
-				        case 2: star = "★★"; break;
-				        case 3: star = "★★★"; break;
-				        case 4: star = "★★★★"; break;
-				        case 5: star = "★★★★★"; break;
-				    }
-				%>
-				<td><%=star%></td>
+				<td>
+					<div class="rate">
+					<%
+						switch((Integer)(m.get("reviewScore"))){
+						case 1:
+					%>							
+	        			<span style="width: 10%"></span>	    					
+	    			<% 
+	    				break;
+						case 2:
+					%>					
+	        			<span style="width: 20%"></span>	    				
+					<% 
+						break;
+						case 3:
+					%>							
+	        			<span style="width: 30%"></span>	    					
+					<% 
+						break;
+						case 4:
+					%>					
+	        			<span style="width: 40%"></span>	    				
+					<% 	
+						break;
+						case 5:
+					%>							
+	        			<span style="width: 50%"></span>	    					
+					<% 
+						break;
+						case 6:
+					%>					
+	        			<span style="width: 60%"></span>	    				
+					<% 
+						break;
+						case 7:
+					%>					
+	        			<span style="width: 70%"></span>	    				
+					<% 
+						break;
+						case 8:
+					%>					
+	        			<span style="width: 80%"></span>	    			
+					<% 
+						break;
+						case 9:
+					%>					
+	        			<span style="width: 90%"></span>	    				
+					<% 
+						break;
+						case 10:
+					%>					
+	        			<span style="width: 100%"></span>
+	    			</div>
+					<% 
+					break;
+						}		
+					%>	
+				</td>
 				<td><%=(String)(m.get("checkinDate"))%> ~ <%=(String)(m.get("checkoutDate"))%></td>
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
 				<td>
-					<a href="/Semi_F_GDCC/customer/updateHotelReviewForm.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>		
-					<a href="/Semi_F_GDCC/customer/action/deleteHotelReviewAction.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
+					<a href="/Semi_F_GDCC/customer/updateHotelReviewForm.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>		
+					<a href="/Semi_F_GDCC/customer/action/deleteHotelReviewAction.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
 				</td>			
 			</tr>
 		<%
@@ -134,24 +189,70 @@
 				<td><%=(Integer)(m.get("rsvNo"))%></td>
 				<td><%=(String)(m.get("reviewTitle"))%></td>
 				<td><%=(String)(m.get("reviewContent"))%></td>				
-			<%
-			    int reviewScore = (Integer) m.get("reviewScore");
-			    String star = "";
-			    switch (reviewScore) {
-			        case 1: star = "★"; break;
-			        case 2: star = "★★"; break;
-			        case 3: star = "★★★"; break;
-			        case 4: star = "★★★★"; break;
-			        case 5: star = "★★★★★"; break;
-			    }
-			%>		
-				<td><%=star%></td>
+				<td>
+					<div class="rate">
+					<%
+						switch((Integer)(m.get("reviewScore"))){
+						case 1:
+					%>							
+	        			<span style="width: 10%"></span>	    					
+	    			<% 
+	    				break;
+						case 2:
+					%>					
+	        			<span style="width: 20%"></span>	    				
+					<% 
+						break;
+						case 3:
+					%>							
+	        			<span style="width: 30%"></span>	    					
+					<% 
+						break;
+						case 4:
+					%>					
+	        			<span style="width: 40%"></span>	    				
+					<% 	
+						break;
+						case 5:
+					%>							
+	        			<span style="width: 50%"></span>	    					
+					<% 
+						break;
+						case 6:
+					%>					
+	        			<span style="width: 60%"></span>	    				
+					<% 
+						break;
+						case 7:
+					%>					
+	        			<span style="width: 70%"></span>	    				
+					<% 
+						break;
+						case 8:
+					%>					
+	        			<span style="width: 80%"></span>	    			
+					<% 
+						break;
+						case 9:
+					%>					
+	        			<span style="width: 90%"></span>	    				
+					<% 
+						break;
+						case 10:
+					%>					
+	        			<span style="width: 100%"></span>
+	    			</div>
+					<% 
+					break;
+						}		
+					%>	
+				</td>
 				<td><%=(String)(m.get("rsvDate"))%></td>	
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
 				<td>
-					<a href="/Semi_F_GDCC/customer/updateGolfReviewForm.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>
-					<a href="/Semi_F_GDCC/customer/action/deleteGolfReviewAction.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
+					<a href="/Semi_F_GDCC/customer/updateGolfReviewForm.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>
+					<a href="/Semi_F_GDCC/customer/action/deleteGolfReviewAction.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
 				</td>
 			</tr>
 		<%

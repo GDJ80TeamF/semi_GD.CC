@@ -90,7 +90,7 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT review_no reviewNo, review_title reviewTitle "
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle "
 					+ "FROM review_hotel LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class ReviewDAO {
 			
 		while(rs.next()) {
 			HashMap<String, Object> m = new HashMap<String, Object>();
-			m.put("reviewNo", rs.getInt("reviewNo"));
+			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			list.add(m);
 		}
@@ -117,7 +117,7 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT review_no reviewNo, review_title reviewTitle "
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle "
 					+ "FROM review_golf LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -127,7 +127,7 @@ public class ReviewDAO {
 			
 		while(rs.next()) {
 			HashMap<String, Object> m = new HashMap<String, Object>();
-			m.put("reviewNo", rs.getInt("reviewNo"));
+			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			list.add(m);
 		}
@@ -174,10 +174,10 @@ public class ReviewDAO {
 		conn.close();
 		return lastPage;
 	}
-	// reviewNo에 따라 HotelReview 출력하는 메서드 / 상세보기
-	public static HashMap<String, Object> selectHotelReviewOne(int reviewNo) throws Exception {
+	// rsvNo에 따라 HotelReview 출력하는 메서드 / 상세보기
+	public static HashMap<String, Object> selectHotelReviewOne(int rsvNo) throws Exception {
 		// 매개값 디버깅
-		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.selectQnAOne param");
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.selectHotelReviewOne param");
 			
 		HashMap<String, Object> resultMap = null;
 			
@@ -188,10 +188,10 @@ public class ReviewDAO {
 				   + " review_content reviewContent, review_score reviewScore, "
 			  	   + " create_date createDate, update_date updateDate "
 				   + " FROM review_hotel "
-				   + " where review_no = ?";
+				   + " where rsv_no = ?";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, reviewNo);
+		stmt.setInt(1, rsvNo);
 		ResultSet rs = stmt.executeQuery();
 			
 		if(rs.next()) {
@@ -200,17 +200,17 @@ public class ReviewDAO {
 			resultMap.put("rsvNo", rs.getInt("rsvNo"));
 			resultMap.put("reviewTitle", rs.getString("reviewTitle"));
 			resultMap.put("reviewContent", rs.getString("reviewContent"));
-			resultMap.put("reviewScore", rs.getString("reviewScore"));
+			resultMap.put("reviewScore", rs.getInt("reviewScore"));
 			resultMap.put("createDate", rs.getString("createDate"));
 			resultMap.put("updateDate", rs.getString("updateDate"));
 		}
 		conn.close();
 		return resultMap;		
 	}
-	// reviewNo에 따라 GolfReview 출력하는 메서드 / 상세보기
-	public static HashMap<String, Object> selectGolfReviewOne(int reviewNo) throws Exception {
+	// rsvNo에 따라 GolfReview 출력하는 메서드 / 상세보기
+	public static HashMap<String, Object> selectGolfReviewOne(int rsvNo) throws Exception {
 		// 매개값 디버깅
-		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.selectQnAOne param");
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.selectGolfReviewOne param");
 			
 		HashMap<String, Object> resultMap = null;
 			
@@ -221,10 +221,10 @@ public class ReviewDAO {
 				   + " review_content reviewContent, review_score reviewScore, "
 			  	   + " create_date createDate, update_date updateDate "
 				   + " FROM review_golf "
-				   + " where review_no = ?";
+				   + " where rsv_no = ?";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setInt(1, reviewNo);
+		stmt.setInt(1, rsvNo);
 		ResultSet rs = stmt.executeQuery();
 			
 		if(rs.next()) {
@@ -233,7 +233,7 @@ public class ReviewDAO {
 			resultMap.put("rsvNo", rs.getInt("rsvNo"));
 			resultMap.put("reviewTitle", rs.getString("reviewTitle"));
 			resultMap.put("reviewContent", rs.getString("reviewContent"));
-			resultMap.put("reviewScore", rs.getString("reviewScore"));
+			resultMap.put("reviewScore", rs.getInt("reviewScore"));
 			resultMap.put("createDate", rs.getString("createDate"));
 			resultMap.put("updateDate", rs.getString("updateDate"));
 		}
@@ -243,6 +243,7 @@ public class ReviewDAO {
 	// hotelReview 작성하는 메서드
 	public static int insertHotelReview(int rsvNo, String reviewTitle, String reviewContent, int reviewScore) throws Exception {
 		// 매개값 디버깅
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.insertHotelReview param");
 		System.out.println(reviewTitle + "<-- reviewTitle ReviewDAO.insertHotelReview param");
 		System.out.println(reviewContent + "<-- reviewContent ReviewDAO.insertHotelReview param");
 		System.out.println(reviewScore + "<-- reviewScore ReviewDAO.insertHotelReview param");
@@ -293,90 +294,90 @@ public class ReviewDAO {
 		conn.close();
 		return row;
 	}
-	// reviewNo가 ?인 HotelReview 수정하는 메서드
-	public static int updateHotelReview(String reviewTitle, String reviewContent, int reviewScore, int reviewNo) throws Exception {
+	// rsvNo가 ?인 HotelReview 수정하는 메서드
+	public static int updateHotelReview(String reviewTitle, String reviewContent, int reviewScore, int rsvNo) throws Exception {
 		// 매개값 디버깅
 		System.out.println(reviewTitle + "<-- reviewTitle ReviewDAO.updateHotelReview param");
 		System.out.println(reviewContent + "<-- reviewContent ReviewDAO.updateHotelReview param");
 		System.out.println(reviewScore + "<-- reviewScore ReviewDAO.updateHotelReview param");
-		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.updateHotelReview param");
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.updateHotelReview param");
 			
 		int row = 0;
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
 		String sql = "UPDATE review_hotel SET review_title = ?, review_content = ?, review_score = ?, update_date = NOW()"
-					+ "WHERE review_no = ?";
+					+ "WHERE rsv_no = ?";
 			
 		PreparedStatement stmt =  conn.prepareStatement(sql);
 		stmt.setString(1, reviewTitle);
 		stmt.setString(2, reviewContent);
 		stmt.setInt(3, reviewScore);
-		stmt.setInt(4, reviewNo);
+		stmt.setInt(4, rsvNo);
 
 		row = stmt.executeUpdate();
 
 		conn.close();
 		return row;
 	}	
-	// reviewNo가 ?인 GolfReview 수정하는 메서드
-	public static int updateGolfReview(String reviewTitle, String reviewContent, int reviewScore, int reviewNo) throws Exception {
+	// rsvNo가 ?인 GolfReview 수정하는 메서드
+	public static int updateGolfReview(String reviewTitle, String reviewContent, int reviewScore, int rsvNo) throws Exception {
 		// 매개값 디버깅
 		System.out.println(reviewTitle + "<-- reviewTitle ReviewDAO.updateGolfReview param");
 		System.out.println(reviewContent + "<-- reviewContent ReviewDAO.updateGolfReview param");
 		System.out.println(reviewScore + "<-- reviewScore ReviewDAO.updateGolfReview param");
-		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.updateGolfReview param");
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.updateGolfReview param");
 			
 		int row = 0;
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
 		String sql = "UPDATE review_golf SET review_title = ?, review_content = ?, review_score = ?, update_date = NOW()"
-					+ "WHERE review_no = ?";
+					+ "WHERE rsv_no = ?";
 			
 		PreparedStatement stmt =  conn.prepareStatement(sql);
 		stmt.setString(1, reviewTitle);
 		stmt.setString(2, reviewContent);
 		stmt.setInt(3, reviewScore);
-		stmt.setInt(4, reviewNo);
+		stmt.setInt(4, rsvNo);
 
 		row = stmt.executeUpdate();
 
 		conn.close();
 		return row;
 	}	
-	// ReviewNo가 ?인 HotelReview 삭제하는 메서드
-	public static int deleteHotelReview(int reviewNo) throws Exception {
+	// rsvNo가 ?인 HotelReview 삭제하는 메서드
+	public static int deleteHotelReview(int rsvNo) throws Exception {
 		// 매개값 디버깅
-		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.deleteHotelReview param");
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.deleteHotelReview param");
 				
 		int row = 0;
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
-		String sql = "DELETE from review_hotel WHERE review_no = ?";
+		String sql = "DELETE from review_hotel WHERE rsv_no = ?";
 				
 		PreparedStatement stmt =  conn.prepareStatement(sql);
-		stmt.setInt(1, reviewNo);
+		stmt.setInt(1, rsvNo);
 
 		row = stmt.executeUpdate();
 
 		conn.close();
 		return row;
 	}
-	// ReviewNo가 ?인 GolfReview 삭제하는 메서드
-	public static int deleteGolfReview(int reviewNo) throws Exception {
+	// rsvNo가 ?인 GolfReview 삭제하는 메서드
+	public static int deleteGolfReview(int rsvNo) throws Exception {
 		// 매개값 디버깅
-		System.out.println(reviewNo + "<-- reviewNo ReviewDAO.deleteGolfReview param");
+		System.out.println(rsvNo + "<-- reviewNo ReviewDAO.deleteGolfReview param");
 				
 		int row = 0;
 		// DB 접근
 		Connection  conn = DBHelper.getConnection();
 
-		String sql = "DELETE from review_golf WHERE review_no = ?";
+		String sql = "DELETE from review_golf WHERE rsv_no = ?";
 				
 		PreparedStatement stmt =  conn.prepareStatement(sql);
-		stmt.setInt(1, reviewNo);
+		stmt.setInt(1, rsvNo);
 
 		row = stmt.executeUpdate();
 
