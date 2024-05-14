@@ -238,5 +238,55 @@ public class RsvHotelDAO {
 			conn.close();
 			return row;
 	}
-	
+	//체크인/체크아웃에따른 예약가능 룸리스트 뽑기
+	//호출 - customer/hotel/insertNewRsvForm.jsp
+	//param - String checkinDate, String checkoutDate
+	//return ArrayList<HashMap<String,Object>>
+	public static ArrayList<HashMap<String,Object>> selectRoomList (String checkinDate,String checkoutDate) throws Exception{
+		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT * FROM room_hotel WHERE room_no NOT IN(SELECT room_no FROM rsv_hotel "
+				+ " WHERE (checkin_date BETWEEN ? AND ?) "
+				+ " AND (checkout_date BETWEEN ? AND ? )) AND room_state = '투숙가능'";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, checkinDate);
+		stmt.setString(2, checkoutDate);
+		stmt.setString(3, checkinDate);
+		stmt.setString(4, checkoutDate);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			m.put("roomNo",rs.getInt("room_no"));
+			m.put("roomGrade",rs.getString("room_grade"));
+			m.put("roomPrice",rs.getInt("room_price"));
+			m.put("roomInfo",rs.getString("room_info"));
+			m.put("roomMax",rs.getInt("room_max"));
+			m.put("roomImg",rs.getString("room_img"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+	}
+	//호텔룸 예약하는 DAO
+	//호출 -customer/hotel/insertNewRsvAction.jsp
+	//param - int roomNo, String checkinDate, String checkoutDate, String rsvMail, int rsvMember, String rsvRequest
+	//return int
+	public static int insertRsv (int roomNo,String checkinDate,String checkoutDate,String rsvMail,int rsvMember, String rsvRequest) throws Exception{
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql = "INSERT INTO rsv_hotel (room_no, checkin_date,checkout_date, rsv_mail, rsv_member, rsv_request,create_date, update_date) "
+				+ " VALUES(?,?,?,?,?,?,NOW(),NOW())";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1,roomNo );
+		stmt.setString(2,checkinDate );
+		stmt.setString(3,checkoutDate );
+		stmt.setString(4,rsvMail );
+		stmt.setInt(5,rsvMember );
+		stmt.setString(6,rsvRequest );
+		row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+		
+	}
 }

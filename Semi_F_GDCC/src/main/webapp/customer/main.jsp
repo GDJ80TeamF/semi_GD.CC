@@ -23,5 +23,6 @@
 <a href="/Semi_F_GDCC/customer/hotelReviewList.jsp">hotelReview</a>
 <a href="/Semi_F_GDCC/customer/golfReviewList.jsp">golfReview</a>
 <a href="/Semi_F_GDCC/customer/hotelComplex/rsvComplexList.jsp">호텔 시설 예약 리스트 </a>
+<a href="/Semi_F_GDCC/customer/hotel/insertNewRsvForm.jsp">호텔 룸 예약하기 </a>
 </body>
 </html>
