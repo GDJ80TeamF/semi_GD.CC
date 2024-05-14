@@ -28,5 +28,6 @@
 	<div><a href="/Semi_F_GDCC/admin/adminList.jsp">사원 리스트 </a></div>
 	<div><a href="/Semi_F_GDCC/admin/myPage.jsp?adminMail=<%=adminMail%>">마이 페이지  </a></div>
 	<div><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">호텔 조식 관리 </a></div>
+	<div><a href="/Semi_F_GDCC/admin/roomList.jsp">룸 리스트</a></div>
 </body>
 </html>
