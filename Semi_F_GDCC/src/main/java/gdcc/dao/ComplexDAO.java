@@ -71,16 +71,17 @@ public class ComplexDAO {
 	}
 	
 	// complex 수정
-	public static int updateComplex(int complexNo, String complexState, String complexInfo) throws Exception{
+	public static int updateComplex(int complexNo, String complexName, String complexState, String complexInfo) throws Exception{
 		int row = 0;
 		
 		Connection conn = DBHelper.getConnection();
-		String sql = "UPDATE hotel_complex SET complex_state=?, complex_info=? WHERE complex_no=? ";
+		String sql = "UPDATE hotel_complex SET complex_name =?, complex_state=?, complex_info=?, update_date =NOW() WHERE complex_no=? ";
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql);
-		stmt.setString(1, complexState);
-		stmt.setString(2, complexInfo);
-		stmt.setInt(3, complexNo);
+		stmt.setString(1, complexName);
+		stmt.setString(2, complexState);
+		stmt.setString(3, complexInfo);
+		stmt.setInt(4, complexNo);
 		
 		row = stmt.executeUpdate();
 		
@@ -109,4 +110,56 @@ public class ComplexDAO {
 			conn.close();
 			return list;
 		}
+		
+	// 삭제 전 아이디비번 체크 구간
+		public static boolean deleteCkIdPw(String checkId, String checkPw) throws Exception{
+			boolean result = false;
+			Connection conn = DBHelper.getConnection();
+			String sql = "SELECT admin_mail FROM admin WHERE admin_mail=? AND admin_pw=PASSWORD(?)";
+			PreparedStatement stmt = null;
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, checkId);
+			stmt.setString(2, checkPw);
+			
+			ResultSet rs = null;
+			rs = stmt.executeQuery();
+			
+			if(rs.next()) {
+				result = true;
+			}else {
+				result = false;
+			}
+			
+			conn.close();
+			return result;
+		}
+	// 삭제
+	public static int deleteRoom(int complexNo) throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		String sql = "DELETE FROM hotel_complex WHERE complex_no=? ";
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, complexNo);
+		
+		row = stmt.executeUpdate();
+		return row;	
+	}
+	
+	// complex 상태 업데이트
+	public static int updateComplexState(int complexNo, String complexState) throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		String sql = "UPDATE hotel_complex SET complex_state=? WHERE complex_no=? ";
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, complexState);
+		stmt.setInt(2, complexNo);
+		row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
 }

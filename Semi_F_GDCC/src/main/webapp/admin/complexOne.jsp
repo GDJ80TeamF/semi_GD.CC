@@ -40,5 +40,6 @@
 	</table>
 	<a href="/Semi_F_GDCC/admin/complexList.jsp">취소</a>
 	<a href="/Semi_F_GDCC/admin/updateComplexForm.jsp?complexNo=<%=(Integer)(m.get("complexNo"))%>">수정</a>
+	<a href="/Semi_F_GDCC/admin/deleteComplexForm.jsp?complexNo=<%=(Integer)(m.get("complexNo"))%>">삭제</a>
 </body>
 </html>

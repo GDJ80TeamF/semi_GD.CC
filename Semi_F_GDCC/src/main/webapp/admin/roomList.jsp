@@ -51,7 +51,7 @@
 					<td><%=(Integer)(m.get("roomMax"))%></td>
 					<td>
 						현재상태: <%=(String)(m.get("roomState"))%><br>
-						<form method="post" action="/Semi_F_GDCC/admin/action/updateRoomState.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>">
+						<form method="post" action="/Semi_F_GDCC/admin/action/updateRoomStateAction.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>">
 							변경할 상태 선택하기: 
 							<select name="roomState">
 								<option value="공사중">공사중</option>

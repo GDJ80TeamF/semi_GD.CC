@@ -28,7 +28,7 @@
 		</div>
 		<div>
 			complexState
-			<select name="commplexState">
+			<select name="complexState">
 				<%
 					if(m.get("complexState").equals("사용가능")){
 				%>

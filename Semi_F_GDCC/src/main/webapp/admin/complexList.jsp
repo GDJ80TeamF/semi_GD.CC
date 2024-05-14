@@ -34,7 +34,18 @@
 			<tr>
 				<td><a href="/Semi_F_GDCC/admin/complexOne.jsp?complexNo=<%=(Integer)(m.get("complexNo"))%>"><%=(Integer)(m.get("complexNo"))%></a></td>
 				<td><%=(String)(m.get("complexName"))%></td>
-				<td><%=(String)(m.get("complexState"))%></td>
+				<td>
+					현재 상태: <%=(String)(m.get("complexState"))%>
+					<form method="post" action="/Semi_F_GDCC/admin/action/updateComplexStateAction.jsp?complexNo=<%=(Integer)(m.get("complexNo"))%>">				
+						변경할 상태 선택하기: 
+						<select name="complexState">
+							<option value="사용가능">사용가능</option>
+							<option value="수리중">수리중</option>
+							<option value="휴장">휴장</option>
+						</select>
+						<button type="submit">변경하기</button>
+					</form>
+				</td>
 			</tr>
 		<%
 			}

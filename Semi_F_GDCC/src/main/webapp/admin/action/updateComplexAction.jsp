@@ -11,7 +11,7 @@
 	System.out.println("complexState: " + complexState);
 	System.out.println("complexInfo: " + complexInfo);
 	
-	int row = ComplexDAO.updateComplex(complexNo, complexState, complexInfo);
+	int row = ComplexDAO.updateComplex(complexNo, complexName, complexState, complexInfo);
 	
 	if(row == 1){
 		System.out.println("수정 성공");
