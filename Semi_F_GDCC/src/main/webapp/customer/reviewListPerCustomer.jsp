@@ -24,11 +24,16 @@
 	ArrayList<HashMap<String, Object>> golfReviewList = ReviewDAO.selectGolfReviewPerCus(cusMail);
 	
 	// cusMail에 따라 hotelRsvState 출력하는 메서드
-	String hs = ReviewDAO.golfRsvState(cusMail);
+	String hs = ReviewDAO.hotelRsvState(cusMail);
 	System.out.println(hs + "<-- hs reviewListPerCustomer.jsp param");
 	// cusMail에 따라 golfRsvState 출력하는 메서드
 	String gs = ReviewDAO.golfRsvState(cusMail);
 	System.out.println(gs + "<-- gs reviewListPerCustomer.jsp param");
+	
+	// 고객이 예약한 호텔rsvNo 출력하는 메서드 / 리뷰작성리스트
+	ArrayList<HashMap<String, Object>> hotelRsvNoList = ReviewDAO.selectHotelRsvNo(cusMail);
+	// 고객이 예약한 호텔rsvNo 출력하는 메서드 / 리뷰작성리스트
+	ArrayList<HashMap<String, Object>> golfRsvNoList = ReviewDAO.selectGolfRsvNo(cusMail);
 %>
 <!DOCTYPE html>
 <html>
@@ -39,53 +44,86 @@
 <body>
 
 <div>
-<h1>나의 호텔리뷰 목록</h1>
 	<table border="1">
-		<%
-			if(hs.equals("예약만료")) {
-		%>
-			<a href="/Semi_F_GDCC/customer/insertHotelReviewForm.jsp">리뷰 쓰기</a>
-		<%
-			}
-		%>
+	<h1>나의 호텔리뷰 목록</h1>	
 		<tr>
-			<th>reviewNo</th>
+			<th>rsvNo</th>
 			<th>reviewTitle</th>
 			<th>reviewContent</th>
 			<th>reviewScore</th>
+			<th>stayDate</th>
 			<th>createDate</th>
 			<th>updateDate</th>
 		</tr>
 		<%
-			for(HashMap m : hotelReviewList) {
+			for(HashMap m : hotelReviewList) {				
 		%>
 			<tr>
-				<td><%=(String)(m.get("reviewNo"))%></td>
+				<td><%=(Integer)(m.get("rsvNo"))%></td>
 				<td><%=(String)(m.get("reviewTitle"))%></td>
 				<td><%=(String)(m.get("reviewContent"))%></td>
-				<td><%=(String)(m.get("reviewScore"))%></td>
+				<%
+				    int reviewScore = (Integer) m.get("reviewScore");
+				    String star = "";
+				    switch (reviewScore) {
+				        case 1: star = "★"; break;
+				        case 2: star = "★★"; break;
+				        case 3: star = "★★★"; break;
+				        case 4: star = "★★★★"; break;
+				        case 5: star = "★★★★★"; break;
+				    }
+				%>
+				<td><%=star%></td>
+				<td><%=(String)(m.get("checkinDate"))%> ~ <%=(String)(m.get("checkoutDate"))%></td>
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
+				<td>
+					<a href="/Semi_F_GDCC/customer/updateHotelReviewForm.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>		
+					<a href="/Semi_F_GDCC/customer/action/deleteHotelReviewAction.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
+				</td>			
 			</tr>
 		<%
 			}
 		%>
-	</table>
-<h1>나의 골프리뷰 목록</h1>
-	<table border="1">
+		<tr>
+			<th>rsvNo</th>
+			<th>stayDate</th>
+		</tr>
 		<%
-			if(gs.equals("예약만료")) {
+			for(HashMap m : hotelRsvNoList) {
+				//리뷰 작성유무 확인시키는 메서드
+				String riewCk = ReviewDAO.hotelReviewCk(cusMail, (Integer)(m.get("rsvNo")));
 		%>
-			<a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp">리뷰 쓰기</a>
+		<tr>
+			<th><%=(Integer)(m.get("rsvNo"))%></th>
+			<th><%=(String)(m.get("checkinDate"))%> ~ <%=(String)(m.get("checkoutDate"))%></th>
+			<%
+				if(hs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게
+					if(riewCk == null) {	// 리뷰값이 없으면 쓸수있게
+			%>
+
+			<td>
+				<a href="/Semi_F_GDCC/customer/insertHotelReviewForm.jsp?rsvNo=
+							<%=(Integer)(m.get("rsvNo"))%>">리뷰 쓰기</a>
+			</td>
+			<%
+					}
+				}
+			%>
+		</tr>
 		<%
 			}
 		%>
-		
+	</table>
+
+	<table border="1">
+	<h1>나의 골프리뷰 목록</h1>
 		<tr>
-			<th>reviewNo</th>
+			<th>rsvNo</th>
 			<th>reviewTitle</th>
 			<th>reviewContent</th>
 			<th>reviewScore</th>
+			<th>rsvDate</th>
 			<th>createDate</th>
 			<th>updateDate</th>
 		</tr>
@@ -93,13 +131,60 @@
 			for(HashMap m : golfReviewList) {
 		%>
 			<tr>
-				<td><%=(Integer)(m.get("reviewNo"))%></td>
+				<td><%=(Integer)(m.get("rsvNo"))%></td>
 				<td><%=(String)(m.get("reviewTitle"))%></td>
-				<td><%=(String)(m.get("reviewContent"))%></td>
-				<td><%=(Integer)(m.get("reviewScore"))%></td>
+				<td><%=(String)(m.get("reviewContent"))%></td>				
+			<%
+			    int reviewScore = (Integer) m.get("reviewScore");
+			    String star = "";
+			    switch (reviewScore) {
+			        case 1: star = "★"; break;
+			        case 2: star = "★★"; break;
+			        case 3: star = "★★★"; break;
+			        case 4: star = "★★★★"; break;
+			        case 5: star = "★★★★★"; break;
+			    }
+			%>		
+				<td><%=star%></td>
+				<td><%=(String)(m.get("rsvDate"))%></td>	
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
+				<td>
+					<a href="/Semi_F_GDCC/customer/updateGolfReviewForm.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>
+					<a href="/Semi_F_GDCC/customer/action/deleteGolfReviewAction.jsp?reviewNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
+				</td>
 			</tr>
+		<%
+			}
+		%>
+		<tr>
+			<th>rsvNo</th>
+			<th>startCourse</th>
+			<th>rsvDate</th>
+		</tr>
+		<%
+			for(HashMap m : golfRsvNoList) {
+				//골프리뷰 작성유무 확인시키는 메서드
+				String riewCk = ReviewDAO.golfReviewCk(cusMail, (Integer)(m.get("rsvNo")));
+		%>
+		<tr>
+			<th><%=(Integer)(m.get("rsvNo"))%></th>
+			<th><%=(String)(m.get("rsvCourse"))%></th>
+			<th><%=(String)(m.get("rsvDate"))%></th>
+			<%
+				if(hs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게
+					if(riewCk == null) {	// 리뷰값이 없으면 쓸수있게
+			%>
+
+			<td>
+				<a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp?rsvNo=
+						<%=(Integer)(m.get("rsvNo"))%>">리뷰 쓰기</a>
+			</td>
+			<%
+					}
+				}
+			%>
+		</tr>
 		<%
 			}
 		%>

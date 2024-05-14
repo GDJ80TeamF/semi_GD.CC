@@ -17,9 +17,9 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 			
-		String sql = " SELECT review.review_no reviewNo, review.review_title reviewTitle, "
-					+ " review.review_content reviewContent, review.review_score reviewScore, "
-					+ " review.create_date createDate, review.update_date updateDate "
+		String sql = " SELECT rsv.rsv_no rsvNo, review.review_no reviewNo, review.review_title reviewTitle, "
+					+ " review.review_content reviewContent, review.review_score reviewScore, rsv.checkin_date checkinDate, "
+					+ " rsv.checkout_date checkoutDate, review.create_date createDate, review.update_date updateDate "
 					+ " FROM review_hotel review INNER JOIN rsv_hotel rsv "
 					+ " ON review.rsv_no = rsv.rsv_no "
 					+ " WHERE rsv_mail = ? ";
@@ -31,9 +31,12 @@ public class ReviewDAO {
 		while(rs.next()) {
 			HashMap<String, Object> m = new HashMap<String, Object>();
 			m.put("reviewNo", rs.getInt("reviewNo"));
+			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewContent", rs.getString("reviewContent"));
 			m.put("reviewScore", rs.getInt("reviewScore"));
+			m.put("checkinDate", rs.getString("checkinDate"));
+			m.put("checkoutDate", rs.getString("checkoutDate"));
 			m.put("createDate", rs.getString("createDate"));
 			m.put("updateDate", rs.getString("updateDate"));
 			list.add(m);
@@ -51,8 +54,8 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = " SELECT review.review_no reviewNo, review.review_title reviewTitle, "
-					+ " review.review_content reviewContent, review.review_score reviewScore, "
+		String sql = " SELECT rsv.rsv_no rsvNo, review.review_no reviewNo, review.review_title reviewTitle, "
+					+ " review.review_content reviewContent, review.review_score reviewScore, rsv.rsv_date rsvDate, "
 					+ " review.create_date createDate, review.update_date updateDate "
 					+ " FROM review_golf review INNER JOIN rsv_golf rsv "
 					+ " ON review.rsv_no = rsv.rsv_no "
@@ -65,9 +68,11 @@ public class ReviewDAO {
 		while(rs.next()) {
 			HashMap<String, Object> m = new HashMap<String, Object>();
 			m.put("reviewNo", rs.getInt("reviewNo"));
+			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewContent", rs.getString("reviewContent"));
 			m.put("reviewScore", rs.getInt("reviewScore"));
+			m.put("rsvDate", rs.getString("rsvDate"));
 			m.put("createDate", rs.getString("createDate"));
 			m.put("updateDate", rs.getString("updateDate"));
 			list.add(m);
@@ -429,5 +434,119 @@ public class ReviewDAO {
 		}
 		conn.close();
 		return s;		
+	}
+	// 호출 : /customer/reviewListPerCustomer.jsp
+	// cusMail, rsvNo에 따라 호텔리뷰값있는지 없는지 출력하는 메서드 / 호텔리뷰는 1번만
+	public static String hotelReviewCk(String cusMail, int rsvNo) throws Exception {
+		// 매개값 디버깅
+		System.out.println(cusMail + "<-- cusMail ReviewDAO.hotelReviewCk param");
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.hotelReviewCk param");
+			
+		String s = null;
+			
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+				
+		String sql = "SELECT review.review_title reviewTitle "
+					+ " FROM review_hotel review INNER JOIN rsv_hotel rsv "
+					+ " ON review.rsv_no = rsv.rsv_no "
+					+ " WHERE rsv_mail = ? AND review.rsv_no = ?";
+				
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, cusMail);
+		stmt.setInt(2, rsvNo);
+		ResultSet rs = stmt.executeQuery();
+			
+		if(rs.next()) {
+			s = (String)(rs.getString("reviewTitle"));
+		}
+		conn.close();
+		return s;		
+	}
+	// 호출 : /customer/reviewListPerCustomer.jsp
+	// cusMail, rsvNo에 따라 골프리뷰값있는지 없는지 출력하는 메서드 / 호텔리뷰는 1번만
+	public static String golfReviewCk(String cusMail, int rsvNo) throws Exception {
+		// 매개값 디버깅
+		System.out.println(cusMail + "<-- cusMail ReviewDAO.golfReviewCk param");
+		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.golfReviewCk param");
+			
+		String s = null;
+			
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+				
+		String sql = "SELECT review.review_title reviewTitle "
+					+ " FROM review_golf review INNER JOIN rsv_golf rsv "
+					+ " ON review.rsv_no = rsv.rsv_no "
+					+ " WHERE rsv_mail = ? AND review.rsv_no = ?";
+				
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, cusMail);
+		stmt.setInt(2, rsvNo);
+		ResultSet rs = stmt.executeQuery();
+			
+		if(rs.next()) {
+			s = (String)(rs.getString("reviewTitle"));
+		}
+		conn.close();
+		return s;		
+	}
+	// 호출 : /customer/reviewListPerCustomer.jsp
+	// 고객이 예약한 호텔rsvNo 출력하는 메서드 / 리뷰작성리스트
+	public static ArrayList<HashMap<String, Object>> selectHotelRsvNo(String cusMail) throws Exception {
+		// 매개값 디버깅
+		System.out.println(cusMail + "<-- cusMail ReviewDAO.selectHotelRsvNo param");
+		
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+			
+		String sql = "SELECT rsv_no rsvNo, checkin_date checkinDate, checkout_date checkoutDate "
+					+ "FROM rsv_hotel "
+					+ "WHERE rsv_mail = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, cusMail);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("rsvNo", rs.getInt("rsvNo"));
+			m.put("checkinDate", rs.getString("checkinDate"));
+			m.put("checkoutDate", rs.getString("checkoutDate"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+	}
+	// 호출 : /customer/reviewListPerCustomer.jsp
+	// 고객이 예약한 골프rsvNo 출력하는 메서드 / 리뷰작성리스트
+	public static ArrayList<HashMap<String, Object>> selectGolfRsvNo(String cusMail) throws Exception {
+		// 매개값 디버깅
+		System.out.println(cusMail + "<-- cusMail ReviewDAO.selectGolfRsvNo param");
+		
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+			
+		String sql = "SELECT rsv_no rsvNo, rsv_course rsvCourse, rsv_date rsvDate "
+					+ "FROM rsv_golf "
+					+ "WHERE rsv_mail = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, cusMail);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("rsvNo", rs.getInt("rsvNo"));
+			m.put("rsvCourse", rs.getString("rsvCourse"));
+			m.put("rsvDate", rs.getString("rsvDate"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
 	}
 }

@@ -10,6 +10,9 @@
 	}
 	// 세션에서 고객 mail가져오기
 	HashMap<String,Object> login = (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
+	
+	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
+	System.out.println(rsvNo + "<-- rsvNo insertHotelReviewForm.jsp param");
 %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +27,7 @@
 	<table>
 		<tr>
 			<th>예약번호 :</th>
-			<td><input type="text" name="rsvNo"></td>
+			<td><input type="text" name="rsvNo" value="<%=rsvNo%>"></td>
 		</tr>
 		<tr>
 			<th>제목 :</th>
@@ -32,7 +35,15 @@
 		</tr>
 		<tr>
 			<th>별점 :</th>
-			<td><input type="text" name="score"></td>
+			<td>
+				<select name="score">
+					<option value="1">★<option>
+					<option value="2">★★</option>
+					<option value="3">★★★</option>
+					<option value="4">★★★★</option>
+					<option value="5">★★★★★</option>
+				</select>
+			</td>
 		</tr>
 		<tr>
 			<th>내용 :</th>
