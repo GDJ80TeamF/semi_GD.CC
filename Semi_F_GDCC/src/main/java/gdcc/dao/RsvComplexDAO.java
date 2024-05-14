@@ -39,57 +39,42 @@ public class RsvComplexDAO {
 	//param : void
 	//return : ArrayList
 
-	public static ArrayList<HashMap<String,Object>> rsvList() throws Exception{
+	public static ArrayList<HashMap<String,Object>>rsvList(int startRow, int rowPerPage) throws Exception{
 		ArrayList<HashMap<String,Object>> list
 			= new ArrayList<HashMap<String,Object>>();
 		
 		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT c.rsv_comno comNo, h.room_no roomNo, hc.complex_name complexName, c.rsv_date rsvDate, "
+				+ "c.rsv_time rsvTime, c.rsv_state rsvState "
+				+ "FROM rsv_complex c "
+				+ "INNER JOIN rsv_hotel h "
+				+ "INNER JOIN hotel_complex hc "
+				+ "ON c.rsv_no = h.rsv_no "
+				+ "AND c.rsv_place = hc.complex_no "
+				+ "ORDER BY c.rsv_time DESC LIMIT ?,?";
 		
-		String sql ="SELECT c.rsv_comno rsvComNo, c.rsv_place rsvPlace, c.rsv_date rsvDate, c.rsv_time rsvTime "
-				+ "FROM rsv_complex c ";
-				
 		PreparedStatement stmt = conn.prepareStatement(sql);
-
+			stmt.setInt(1, startRow);
+			stmt.setInt(2, rowPerPage);
+		
 		ResultSet rs = stmt.executeQuery();
 		
 		while(rs.next()) {
 			HashMap<String,Object> m = new HashMap<String,Object>();
 			
-				m.put("rsvComNo", rs.getInt("rsvComNo"));
-				m.put("rsvPlace", rs.getInt("rsvPlace"));
-				m.put("rsvDate", rs.getString("rsvDate"));
-				m.put("rsvTime", rs.getString("rsvTime"));
+			m.put("comNo", rs.getInt("comNo"));
+			m.put("roomNo", rs.getInt("roomNo"));
+			m.put("complexName", rs.getString("complexName"));
+			m.put("rsvDate", rs.getString("rsvDate"));
+			m.put("rsvTime", rs.getString("rsvTime"));
+			m.put("rsvState", rs.getString("rsvState"));
+			
 			list.add(m);
 		}
 		
 		return list;
 	}
 	
-	//부대시설 카테고리 생성하기
-	//호출 : rsvHotelList.jsp
-	//param : 
-	//return
-	/*
-	 * public static ArrayList<HashMap<String,Object>> comCategory() throws
-	 * Exception{ ArrayList<HashMap<String,Object>> category = new
-	 * ArrayList<HashMap<String,Object>>();
-	 * 
-	 * Connection conn = DBHelper.getConnection();
-	 * 
-	 * String sql ="SELECT rsv_comno rsvComno, rsv_no rsvNo, rsv_place rsvPlace, " +
-	 * "COUNT(*) cnt " + "FROM rsv_complex " + "GROUP BY rsv_place " +
-	 * "ORDER BY rsv_place ASC";
-	 * 
-	 * PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs =
-	 * stmt.executeQuery();
-	 * 
-	 * while(rs.next()) { HashMap<String,Object> m = new HashMap<String,Object>();
-	 * m.put("rsvPlace", rs.getInt("rsvPlace")); m.put("cnt", rs.getInt("cnt"));
-	 * 
-	 * category.add(m); }
-	 * 
-	 * return category; }
-	 */
 	
 	
 	//호출 - /hotelComplex/insertRsvAction.jsp

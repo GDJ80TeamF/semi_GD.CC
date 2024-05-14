@@ -26,7 +26,6 @@
 	//1. 숙박, 2.부대시설, 3.조식을 get방식으로 table 분기
 	
 	String table= request.getParameter("table");
-	
 	//=====숙박
 		HashMap<String,Object>hotelCnt =
 			RsvHotelDAO.rsvHotelCnt();
@@ -56,25 +55,24 @@
 		HashMap<String,Object>comCnt =
 			RsvComplexDAO.rsvComplexCnt();
 	
-		int comTotalRow = (int)comCnt.get("comCnt");
+			int comTotalRow = (int)comCnt.get("comCnt");
 			System.out.println(comTotalRow + "<===부대시설예약갯수");
+			
+			//페이징
+			int comLastPage = comTotalRow / rowPerPage; 
+			
+			//마지막 페이지가 안떨어질때를 위해서 분기
+			if(comTotalRow % rowPerPage != 0) {
+				comLastPage = comLastPage + 1;
+			   }
 		
 		//부대시설 table
+			ArrayList<HashMap<String,Object>> comList = new ArrayList<HashMap<String,Object>>();
 	
-		ArrayList<HashMap<String,Object>> comList = new ArrayList<HashMap<String,Object>>();
-	
-		//부대시설 리스트목록
 		if(table !=null && table.equals("rsv_complex")){
-	 		comList = RsvComplexDAO.rsvList();
-				System.out.println(comList + "<==부대시설예약리스트");
+			comList = RsvComplexDAO.rsvList(startRow, rowPerPage);
+				System.out.println(comList + "<==부대시설 예약 리스트");
 		}
-		
-	
-/* 	//부대시설 카테고리
-	ArrayList<HashMap<String,Object>> category = RsvComplexDAO.comCategory();
-		System.out.println(category + "<==부대시설 카테고리"); */
-		
-		
 	//======조식
 		HashMap<String,Object>bfCnt =
 			RsvBfDAO.rsvBfCnt();
@@ -125,6 +123,10 @@
 			<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf">
 				조식 (총<%=bfTotalRow %>)
 			</a>
+		</div>
+		
+		<div class="page">
+		
 		</div>
 	
 	<div class="hotel">
@@ -212,13 +214,13 @@
 					<%
 						if(currentPage > 1){			
 					%>
-						<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=1">FIRST</a>
-						<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=1">FIRST</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
 					<%						
 						}if(currentPage > hotelLastPage){
 					%>
-						<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
-						<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=hotelLastPage%>">LAST</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=hotelLastPage%>">LAST</a>
 					<%
 						}					
 					%>		
@@ -228,70 +230,41 @@
 				}
 			%>
 	</div><!-- class = hotel -->
-	
-	<div class="complex">
+		<div class="complex">
 			<%
 			if(table != null && table.equals("rsv_complex")){
 			%>	
-				<a>
-					수영장
-				</a>
-				<a>
-					헬스장
-				</a>
 				<table>
-					  <tr>
-		                  <th>예약번호</th>
-		                  <th>RoomNO</th>
-		                  <th>이용시설</th>
-		                  <th>예약날짜</th>
-		                  <th>예약시간</th>
-		                  <th>상세보기</th>
-		                  <th>예약상태</th>
-		              </tr>
-		              <%
-		              	for(HashMap<String,Object> m : comList) {
-		              %>
-		              	<tr>
-		                    <td>
-		                        <%=m.get("rsvComNo") %>
-		                    </td>
-		                     <td>
-		                       
-		                    </td>
-		                    <td>
-		                    	<%
-									int rsvComNo = (int) m.get("rsvComNo");
-									
-									switch(rsvComNo){
-										case 1 : 
-											out.print("수영장");
-											break;
-										
-										case 2 :
-											out.print("헬스장");
-											break;
-									}
-								%>
-		                    </td>
-		                    <td>
-		                    	<%=m.get("rsvDate") %>
-		                    </td>
-		                    <td>
-		                    	<%=m.get("rsvTime") %>
-		                    </td>
-		                    <td>
-		                    	<a href="/Semi_F_GDCC/admin/rsvComOne.jsp?rsvComNo=<%=m.get("rsvComNo") %>">		                    	
-		                    		상세보기
-		                    	</a>
-		                    </td>
-		                    <td>
-		                    	
-		                    </td>
-		                </tr>
-		              <%
-		              	}
-		              %>
+					<tr>
+						<th>예약No</th>
+						<th>RoomNo</th>
+						<th>이용시설</th>
+						<th>날짜</th>
+						<th>예약상태</th>
+					</tr>
+					<%
+						for(HashMap<String,Object> m : comList){
+					%>
+						<tr>
+							<td>
+								<%=m.get("comNo") %>
+							</td>
+							<td>
+								<%=m.get("roomNo") %>
+							</td>
+							<td>
+								<%=m.get("complexName") %>
+							</td>
+							<td>
+								<%=m.get("rsvDate") %>
+							</td>
+							<td>
+								<%=m.get("rsvState") %>
+							</td>
+						</tr>
+					<%
+						}
+					%>
 				</table>
 			<%
 			}
