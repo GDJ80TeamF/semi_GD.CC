@@ -26,8 +26,9 @@
 	<div><a href="/Semi_F_GDCC/admin/action/adminLogoutAction.jsp">로그아웃</a></div>
 	<div><a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminMail=<%=adminMail%>">공지 폼 </a></div>
 	<div><a href="/Semi_F_GDCC/admin/adminList.jsp">사원 리스트 </a></div>
-	<div><a href="/Semi_F_GDCC/admin/myPage.jsp?adminMail=<%=adminMail%>">마이 페이지  </a></div>
+	<div><a href="/Semi_F_GDCC/admin/myPage.jsp?adminMail=<%=adminMail%>">마이 페이지</a></div>
 	<div><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">호텔 조식 관리 </a></div>
 	<div><a href="/Semi_F_GDCC/admin/roomList.jsp">룸 리스트</a></div>
+	<div><a href="/Semi_F_GDCC/admin/complexList.jsp">complexList</a></div>
 </body>
 </html>

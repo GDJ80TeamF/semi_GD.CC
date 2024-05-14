@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="gdcc.dao.NoticeDAO"%>
 <%@page import="java.util.HashMap"%>
 <%
 	if(session.getAttribute("loginAdmin") == null){
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
 		return;
 	}
+	HashMap<String,Object> loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
 %>  
 
 <%
@@ -42,7 +42,7 @@
 	<form method="post" action="/Semi_F_GDCC/admin/action/deleteCkNoticeAction.jsp">
 		<!-- 공지번호 -->
 		공지를 삭제하시겠습니까? 삭제하려면 아이디와 비번을 비교해야 됩니다.<br>
-		아이디: <input type="text" name="checkId"><br>
+		아이디: <input type="text" name="checkId" value="<%=(String)(loginAdmin.get("adminMail"))%>"><br>
 		비번: <input type="password" name="checkPw">
 	 	<input type="text" name="noticeNo" value=<%=noticeNo%> style="display:none;">   
 		<button type="submit">비교</button>

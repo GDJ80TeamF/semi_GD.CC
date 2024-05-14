@@ -2,13 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
-<%-- <%
+<%
 	// 인증 분기 세션 변수 이름 : loginAdmin
 	if(session.getAttribute("loginAdmin") == null){
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
 		return;
 	}
-%> --%>
+%> 
 <%
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){
