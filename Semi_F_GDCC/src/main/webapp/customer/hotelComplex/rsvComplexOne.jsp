@@ -56,11 +56,14 @@
 			<td>예약 완료 날짜 </td>
 			<td><%=(String)m.get("createDate") %></td>
 		</tr>
-		
+		<tr>
+			<td>예약 변경 날짜 </td>
+			<td><%=(String)m.get("updateDate") %></td>
+		</tr>
 	
 	</table>
 	<div><a href="/Semi_F_GDCC/customer/hotelComplex/rsvComplexList.jsp?cusMail=<%=cusMail%>">리스트로 돌아가기 </a></div>
 	
-	<div><a href="/Semi_F_GDCC/customer/hotelComplex/updateRsvForm.jsp">예약 정보 변경하기 </a></div>
+	<div><a href="/Semi_F_GDCC/customer/hotelComplex/updateRsvForm.jsp?rsvComNo=<%=rsvComNo%>">예약 정보 변경하기 </a></div>
 </body>
 </html>

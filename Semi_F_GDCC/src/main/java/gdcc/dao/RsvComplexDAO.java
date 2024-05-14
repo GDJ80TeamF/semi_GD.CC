@@ -153,10 +153,12 @@ public class RsvComplexDAO {
 				m.put("comNo",rs.getInt("c.rsv_comno"));
 				m.put("rsvNo",rs.getInt("c.rsv_no"));
 				m.put("rsvPlace",rs.getString("hc.complex_name"));
+				m.put("rsvPlaceNo",rs.getInt("c.rsv_place"));
 				m.put("rsvDate",rs.getString("c.rsv_date"));
 				m.put("rsvTime",rs.getString("c.rsv_time"));
 				m.put("rsvMember",rs.getInt("c.rsv_member"));
 				m.put("createDate",rs.getString("c.create_date"));
+				m.put("updateDate",rs.getString("c.update_date"));
 				
 				
 			}
@@ -177,6 +179,64 @@ public class RsvComplexDAO {
 		conn.close();
 		return row;
 	}
-	
+	//호출 - updateRsvAction.jsp
+	//param - String rsvDate, String rsvTime, int rsvMember,int rsvComNo
+	//return - int
+	public static int updateRsv (String rsvDate,String rsvTime, int rsvMember,int rsvComNo) throws Exception {
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql = "UPDATE rsv_complex SET rsv_date=?, rsv_time=?, rsv_member=? WHERE rsv_comno = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, rsvDate);
+		stmt.setString(2, rsvTime);
+		stmt.setInt(3, rsvMember);
+		stmt.setInt(4, rsvComNo);
+		row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+		
+	}
+	//호출 - hotelComplex/inssertRsvForm.jsp/ updateRsvForm.jsp
+	//고객이 입력한 장소+날짜 를 비교해서 예약가능한 시간만 출력 -> 우선 전체시간대임시테이블 alltimes 생성후 비교 
+	//param - int rsvPlace, String rsvDate
+	//return - ArrayList<HashMap<String,String>>
+	public static ArrayList<HashMap<String,Object>> selectTimes (int rsvPlace,String rsvDate) throws Exception{
+		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT all_times.each_time"
+				+ " FROM "
+				+ " (SELECT '12시' AS each_time"
+				+ " UNION "
+				+ " SELECT '13시'"
+				+ " UNION "
+				+ " SELECT '14시'"
+				+ " UNION "
+				+ " SELECT '15시'"
+				+ " UNION "
+				+ " SELECT '16시'"
+				+ " UNION "
+				+ " SELECT '17시'"
+				+ " UNION "
+				+ " SELECT '18시')"
+				+ " all_times "
+				+ "WHERE all_times.each_time NOT IN "
+				+ " (SELECT c.rsv_time"
+				+ " FROM rsv_complex c"
+				+ " WHERE c.rsv_place = ? and c.rsv_date = ?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1,rsvPlace);
+		stmt.setString(2,rsvDate);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			m.put("rsvTime", rs.getString("all_times.each_time"));
+			list.add(m);
+			
+		}
+		conn.close();
+		return list;
+		
+	}
 
 }
