@@ -146,4 +146,94 @@ public class RsvBfDAO {
 		conn.close();
 		return m;		
 	}
+	//조식예약 총갯수 구하기
+	//호출 : admin/rsvHotelList.jsp
+	//param : void
+	//return : HashMap
+	
+	public static HashMap<String,Object>rsvBfCnt() throws Exception{
+		HashMap<String,Object> cnt = new HashMap<String,Object>();
+		
+		Connection  conn = DBHelper.getConnection();
+		
+		String sql ="SELECT COUNT(*) cnt FROM rsv_bf";
+
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+			while(rs.next()) {
+				cnt.put("bfCnt", rs.getInt("cnt"));
+			}
+			
+		conn.close();
+		return cnt;
+	}
+	
+	//조식 예약리스트 구하기
+	//호출 : admin/rsvHotelList.jsp
+	//param : void
+	//return : ArrayList
+
+	public static ArrayList<HashMap<String,Object>> rsvList() throws Exception{
+		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+		
+		Connection  conn = DBHelper.getConnection();
+		
+		String sql ="SELECT b.rsv_bf_no rsvBfNo, h.room_no roomNo, b.rsv_date rsvDate, b.rsv_time rsvTime, b.rsv_state rsvState "
+				+ "FROM rsv_hotel h "
+				+ "INNER JOIN rsv_bf b ON h.rsv_no = b.rsv_no ORDER BY b.rsv_date DESC";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String, Object>();
+			
+				m.put("rsvBfNo", rs.getInt("rsvBfNo"));
+				m.put("roomNo", rs.getInt("roomNo"));
+				m.put("rsvDate", rs.getString("rsvDate"));
+				m.put("rsvTime", rs.getString("rsvTime"));
+				m.put("rsvState", rs.getString("rsvState"));
+				
+			list.add(m);
+		}
+		
+		return list;
+	}
+	
+	//조식예약 상세보기
+	//호출 : admin/rsvBfOne.jsp
+	//param : int rsvBfNo
+	//return : HashMap
+	
+	public static HashMap<String,Object> rsvBfOne(int rsvBfNo) throws Exception{
+		HashMap<String,Object> one = new HashMap<String,Object>();
+		
+			Connection  conn = DBHelper.getConnection();
+				
+			String sql ="SELECT b.rsv_bf_no rsvBfNo, h.room_no roomNo, h.rsv_mail rsvMail, b.rsv_date rsvDate, "
+					+ "b.rsv_time rsvTime, b.rsv_member rsvMember, b.rsv_menu rsvMenu "
+					+ "FROM rsv_bf b "
+					+ "INNER JOIN rsv_hotel h "
+					+ "ON b.rsv_no = h.rsv_no "
+					+ "WHERE b.rsv_bf_no = ? "
+					+ "ORDER BY rsv_date DESC";
+		
+			PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, rsvBfNo);
+				
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				one.put("rsvBfNo", rs.getInt("rsvBfNo"));
+				one.put("roomNo", rs.getInt("roomNo"));
+				one.put("rsvMail", rs.getString("rsvMail"));
+				one.put("rsvDate", rs.getString("rsvDate"));
+				one.put("rsvTime", rs.getString("rsvTime"));
+				one.put("rsvMember", rs.getInt("rsvMember"));
+				one.put("rsvMenu", rs.getInt("rsvMenu"));
+				
+			}
+		return one;
+	}
 }

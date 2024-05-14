@@ -3,6 +3,13 @@
 <%@ page import="java.util.*" %>
 <%@ page import="gdcc.dao.*"%>
 <%
+	//로그인 인증분기
+	if(session.getAttribute("loginAdmin") == null){
+		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
+		return;
+	}
+%>
+<%
 	
 	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
 		System.out.println(rsvNo + "<==rsvHotelOne.rsvNo");

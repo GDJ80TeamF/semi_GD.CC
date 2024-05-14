@@ -116,8 +116,6 @@ public class RsvHotelDAO {
 		conn.close();
 		return list;
 			}
-			
-	//임아영
 	
 	//호텔예약 총 갯수 구하기
 	//호출 : /admin/rsvHotelList.jsp
@@ -148,7 +146,8 @@ public class RsvHotelDAO {
 	//param : void
 	//retunr : ArrayList
 	
-	public static ArrayList<HashMap<String,Object>>rsvList() throws Exception{
+	public static ArrayList<HashMap<String,Object>>rsvList(
+			int startRow, int rowPerPage) throws Exception{
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		
 		Connection conn = DBHelper.getConnection();
@@ -157,9 +156,12 @@ public class RsvHotelDAO {
 				+ "r.room_no roomNo, r.checkin_date checkinDate, r.rsv_state rsvState "
 				+ "FROM rsv_hotel r "
 				+ "INNER JOIN customer c "
-				+ "ON c.cus_mail = r.rsv_mail";
+				+ "ON c.cus_mail = r.rsv_mail "
+				+ "ORDER BY r.checkin_date DESC LIMIT ?, ?";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, startRow);
+			stmt.setInt(2, rowPerPage);
 		
 		ResultSet rs = stmt.executeQuery();
 		
@@ -209,7 +211,32 @@ public class RsvHotelDAO {
 			one.put("request", rs.getString("request"));
 		}
 		
+		conn.close();
 		return one;
+	}
+	
+	//호텔 예약상태 변경하기
+	//호출 : adimin/action/rsvHotelStateAction.jsp
+	//param : int rsvNo, String rsvState
+	//return : int
+	
+	public static int updateRsvState(String rsvState, int rsvNo) throws Exception{
+			int row = 0;
+			
+			Connection conn = DBHelper.getConnection();
+			
+			String sql ="UPDATE rsv_hotel "
+					+ "SET rsv_state = ? "
+					+ "WHERE rsv_no = ?";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setString(1, rsvState);
+				stmt.setInt(2, rsvNo);
+		
+			row = stmt.executeUpdate();
+			
+			conn.close();
+			return row;
 	}
 	
 }
