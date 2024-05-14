@@ -46,7 +46,7 @@
 		
 		
 		//숙박리스트목록
-		if(table != null && table.equals("rsv_hotel")){
+		if(table == null || table.equals("rsv_hotel")){
 	 		hotelList = RsvHotelDAO.rsvList(startRow, rowPerPage);
 				System.out.println(hotelList + "<==호텔예약리스트");	
 		}
@@ -124,14 +124,10 @@
 				조식 (총<%=bfTotalRow %>)
 			</a>
 		</div>
-		
-		<div class="page">
-		
-		</div>
 	
 	<div class="hotel">
 			<%
-				if(table != null && table.equals("rsv_hotel")){
+				if(table == null || table.equals("rsv_hotel")){
 			%>
 				<table>
 					<tr>
@@ -241,6 +237,7 @@
 						<th>이용시설</th>
 						<th>날짜</th>
 						<th>예약상태</th>
+						<th>상세</th>
 					</tr>
 					<%
 						for(HashMap<String,Object> m : comList){
@@ -259,13 +256,43 @@
 								<%=m.get("rsvDate") %>
 							</td>
 							<td>
-								<%=m.get("rsvState") %>
+								<%=m.get("rsvState") %>(<%=msg %>)
+								<form action="/Semi_F_GDCC/admin/action/rsvComStateAction.jsp">
+									<input type="hidden" name="comNo" value="<%=m.get("comNo")%>">
+										<select name ="rsvState">
+											<option>==상태변경==</option>
+											<option value="예약완료">예약완료</option>
+											<option value="예약취소">예약취소</option>
+										</select>
+									<button type="submit">변경</button>
+								</form>
+							
+							</td>
+							<td>
+								<a href="/Semi_F_GDCC/admin/rsvComOne.jsp?rsvComNo=<%=m.get("comNo") %>">
+									상세보기
+								</a>
 							</td>
 						</tr>
 					<%
 						}
 					%>
 				</table>
+				<div>														
+					<%
+						if(currentPage > 1){			
+					%>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=1">FIRST</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+					<%						
+						}if(currentPage > comLastPage){
+					%>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=comLastPage%>">LAST</a>
+					<%
+						}					
+					%>		
+				</div>
 			<%
 			}
 			%>
@@ -317,13 +344,13 @@
 				<%
 					if(currentPage > 1){			
 				%>
-					<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=1">FIRST</a>
-					<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=1">FIRST</a>
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
 				<%						
 					}if(currentPage > bfLastPage){
 				%>
-					<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
-					<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=bfLastPage%>">LAST</a>
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=bfLastPage%>">LAST</a>
 				<%
 					}					
 				%>		

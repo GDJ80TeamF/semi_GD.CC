@@ -75,6 +75,60 @@ public class RsvComplexDAO {
 		return list;
 	}
 	
+	//부대시설 예약 상세페이지
+	///호출 : admin/rsvComOne.jsp
+	//param : int rsvComNo
+	//return : HashMap
+	
+	public static HashMap<String,Object> selectRsvComOne(int rsvComNo) throws Exception{
+		HashMap<String,Object> one = new HashMap<String,Object>();
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="SELECT c.rsv_comno rsvComno, h.room_no roomNo, h.rsv_mail rsvMail, c.rsv_date rsvDate, c.rsv_time rsvTime,"
+				+ " c.rsv_member rsvMember, "
+				+ "hc.complex_name complexName "
+				+ "FROM rsv_complex c "
+				+ "INNER JOIN rsv_hotel h "
+				+ "INNER JOIN hotel_complex hc ON c.rsv_no = h.rsv_no "
+				+ "AND c.rsv_place = hc.complex_no WHERE rsv_comno = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, rsvComNo);
+			
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			one.put("rsvComno", rs.getInt("rsvComno"));
+			one.put("roomNo", rs.getInt("roomNo"));
+			one.put("rsvMail", rs.getString("rsvMail"));
+			one.put("rsvDate", rs.getString("rsvDate"));
+			one.put("rsvTime", rs.getString("rsvTime"));
+			one.put("rsvMember", rs.getInt("rsvMember"));
+			one.put("complexName", rs.getString("complexName"));
+		}
+		return one;
+	}
+	//부대시설 예약상태 변경
+	//호출 : admin/action/rsvComStateAction.jsp
+	//param : int comNo, String rsvState
+	//return : int
+	public static int updateRsvState(String rsvState, int comNo) throws Exception{
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="UPDATE rsv_complex SET rsv_state = ? WHERE rsv_comno = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1,rsvState);
+			stmt.setInt(2, comNo);
+			
+			row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
 	
 	
 	//호출 - /hotelComplex/insertRsvAction.jsp
