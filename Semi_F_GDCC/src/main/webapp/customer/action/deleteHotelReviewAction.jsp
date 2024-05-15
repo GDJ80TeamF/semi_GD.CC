@@ -8,7 +8,7 @@
 	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
 	System.out.println(rsvNo + "<--rsvNo deleteHotelReviewAction.jsp param");
 	
-	// reviewNo ?인 HotelReview 삭제하는 메서드
+	// rsvNo ?인 HotelReview 삭제하는 메서드
 	int row =ReviewDAO.deleteHotelReview(rsvNo);
 	
 	if(row == 1){

@@ -36,7 +36,7 @@
 <h1>GolfRiview리스트</h1>
 	<table border="1">
 		<tr>
-			<th>reviewNo</th>
+			<th>rsvNo</th>
 			<th>reviewTitle</th>
 		</tr>
 		<%
@@ -45,7 +45,7 @@
 			<tr>
 				<td>
 					<a href="/Semi_F_GDCC/customer/golfReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
-						<%=(Integer)(m.get("reviewNo"))%></a>
+						<%=(Integer)(m.get("rsvNo"))%></a>
 				</td>
 				<td>
 					<a href="/Semi_F_GDCC/customer/golfReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">

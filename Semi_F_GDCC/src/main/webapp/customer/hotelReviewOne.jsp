@@ -4,6 +4,9 @@
 <%@ page import="java.net.*"%>
 <%@ page import="java.util.*"%>
 <%
+	//int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
+	//System.out.println(rsvNo + "<-- rsvNo hotelReviewOne.jsp param ");
+	
 	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
 	System.out.println(rsvNo + "<-- rsvNo hotelReviewOne.jsp param ");
 

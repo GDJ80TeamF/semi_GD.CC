@@ -57,6 +57,7 @@
 	<h1>나의 호텔리뷰 목록</h1>	
 		<tr>
 			<th>rsvNo</th>
+			<th>reviewNo</th>
 			<th>reviewTitle</th>
 			<th>reviewContent</th>
 			<th>reviewScore</th>
@@ -69,6 +70,7 @@
 		%>
 			<tr>
 				<td><%=(Integer)(m.get("rsvNo"))%></td>
+				<td><%=(Integer)(m.get("reviewNo"))%></td>
 				<td><%=(String)(m.get("reviewTitle"))%></td>
 				<td><%=(String)(m.get("reviewContent"))%></td>
 				<td>
@@ -147,14 +149,14 @@
 		<%
 			for(HashMap m : hotelRsvNoList) {
 				//리뷰 작성유무 확인시키는 메서드
-				String riewCk = ReviewDAO.hotelReviewCk(cusMail, (Integer)(m.get("rsvNo")));
+				boolean reviewCk = ReviewDAO.hotelReviewCk(cusMail, (Integer)(m.get("rsvNo")));
 		%>
 		<tr>
 			<th><%=(Integer)(m.get("rsvNo"))%></th>
 			<th><%=(String)(m.get("checkinDate"))%> ~ <%=(String)(m.get("checkoutDate"))%></th>
 			<%
 				if(hs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게
-					if(riewCk == null) {	// 리뷰값이 없으면 쓸수있게
+					if(reviewCk == false) {	// 리뷰값이 없으면 쓸수있게
 			%>
 
 			<td>
@@ -175,6 +177,7 @@
 	<h1>나의 골프리뷰 목록</h1>
 		<tr>
 			<th>rsvNo</th>
+			<th>reviewNo</th>
 			<th>reviewTitle</th>
 			<th>reviewContent</th>
 			<th>reviewScore</th>
@@ -187,6 +190,7 @@
 		%>
 			<tr>
 				<td><%=(Integer)(m.get("rsvNo"))%></td>
+				<td><%=(Integer)(m.get("reviewNo"))%></td>
 				<td><%=(String)(m.get("reviewTitle"))%></td>
 				<td><%=(String)(m.get("reviewContent"))%></td>				
 				<td>
@@ -266,21 +270,20 @@
 		<%
 			for(HashMap m : golfRsvNoList) {
 				//골프리뷰 작성유무 확인시키는 메서드
-				String riewCk = ReviewDAO.golfReviewCk(cusMail, (Integer)(m.get("rsvNo")));
+				boolean reviewCk = ReviewDAO.golfReviewCk(cusMail, (Integer)(m.get("rsvNo")));
 		%>
 		<tr>
 			<th><%=(Integer)(m.get("rsvNo"))%></th>
 			<th><%=(String)(m.get("rsvCourse"))%></th>
 			<th><%=(String)(m.get("rsvDate"))%></th>
 			<%
-				if(hs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게
-					if(riewCk == null) {	// 리뷰값이 없으면 쓸수있게
+				if(gs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게
+					if(reviewCk == false) {	// 리뷰값이 없으면 쓸수있게
 			%>
-
-			<td>
-				<a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp?rsvNo=
-						<%=(Integer)(m.get("rsvNo"))%>">리뷰 쓰기</a>
-			</td>
+				<td>
+					<a href="/Semi_F_GDCC/customer/insertGolfReviewForm.jsp?rsvNo=
+							<%=(Integer)(m.get("rsvNo"))%>">리뷰 쓰기</a>
+				</td>
 			<%
 					}
 				}

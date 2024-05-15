@@ -398,7 +398,7 @@ public class ReviewDAO {
 		String sql = "SELECT h.rsv_state state "
 					+ "FROM rsv_hotel h "
 					+ "INNER JOIN customer c ON h.rsv_mail = c.cus_mail "
-					+ "WHERE c.cus_mail = ?";
+					+ "WHERE c.cus_mail = ? ORDER BY h.create_date DESC LIMIT 0,1";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, cusMail);
@@ -424,7 +424,7 @@ public class ReviewDAO {
 		String sql = "SELECT g.rsv_state state "
 					+ "FROM rsv_golf g "
 					+ "INNER JOIN customer c ON g.rsv_mail = c.cus_mail "
-					+ "WHERE c.cus_mail = ?";
+					+ "WHERE c.cus_mail = ? ORDER BY g.create_date DESC LIMIT 0,1";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, cusMail);
@@ -438,12 +438,12 @@ public class ReviewDAO {
 	}
 	// 호출 : /customer/reviewListPerCustomer.jsp
 	// cusMail, rsvNo에 따라 호텔리뷰값있는지 없는지 출력하는 메서드 / 호텔리뷰는 1번만
-	public static String hotelReviewCk(String cusMail, int rsvNo) throws Exception {
+	public static boolean hotelReviewCk(String cusMail, int rsvNo) throws Exception {
 		// 매개값 디버깅
 		System.out.println(cusMail + "<-- cusMail ReviewDAO.hotelReviewCk param");
 		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.hotelReviewCk param");
 			
-		String s = null;
+		boolean s = false;
 			
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
@@ -451,7 +451,7 @@ public class ReviewDAO {
 		String sql = "SELECT review.review_title reviewTitle "
 					+ " FROM review_hotel review INNER JOIN rsv_hotel rsv "
 					+ " ON review.rsv_no = rsv.rsv_no "
-					+ " WHERE rsv_mail = ? AND review.rsv_no = ?";
+					+ " WHERE rsv_mail = ? AND rsv.rsv_no = ?";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, cusMail);
@@ -459,19 +459,19 @@ public class ReviewDAO {
 		ResultSet rs = stmt.executeQuery();
 			
 		if(rs.next()) {
-			s = (String)(rs.getString("reviewTitle"));
+			s = true;
 		}
 		conn.close();
 		return s;		
 	}
 	// 호출 : /customer/reviewListPerCustomer.jsp
-	// cusMail, rsvNo에 따라 골프리뷰값있는지 없는지 출력하는 메서드 / 호텔리뷰는 1번만
-	public static String golfReviewCk(String cusMail, int rsvNo) throws Exception {
+	// cusMail, reviewNo에 따라 골프리뷰값있는지 없는지 출력하는 메서드 / 호텔리뷰는 1번만
+	public static boolean golfReviewCk(String cusMail, int rsvNo) throws Exception {
 		// 매개값 디버깅
 		System.out.println(cusMail + "<-- cusMail ReviewDAO.golfReviewCk param");
 		System.out.println(rsvNo + "<-- rsvNo ReviewDAO.golfReviewCk param");
 			
-		String s = null;
+		boolean s = false;
 			
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
@@ -479,7 +479,7 @@ public class ReviewDAO {
 		String sql = "SELECT review.review_title reviewTitle "
 					+ " FROM review_golf review INNER JOIN rsv_golf rsv "
 					+ " ON review.rsv_no = rsv.rsv_no "
-					+ " WHERE rsv_mail = ? AND review.rsv_no = ?";
+					+ " WHERE rsv_mail = ? AND rsv.rsv_no = ?";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, cusMail);
@@ -487,7 +487,7 @@ public class ReviewDAO {
 		ResultSet rs = stmt.executeQuery();
 			
 		if(rs.next()) {
-			s = (String)(rs.getString("reviewTitle"));
+			s = true;
 		}
 		conn.close();
 		return s;		
