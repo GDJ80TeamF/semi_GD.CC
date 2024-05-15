@@ -25,6 +25,18 @@
 
 	
 %>
+<%
+	int currentPage = 1;
+	if(request.getParameter("currentPage") != null){
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+	// 공지 5개씩
+	int rowPerPage = 5;
+	int startRow = (currentPage-1) * rowPerPage;	
+%>
+<%
+	ArrayList<HashMap<String, Object>> List = RsvHotelDAO.rsvList(startRow, rowPerPage);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,6 +107,27 @@
 					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp">
 						MyQnA
 					</a>
+				</div>
+				<br>
+				<div>
+					<table border="1">
+						<tr>
+							<th>예약 번호</th>
+							<th>룸 번호</th>
+							<th>예약자 아이디 </th>
+						</tr>
+						<tr>
+							<%
+								for(HashMap<String, Object> m : List){
+							%>
+								<td><a href="/Semi_F_GDCC/customer/hotel/cusRsvHotelOne.jsp?rsvNo=<%=m.get("rsvNo")%>"><%=m.get("rsvNo")%></a></td>
+								<td><%=(Integer)m.get("roomNo")%></td>
+								<td><%=cusMail%></td>
+							<%
+								}
+							%>
+						</tr>
+					</table>
 				</div>
 			
 </body>
