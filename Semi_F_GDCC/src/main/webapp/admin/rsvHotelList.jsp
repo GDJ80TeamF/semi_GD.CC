@@ -136,7 +136,7 @@
 						<th>예약번호</th>
 						<th>룸</th>
 						<th>상세</th>
-						<th>예약상태</th>
+						<th>예약상태(<%=msg %>)</th>
 					</tr>
 					
 					<%
@@ -187,7 +187,7 @@
 								</a>
 							</td>
 							<td>
-								<%=m.get("rsvState") %>♥️<%=msg %>♥️
+								<%=m.get("rsvState") %>
 								<form action="/Semi_F_GDCC/admin/action/rsvHotelStateAction.jsp">
 									<input type="hidden" name ="rsvNo" value="<%=m.get("rsvNo") %>">
 									<select name ="rsvState">
@@ -210,13 +210,13 @@
 					<%
 						if(currentPage > 1){			
 					%>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=1">FIRST</a>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel&currentPage=1">FIRST</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel&currentPage=<%=currentPage-1%>">PRE</a>										
 					<%						
 						}if(currentPage > hotelLastPage){
 					%>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=hotelLastPage%>">LAST</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel&currentPage=<%=currentPage+1%>">NEXT</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel&currentPage=<%=hotelLastPage%>">LAST</a>
 					<%
 						}					
 					%>		
@@ -236,7 +236,7 @@
 						<th>RoomNo</th>
 						<th>이용시설</th>
 						<th>날짜</th>
-						<th>예약상태</th>
+						<th>예약상태(<%=msg %>)</th>
 						<th>상세</th>
 					</tr>
 					<%
@@ -256,7 +256,7 @@
 								<%=m.get("rsvDate") %>
 							</td>
 							<td>
-								<%=m.get("rsvState") %>(<%=msg %>)
+								<%=m.get("rsvState") %>
 								<form action="/Semi_F_GDCC/admin/action/rsvComStateAction.jsp">
 									<input type="hidden" name="comNo" value="<%=m.get("comNo")%>">
 										<select name ="rsvState">
@@ -282,13 +282,13 @@
 					<%
 						if(currentPage > 1){			
 					%>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=1">FIRST</a>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_complex&currentPage=1">FIRST</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_complex&currentPage=<%=currentPage-1%>">PRE</a>										
 					<%						
 						}if(currentPage > comLastPage){
 					%>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
-						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=comLastPage%>">LAST</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_complex&currentPage=<%=currentPage+1%>">NEXT</a>
+						<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_complex&currentPage=<%=comLastPage%>">LAST</a>
 					<%
 						}					
 					%>		
@@ -344,13 +344,13 @@
 				<%
 					if(currentPage > 1){			
 				%>
-					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=1">FIRST</a>
-					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf&currentPage=1">FIRST</a>
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf&currentPage=<%=currentPage-1%>">PRE</a>										
 				<%						
 					}if(currentPage > bfLastPage){
 				%>
-					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
-					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?currentPage=<%=bfLastPage%>">LAST</a>
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf&currentPage=<%=currentPage+1%>">NEXT</a>
+					<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_bf&currentPage=<%=bfLastPage%>">LAST</a>
 				<%
 					}					
 				%>		

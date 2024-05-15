@@ -12,17 +12,17 @@
 			
 	//회원 비밀번호 가져오기
 	
-	HashMap<String,Object> cusPw = CustomerDAO.selectFindPw(cusMail, cusName, cusContact);
-		System.out.println(cusPw + "<==findPwACtion.pw");
+	HashMap<String,Object> findMail = CustomerDAO.selectFindPw(cusMail, cusName, cusContact);
+		System.out.println(findMail + "<==findPwAction.mail");
 		
-		String pw = (String) cusPw.get("cusPw");
+ 		String mail = (String) findMail.get("mail");
 		
-		if(cusPw == null || cusPw.isEmpty()){
-			System.out.println("비밀번호찾기 실패");
+		if(mail == null || findMail.isEmpty()){
+			System.out.println("찾기 실패");
 			response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=F");
 		}else{
 			
-			System.out.println("메일찾기 성공");
-			response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=T&pw="+pw);
+			System.out.println("찾기 성공");
+			response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=T&mail="+mail);
 		}
 %>

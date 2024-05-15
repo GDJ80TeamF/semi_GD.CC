@@ -141,7 +141,8 @@ public class CustomerDAO {
 		
 	}
 	//고객 비밀번호 history_pw에 추가
-	//호출 : customer/action/updatePwAction.jsp
+	//호출1 : customer/action/updatePwAction.jsp
+	//호출2 : customer/action/customerResetPwAction.jsp
 	//param : String(mail, newPw)
 	//return : int
 	
@@ -164,6 +165,7 @@ public class CustomerDAO {
 	
 	//historyPw과 기존 customer테이블 연결하기
 	//호출 : customer/action/updatePwAction.jsp
+	//호출2 : customer/action/customerResetPwAction.jsp
 	//param : String mail
 	//return : int
 	
@@ -267,7 +269,7 @@ public class CustomerDAO {
 		conn.close();
 		return find;
 	}
-	//회원 비밀번호 찾기
+	//회원 비밀번호변경위해 고객정보확인
 	//호출 : customer/action/findPwAction.jsp
 	//param : 
 	//return : HashMap<String,Object>
@@ -277,7 +279,7 @@ public class CustomerDAO {
 		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT cus_pw FROM customer WHERE cus_mail = ? AND cus_name =? AND cus_contact =?";
+		String sql = "SELECT cus_mail FROM customer WHERE cus_mail = ? AND cus_name =? AND cus_contact =?";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, cusMail);
@@ -287,7 +289,7 @@ public class CustomerDAO {
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				find.put("cusPw", rs.getString("cus_pw"));
+				find.put("mail", rs.getString("cus_mail"));
 			}
 		
 		return find;

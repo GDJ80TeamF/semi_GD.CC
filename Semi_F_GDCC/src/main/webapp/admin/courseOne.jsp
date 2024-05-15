@@ -2,7 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="gdcc.dao.*" %>
-    
+<%
+	//로그인 인증분기
+	if(session.getAttribute("loginAdmin") == null){
+		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
+		return;
+	}
+%>
 <%
 	//코스 불러오기
 	String courseName = request.getParameter("courseName");
