@@ -289,4 +289,28 @@ public class RsvHotelDAO {
 		return row;
 		
 	}
+	
+	// 고객 호텔 예약 변경
+	// 호출
+	public static int updateCusRsv(int rsvNo, String rsvMail, String cusCheckIn, String cusCheckOut, int cusMember, String cusRequest) throws Exception {
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql = "UPDATE rsv_hotel SET rsv_mail=?, checkin_date=?, checkout_date=?, "
+				+  "rsv_member =?, rsv_request=?, update_date=NOW() "
+				+ "WHERE rsv_no=?  ";
+		PreparedStatement stmt = null;
+		  stmt  = conn.prepareStatement(sql);
+		  stmt.setString(1, rsvMail);
+		  stmt.setString(2, cusCheckIn);
+		  stmt.setString(3, cusCheckOut);
+		  stmt.setInt(4, cusMember);
+		  stmt.setString(5, cusRequest);
+		  stmt.setInt(6, rsvNo);
+		  
+		  row = stmt.executeUpdate();
+		  
+		  conn.close();
+		  return row;
+	}
+	
 }

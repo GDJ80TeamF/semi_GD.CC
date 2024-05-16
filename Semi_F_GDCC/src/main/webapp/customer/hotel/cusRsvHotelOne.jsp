@@ -1,7 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.sql.Date"%>
 <%@ page import="gdcc.dao.*"%>
 <%@ page import = "java.sql.*" %>
 <%@ page import="java.util.*" %>
+<%
+	//인증 분기 세션 변수 이름 : loginCustomer
+		if(session.getAttribute("loginCustomer") == null){
+			response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+			return;
+		}
+		HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 	 
+		
+		String cusMail = (String)(login.get("cusMail"));
+	
+
+%>
 <%
 	
 	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
@@ -9,8 +23,15 @@
 		
 	//rsv_hotel테이블에서 예약한 정보 다 가져오기
 	
-	HashMap<String,Object> cusRsvOne = RsvHotelDAO.rsvHotelOne(rsvNo);
+	HashMap<String,Object> list = RsvHotelDAO.rsvHotelOne(rsvNo);
 %>
+<%-- <%
+	// 현재 날짜 구하기
+	Date currentDate = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // SimpleDateFormat을 사용하여 날짜 형식 지정
+	Date rsvDate = null; // 예약 날짜를 Date 객체로 변환할 변수 초기화
+
+%>  --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,16 +50,28 @@
 				<th>요청사항</th>
 				
 			</tr>
+		<%-- 	<% 
+				for(HashMap<String,Object> m : list){
+				    // 예약 날짜 가져오기
+	                 String rsvDateStr = (String) m.get("rsvDate");
+	                 try { // 날짜 문자열을 Date 객체로 변환
+	                     rsvDate = sdf.parse(rsvDateStr);
+	                 } catch (ParseException e) {
+	                     e.printStackTrace(); // 예외 처리
+	                 }
+
+			%> --%>
+		
 			<tr>
-				<td><%=cusRsvOne.get("name") %>님</td>
-				<td><%=cusRsvOne.get("mail") %></td>
-				<td><%=cusRsvOne.get("checkin") %></td>
-				<td><%=cusRsvOne.get("checkout") %></td>
-				<td><%=cusRsvOne.get("member") %>명</td>
+				<td><%=list.get("name") %>님</td>
+				<td><%=list.get("mail") %></td>
+				<td><%=list.get("checkin") %></td>
+				<td><%=list.get("checkout") %></td>
+				<td><%=list.get("member") %>명</td>
 				<td>
 					<%
 						//요청사항이 없음.
-						if(cusRsvOne.get("request").equals("")){
+						if(list.get("request").equals("")){
 									
 					%>
 						<div>요청사항이 없습니다</div>
@@ -47,13 +80,16 @@
 						}else{
 									
 					%>
-							<%=cusRsvOne.get("request") %>
+							<%=list.get("request") %>
 					<%
 						}
 					%>
 				</td>
 			</tr>
+<%-- 			<%
+				}
+			%> --%>
 		</table>
-		<a href="/Semi_F_GDCC/customer/hotel/updateRsvForm.jsp">예약 변경</a> 
+		<a href="/Semi_F_GDCC/customer/hotel/updateRsvForm.jsp?rsvNo=<%=rsvNo%>">예약 변경</a> 
 </body>
 </html>
