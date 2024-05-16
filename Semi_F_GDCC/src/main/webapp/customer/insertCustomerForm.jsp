@@ -40,7 +40,7 @@
 	<h1>회원가입</h1>
 	<form method="post" action="/Semi_F_GDCC/customer/action/customerCheckIdAction.jsp" enctype="multipart/form-data" >
 		아이디:
-		<input type="text" name="checkId" value=<%=checkId%>>
+		<input type="email" name="checkId" value=<%=checkId%>>
 		<button type="submit">아이디 중복 체크</button>
 		<br><span><%=msg%></span>
 	</form>
