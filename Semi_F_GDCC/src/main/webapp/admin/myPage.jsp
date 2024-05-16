@@ -58,5 +58,7 @@
 	</table>
 	<a href="/Semi_F_GDCC/admin/mainBoard.jsp">돌아가기</a>
 	<div><a href="/Semi_F_GDCC/admin/updateMyPageForm.jsp?adminMail=<%=adminMail%>">사원 정보 수정하기 </a></div>
+	<div><a href="/Semi_F_GDCC/admin/updatePwForm.jsp?adminMail=<%=adminMail%>">비번 번경하기 </a></div>
+	
 </body>
 </html>

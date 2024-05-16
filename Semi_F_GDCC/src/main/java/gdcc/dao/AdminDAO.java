@@ -13,7 +13,7 @@ public class AdminDAO {
 		//db접근
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT admin_mail adminMail,admin_name adminName, admin_pw adminPw,admin_grade adminGrade FROM admin WHERE admin_mail =? AND admin_pw=password(?) AND admin_active='ON'";
+		String sql = "SELECT admin_mail adminMail,admin_name adminName,admin_grade adminGrade FROM admin WHERE admin_mail =? AND admin_pw=PASSWORD(?) AND admin_active='ON'";
 		PreparedStatement stmt  = conn.prepareStatement(sql);
 		stmt.setString(1, adminMail);
 		stmt.setString(2, adminPw);
@@ -54,7 +54,7 @@ public class AdminDAO {
 		int row = 0;
 		//db접근
 		Connection conn = DBHelper.getConnection();
-		String sql = "INSERT INTO admin(admin_mail,admin_pw,admin_name,admin_gender,admin_birth,admin_contact,admin_profile) VALUES(?,password(?),?,?,?,?,?)";
+		String sql = "INSERT INTO admin(admin_mail,admin_pw,admin_name,admin_gender,admin_birth,admin_contact,admin_profile) VALUES(?,PASSWORD(?),?,?,?,?,?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, adminMail);
 		stmt.setString(2, adminPw);
@@ -63,6 +63,21 @@ public class AdminDAO {
 		stmt.setString(5, adminBirth);
 		stmt.setString(6, adminContact);
 		stmt.setString(7, adminProfile);
+		row = stmt.executeUpdate();
+		conn.close();
+		return row;
+	}
+	//호출 - insertAdminAction.jsp
+	//param - String adminMail,adminPW
+	// return - int
+	public static int insertNewAdminPwHistory(String adminMail,String adminPw)throws Exception{
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		//회원가입시 첫 비번 이력 추가하기 -> 비교할이력 없음 ;
+		String sql ="INSERT INTO admin_pw_history (admin_mail,admin_pw) VALUES (?,PASSWORD(?))";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, adminMail);
+		stmt.setString(2, adminPw);
 		row = stmt.executeUpdate();
 		conn.close();
 		return row;
@@ -85,15 +100,39 @@ public class AdminDAO {
 		conn.close();
 		return ck;
 	}
+	//호출 - adminResetPwAtion.jsp
+	//param - String adminMail, String newPw
+	//return int
+	//비번 초기화 시에는 이전 비번을 모르므로 최근이력과 일치하는 비번이 없는지만 체크한다.  --> 한번 쓴비번은 다시 못쓴다. 
+	public static int insertPwHistory(String adminMail,String newPw) throws Exception{
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql = "INSERT INTO admin_pw_history (admin_mail,admin_pw) SELECT ?,PASSWORD(?) "
+				+ "WHERE NOT EXISTS (SELECT admin_pw FROM(SELECT admin_pw FROM admin_pw_history "
+				+ "WHERE admin_mail=?) "
+				+ "AS recent_history WHERE recent_history.admin_pw = PASSWORD(?))";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, adminMail);
+		stmt.setString(2, newPw);
+		stmt.setString(3, adminMail);
+		stmt.setString(4, newPw);
+		row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
 	//호출- adminResetPwAction.jsp
 	//param - adminMail,newPw
 	//return int
+	//history에서 가장 최근비번으로 admin 테이블 업데이트 
 	public static int updateResetPw(String adminMail,String newPw) throws Exception {
 		int row = 0;
 		Connection conn = DBHelper.getConnection();
-		String sql = "UPDATE admin SET admin_pw = PASSWORD(?) WHERE admin_mail = ?";
+		String sql = "UPDATE admin SET admin_pw = (SELECT admin_pw FROM admin_pw_history "
+				+ "WHERE admin_mail = ? ORDER BY create_date DESC LIMIT 1) "
+				+ "WHERE admin_mail =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1,newPw);
+		stmt.setString(1,adminMail);
 		stmt.setString(2, adminMail);
 		row = stmt.executeUpdate();
 		
@@ -224,6 +263,30 @@ public class AdminDAO {
 		conn.close();
 		return ck;
 	}		
+	// 호출 - updatePwAction.jsp - 이력추가하는 insert -> oldPw 일치해야하고, 최근 이력에  새 비번이 있으면 안됨 
+	//param - String adminMail, String oldPw, String newPw
+	//return int
+	public static int insertNewPwHistory(String adminMail,String oldPw, String newPw)throws Exception{
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql ="INSERT INTO admin_pw_history(admin_mail,admin_pw) SELECT ?,PASSWORD(?) WHERE "
+				+ "(SELECT admin_pw FROM admin_pw_history WHERE admin_mail =? ORDER BY create_date DESC LIMIT 1)=PASSWORD(?) "
+				+ "AND NOT EXISTS (SELECT admin_pw FROM (SELECT admin_pw FROM admin_pw_history "
+				+ "WHERE admin_mail=?) "
+				+ "AS recent_history WHERE admin_pw =PASSWORD(?))";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, adminMail);
+		stmt.setString(2, newPw);
+		stmt.setString(3, adminMail);
+		stmt.setString(4, oldPw);
+		stmt.setString(5, adminMail);
+		stmt.setString(6, newPw);
+		
+		row = stmt.executeUpdate();
+		conn.close();
+		return row;
+		
+	}
 	
 	
 }

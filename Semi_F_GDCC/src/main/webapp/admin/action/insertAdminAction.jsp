@@ -48,6 +48,10 @@
 		OutputStream outputStream = Files.newOutputStream(file.toPath()); // 메모리로 불러온 파일(바이너리)을 빈파일에 저장
 		inputStream.transferTo(outputStream);
 		System.out.println("사원 등록 성공");
+		int row2 = AdminDAO.insertNewAdminPwHistory(adminMail, adminPw);
+			if(row2 != 0){
+				System.out.println("비번 이력 테이블 업데이트 완료 ");
+			}
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
 	}else{
 		System.out.println("사원 등록 실패");

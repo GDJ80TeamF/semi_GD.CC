@@ -7,7 +7,11 @@
 		return;
 	}
 
-
+	//에러메세지 출력
+	String error = request.getParameter("error");
+	if(error == null){
+		error = " ";
+	}
 
 
 %>
@@ -68,6 +72,11 @@
 
 
 <%
+		if(!error.equals(" ")){
+%>
+	<div><%=error%></div>
+<% 
+		}
 	}
 
 
