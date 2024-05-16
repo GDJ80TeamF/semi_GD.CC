@@ -53,7 +53,9 @@
 	
 	if(insertCustomer == 1){
 		System.out.println("회원가입 성공");
+		int update = CustomerDAO.updatePw(cusMail, cusPw);
 		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+	
 	}else {
 		System.out.println("회원가입 실패");
 		response.sendRedirect("/Semi_F_GDCC/customer/insertCustomerForm.jsp");

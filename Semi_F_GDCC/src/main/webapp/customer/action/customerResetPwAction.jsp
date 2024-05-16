@@ -11,18 +11,22 @@
 		System.out.println(mail + "<==resetPwAction.mail");
 		System.out.println(newPw + "<==resetPwAction.pw");
 		
-		
 		//history테이블에 추가 
 		
-		int update = CustomerDAO.updatePw(mail, newPw);
+		int update = CustomerDAO.insetPwHistory(mail, newPw);
 		
 			System.out.println(update + "<==update");
 			
-		int update2 = CustomerDAO.updatePw2(mail);
 			
-	if(update2 == 1){
+	if(update == 1){
 		
-		System.out.println("변경성공!");
-		response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=G");
+		int update2 = CustomerDAO.updatePw2(mail);
+		if(update2 == 1){
+			
+			System.out.println("변경성공!");
+			response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=G");
+		}else{
+			System.out.println("변경실패!");
+		}
 	}
 %>

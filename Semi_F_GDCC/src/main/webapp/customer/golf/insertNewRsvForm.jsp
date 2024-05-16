@@ -42,9 +42,36 @@
 <head>
 <meta charset="UTF-8">
 <title>골프 예약하기</title>
+<style>
+
+	#calendar {
+	  width: 400px; /* 부모 요소인 .container에 맞게 캘린더의 너비를 조절합니다. */
+	  height: 400px; /* 원하는 높이로 조절합니다. */
+	}
+	::-webkit-scrollbar {
+	    display: none; /* Safari 및 Chrome 등 Webkit 기반 브라우저 */
+	}
+</style>
 </head>
+	<!-- 캘린더 API가져오기 -->
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+	<script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script>
 <body>
 	<h1>골프예약하기</h1>
+		<div class="container">
+			  <div id='calendar'> </div>
+		</div>
+
 		원하는 코스를 선택해주세요!
 		<div>
 			<%

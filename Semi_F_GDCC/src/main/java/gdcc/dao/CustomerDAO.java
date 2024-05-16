@@ -56,7 +56,7 @@ public class CustomerDAO {
 		Connection conn3 = null;
 		conn3 = DBHelper.getConnection();
 		
-		String sql3 = "INSERT INTO customer(cus_mail, cus_name, cus_pw, cus_gender, cus_birth, cus_contact, cus_profile) VALUES(?, ?, ?, ?, ?, ?, ?)";
+		String sql3 = "INSERT INTO customer(cus_mail, cus_name, cus_pw, cus_gender, cus_birth, cus_contact, cus_profile) VALUES(?, ?, password(?), ?, ?, ?, ?)";
 		PreparedStatement stmt3 = null;
 		stmt3 = conn3.prepareStatement(sql3);
 		stmt3.setString(1, cusMail);
@@ -140,9 +140,8 @@ public class CustomerDAO {
 		
 		
 	}
-	//고객 비밀번호 history_pw에 추가
-	//호출1 : customer/action/updatePwAction.jsp
-	//호출2 : customer/action/customerResetPwAction.jsp
+	//고객 로그인 페이지에서 고객 비밀번호 찾기&변경
+	//호출 : customer/action/updatePwAction.jsp
 	//param : String(mail, newPw)
 	//return : int
 	
@@ -163,9 +162,67 @@ public class CustomerDAO {
 		return row;
 	}
 	
+	
+	//고객 비밀번호 이력을 확인하는 메소드
+	//customer/updatePwAction.jsp
+	//param : mail, oldPw, newPw
+	//return : int
+	
+	public static int insertPw(String mail, String oldPw, String newPw) throws Exception{
+		int row = 0;
+		
+			Connection conn = DBHelper.getConnection();
+			
+			String sql ="INSERT INTO customer_pw_history(cus_mail,cus_pw) SELECT ?,PASSWORD(?) WHERE "
+					+ "(SELECT cus_pw FROM cus_pw_history WHERE cus_mail =? ORDER BY create_date DESC LIMIT 1)=PASSWORD(?) "
+					+ "AND NOT EXISTS (SELECT cus_pw FROM (SELECT cus_pw FROM customer_pw_history "
+					+ "WHERE cus_mail=?) "
+					+ "AS recent_history WHERE cus_pw =PASSWORD(?))";
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+				stmt.setString(1, mail);
+				stmt.setString(2, newPw);
+				stmt.setString(3, mail);
+				stmt.setString(4, oldPw);
+				stmt.setString(5, mail);
+				stmt.setString(6, newPw);
+			row = stmt.executeUpdate();
+			conn.close();
+		return row;
+	}
+	
+	//pw_history에 추가하는쿼리
+	//호출 : customerResetPwACtion.jsp
+	//param : String mail, String newPw
+	//return : int
+	
+	public static int insetPwHistory(String mail, String newPw)throws Exception{
+		
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		
+		String sql ="INSERT INTO customer_pw_history(cus_mail, cus_pw) SELECT ?,PASSWORD(?) "
+				+ "WHERE NOT EXISTS (SELECT cus_pw FROM(SELECT cus_pw From customer_pw_history WHERE cus_mail=?) "
+				+ "AS recent_histhory WHERE cus_pw = ? )";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+			stmt.setString(1, mail );
+			stmt.setString(2, newPw);
+			stmt.setString(3, mail);
+			stmt.setString(4, newPw);
+			
+		 row = stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
+	
+	
 	//historyPw과 기존 customer테이블 연결하기
 	//호출 : customer/action/updatePwAction.jsp
 	//호출2 : customer/action/customerResetPwAction.jsp
+	//join문 사용하지말고
 	//param : String mail
 	//return : int
 	
@@ -187,6 +244,8 @@ public class CustomerDAO {
 				
 		return row;
 	}
+	
+	//비밀번호 수졍용 insert문 사용
 	
 	//회원 탈퇴를 위해 개인정보 일치하는지 확인
 	//호출 : customer/action/deleteCustomerAction.jsp

@@ -13,24 +13,24 @@
 		
 	//newPw를 history_pw 테이블에 insert하기
 	
-	int historyPw = CustomerDAO.updatePw(mail, newPw);
+	int historyPw = CustomerDAO.insertPw(mail,oldPw, newPw);
 		//디버깅해서 1 나오는지 확인=>1나옴
 		
 		System.out.println(historyPw + "<==updatePwAction.historyPw");
 		
 		
 	//history_pw테이블과 customer테이블을 연결시키기
-	int changepw = CustomerDAO.updatePw2(mail);
 	
-		
-		if( changepw == 1){
-			//변경성공
-			System.out.println("추가성공");
-			response.sendRedirect("/Semi_F_GDCC/customer/myPage.jsp");
-			
-		}else{
-			//변경실패
-			response.sendRedirect("/Semi_F_GDCC/customer/updateMyInfoForm.jsp");
-		}
-	
+	if(historyPw == 1){
+		int changepw = CustomerDAO.updatePw2(mail);
+			if( changepw == 1){
+				//변경성공
+				System.out.println("추가성공");
+				response.sendRedirect("/Semi_F_GDCC/customer/myPage.jsp");
+				
+			}else{
+				//변경실패
+				response.sendRedirect("/Semi_F_GDCC/customer/updateMyInfoForm.jsp");
+			}
+	}
 %>
