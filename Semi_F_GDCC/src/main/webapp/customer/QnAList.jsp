@@ -16,7 +16,7 @@
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
-	int rowPerPage = 1;
+	int rowPerPage = 10;
 	int startRow = (currentPage-1) * rowPerPage;
 	//페이징 lastPage 구하는 dao 호출 
 	int lastPage = QnaDAO.page();

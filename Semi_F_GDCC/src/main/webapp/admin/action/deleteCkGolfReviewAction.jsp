@@ -11,16 +11,16 @@
 	int checkPw = Integer.parseInt(request.getParameter("checkPw"));
 	System.out.println(checkPw+"<-- checkPw deleteCkGolfReviewAction.jsp param");
 	
-	int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
-	System.out.println(reviewNo + "<-- reviewNo deleteCkGolfReviewAction.jsp param ");
+	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
+	System.out.println(rsvNo + "<-- rsvNo deleteCkGolfReviewAction.jsp param ");
 				
 	boolean ck = AdminDAO.selectIdPwCk(checkId, checkPw);
 	if(ck == false){
 		System.out.println("인증 실패");
-		response.sendRedirect("/Semi_F_GDCC/admin/deleteGolfReviewForm.jsp?reviewNo="+reviewNo+"&checkId="+checkId+"&ck=F");
+		response.sendRedirect("/Semi_F_GDCC/admin/deleteGolfReviewForm.jsp?rsvNo="+rsvNo+"&checkId="+checkId+"&ck=F");
 	}else{
 		System.out.println("인증 성공 ");
-		response.sendRedirect("/Semi_F_GDCC/admin/deleteGolfReviewForm.jsp?reviewNo="+reviewNo+"&checkId="+checkId+"&ck=T");
+		response.sendRedirect("/Semi_F_GDCC/admin/deleteGolfReviewForm.jsp?rsvNo="+rsvNo+"&checkId="+checkId+"&ck=T");
 								
 	}
 

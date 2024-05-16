@@ -70,7 +70,7 @@ public class QnaDAO {
 	// QnA 총 개수 구하는 메서드 /Page
 	public static int page () throws Exception{
 		int lastPage = 0;
-		int rowPerPage = 1;
+		int rowPerPage = 10;
 		Connection conn = DBHelper.getConnection();
 		String sql = "SELECT COUNT(*) FROM qna";
 		PreparedStatement stmt = conn.prepareStatement(sql);

@@ -17,7 +17,7 @@
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
-	int rowPerPage = 1;
+	int rowPerPage = 10;
 	int startRow = (currentPage-1) * rowPerPage;
 	//페이징 lastPage 구하는 dao 호출 
 	int lastPage = ReviewDAO.golfReviewPage();
@@ -38,7 +38,7 @@
 <h1>GolfRiview리스트</h1>
 	<table border="1">
 		<tr>
-			<th>reviewNo</th>
+			<th>rsvNo</th>
 			<th>reviewTitle</th>
 		</tr>
 		<%
@@ -46,11 +46,11 @@
 		%>
 			<tr>
 				<td>
-					<a href="/Semi_F_GDCC/admin/golfReviewOne.jsp?reviewNo=<%=(Integer)(m.get("reviewNo"))%>">
-						<%=(Integer)(m.get("reviewNo"))%></a>
+					<a href="/Semi_F_GDCC/admin/golfReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
+						<%=(Integer)(m.get("rsvNo"))%></a>
 				</td>
 				<td>
-					<a href="/Semi_F_GDCC/admin/golfReviewOne.jsp?reviewNo=<%=(Integer)(m.get("reviewNo"))%>">
+					<a href="/Semi_F_GDCC/admin/golfReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
 						<%=(String)(m.get("reviewTitle"))%></a>
 				</td>
 			</tr>

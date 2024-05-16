@@ -40,10 +40,6 @@
 				<td><%=(String)(map.get("createDate"))%></td>
 				<td><%=(String)(map.get("updateDate"))%></td>
 			</tr>
-
-			<a href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=qnaNo%>">글 수정</a>
-			<br>
-			<a href="/Semi_F_GDCC/customer/action/deleteQnAAction.jsp?qnaNo=<%=qnaNo%>">글 삭제</a>
 	</table>
 	
 </div>

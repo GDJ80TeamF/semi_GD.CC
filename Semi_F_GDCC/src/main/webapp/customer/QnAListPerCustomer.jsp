@@ -50,6 +50,11 @@
 				<td><%=(String)(m.get("qnaContent"))%></td>
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
+				<td>
+					<a href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">글 수정</a>
+					<br>
+					<a href="/Semi_F_GDCC/customer/action/deleteQnAAction.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">글 삭제</a>
+				</td>
 			</tr>
 		<%
 			}

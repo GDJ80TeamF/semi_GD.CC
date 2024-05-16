@@ -103,10 +103,6 @@
 				<td><%=(String)(m.get("createDate"))%></td>
 				<td><%=(String)(m.get("updateDate"))%></td>
 			</tr>
-
-			<a href="/Semi_F_GDCC/customer/updateGolfReviewForm.jsp?rsvNo=<%=rsvNo%>">리뷰 수정</a>
-			<br>
-			<a href="/Semi_F_GDCC/customer/action/deleteGolfReviewAction.jsp?rsvNo=<%=rsvNo%>">리뷰 삭제</a>
 		</table>
 </div>
 

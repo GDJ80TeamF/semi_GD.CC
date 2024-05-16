@@ -24,7 +24,7 @@
 	<table>
 		<tr>
 			<th>아이디 :</th>
-			<td><input type="text" name="cusMail"></td>
+			<td><input type="text" name="cusMail" value="<%=(String)login.get("cusMail")%>"></td>
 		</tr>
 		<tr>
 			<th>제목 :</th>

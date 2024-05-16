@@ -136,6 +136,7 @@
 				<td><%=(String)(m.get("updateDate"))%></td>
 				<td>
 					<a href="/Semi_F_GDCC/customer/updateHotelReviewForm.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>		
+					<br>
 					<a href="/Semi_F_GDCC/customer/action/deleteHotelReviewAction.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
 				</td>			
 			</tr>
@@ -256,6 +257,7 @@
 				<td><%=(String)(m.get("updateDate"))%></td>
 				<td>
 					<a href="/Semi_F_GDCC/customer/updateGolfReviewForm.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 수정</a>
+					<br>
 					<a href="/Semi_F_GDCC/customer/action/deleteGolfReviewAction.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">리뷰 삭제</a>
 				</td>
 			</tr>
@@ -277,7 +279,7 @@
 			<th><%=(String)(m.get("rsvCourse"))%></th>
 			<th><%=(String)(m.get("rsvDate"))%></th>
 			<%
-				if(gs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게
+				if(gs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게 /이전건 리뷰작성안하고 새로운 예약시 이전리뷰는 작성못함
 					if(reviewCk == false) {	// 리뷰값이 없으면 쓸수있게
 			%>
 				<td>
