@@ -313,4 +313,40 @@ public class RsvHotelDAO {
 		  return row;
 	}
 	
+	// 고객 checkId
+	public static boolean cancelIdPw(String checkId, String checkPw) throws Exception {
+		boolean result = false;
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT cus_mail FROM customer WHERE cus_mail=? AND cus_pw=PASSWORD(?) ";
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, checkId);
+		stmt.setString(2, checkPw);
+		
+		ResultSet rs = null;
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			result = true;
+		}else {
+			result = false;
+		}
+		
+		conn.close();
+		return result;
+	}
+	
+	// 룸 예약 취소
+	public static int CancelcusRsv(int rsvNo) throws Exception{
+		int row = 0;
+		Connection conn = DBHelper.getConnection();
+		String sql = "DELETE FROM rsv_hotel WHERE rsv_no=? ";
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, rsvNo);
+		
+		row = stmt.executeUpdate();
+		
+		return row;
+	}
 }

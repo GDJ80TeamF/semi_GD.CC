@@ -39,7 +39,8 @@ public class RoomDAO {
 		
 		String sql1 = "SELECT room_no roomNo, room_grade roomGrade, room_price roomPrice, "
 				+ "room_info roomInfo, room_max roomMax, "
-				+ "room_state roomState, room_img roomImg "
+				+ "room_state roomState, room_img roomImg, "
+				+ "create_date createDate, update_date updateDate "
 				+ "FROM room_hotel "
 				+ "ORDER BY roomNo ASC LIMIT ?, ? ";
 		PreparedStatement stmt1 = null;
@@ -58,6 +59,8 @@ public class RoomDAO {
 			m1.put("roomMax", rs1.getInt("roomMax"));
 			m1.put("roomState", rs1.getString("roomState"));
 			m1.put("roomImg", rs1.getString("roomImg"));
+			m1.put("createDate", rs1.getString("createDate"));
+			m1.put("updateDate", rs1.getString("updateDate"));
 			list.add(m1);
 		}
 		

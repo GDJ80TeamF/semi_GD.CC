@@ -68,8 +68,8 @@
 					<td>
 					<img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>">
 					</td>
-					<td><%=(String)(m.get("create_date"))%></td>
-					<td><%=(String)(m.get("update_date"))%></td>
+					<td><%=(String)(m.get("createDate"))%></td>
+					<td><%=(String)(m.get("updateDate"))%></td>
 				</tr>
 			<%
 				}

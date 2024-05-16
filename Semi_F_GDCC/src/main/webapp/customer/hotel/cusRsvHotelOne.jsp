@@ -24,6 +24,7 @@
 	//rsv_hotel테이블에서 예약한 정보 다 가져오기
 	
 	HashMap<String,Object> list = RsvHotelDAO.rsvHotelOne(rsvNo);
+	System.out.println(list.get(request));
 %>
 <%-- <%
 	// 현재 날짜 구하기
@@ -71,7 +72,7 @@
 				<td>
 					<%
 						//요청사항이 없음.
-						if(list.get("request").equals("")){
+						if(list.get("request") == null){
 									
 					%>
 						<div>요청사항이 없습니다</div>
@@ -91,5 +92,6 @@
 			%> --%>
 		</table>
 		<a href="/Semi_F_GDCC/customer/hotel/updateRsvForm.jsp?rsvNo=<%=rsvNo%>">예약 변경</a> 
+		<a href="/Semi_F_GDCC/customer/hotel/rsvCancelForm.jsp?rsvNo=<%=rsvNo%>">예약 취소</a> 
 </body>
 </html>
