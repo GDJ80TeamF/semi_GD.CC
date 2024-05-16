@@ -9,10 +9,10 @@
 	int row = RsvHotelDAO.CancelcusRsv(rsvNo);
 	if(row == 1){
 		System.out.println("예약 취소 성공");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotel/cusRsvHotelOne.jsp?rsvNo=" + rsvNo);
+		response.sendRedirect("/Semi_F_GDCC/customer/mypage.jsp");
 	}else{
 		System.out.println("예약 취소 실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotel/cusRsvHotelOne.jsp?rsvNo=" + rsvNo);
+		response.sendRedirect("/Semi_F_GDCC/customer/mypage.jsp");
 	}
 	
 %>
