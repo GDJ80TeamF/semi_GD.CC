@@ -11,6 +11,19 @@
 	}
 %>
 <%
+// Calendar 객체 생성<<<오늘 이전의 날짜 
+Calendar calendar = Calendar.getInstance();
+
+// 현재 날짜를 가져오기
+int year = calendar.get(Calendar.YEAR);
+int month = calendar.get(Calendar.MONTH) + 1; // 월은 0부터 시작하므로 1을 더해줍니다.
+int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+// 가져온 날짜를 YYYY-MM-DD 형식의 문자열로 변환
+String today = String.format("%04d-%02d-%02d", year, month, day);
+	System.out.println(today + "<===오늘날짜");
+%>
+<%
 	//세션 가져오기
 	 HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 	 
 
@@ -41,7 +54,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>골프 예약하기</title>
+<title>라운딩예약하기</title>
 <style>
 
 	#calendar {
@@ -56,191 +69,169 @@
 	<!-- 캘린더 API가져오기 -->
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
 	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		    var calendarEl = document.getElementById('calendar');
+		    var calendar = new FullCalendar.Calendar(calendarEl, {
+		        initialView: 'dayGridMonth',
+		        selectable: true,
+		        dateClick: function(info) {
+		            // 캘린더에서 날짜를 클릭했을 때 해당 날짜를 선택한 날짜 input 요소에 자동으로 설정
+		            document.getElementById('date').value = info.dateStr;
+		            console.log("Clicked event occurs : date =" + info.dateStr);
+		            
+		            var selectedDate = new Date(info.dateStr);
+		            var today = new Date();
+		            var dateWithoutTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+		            
+		            // 선택한 날짜가 오늘 이전의 날짜인지 확인
+		            if (selectedDate.getTime() < dateWithoutTime.getTime()) {
+		                alert("오늘 이전의 날짜는 선택할 수 없습니다.");
+		                return false; // 선택 취소
+		            }
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
-
+		            // 캘린더에서 날짜를 클릭했을 때 해당 날짜를 선택한 날짜 input 요소에 자동으로 설정
+		            document.getElementById('date').value = info.dateStr;
+		            console.log("Clicked event occurs : date =" + info.dateStr);
+		        }
+		    
+		    
+		    });
+		    calendar.render();
+		});
     </script>
 <body>
-	<h1>골프예약하기</h1>
+	<h1>라운딩 예약하기</h1>
 		<div class="container">
-			  <div id='calendar'> </div>
+		  <div id='calendar'> </div>
 		</div>
-
-		원하는 코스를 선택해주세요!
-		<div>
 			<%
-				for(HashMap<String,Object> m : golfCourse){
+				if(checkSession == null){
 			%>
-					<a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp?courseName=<%=m.get("courseName")%>">
-						<%=m.get("courseName") %>
-					</a>
-			<%
-				}
-			%>
-		</div>
-		<div>
-			<!-- 달력 API 넣을 곳 -->
-		</div>		
-		<!-- <form method="post" action="/Semi_F_GDCC/customer/action/insertNewRsvAction.jsp"> -->
-			<%
-				if(courseName == null){//코스 선택 안한경우
-					
-			%>
-				<%
-					}else if(courseName.equals("IN")){//선택한 코스가 IN코스인 경우	
-				%>
-					<!-- 중복확인하는 부분 -->
-					<div class="checkRsv">
+				<div class="checkRsv">
+					<span>원하는 날을 선택해주세요</span>
 						<form method="post" action="/Semi_F_GDCC/customer/action/checkDateCourseAction.jsp">
 							<label for="date">
 								라운딩 날짜
 							</label>
-							<input type="date" id="date" name="rsvDateCheck">
+							<input type="date" id="date" name="rsvDateCheck" min="<%=today %>" >
 						<br>
 							<label for="course">
 								시작코스
 							</label>
-							<input type="radio" id="course" name="rsvCourseCheck" value="IN" checked="checked"> IN코스
+							<input type="radio" id="course" name="rsvCourseCheck" value="IN"> IN코스
+							<input type="radio" id="course" name="rsvCourseCheck" value="OUT"> OUT코스
 						<br>
 							<button type="submit">T-TIME확인하기</button>
 						</form>
-					</div>
-				<%
-					}else{//선택한 코스가 OUT코스인 경우
-						
-				%>
-					<div class="checkRsv">
-						<!-- 중복확인하는 부분 -->
-					<div class="checkRsv">
-						<form method="post" action="/Semi_F_GDCC/customer/action/checkDateCourseAction.jsp">
+				</div>
+			<%
+				}else{
+			%>
+			<%
+				}
+			%>
+				<div class="checkRsv">
+					<form method="post" action="/Semi_F_GDCC/customer/action/insertNewRsvAction.jsp">
+						<%
+							if(checkSession != null && checkSession.equals("T")){
+								//checkSession이 null이라는 것은 date랑 course를 체크했다는 것! 
+						%>
 								<label for="date">
-									라운딩 날짜
-								</label>
-								<input type="date" id="date" name="rsvDateCheck">
+						                라운딩 날짜
+							        </label>
+						            <input type="date" id="date" name="rsvDate" value="<%= checkDate%>" min="<%=today%>">
+					          <br>
+						            <label for="course">
+						                시작코스
+						            </label>
+						            <input type="radio" id="course" name="rsvCourse" value="<%= checkCourse %>" checked="checked">
+						            	<%=checkCourse %>코스
+						      <br>
+						      		<label>
+						      			T-TIME체크하기
+						      		</label>
+						      <br>
+						         <% 
+						         	HashSet<Integer> set = new HashSet<Integer>();
+						            set.add(1);
+				            		set.add(2);
+				            		set.add(3);
+				            		set.add(4);
+				            		set.add(5);
+				            		set.add(6);
+				            		set.add(7);
+				            		set.add(8);
+				            		set.add(9);
+						         
+						         	for (HashMap<String,Object> m : tableRsvTime) { 
+						         		set.remove(Integer.parseInt((String)(m.get("rsvTtime"))));
+						        	}
+						         	
+						         	
+						         	for(Integer i : set) {
+						        %>
+						        		<input type="radio" name="rsvTtime" value="<%=i%>">
+									        <%	
+									        	switch (i) {
+												    case 1:
+												        out.print("11:00");
+												        break;
+												    case 2:
+												        out.print("11:15");
+												        break;
+												    case 3:
+												        out.print("11:30");
+												        break;
+												    case 4 :
+												    	out.print("11:45");
+												    	break;
+												    case 5 :
+												    	out.print("12:00");
+												    	break;
+												    case 6 :
+												    	out.print("12:15");
+												    	break;
+												    case 7 :
+												    	out.print("12:30");
+												    	break;
+												    case 8 :
+												    	out.print("12:45");
+												    	break;
+												    case 9 :
+												    	out.print("13:00");
+												    	break;
+											    	
+												}
+						     				%>
+						        <% 		
+						         	}
+						        %>
+					        <br>
+						        <label for="mail">
+						       	 	고객 mail
+						        </label>
+						        <input type="text" id = "mail" name="rsvMail" value="<%=cusMail%>">
+					        <br>
+						        <label for = "member">
+						        	동반인원
+						        </label>
+						        <select id = "member" name ="rsvMember">
+						        	<option value="3">3명</option>
+						        	<option value="4">4명</option>
+						        	<option value="5">5명</option>
+						        </select>
+					        <br>
+						        <label for="request">
+						     		요청사항
+						        </label>
+						        <textarea rows="3" cols="20"></textarea>
 							<br>
-								<label for="course">
-									시작코스
-								</label>
-								<input type="radio" id="course" name="rsvCourseCheck" value="OUT" checked="checked"> OUT코스
-							<br>
-								<button type="submit">예약하기</button>
-							</form>
-						</div>
-					<%
-						}
-					%>
-						<div class="checkRsv">
-							<form method="post" action="/Semi_F_GDCC/customer/action/insertNewRsvAction.jsp">
-								<%
-									if(checkSession != null && checkSession.equals("T")){
-										//checkSession이 null이라는 것은 date랑 course를 체크했다는 것! 
-								%>
-										<label for="date">
-								                라운딩 날짜
-									        </label>
-								            <input type="date" id="date" name="rsvDate" value="<%= checkDate%>">
-							          <br>
-								            <label for="course">
-								                시작코스
-								            </label>
-								            <input type="radio" id="course" name="rsvCourse" value="<%= checkCourse %>" checked="checked">
-								            	<%=checkCourse %>코스
-								      <br>
-								      		<label>
-								      			T-TIME체크하기
-								      		</label>
-								      <br>
-								         <% 
-								         	HashSet<Integer> set = new HashSet<Integer>();
-								            set.add(1);
-						            		set.add(2);
-						            		set.add(3);
-						            		set.add(4);
-						            		set.add(5);
-						            		set.add(6);
-						            		set.add(7);
-						            		set.add(8);
-						            		set.add(9);
-		
-								         
-								         
-								         	for (HashMap<String,Object> m : tableRsvTime) { 
-								         		
-								         		set.remove(Integer.parseInt((String)(m.get("rsvTtime"))));
-			
-								        	}
-								         	
-								         	
-								         	for(Integer i : set) {
-								        %>
-								        		<input type="radio" name="rsvTtime" value="<%=i%>">
-											        <%	
-											        	switch (i) {
-														    case 1:
-														        out.print("11:00");
-														        break;
-														    case 2:
-														        out.print("11:15");
-														        break;
-														    case 3:
-														        out.print("11:30");
-														        break;
-														    case 4 :
-														    	out.print("11:45");
-														    	break;
-														    case 5 :
-														    	out.print("12:00");
-														    	break;
-														    case 6 :
-														    	out.print("12:15");
-														    	break;
-														    case 7 :
-														    	out.print("12:30");
-														    	break;
-														    case 8 :
-														    	out.print("12:45");
-														    	break;
-														    case 9 :
-														    	out.print("13:00");
-														    	break;
-													    	
-														}
-								     				%>
-								        <% 		
-								         	}
-								        %>
-							        <br>
-								        <label for="mail">
-								       	 	고객 mail
-								        </label>
-								        <input type="text" id = "mail" name="rsvMail" value="<%=cusMail%>">
-							        <br>
-								        <label for = "member">
-								        	동반인원
-								        </label>
-								        <select id = "member" name ="rsvMember">
-								        	<option value="3">3명</option>
-								        	<option value="4">4명</option>
-								        	<option value="5">5명</option>
-								        </select>
-							        <br>
-								        <label for="request">
-								     		요청사항
-								        </label>
-								        <textarea rows="3" cols="20"></textarea>
-									<br>
-									<button type="submit">예약하기</button>
-								<%
-									}
-								%>
-							
-						</form>		
-					</div>
+							<button type="submit">T-TIME확인하기</button>
+						<%
+							}
+						%>
+					
+				</form>		
+			</div>
 </body>
 </html>
