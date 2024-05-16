@@ -30,6 +30,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<form method="post" action="/Semi_F_GDCC/admin/action/updateBfOneAction.jsp" enctype="multipart/form-data">
 	<table>
 		<tr>
@@ -83,5 +87,6 @@
 	</table>
 		<button type="submit">수정하기</button>
 	</form>
+	</div>
 </body>
 </html>

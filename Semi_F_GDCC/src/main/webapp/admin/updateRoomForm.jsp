@@ -17,6 +17,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<h1>룸 정보 수정하기</h1>
 	<form method="post" action="/Semi_F_GDCC/admin/action/updateRoomAction.jsp?roomNo=<%=roomNo%>" enctype="multipart/form-data">
 		<div>
@@ -69,5 +73,6 @@
 		</div>
 		
 	</form>
+	</div>
 </body>
 </html>

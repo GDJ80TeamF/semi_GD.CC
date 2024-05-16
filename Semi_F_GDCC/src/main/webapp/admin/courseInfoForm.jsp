@@ -18,6 +18,10 @@
 <title>코스정보변경</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<h1>코스 정보변경</h1>
 		<form action="/Semi_F_GDCC/admin/action/courseInfoAction.jsp">
 			<input type="hidden" name="courseName" value="<%=courseOne.get("name")%>">
@@ -27,5 +31,6 @@
 						변경하기
 					</button>
 		</form>
+	</div>
 </body>
 </html>

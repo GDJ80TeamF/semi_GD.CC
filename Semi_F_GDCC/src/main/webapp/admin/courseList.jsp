@@ -26,6 +26,10 @@
 <title>코스리스트</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<h1>코스리스트</h1>
 		<table>
 			<tr>
@@ -64,5 +68,6 @@
 			%>
 			
 		</table>
+		</div>
 </body>
 </html>

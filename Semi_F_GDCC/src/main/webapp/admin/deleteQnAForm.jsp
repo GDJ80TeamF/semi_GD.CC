@@ -34,6 +34,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 <div>
 <h1>정말 삭제하시겠습니까?</h1>
 <h3>아이디와 패스워드를 입력하세요</h3>
@@ -58,6 +62,7 @@
 			} 
 		 %>
 	</div>	
+</div>
 </div>
 </body>
 </html>

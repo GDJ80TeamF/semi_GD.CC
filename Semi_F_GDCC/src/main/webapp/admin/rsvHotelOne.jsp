@@ -26,6 +26,10 @@
 <title>호텔 상세보기</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<div>
 		<h1>예약 상세보기</h1>
 			<a href="/Semi_F_GDCC/admin/rsvHotelList.jsp?table=rsv_hotel">
@@ -76,6 +80,6 @@
 					</tr>
 				</table>
 	</div>
-
+</div>
 </body>
 </html>

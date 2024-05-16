@@ -39,6 +39,10 @@
 <title>complex 삭제 폼</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	정말 삭제하시겠습니까? 삭제하려면 아이디와 비번을 비교해야 됩니다.<br>
 	<form method="post" action="/Semi_F_GDCC/admin/action/deleteCkComplexAction.jsp">
 		아이디: <input type="text" name="checkId" value="<%=(String)(loginAdmin.get("adminMail"))%>"> <br>
@@ -60,5 +64,6 @@
 	<%
 		}
 	%>
+	</div>
 </body>
 </html>

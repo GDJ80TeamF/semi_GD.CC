@@ -33,7 +33,10 @@
 	width: auto;height: 20px;}
 </style>
 <body>
-
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 <div>
 <h1>golfReview 상세보기</h1>
 	<table border="1">
@@ -115,6 +118,6 @@
 		<a href="/Semi_F_GDCC/admin/deleteGolfReviewForm.jsp?rsvNo=<%=rsvNo%>">리뷰 삭제</a>
 	</table>
 </div>
-
+</div>
 </body>
 </html>

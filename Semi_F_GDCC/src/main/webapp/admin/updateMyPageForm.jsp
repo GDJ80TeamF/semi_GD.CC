@@ -23,6 +23,10 @@
 <title>사원 정보 수정</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<form method="post" action="/Semi_F_GDCC/admin/action/updateMyPageAction.jsp" enctype="multipart/form-data">
 		<table>
 		
@@ -86,5 +90,6 @@
 		<button type="submit">수정하기! </button>
 	</form>
 	<a href="/Semi_F_GDCC/admin/myPage.jsp?adminMail=<%=adminMail%>">취소 </a>
+	</div>
 </body>
 </html>

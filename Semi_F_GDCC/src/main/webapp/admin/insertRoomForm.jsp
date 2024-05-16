@@ -19,6 +19,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<form method="post" action="/Semi_F_GDCC/admin/action/insertRoomAction.jsp" enctype="multipart/form-data">
 		<h1>호텔 룸 추가</h1>
 		<div>
@@ -50,5 +54,6 @@
 			<a href="/Semi_F_GDCC/admin/roomList.jsp">취소</a>
 		</div>
 	</form>
+	</div>
 </body>
 </html>

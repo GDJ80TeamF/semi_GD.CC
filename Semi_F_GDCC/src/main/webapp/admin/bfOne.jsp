@@ -30,6 +30,10 @@
 <title>조식 메뉴 상세보기</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<!--  Map에서 정보 뿌리기 -->
 	<table>
 		<tr>
@@ -70,5 +74,6 @@
 	<div><a href="/Semi_F_GDCC/admin/updateBfOneForm.jsp?menuNo=<%=menuNo%>">수정하기</a></div>
 	<br>
 	<div><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">돌아가기 </a></div>
+	</div>
 </body>
 </html>

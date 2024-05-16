@@ -27,6 +27,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<form action="/Semi_F_GDCC/admin/courseInfoForm.jsp">
 		<h1>코스상세보기</h1>
 			<table>
@@ -74,5 +78,6 @@
 			<input type="hidden" name="courseName" value="<%=courseOne.get("name") %>">
 		<button type="submit">정보변경</button>
 	</form>
+	</div>
 </body>
 </html>

@@ -19,6 +19,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<h1>호텔 complex 시설 상세정보</h1>
 	<table border="1">
 		<tr>
@@ -41,5 +45,6 @@
 	<a href="/Semi_F_GDCC/admin/complexList.jsp">취소</a>
 	<a href="/Semi_F_GDCC/admin/updateComplexForm.jsp?complexNo=<%=(Integer)(m.get("complexNo"))%>">수정</a>
 	<a href="/Semi_F_GDCC/admin/deleteComplexForm.jsp?complexNo=<%=(Integer)(m.get("complexNo"))%>">삭제</a>
+	</div>
 </body>
 </html>

@@ -32,6 +32,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<h1>공지사항</h1>
 		<table border="1">
 			<tr>
@@ -56,5 +60,6 @@
 		</table>
 	<a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminMail=<%=(String)(loginAdmin.get("adminMail"))%>">글 작성하기</a>
 	<a href="/Semi_F_GDCC/admin/mainBoard.jsp">취소</a>
+	</div>
 </body>
 </html>																				                                                                                

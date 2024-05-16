@@ -109,6 +109,10 @@
 <title>HotelList</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<h1>호텔관련 예약리스트</h1>
 		<div>
 			
@@ -359,5 +363,6 @@
 			}
 		%>
 	</div><!--  class = bf -->
+	</div>
 </body>
 </html>

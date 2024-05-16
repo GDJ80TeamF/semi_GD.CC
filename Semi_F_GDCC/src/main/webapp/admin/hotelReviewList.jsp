@@ -32,7 +32,10 @@
 <title></title>
 </head>
 <body>
-
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 <div>
 <h1>HotelRiview리스트</h1>
 	<table border="1">
@@ -73,6 +76,7 @@
 			}					
 		%>		
 	</div>
+</div>
 </div>
 </body>
 </html>

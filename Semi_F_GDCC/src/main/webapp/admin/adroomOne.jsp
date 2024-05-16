@@ -15,6 +15,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 <h1>룸 상세 정보</h1>
 	<table border="1">
 	<tr>
@@ -38,5 +42,6 @@
 	</table>
 	<a href="/Semi_F_GDCC/admin/updateRoomForm.jsp?roomNo=<%=roomNo%>">수정하기</a>
 	<a href="/Semi_F_GDCC/admin/roomList.jsp">취소하기</a>
+	</div>
 </body>
 </html>

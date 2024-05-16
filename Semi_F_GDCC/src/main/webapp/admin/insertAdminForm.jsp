@@ -39,6 +39,10 @@
 <title>사원 가입 </title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 <%
 	if(ck.equals("")||ck.equals("T")){
 %>
@@ -111,6 +115,6 @@
 
 %> 
 
-
+</div>
 </body>
 </html>

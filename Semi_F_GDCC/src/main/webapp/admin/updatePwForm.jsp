@@ -24,6 +24,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<form method="post" action="/Semi_F_GDCC/admin/action/updatePwAction.jsp">
 		<table>
 			<tr>
@@ -50,5 +54,6 @@
 		}
 	
 	%>
+	</div>
 </body>
 </html>

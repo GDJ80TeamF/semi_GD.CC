@@ -30,6 +30,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<table class="table table-hover">
 		<tr>
 			<th>메뉴 번호</th>
@@ -65,5 +69,6 @@
 	
 	</table>
 	<div><a href="/Semi_F_GDCC/admin/mainBoard.jsp">돌아가기 </a></div>
+	</div>
 </body>
 </html>

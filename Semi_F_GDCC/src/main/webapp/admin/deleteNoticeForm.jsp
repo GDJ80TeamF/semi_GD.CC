@@ -39,6 +39,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 	<form method="post" action="/Semi_F_GDCC/admin/action/deleteCkNoticeAction.jsp">
 		<!-- 공지번호 -->
 		공지를 삭제하시겠습니까? 삭제하려면 아이디와 비번을 비교해야 됩니다.<br>
@@ -59,5 +63,6 @@
 			}
 		%>
 	<a href="/Semi_F_GDCC/admin/noticeList.jsp">취소</a>
+	</div>
 </body>
 </html>

@@ -38,7 +38,10 @@
 <title></title>
 </head>
 <body>
-
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	<hr>
 <div style="display: table;margin-left: auto; margin-right: auto;">
 <h1>QnA 게시판관리</h1>
 	<table border="1">
@@ -86,7 +89,7 @@
 		%>		
 	</div>
 	
-
+</div>
 </div>
 </body>
 </html>
