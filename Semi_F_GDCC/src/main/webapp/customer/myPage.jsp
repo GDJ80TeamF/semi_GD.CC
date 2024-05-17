@@ -44,6 +44,7 @@
 <title>myPage</title>
 </head>
 <body>
+<jsp:include page="/mainBar.jsp"></jsp:include>
 	<h1> my Page</h1>
 			<div>
 				<%-- <%=profile.get("cusProfile") %> --%>

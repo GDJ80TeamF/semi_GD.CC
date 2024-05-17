@@ -6,6 +6,7 @@
 	<title>FGOLF지도</title>
 </head>
 <body>
+<jsp:include page="/mainBar.jsp"></jsp:include>
 <div id="map" style="width:100%;height:350px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f263e136126045bef29faeb21b3dd052"></script>
