@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="./style.css">
 <div class="sidebar">
         <div class="sidebar-header">
-            <h2 style="background-color:#FFD700;color:black;padding:10px;border-radius:10px;">GDCC</h2>
+            <h2 style="background-color:#FFD700;color:black;padding:10px;border-radius:10px;box-shadow:5px 5px"><b>GDCC</b></h2>
         </div>
         <ul class="sidebar-menu">
             <li class="active"><a href="/Semi_F_GDCC/admin/mainBoard.jsp">메인페이지</a></li>
