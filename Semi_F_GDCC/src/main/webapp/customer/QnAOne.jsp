@@ -18,53 +18,64 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/qnaOne.css">
 </head>
+
 <body>
-
-<div>
-	<h1>QnA 상세보기</h1>
-		<table border="1">
-			<tr>
-				<th>qnaNo</th>
-				<th>cusMail</th>
-				<th>qnaTitle</th>
-				<th>qnaContent</th>
-				<th>createDate</th>
-				<th>updateDate</th>
-			</tr>
-			<tr>
-				<td><%=(Integer)(map.get("qnaNo"))%></td>	
-				<td><%=(String)(map.get("cusMail"))%></td>	
-				<td><%=(String)(map.get("qnaTitle"))%></td>	
-				<td><%=(String)(map.get("qnaContent"))%></td>	
-				<td><%=(String)(map.get("createDate"))%></td>
-				<td><%=(String)(map.get("updateDate"))%></td>
-			</tr>
-	</table>
-	
+<div class="container">
+    <h1>QnA 상세보기</h1>
+    <table>
+        <tr>
+            <th style="width: 2%;">No.</th>
+            <td><%=(Integer)(map.get("qnaNo"))%></td>
+        </tr>
+        <tr>
+        	<th style="width: 2%;">작성자</th>
+        	<td><%=(String)(map.get("cusMail"))%></td>
+        </tr>
+        <tr>
+        	<th>제목</th>
+        	<td><%=(String)(map.get("qnaTitle"))%></td>
+        </tr>
+        <tr>
+        	<th class="content-column" colspan="2">내용</th>
+        </tr>
+        <tr>
+        	<td colspan="2" style="width: 35%; height: 200px;">
+        		<%=(String)(map.get("qnaContent"))%></td>
+        </tr>      		
+        <tr>
+        	<th>작성일</th>
+        	<td><%=(String)(map.get("createDate"))%></td>
+        </tr>
+        <tr>                                              
+            <th>수정일</th>
+            <td><%=(String)(map.get("updateDate"))%></td>
+        </tr>
+    </table>
 </div>
 
-<div>
-<h1>QnA 댓글</h1>
-	<table border="1">
-		<tr>
-			<th>commentNo</th>
-			<th>commentContent</th>
-			<th>createDate</th>
-		</tr>
-		<%
-			for(HashMap m : list) { 
-		%>
-			<tr>
-				<th><%=(Integer)(m.get("commentNo"))%></th>
-				<th><%=(String)(m.get("commentContent"))%></th>
-				<th><%=(String)(m.get("createDate"))%></th>
-			</tr>
-		<%
-			}
-		%>
-	</table>
-
+<div class="container">
+    <h1>QnA 댓글</h1>
+    <table>
+        <tr>
+            <th>No.</th>
+            <th>댓글 내용</th>
+            <th>작성일</th>
+        </tr>
+        <%
+            for(HashMap m : list) { 
+        %>
+        <tr>
+            <td style="width: 5%;"><%=(Integer)(m.get("commentNo"))%></td>
+            <td><%=(String)(m.get("commentContent"))%></td>
+            <td style="width: 15%;"> <%=(String)(m.get("createDate"))%> </td>
+        </tr>
+        <%
+            }
+        %>
+    </table>
 </div>
+
 </body>
 </html>

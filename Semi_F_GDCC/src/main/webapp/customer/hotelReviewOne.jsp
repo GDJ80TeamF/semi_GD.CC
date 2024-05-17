@@ -20,93 +20,96 @@
 <title></title>
 </head>
 <style>
+	body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+		background-color: #f0f0f0;
+        }
+
+	.container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+		border-radius: 8px;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+	h1 {
+		text-align: center;
+		margin-bottom: 20px;
+        }
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+        }
+
+	th, td {
+		border: 1px solid #ddd;
+		padding: 8px;
+		text-align: left;
+        }
+
+	th {
+		background-color: #f2f2f2;
+		}
+
+	tr:nth-child(even) {
+		background-color: #f2f2f2;
+        }
 	.rate{
-	width: 121px;height: 20px;position: relative;}
+		width: 121px;height: 20px;position: relative;
+		}
 	
 	.rate span{
-	position: absolute;
-	background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);
-	width: auto;height: 20px;}
+		position: absolute;
+		background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);
+		width: auto;height: 20px;
+		}
+
 </style>
 <body>
 
-<div>
-	<h1>hotelReview 상세보기</h1>
-		<table border="1">
-			<tr>
-				<th>rsvNo</th>
-				<th>reviewTitle</th>
-				<th>reviewContent</th>
-				<th>reviewScore</th>
-				<th>createDate</th>
-				<th>updateDate</th>	
-			</tr>
-			<tr>
-				<td><%=(Integer)(m.get("rsvNo"))%></td>	
-				<td><%=(String)(m.get("reviewTitle"))%></td>	
-				<td><%=(String)(m.get("reviewContent"))%></td>	
-				<td>
-					<div class="rate">
-					<%
-						switch((Integer)(m.get("reviewScore"))){
-						case 1:
-					%>							
-	        			<span style="width: 10%"></span>	    					
-	    			<% 
-	    				break;
-						case 2:
-					%>					
-	        			<span style="width: 20%"></span>	    				
-					<% 
-						break;
-						case 3:
-					%>							
-	        			<span style="width: 30%"></span>	    					
-					<% 
-						break;
-						case 4:
-					%>					
-	        			<span style="width: 40%"></span>	    				
-					<% 	
-						break;
-						case 5:
-					%>							
-	        			<span style="width: 50%"></span>	    					
-					<% 
-						break;
-						case 6:
-					%>					
-	        			<span style="width: 60%"></span>	    				
-					<% 
-						break;
-						case 7:
-					%>					
-	        			<span style="width: 70%"></span>	    				
-					<% 
-						break;
-						case 8:
-					%>					
-	        			<span style="width: 80%"></span>	    			
-					<% 
-						break;
-						case 9:
-					%>					
-	        			<span style="width: 90%"></span>	    				
-					<% 
-						break;
-						case 10:
-					%>					
-	        			<span style="width: 100%"></span>
-	    			</div>
-					<% 
-					break;
-						}		
-					%>	
-				</td>	
-				<td><%=(String)(m.get("createDate"))%></td>
-				<td><%=(String)(m.get("updateDate"))%></td>
-			</tr>
-		</table>
+<div class="container">
+    <h1>Hotel Review Detail</h1>
+    <table>
+        <tr>
+            <th>예약 번호</th>
+            <td><%=(Integer)(m.get("rsvNo"))%></td>
+        </tr>
+        <tr>
+            <th>별점</th>
+            <td>
+                <div class="rate">
+                	<% 
+	                    int reviewScore = (Integer)(m.get("reviewScore"));
+	                    int widthPercentage = reviewScore * 10;
+                    %>
+                    <span style="width: <%=widthPercentage%>%"></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+        	<th>제목</th>
+        	<td><%=(String)(m.get("reviewTitle"))%></td>
+        </tr>
+        <tr>
+	        <th colspan="2">내용</th>	        	        
+        </tr>
+        <tr>
+        	<td colspan="2" style="height: 400px;"><%=(String)(m.get("reviewContent"))%></td>
+        </tr>
+        <tr>                     
+            <th>작성일</th>
+            <td><%=(String)(m.get("createDate"))%></td>           
+        </tr>
+        <tr>                                             
+            <th>수정일</th>
+            <td><%=(String)(m.get("updateDate"))%></td>
+        </tr>
+    </table>
 </div>
 
 </body>

@@ -90,7 +90,7 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle "
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore "
 					+ "FROM review_hotel LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -102,6 +102,7 @@ public class ReviewDAO {
 			HashMap<String, Object> m = new HashMap<String, Object>();
 			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
+			m.put("reviewScore", rs.getInt("reviewScore"));
 			list.add(m);
 		}
 		conn.close();
@@ -117,7 +118,7 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle "
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore "
 					+ "FROM review_golf LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -129,6 +130,7 @@ public class ReviewDAO {
 			HashMap<String, Object> m = new HashMap<String, Object>();
 			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
+			m.put("reviewScore", rs.getInt("reviewScore"));
 			list.add(m);
 		}
 		conn.close();

@@ -35,55 +35,67 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/qnaOne.css">
 </head>
 <body>
 <jsp:include page="/admin/sidebar.jsp"></jsp:include>
 	<div class="main-container">
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
-<div style="display: table;margin-left: auto; margin-right: auto;">
-<h1>QnA 상세보기</h1>
-	<table border="1">
-		<tr>
-			<th>qnaNo</th>
-			<th>cusMail</th>
-			<th>qnaTitle</th>
-			<th>qnaContent</th>
-			<th>createDate</th>
-			<th>updateDate</th>
-		</tr>
-		<tr>
-			<td><%=(Integer)(map.get("qnaNo"))%></td>	
-			<td><%=(String)(map.get("cusMail"))%></td>	
-			<td><%=(String)(map.get("qnaTitle"))%></td>	
-			<td><%=(String)(map.get("qnaContent"))%></td>	
-			<td><%=(String)(map.get("createDate"))%></td>
-			<td><%=(String)(map.get("updateDate"))%></td>
-		</tr>	
-	</table>
+<div class="container">
+    <h1>QnA 상세보기</h1>
+    <table>
+        <tr>
+            <th style="width: 2%;">No.</th>
+            <td><%=(Integer)(map.get("qnaNo"))%></td>
+        </tr>
+        <tr>
+        	<th style="width: 2%;">작성자</th>
+        	<td><%=(String)(map.get("cusMail"))%></td>
+        </tr>
+        <tr>
+        	<th>제목</th>
+        	<td><%=(String)(map.get("qnaTitle"))%></td>
+        </tr>
+        <tr>
+        	<th class="content-column" colspan="2">내용</th>
+        </tr>
+        <tr>
+        	<td colspan="2" style="width: 35%; height: 100px;">
+        		<%=(String)(map.get("qnaContent"))%></td>
+        </tr>      		
+        <tr>
+        	<th>작성일</th>
+        	<td><%=(String)(map.get("createDate"))%></td>
+        </tr>
+        <tr>                                              
+            <th>수정일</th>
+            <td><%=(String)(map.get("updateDate"))%></td>
+        </tr>
+    </table>
 	<a href="/Semi_F_GDCC/admin/deleteQnAForm.jsp?qnaNo=<%=qnaNo%>">글 삭제</a>
 </div>
-<div style="display: table;margin-left: auto; margin-right: auto;">
+<div class="container">
 <h1>QnA 댓글</h1>
-	<table border="1">
+	<table>
 		<tr>
-			<th>commentNo</th>
-			<th>commentContent</th>
-			<th>createDate</th>
+			<th>No.</th>
+            <th>댓글 내용</th>
+            <th>작성일</th>
 		</tr>
 		<%
 			for(HashMap m : list) { 
 		%>
 			<tr>
-				<th><%=(Integer)(m.get("commentNo"))%></th>
-				<th><%=(String)(m.get("commentContent"))%></th>
-				<th>
+				<td style="width: 5%;"><%=(Integer)(m.get("commentNo"))%></td>
+				<td><%=(String)(m.get("commentContent"))%></td>
+				<td style="width: 15%;">
 					<%=(String)(m.get("createDate"))%>
 					<button>
 						<a href="/Semi_F_GDCC/admin/action/deleteCommentAction.jsp?qnaNo=<%=qnaNo%>&
 								commentNo=<%=(Integer)(m.get("commentNo"))%>">삭제</a>
 					</button>											
-				</th>	
+				</td>	
 			</tr>
 		<%
 			}
@@ -91,10 +103,10 @@
 	</table>
 </div>
 <form method="post" action="/Semi_F_GDCC/admin/action/insertCommentAction.jsp">
-	<div style="display: table;margin-left: auto; margin-right: auto;">
+	<div class="container">
 	<h1>댓글입력</h1>
 		
-		<table border="1">
+		<table>
 			<tr>
 				<th>qnaNo</th>
 				<th><input type="text" value="<%=qnaNo%>" name="qnaNo"></th>
@@ -105,7 +117,7 @@
 			</tr>
 			<tr>
 				<th>commentContent</th>
-				<th><textarea style="width: 400px; height:100px;"name="commentContent"></textarea></th>
+				<th><textarea style="width: 100px; height:100px;"name="commentContent"></textarea></th>
 				<th><button type="submit">입력</button></th>
 			</tr>										
 		</table>

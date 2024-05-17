@@ -22,7 +22,7 @@
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
-	int rowPerPage = 1;
+	int rowPerPage = 10;
 	int startRow = (currentPage-1) * rowPerPage;
 	//페이징 lastPage 구하는 dao 호출 
 	int lastPage = QnaDAO.page();
@@ -36,6 +36,7 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/qnaList.css">
 </head>
 <body>
 <jsp:include page="/admin/sidebar.jsp"></jsp:include>

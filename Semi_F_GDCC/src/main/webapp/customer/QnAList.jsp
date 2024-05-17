@@ -30,57 +30,55 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/qnaList.css">
 </head>
 <body>
-
-<div>
-<h1>QnA 게시판</h1>
-	<table border="1">
-		<tr>
-			<th>qnaNo</th>
-			<th>qnaTitle</th>
-			<th>cusMail</th>
-		</tr>
-		<%
-			for(HashMap m : list) {
-		%>
-			<tr>
-				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
-						<%=(Integer)(m.get("qnaNo"))%></a>
-				</td>
-				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
-						<%=(String)(m.get("qnaTitle"))%></a>
-				</td>
-				<td>
-					<a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
-						<%=(String)(m.get("cusMail"))%></a>
-				</td>
-			</tr>
-		<%
-			}
-		%>
-			<a href="/Semi_F_GDCC/customer/insertQnAForm.jsp">글 쓰기</a>
-	</table>
-	<!-- 페이징 버튼 -->
-	<div style="display: table;margin-left: auto; margin-right: auto;">														
-		<%
-			if(currentPage > 1){			
-		%>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>											
-		<%						
-			}if(currentPage < lastPage){
-		%>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
-			<a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
-		<%
-			}					
-		%>		
-	</div>
-	
-
+<div class="container">
+    <h1>QnA 게시판</h1>
+    <a href="/Semi_F_GDCC/customer/insertQnAForm.jsp" class="write-button">글 쓰기</a>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>QnA 번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(HashMap m : list) { %>
+            <tr>
+                <td>
+                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+                        <%=(Integer)(m.get("qnaNo"))%>
+                    </a>
+                </td>
+                <td>
+                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+                        <%=(String)(m.get("qnaTitle"))%>
+                    </a>
+                </td>
+                <td>
+                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+                        <%=(String)(m.get("cusMail"))%>
+                    </a>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <hr style="margin-top: 20px;">
+    <!-- 페이징 버튼 -->
+    <div class="pagination">
+        <% if(currentPage > 1){ %>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a>
+        <% } %>
+        <% if(currentPage < lastPage){ %>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a>
+        <% } %>
+    </div>
 </div>
 </body>
 </html>
