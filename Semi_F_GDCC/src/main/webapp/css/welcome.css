@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .main-content {
+		    color: white;
+		    flex: 95%;
+		    display: flex;
+		    justify-content: center;
+		    font-family: "Playfair Display";
+		    align-items: center;
+		    flex-direction: column;
+		    background-image: url("/Semi_F_GDCC/css/img/course.jpg");
+		    background-size: cover; /* 이미지가 요소를 완전히 채우도록 설정 */
+		    background-position: center; /* 이미지가 가운데에 위치하도록 설정 */
+			}
+        .intro-text {
+            font-size: 24px;
+            margin-bottom: 10px; /* 텍스트와 동그라미 사이의 간격 */
+        }
+        .circle-container {
+            display: flex;
+            gap: 80px; /* 동그라미 사이의 간격 */
+            margin-top: 25px;
+        }
+        .circle-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .circle {
+            width: 250px; 
+            height: 250px; 
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid gray;
+            transition: transform 0.3s ease; /* 마우스 오버 시 확대 애니메이션 */
+        }
+        .circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .circle:hover {
+            transform: scale(1.1); /* 마우스 오버 시 확대 효과 */
+        }
+        .footer {
+            background-color: black;
+            color: gray;
+            flex: 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+        }
+        .footer div {
+            margin: 5px 0;
+        }
+        .logo {
+		    width: 180px; /* 로고의 너비를 작게 조정합니다. */
+		    height: auto; /* 높이를 자동으로 설정하여 이미지의 비율을 유지합니다. */
+		}
+		.intro-text {
+			font-weight: bold;
+			color : gray;
+		}

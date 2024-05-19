@@ -29,83 +29,90 @@
 <head>
 <meta charset="UTF-8">
 <title>회원의 골프예약 리스트</title>
+<style>
+	.content{
+		
+	}
+</style>
 </head>
 <body>
-	<h1>예약리스트</h1>
-	<div>
-		<table>
-			<tr>
-				<th></th>
-				<th>예약번호</th>
-				<th>성함</th>
-				<th>예약날짜</th>
-				<th>코스</th>
-				<th>T-TIME</th>
-			</tr>
-			<%
-				for(HashMap<String,Object> m : rsvList){
-					
-			%>
+	<div class="content">
+		<h1>예약리스트</h1>
+		<div>
+			<table>
 				<tr>
-					<td>
-						<a href="/Semi_F_GDCC/customer/golf/rsvGolfOne.jsp?rsvNo=<%=m.get("rsvNo")%>">
-							상세보기
-						</a>
-					</td>
-					<td>
-						<%=m.get("rsvNo") %>
-					</td>
-					<td>
-						<%=m.get("cusName") %>님
-					</td>
-					<td>
-						<%=m.get("rsvDate") %>
-					</td>
-					<td>
-						<%=m.get("rsvCourse") %>
-					</td>
-					<td>
-						<%
-							// rsvTtime을 정수로 바꿔주기
-							int rsvTtime = Integer.parseInt((String) m.get("rsvTtime"));
-							
-							// rsvTtime enum에 따라서 시간에 맞춰서 출력
-							switch (rsvTtime) {
-							    case 1:
-							        out.print("11:00");
-							        break;
-							    case 2:
-							        out.print("11:15");
-							        break;
-							    case 3:
-							        out.print("11:30");
-							        break;
-							    case 4 :
-							    	out.print("11:45");
-							    	break;
-							    case 5 :
-							    	out.print("12:00");
-							    	break;
-							    case 6 :
-							    	out.print("12:15");
-							    	break;
-							    case 7 :
-							    	out.print("12:30");
-							    	break;
-							    case 8 :
-							    	out.print("12:45");
-							    	break;
-							    case 9 :
-							    	out.print("13:00");
-							    	break;
-							}
-						%>					
-					</td>
+					<th></th>
+					<th>예약번호</th>
+					<th>성함</th>
+					<th>예약날짜</th>
+					<th>코스</th>
+					<th>T-TIME</th>
 				</tr>
-			<%
-				}
-			%>	
-		</table>
+				<%
+					for(HashMap<String,Object> m : rsvList){
+						
+				%>
+					<tr>
+						<td>
+							<a href="/Semi_F_GDCC/customer/golf/rsvGolfOne.jsp?rsvNo=<%=m.get("rsvNo")%>">
+								상세보기
+							</a>
+						</td>
+						<td>
+							<%=m.get("rsvNo") %>
+						</td>
+						<td>
+							<%=m.get("cusName") %>님
+						</td>
+						<td>
+							<%=m.get("rsvDate") %>
+						</td>
+						<td>
+							<%=m.get("rsvCourse") %>
+						</td>
+						<td>
+							<%
+								// rsvTtime을 정수로 바꿔주기
+								int rsvTtime = Integer.parseInt((String) m.get("rsvTtime"));
+								
+								// rsvTtime enum에 따라서 시간에 맞춰서 출력
+								switch (rsvTtime) {
+								    case 1:
+								        out.print("11:00");
+								        break;
+								    case 2:
+								        out.print("11:15");
+								        break;
+								    case 3:
+								        out.print("11:30");
+								        break;
+								    case 4 :
+								    	out.print("11:45");
+								    	break;
+								    case 5 :
+								    	out.print("12:00");
+								    	break;
+								    case 6 :
+								    	out.print("12:15");
+								    	break;
+								    case 7 :
+								    	out.print("12:30");
+								    	break;
+								    case 8 :
+								    	out.print("12:45");
+								    	break;
+								    case 9 :
+								    	out.print("13:00");
+								    	break;
+								}
+							%>					
+						</td>
+					</tr>
+				<%
+					}
+				%>	
+			</table>
+		</div>
 	</div>
 </body>
 </html>

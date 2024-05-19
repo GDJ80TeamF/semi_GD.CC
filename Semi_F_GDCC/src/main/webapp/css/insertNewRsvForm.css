@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+	.title{
+		text-align: center;
+	}
+	.container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+/*             height: 100vh; */
+        }
+    .content {
+        width: 27%; /* 내용의 너비를 조절 */
+        height : 60%;
+    }
+    .content2 {
+    	width: 20%; /* 내용의 너비를 조절 */
+        height : 60%;
+    }
+
+	#calendar {
+	  width: 400px; /* 부모 요소인 .container에 맞게 캘린더의 너비를 조절합니다. */
+	  height: 400px; /* 원하는 높이로 조절합니다. */
+	}
+	::-webkit-scrollbar {
+	    display: none; /* Safari 및 Chrome 등 Webkit 기반 브라우저 */
+	}

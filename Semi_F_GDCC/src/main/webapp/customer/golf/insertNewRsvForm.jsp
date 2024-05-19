@@ -55,16 +55,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 <head>
 <meta charset="UTF-8">
 <title>라운딩예약하기</title>
-<style>
-
-	#calendar {
-	  width: 400px; /* 부모 요소인 .container에 맞게 캘린더의 너비를 조절합니다. */
-	  height: 400px; /* 원하는 높이로 조절합니다. */
-	}
-	::-webkit-scrollbar {
-	    display: none; /* Safari 및 Chrome 등 Webkit 기반 브라우저 */
-	}
-</style>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertNewRsvForm.css">
 </head>
 	<!-- 캘린더 API가져오기 -->
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
@@ -100,138 +91,145 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 		});
     </script>
 <body>
-	<h1>라운딩 예약하기</h1>
-		<div class="container">
-		  <div id='calendar'> </div>
-		</div>
-			<%
-				if(checkSession == null){
-			%>
-				<div class="checkRsv">
-					<span>원하는 날을 선택해주세요</span>
-						<form method="post" action="/Semi_F_GDCC/customer/action/checkDateCourseAction.jsp">
-							<label for="date">
-								라운딩 날짜
-							</label>
-							<input type="date" id="date" name="rsvDateCheck" min="<%=today %>" >
-						<br>
-							<label for="course">
-								시작코스
-							</label>
-							<input type="radio" id="course" name="rsvCourseCheck" value="IN"> IN코스
-							<input type="radio" id="course" name="rsvCourseCheck" value="OUT"> OUT코스
-						<br>
-							<button type="submit">T-TIME확인하기</button>
-						</form>
-				</div>
+<div class="title">
+	<h1>BOOKING</h1>
+</div>
+<div class="container">
+	<div class="content">
+		<div id='calendar'> </div>
+	</div><!-- containt마지막 -->	
+		<div class="content2">
+		<%
+			if(checkSession == null){
+		%>
+			<span>원하는 날을 선택해주세요</span>
+				<br><hr>
+					<form method="post" action="/Semi_F_GDCC/customer/action/checkDateCourseAction.jsp">
+						<label for="date">
+							라운딩 날짜
+						</label>
+					<input type="date" id="date" name="rsvDateCheck" min="<%=today %>" >
+				<br>
+					<label for="course">
+						시작코스
+					</label>
+					<input type="radio" id="course" name="rsvCourseCheck" value="IN"> IN코스
+					<input type="radio" id="course" name="rsvCourseCheck" value="OUT"> OUT코스
+				<br>
+					<button type="submit">T-TIME확인하기</button>
+				</form>
 			<%
 				}else{
 			%>
 			<%
 				}
 			%>
-				<div class="checkRsv">
-					<form method="post" action="/Semi_F_GDCC/customer/action/insertNewRsvAction.jsp">
-						<%
-							if(checkSession != null && checkSession.equals("T")){
-								//checkSession이 null이라는 것은 date랑 course를 체크했다는 것! 
-						%>
-								<label for="date">
-						                라운딩 날짜
-							        </label>
-						            <input type="date" id="date" name="rsvDate" value="<%= checkDate%>" min="<%=today%>">
-					          <br>
-						            <label for="course">
-						                시작코스
-						            </label>
-						            <input type="radio" id="course" name="rsvCourse" value="<%= checkCourse %>" checked="checked">
-						            	<%=checkCourse %>코스
-						      <br>
-						      		<label>
-						      			T-TIME체크하기
-						      		</label>
-						      <br>
-						         <% 
-						         	HashSet<Integer> set = new HashSet<Integer>();
-						            set.add(1);
-				            		set.add(2);
-				            		set.add(3);
-				            		set.add(4);
-				            		set.add(5);
-				            		set.add(6);
-				            		set.add(7);
-				            		set.add(8);
-				            		set.add(9);
-						         
-						         	for (HashMap<String,Object> m : tableRsvTime) { 
-						         		set.remove(Integer.parseInt((String)(m.get("rsvTtime"))));
-						        	}
-						         	
-						         	
-						         	for(Integer i : set) {
-						        %>
-						        		<input type="radio" name="rsvTtime" value="<%=i%>">
-									        <%	
-									        	switch (i) {
-												    case 1:
-												        out.print("11:00");
-												        break;
-												    case 2:
-												        out.print("11:15");
-												        break;
-												    case 3:
-												        out.print("11:30");
-												        break;
-												    case 4 :
-												    	out.print("11:45");
-												    	break;
-												    case 5 :
-												    	out.print("12:00");
-												    	break;
-												    case 6 :
-												    	out.print("12:15");
-												    	break;
-												    case 7 :
-												    	out.print("12:30");
-												    	break;
-												    case 8 :
-												    	out.print("12:45");
-												    	break;
-												    case 9 :
-												    	out.print("13:00");
-												    	break;
-											    	
-												}
-						     				%>
-						        <% 		
-						         	}
-						        %>
-					        <br>
-						        <label for="mail">
-						       	 	고객 mail
+				
+				<form method="post" action="/Semi_F_GDCC/customer/action/insertNewRsvAction.jsp">
+					<%
+						if(checkSession != null && checkSession.equals("T")){
+							//checkSession이 null이라는 것은 date랑 course를 체크했다는 것! 
+					%>
+						<span>원하는 날을 선택해주세요</span>
+					<br><hr>
+							<label for="date">
+					                라운딩 날짜
 						        </label>
-						        <input type="text" id = "mail" name="rsvMail" value="<%=cusMail%>">
-					        <br>
-						        <label for = "member">
-						        	동반인원
-						        </label>
-						        <select id = "member" name ="rsvMember">
-						        	<option value="3">3명</option>
-						        	<option value="4">4명</option>
-						        	<option value="5">5명</option>
-						        </select>
-					        <br>
-						        <label for="request">
-						     		요청사항
-						        </label>
-						        <textarea rows="3" cols="20"></textarea>
-							<br>
-							<button type="submit">T-TIME확인하기</button>
-						<%
-							}
-						%>
-					
-				</form>		
-			</div>
+					            <input type="date" id="date" name="rsvDate" value="<%= checkDate%>" min="<%=today%>">
+				          <br>
+					            <label for="course">
+					                시작코스
+					            </label>
+					            <input type="radio" id="course" name="rsvCourse" value="<%= checkCourse %>" checked="checked">
+					            	<%=checkCourse %>코스
+					      <br>
+					      		<label>
+					      			T-TIME체크하기
+					      		</label>
+					      <br>
+					         <% 
+					         	HashSet<Integer> set = new HashSet<Integer>();
+					            set.add(1);
+			            		set.add(2);
+			            		set.add(3);
+			            		set.add(4);
+			            		set.add(5);
+			            		set.add(6);
+			            		set.add(7);
+			            		set.add(8);
+			            		set.add(9);
+					         
+					         	for (HashMap<String,Object> m : tableRsvTime) { 
+					         		set.remove(Integer.parseInt((String)(m.get("rsvTtime"))));
+					        	}
+					         	
+					         	
+					         	for(Integer i : set) {
+					        %>
+					        		<input type="radio" name="rsvTtime" value="<%=i%>">
+								        <%	
+								        	switch (i) {
+											    case 1:
+											        out.print("11:00");
+											        break;
+											    case 2:
+											        out.print("11:15");
+											        break;
+											    case 3:
+											        out.print("11:30");
+											        break;
+											    case 4 :
+											    	out.print("11:45");
+											    	break;
+											    case 5 :
+											    	out.print("12:00");
+											    	break;
+											    case 6 :
+											    	out.print("12:15");
+											    	break;
+											    case 7 :
+											    	out.print("12:30");
+											    	break;
+											    case 8 :
+											    	out.print("12:45");
+											    	break;
+											    case 9 :
+											    	out.print("13:00");
+											    	break;
+										    	
+											}
+					     				%>
+					        <% 		
+					         	}
+					        %>
+				        <br>
+					        <label for="mail">
+					       	 	고객 mail
+					        </label>
+					        <input type="text" id = "mail" name="rsvMail" value="<%=cusMail%>">
+				        <br>
+					        <label for = "member">
+					        	동반인원
+					        </label>
+					        <select id = "member" name ="rsvMember">
+					        	<option value="3">3명</option>
+					        	<option value="4">4명</option>
+					        	<option value="5">5명</option>
+					        </select>
+				        <br>
+					        <label for="request">
+					     		요청사항
+					        </label>
+					    <br>
+					        <textarea rows="3" cols="20"></textarea>
+						<br>
+						<button type="submit">예약하기</button>
+					<%
+						}
+					%>
+				
+			</form>	
+		</div><!-- content2 -->
+	</div><!-- container마지막 -->	
 </body>
 </html>
