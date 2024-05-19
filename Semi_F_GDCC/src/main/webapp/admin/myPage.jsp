@@ -68,8 +68,8 @@
 	</table>
 
 	<div class="text-center">
-	<a href="/Semi_F_GDCC/admin/updateMyPageForm.jsp?adminMail=<%=adminMail%>">사원 정보 수정하기 </a>
-	<a href="/Semi_F_GDCC/admin/updatePwForm.jsp?adminMail=<%=adminMail%>">비번 번경하기 </a>
+	<a href="/Semi_F_GDCC/admin/updateMyPageForm.jsp?adminMail=<%=adminMail%>" type="button" class="btn btn-success">사원 정보 수정하기 </a>
+	<a href="/Semi_F_GDCC/admin/updatePwForm.jsp?adminMail=<%=adminMail%>" type="button" class="btn btn-success">비번 번경하기 </a>
 	</div>
 	
 	

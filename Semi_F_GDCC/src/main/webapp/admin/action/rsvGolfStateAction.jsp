@@ -18,11 +18,11 @@
 	if(updateRsvState == 1){
 		//변경성공
 		System.out.println("변경성공");
-		response.sendRedirect("/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?msg=T");
+		response.sendRedirect("/Semi_F_GDCC/admin/rsvGolfList.jsp?msg=T");
 	}else{
 		//변경실패
 		System.out.println("변경실패");
-		response.sendRedirect("/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?msg=F");
+		response.sendRedirect("/Semi_F_GDCC/admin/rsvGolfList.jsp?msg=F");
 	}	
 	
 %>

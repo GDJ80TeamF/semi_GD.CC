@@ -45,12 +45,102 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+/* 테이블 전체 스타일 */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 테이블 헤더 스타일 */
+th {
+  background-color: #007bff;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 15px;
+  text-align: left;
+  border-bottom: 2px solid #007bff;
+}
+
+/* 테이블 셀 스타일 */
+td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/* 짝수 행 배경색 지정 */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* 링크 스타일 */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+td button {
+  display: inline-block; /* 블록 요소에서 인라인-블록 요소로 변경 */
+  vertical-align: middle; /* 버튼을 select 요소와 수직 정렬 */
+  margin-left: 5px; /* select 요소와 버튼 사이의 간격 조정 */
+  padding: 10px 20px;
+  text-align: center;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+td button:hover {
+  background-color: #0056b3;
+}
+
+
+/* 입력 필드 스타일 */
+input[type=text], select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* 선택 박스 스타일 */
+select {
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+}
+</style>
 </head>
 <body>
-	<div>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
+	
 		<h1>고객 예약 리스트</h1>
 		
-			<table>
+			<table class="table table-striped">
 				<tr>
 					<th>
 						예약NO
@@ -68,7 +158,10 @@
 						예약상태
 					</th>
 					<th>
-						
+						상태변경
+					</th>
+					<th>
+						상세보기
 					</th>
 					
 				</tr>
@@ -123,7 +216,9 @@
 									%>					
 							</td>
 							<td>
-								<%=m.get("rsvState") %><br>
+								<%=m.get("rsvState") %>
+							</td>
+							<td>
 								<form action="/Semi_F_GDCC/admin/action/rsvGolfStateAction.jsp">
 									<input type="hidden" name="rsvNo" value="<%=m.get("rsvNo") %>">
 										<select name="rsvState">
@@ -140,31 +235,31 @@
 								</form>
 							</td>
 							<td>
-								<a href="/Semi_F_GDCC/admin/golf/rsvGolfOne.jsp?rsvNo=<%=m.get("rsvNo") %>">
+								<a href="/Semi_F_GDCC/admin/rsvGolfOne.jsp?rsvNo=<%=m.get("rsvNo") %>">
 									상세보기
-								</a>							
+								</a>						
 							</td>
 						<%
 							}
 						%>
 				</tr>
 			</table>
-	</div>
+	
 	<div>														
 		<%
 			if(currentPage > 1){			
 		%>
-			<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=1">FIRST</a>
-			<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+			<a href="/Semi_F_GDCC/admin/rsvGolfList.jsp?currentPage=1">FIRST</a>
+			<a href="/Semi_F_GDCC/admin/rsvGolfList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
 		<%						
 			}if(currentPage < lastPage){
 		%>
-			<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
-			<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp?currentPage=<%=lastPage%>">LAST</a>
+			<a href="/Semi_F_GDCC/admin/rsvGolfList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
+			<a href="/Semi_F_GDCC/admin/rsvGolfList.jsp?currentPage=<%=lastPage%>">LAST</a>
 		<%
 			}					
 		%>		
 	</div>
-		
+</div>
 </body>
 </html>

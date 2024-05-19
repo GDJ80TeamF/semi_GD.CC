@@ -26,6 +26,36 @@
 <head>
 <meta charset="UTF-8">
 <title>룸 리스트</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+h1{
+	text-align:center;
+}
+td button {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 6px 12px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+td button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* select 요소 스타일 */
+select {
+  vertical-align: middle;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/admin/sidebar.jsp"></jsp:include>
@@ -33,16 +63,15 @@
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
 	<h1>룸 리스트</h1>
-	<a href="/Semi_F_GDCC/admin/insertRoomForm.jsp">글쓰기</a>
-	<table border="1">
-		<tr bgcolor="pink">
+	<div style=" text-align:center;"><a href="/Semi_F_GDCC/admin/insertRoomForm.jsp" class="btn btn-success mb-2 mt-2">룸 추가</a></div>
+	<table class="table table-striped">
+		<tr>
 			<td>룸 no</td>
 			<td>룸 등급</td>
 			<td>룸 가격</td>
 			<td>룸 최대 인원수</td>
 			<td>룸 상태</td>
 			<td>룸 이미지</td>
-			<td>생성 날짜</td>
 			<td>수정 날짜</td>
 		</tr>
 			<%
@@ -68,7 +97,7 @@
 					<td>
 					<img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>">
 					</td>
-					<td><%=(String)(m.get("createDate"))%></td>
+					
 					<td><%=(String)(m.get("updateDate"))%></td>
 				</tr>
 			<%

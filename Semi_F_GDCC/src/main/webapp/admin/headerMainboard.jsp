@@ -18,18 +18,24 @@
 	
 	
 %>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="./style.css">
+<header>
+
         <div class="header">
-            <h2> &nbsp;메인페이지 입니다. </h2>
+           
             <div class="user-info"> 
             <img src="/Semi_F_GDCC/admin/upload/<%=(String) m.get("adminProfile") %>" alt="User Icon">
-                <span><%=adminName%>님 안녕하세요 :) &nbsp;</span>
+                <span> &nbsp;<%=adminName%>님 안녕하세요 :) &nbsp;</span>
                 
-            	<a href="/Semi_F_GDCC/admin/action/adminLogoutAction.jsp"> 로그아웃</a>
+            	<a href="/Semi_F_GDCC/admin/action/adminLogoutAction.jsp" type="button" class="btn btn-success"> 로그아웃</a>
             
             </div>
         </div>
-
+</header>
 
 </body>
 </html>

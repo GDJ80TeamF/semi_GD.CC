@@ -78,7 +78,7 @@
 				}
 		%>		
 			
-			<td><img src="/Semi_F_GDCC/admin/upload/<%=(String)m.get("adminProfile") %>" width="50" height="50"></td>
+			<td><img src="/Semi_F_GDCC/admin/upload/<%=(String)m.get("adminProfile") %>" width="50" height="50" style="border-radius:50%;"></td>
 			<td><%=(String)m.get("adminMail") %></td>
 			<td><%=(String)m.get("adminName") %></td>
 			</tr>

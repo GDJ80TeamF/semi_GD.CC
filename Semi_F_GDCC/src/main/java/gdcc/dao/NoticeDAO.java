@@ -15,7 +15,7 @@ public class NoticeDAO {
 		Connection conn = null;
 		conn = DBHelper.getConnection();
 		
-		String sql = "INSERT INTO notice(admin_email, notice_title, notice_content) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO notice(admin_mail, notice_title, notice_content) VALUES(?, ?, ?)";
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, adminMail);
@@ -36,7 +36,7 @@ public class NoticeDAO {
 		
 		Connection conn1 = DBHelper.getConnection();
 		
-		String sql1 = "SELECT notice_no noticeNo, admin_email adminMail, "
+		String sql1 = "SELECT notice_no noticeNo, admin_mail adminMail, "
 				+ "notice_title noticeTitle, notice_content noticeContent "
 				+ "FROM notice "
 				+ "ORDER BY noticeNo ASC LIMIT ?, ? ";
@@ -69,7 +69,7 @@ public class NoticeDAO {
 		// db연결
 		Connection conn2 = DBHelper.getConnection();
 		
-		String sql2 = "SELECT notice_no noticeNo, admin_email adminMail, "
+		String sql2 = "SELECT notice_no noticeNo, admin_mail adminMail, "
 				+ "notice_title noticeTitle, notice_content noticeContent "
 				+ "FROM notice WHERE notice_no=? ";
 		
@@ -100,7 +100,7 @@ public class NoticeDAO {
 	  
 		  Connection conn3 = DBHelper.getConnection();
 		  
-		  String sql3 = "UPDATE notice SET admin_email=?, notice_title=?, notice_content=? WHERE notice_no=? ";
+		  String sql3 = "UPDATE notice SET admin_mail=?, notice_title=?, notice_content=? WHERE notice_no=? ";
 		  PreparedStatement stmt3 = null;
 		  stmt3  = conn3.prepareStatement(sql3);
 		  stmt3.setString(1, adminMail);

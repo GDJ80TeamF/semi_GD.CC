@@ -22,11 +22,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+/* 테이블 전체 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* 테이블 헤더 스타일 */
+th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+
+/* 테이블 셀 스타일 */
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 짝수 행 배경색 지정 */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* 링크 스타일 */
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+</style>
 </head>
 <body>
+<jsp:include page="/admin/sidebar.jsp"></jsp:include>
+	<div class="main-container">
+		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<div>
 		<h1>회원예약 상세보기</h1>
-			<a href="/Semi_F_GDCC/admin/golf/rsvGolfList.jsp">
+			<a href="/Semi_F_GDCC/admin/rsvGolfList.jsp">
 				리스트로돌아가기
 			</a>
 			<table>
@@ -148,6 +190,7 @@
 					</td>
 				</tr>
 			</table>
+	</div>
 	</div>
 </body>
 </html>
