@@ -25,9 +25,10 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertQnAForm.css">
 </head>
 <body>
-<div>
+<div class="container">
 <h1>QnA 글 수정</h1>
 <form method="post" action="/Semi_F_GDCC/customer/action/updateQnAAction.jsp">
 	<table>
@@ -49,12 +50,8 @@
 			<td><textarea  style="width: 550px; height: 300px;"
 						 name="qnaContent"><%=(String)(m.get("qnaContent"))%></textarea></td>
 		</tr>
-
-		<tr>
-			<td><button type="submit">수정</button></td>
-		</tr>
 	</table>
-		
+	<button type="submit">수정</button>	
 </form>		
 </div>
 </body>

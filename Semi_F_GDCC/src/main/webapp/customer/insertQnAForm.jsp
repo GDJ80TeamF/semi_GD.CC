@@ -16,30 +16,28 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertQnAForm.css">
 </head>
 <body>
-<div>
-<h1>QnA 글 작성</h1>
-<form method="post" action="/Semi_F_GDCC/customer/action/insertQnAAction.jsp">
-	<table>
-		<tr>
-			<th>아이디 :</th>
-			<td><input type="text" name="cusMail" value="<%=(String)login.get("cusMail")%>"></td>
-		</tr>
-		<tr>
-			<th>제목 :</th>
-			<td><input type="text" name="title"></td>
-		</tr>
-		<tr>
-			<th>내용 :</th>
-			<td><textarea style="width: 550px; height: 300px;" name="content"></textarea></td>
-		</tr>
-		<tr>
-			<td><button type="submit">작성</button></td>
-		</tr>
-	</table>
-		
-</form>		
+<div class="container">
+    <h1>QnA 글 작성</h1>
+    <form method="post" action="/Semi_F_GDCC/customer/action/insertQnAAction.jsp">
+        <table>
+            <tr>
+                <th>아이디 :</th>
+                <td><input type="text" name="cusMail" value="<%=(String)login.get("cusMail")%>"></td>
+            </tr>
+            <tr>
+                <th>제목 :</th>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <th>내용 :</th>
+                <td><textarea style="width: 550px; height: 300px;" name="content"></textarea></td>
+            </tr>
+        </table>
+         <button type="submit">작성</button> 
+    </form>
 </div>
 </body>
 </html>

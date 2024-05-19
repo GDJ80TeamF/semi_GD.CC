@@ -27,40 +27,41 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/qnaListPerCustomer.css">
 </head>
 <body>
-<div>
-<h1>나의 QnA 목록</h1>
-	<table border="1">
-		<tr>
-			<th>qnaNo</th>
-			<th>cusMail</th>
-			<th>qnaTitle</th>
-			<th>qnaContent</th>
-			<th>createDate</th>
-			<th>updateDate</th>
-		</tr>
-		<%
-			for(HashMap m : list) {
-		%>
-			<tr>
-				<td><%=(Integer)(m.get("qnaNo"))%></td>
-				<td><%=(String)(m.get("cusMail"))%></td>
-				<td><%=(String)(m.get("qnaTitle"))%></td>
-				<td><%=(String)(m.get("qnaContent"))%></td>
-				<td><%=(String)(m.get("createDate"))%></td>
-				<td><%=(String)(m.get("updateDate"))%></td>
-				<td>
-					<a href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">글 수정</a>
-					<br>
-					<a href="/Semi_F_GDCC/customer/action/deleteQnAAction.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">글 삭제</a>
-				</td>
-			</tr>
-		<%
-			}
-		%>
-	</table>
-
+<div class="container">
+       <h1>MY QnA</h1>
+       <table border="1">
+           <tr>
+               <th>NO.</th>
+               <th>이메일</th>
+               <th>제목</th>
+               <th>내용</th>
+               <th>작성일</th>
+               <th>수정일</th>
+               <th>&nbsp;</th>
+           </tr>
+           <%
+               for(HashMap m : list) {
+           %>
+               <tr>
+                   <td><%=(Integer)(m.get("qnaNo"))%></td>
+                   <td><%=(String)(m.get("cusMail"))%></td>
+                   <td><%=(String)(m.get("qnaTitle"))%></td>
+                   <td><%=(String)(m.get("qnaContent"))%></td>
+                   <td><%=(String)(m.get("createDate"))%></td>
+                   <td><%=(String)(m.get("updateDate"))%></td>
+                   <td>
+                       <a class="update" href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">수정</a>
+                       <br>
+                       <a class="delete" href="/Semi_F_GDCC/customer/action/deleteQnAAction.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">삭제</a>
+                   </td>
+               </tr>
+           <%
+               }
+           %>
+       </table>
 </div>
 
 </body>

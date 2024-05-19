@@ -40,7 +40,7 @@
     <table>
         <thead>
         <tr>
-            <th>QnA 번호</th>
+            <th>NO.</th>
             <th>제목</th>
             <th>작성자</th>
         </tr>
