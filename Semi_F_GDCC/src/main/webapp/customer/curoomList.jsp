@@ -2,13 +2,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
+<%-- <%
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") != null){
 		response.sendRedirect("/Semi_F_GDCC/customer/main.jsp");
 		return;
 	}
-%>
+%> --%>
 <%
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null){
@@ -50,6 +50,7 @@
 					<img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>">
 					</td>
 				</tr>
+				
 			<%
 				}
 			%>
