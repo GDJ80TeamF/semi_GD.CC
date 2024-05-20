@@ -73,17 +73,11 @@
 	<h1>Golf Review Detail</h1>
 	<table border="1">
 		<tr>	
-			<th>rsvNo</th>
-			<th>reviewTitle</th>
-			<th>reviewContent</th>
-			<th>reviewScore</th>
-			<th>createDate</th>
-			<th>updateDate</th>	
+			<th>예약 번호</th>
+			<td><%=(Integer)(m.get("rsvNo"))%></td>													
 		</tr>
 		<tr>
-			<td><%=(Integer)(m.get("rsvNo"))%></td>	
-			<td><%=(String)(m.get("reviewTitle"))%></td>	
-			<td><%=(String)(m.get("reviewContent"))%></td>	
+			<th>별점</th>
 			<td>
 	        	<div class="rate">
 	            	<% 
@@ -92,8 +86,24 @@
 	            	%>
 	    	        <span style="width: <%= widthPercentage %>%"></span>
 		        </div>
-	        </td>	
+	        </td>
+		</tr>
+		<tr>
+			<th>제목</th>
+			<td><%=(String)(m.get("reviewTitle"))%></td>
+		</tr>
+		<tr>
+			<th colspan="2">내용</th>					
+		</tr>
+		<tr>
+			<td colspan="2" style="height: 400px;"><%=(String)(m.get("reviewContent"))%></td>
+		</tr>	
+		<tr>
+			<th>작성일</th>
 			<td><%=(String)(m.get("createDate"))%></td>
+		</tr>
+		<tr>
+			<th>수정일</th>
 			<td><%=(String)(m.get("updateDate"))%></td>
 		</tr>
 	</table>

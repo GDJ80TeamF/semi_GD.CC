@@ -21,6 +21,7 @@
 <title></title>
 </head>
 <style>
+
 	@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
     .rate { display: inline-block;border: 0;margin-right: 15px;}
 	.rate > input {display: none;}

@@ -90,8 +90,8 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore "
-					+ "FROM review_hotel LIMIT ?,?";
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore, create_date createDate "
+					+ "FROM review_hotel ORDER BY create_date DESC LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, startRow);
@@ -103,6 +103,7 @@ public class ReviewDAO {
 			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewScore", rs.getInt("reviewScore"));
+			m.put("createDate", rs.getString("createDate"));
 			list.add(m);
 		}
 		conn.close();
@@ -118,8 +119,8 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore "
-					+ "FROM review_golf LIMIT ?,?";
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore, create_date createDate "
+					+ "FROM review_golf ORDER BY create_date DESC LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, startRow);
@@ -131,6 +132,7 @@ public class ReviewDAO {
 			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewScore", rs.getInt("reviewScore"));
+			m.put("createDate", rs.getString("createDate"));
 			list.add(m);
 		}
 		conn.close();
@@ -139,7 +141,7 @@ public class ReviewDAO {
 	// 호텔리뷰 총 개수 구하는 메서드 /Page
 	public static int hotelReviewPage () throws Exception{
 		int lastPage = 0;
-		int rowPerPage = 1;
+		int rowPerPage = 10;
 		Connection conn = DBHelper.getConnection();
 		String sql = "SELECT COUNT(*) FROM review_hotel";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -159,7 +161,7 @@ public class ReviewDAO {
 	// 골프리뷰 총 개수 구하는 메서드 /Page
 	public static int golfReviewPage () throws Exception{
 		int lastPage = 0;
-		int rowPerPage = 1;
+		int rowPerPage = 10;
 		Connection conn = DBHelper.getConnection();
 		String sql = "SELECT COUNT(*) FROM review_golf";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -547,6 +549,70 @@ public class ReviewDAO {
 			m.put("rsvNo", rs.getInt("rsvNo"));
 			m.put("rsvCourse", rs.getString("rsvCourse"));
 			m.put("rsvDate", rs.getString("rsvDate"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+	}
+	// 별점이 ?인 골프reviewList 조회하는 메서드
+	public static ArrayList<HashMap<String, Object>> golfReviewPerScore(int score, int startRow, int rowPerPage) throws Exception {
+		// 매개값 디버깅
+		System.out.println(score + "<-- reviewScore ReviewDAO.golfReviewPerScore param");
+		System.out.println(startRow + "<-- startRow ReviewDAO.golfReviewPerScore param");
+		System.out.println(rowPerPage + "<-- rowPerPage ReviewDAO.golfReviewPerScore param");
+		
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+					
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore, create_date createDate "
+					+ "FROM review_golf "
+					+ "WHERE review_score = ? ORDER BY create_date DESC LIMIT ?,?";
+				
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, score);
+		stmt.setInt(2, startRow);
+		stmt.setInt(3, rowPerPage);
+		ResultSet rs = stmt.executeQuery();
+			
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("rsvNo", rs.getInt("rsvNo"));
+			m.put("reviewTitle", rs.getString("reviewTitle"));
+			m.put("reviewScore", rs.getInt("reviewScore"));
+			m.put("createDate", rs.getString("createDate"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+	}
+	// 별점이 ?인 호텔reviewList 조회하는 메서드
+	public static ArrayList<HashMap<String, Object>> hotelReviewPerScore(int score, int startRow, int rowPerPage) throws Exception {
+		// 매개값 디버깅
+		System.out.println(score + "<-- reviewScore ReviewDAO.hotelReviewPerScore param");
+		System.out.println(startRow + "<-- startRow ReviewDAO.hotelReviewPerScore param");
+		System.out.println(rowPerPage + "<-- rowPerPage ReviewDAO.hotelReviewPerScore param");
+		
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		// DB연동
+		Connection  conn = DBHelper.getConnection();
+					
+		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore, create_date createDate "
+					+ "FROM review_hotel "
+					+ "WHERE review_score = ? ORDER BY create_date DESC LIMIT ?,?";
+				
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, score);
+		stmt.setInt(2, startRow);
+		stmt.setInt(3, rowPerPage);
+		ResultSet rs = stmt.executeQuery();
+			
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("rsvNo", rs.getInt("rsvNo"));
+			m.put("reviewTitle", rs.getString("reviewTitle"));
+			m.put("reviewScore", rs.getInt("reviewScore"));
+			m.put("createDate", rs.getString("createDate"));
 			list.add(m);
 		}
 		conn.close();

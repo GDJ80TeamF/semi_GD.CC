@@ -46,7 +46,9 @@
         </tr>
         </thead>
         <tbody>
-        <% for(HashMap m : list) { %>
+        <%
+        	for(HashMap m : list) { 
+        %>
             <tr>
                 <td>
                     <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
@@ -64,20 +66,30 @@
                     </a>
                 </td>
             </tr>
-        <% } %>
+        <%
+        	}
+        %>
         </tbody>
     </table>
     <hr style="margin-top: 20px;">
     <!-- 페이징 버튼 -->
     <div class="pagination">
-        <% if(currentPage > 1){ %>
-            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a>
-            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a>
-        <% } %>
-        <% if(currentPage < lastPage){ %>
-            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a>
-            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a>
-        <% } %>
+        <%
+        	if(currentPage > 1){ 
+        %>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=1"> &nbsp;<< 처음 페이지 </a>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a>                   
+        <%
+        	}
+        %>
+        <%
+        	if(currentPage < lastPage){ 
+        %>   
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage+1%>"> 다음 >&nbsp; </a>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=lastPage%>"> 마지막 페이지 >>&nbsp;</a>
+        <%
+        	}
+        %>
     </div>
 </div>
 </body>
