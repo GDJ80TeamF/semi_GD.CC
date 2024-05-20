@@ -17,7 +17,7 @@
            </p>
             <div class="circle-container">
                 <div class="circle-item">
-                    <a href="golf.html" class="circle">
+                    <a href="/Semi_F_GDCC/customer/golf/golfMain.jsp" class="circle">
                         <img src="/Semi_F_GDCC/css/img/clubHouse.png" alt="골프장">
                     </a>
                     <p>Golf Club</p>

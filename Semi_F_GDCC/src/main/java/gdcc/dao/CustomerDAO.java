@@ -118,7 +118,8 @@ public class CustomerDAO {
 	public static int updateCustomerInfo(
 			String cusName, String cusGender, String cusContact, String cusProfile, String cusMail) throws Exception{
 		int row = 0;
-		
+			
+			System.out.println(cusProfile + "<==여기뭐가들어오나요");
 			Connection conn = DBHelper.getConnection();
 			
 			String sql = "UPDATE customer "

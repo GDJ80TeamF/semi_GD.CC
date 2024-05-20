@@ -37,7 +37,7 @@
 				<div>
 				    <!-- 새로운 프로필 사진 업로드 필드 -->
 				    <label for="filename">프로필 사진 변경:</label>
-				    <input type="file" id="filename" name="cusProfile" value="<%=info.get("cusProfile")%>">
+				    <input type="file" id="filename" name="cusProfile">
 				</div>
 					<table>
 						<tr>
@@ -57,7 +57,7 @@
 								</label>
 							</th>
 							<td>
-								<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
+								<input tyzpe="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
 							</td>
 						</tr>
 						<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->

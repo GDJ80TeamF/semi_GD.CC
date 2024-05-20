@@ -52,6 +52,14 @@
 				<table>
 					<tr>
 						<th>
+							프로필
+						</th>
+						<td>
+							<img src="/Semi_F_GDCC/customer/upload/<%=profile.get("cusProfile")%>" width="100" height="100">
+						</td>
+					</tr>
+					<tr>
+						<th>
 							고객mail
 						</th>
 						<td>

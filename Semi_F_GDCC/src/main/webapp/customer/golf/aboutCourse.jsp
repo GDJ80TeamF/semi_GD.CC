@@ -9,17 +9,19 @@
 </head>
 <body>
     <header>
-        <h1>골프장 코스 소개</h1>
+        
     </header>
     <main>
+    	<h1>
+    		- about course -
+    	</h1>
         <!-- 18홀 코스 이미지 -->
         <div class="courseImg">
 	        <img src="/Semi_F_GDCC/css/img/inout.png" alt="코스">
         </div>
-        
         <div class="container">
         	<div class="out">
-       		 <h2 style="text-align: center">OUT</h2>
+       		 <h2 style="text-align: center; color : #FFBB00; font-weight: bold;">OUT</h2>
 	           <img src="/Semi_F_GDCC/css/img/courseOut.jpeg" alt="Out 코스 사진">
                     <h3>난이도 ⭐⭐⭐</h3>
                     <p>다양한 지형과 긴 페어웨이 도전적인 장애물로 구성되어 있어 중급자에게 적합합니다</p>
@@ -34,7 +36,9 @@
         	</div><!-- out마지막 -->
         
         	<div class="in">
-       		 <h2 style="text-align: center">IN</h2>
+       		 <h2 style="text-align: center; color : #3DB7CC; font-weight: bold;">
+       		 	IN
+       		 </h2>
             	<div class="course-content">
               	  <img src="/Semi_F_GDCC/css/img/courseIn.jpeg" alt="In 코스 사진">
                     <h3>난이도 ⭐⭐⭐⭐</h3>
