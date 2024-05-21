@@ -57,7 +57,7 @@
 								</label>
 							</th>
 							<td>
-								<input tyzpe="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
+								<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
 							</td>
 						</tr>
 						<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->

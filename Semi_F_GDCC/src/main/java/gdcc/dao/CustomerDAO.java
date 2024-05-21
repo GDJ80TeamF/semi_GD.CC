@@ -129,14 +129,15 @@ public class CustomerDAO {
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 				//값 들어오면 "" 자리에 넣어주기 
-				stmt.setString(1, "cusName");
-				stmt.setString(2, "cusGender");
-				stmt.setString(3, "cusContact");
-				stmt.setString(4, "cusProfile");
-				stmt.setString(5, "cusMail");
+				stmt.setString(1, cusName);
+				stmt.setString(2, cusGender);
+				stmt.setString(3, cusContact);
+				stmt.setString(4, cusProfile);
+				stmt.setString(5, cusMail);
 				
 			row= stmt.executeUpdate();
 			conn.close();
+			
 		return row;
 		
 		

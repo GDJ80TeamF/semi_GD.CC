@@ -12,12 +12,11 @@
 	String cusContact = request.getParameter("cusContact");
 	
 	Part part = request.getPart("cusProfile");
-	String cusProfile2 = part.getSubmittedFileName();
+	 String cusProfile2 = part != null ? part.getSubmittedFileName() : null;
 		System.out.println(cusProfile2 + "<==updateMyInfo.cusProfile");
 	
 	String cusMail = request.getParameter("cusMail");
-	//디버깅자리
-	
+
 	//update된 CustomerDAO랑 연결
 	
 	// 원본이름에서 .확장자 추출
@@ -26,6 +25,14 @@
 	String txt = (UUID.randomUUID().toString()).replace("-", "");
 	String cusProfile = txt+ext; // 생성됨이름 뒤에 .확장자 추가
 	System.out.println(cusProfile);
+	
+	
+		//디버깅=>다들어가는거 확인했음.
+		System.out.println(cusName + "<==updateMyInfo.cusName");
+		System.out.println(cusGender + "<==updateMyInfo.cusGender");
+		System.out.println(cusContact + "<==updateMyInfo.cusContact");
+		System.out.println(cusProfile + "<==updateMyInfo.cusProfile");
+		System.out.println(cusMail + "<==updateMyInfo.cusMail");
 	
 	int update = CustomerDAO.updateCustomerInfo(cusName, cusGender, cusContact, cusProfile, cusMail);
 		System.out.println(update + "<==updateMyInfoAction.update");
@@ -40,6 +47,8 @@
 			InputStream inputStream = part.getInputStream(); // part객체안에 파일(바이너리)을 메모로리 불러 옴
 			OutputStream outputStream = Files.newOutputStream(file.toPath()); // 메모리로 불러온 파일(바이너리)을 빈파일에 저장
 			inputStream.transferTo(outputStream);
+			
+			
 			response.sendRedirect("/Semi_F_GDCC/customer/myPage.jsp");
 		}else{
 			//update실패 -> updateMyInfoForm.jsp로 보내기
