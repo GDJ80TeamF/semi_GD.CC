@@ -42,7 +42,11 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">HOTEL</a>
                 <ul class="dropdown-menu bg-success">
-                    <li><a href="/Semi_F_GDCC/admin/adroomList.jsp">호텔 시설</a></li>
+                    <li><a href="/Semi_F_GDCC/admin/adroomList.jsp">호텔 룸</a></li>
+                
+                    <li><a href="/Semi_F_GDCC/admin/complexList.jsp">부가 시설</a></li>
+                   <li><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">조식 메뉴</a></li>
+                   
                     <li><a href="/Semi_F_GDCC/admin/rsvHotelList.jsp">예약</a></li>
                     <li><a href="/Semi_F_GDCC/admin/hotelReviewList.jsp">리뷰</a></li>
                 </ul>
@@ -52,8 +56,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">GOlF</a>
                 <ul class="dropdown-menu bg-success">
                    <li><a href="/Semi_F_GDCC/admin/courseList.jsp">코스 관리</a></li>
-                    <li><a href="/Semi_F_GDCC/admin/rsvGolfList.jsp">예약</a></li>
-                    
+                    <li><a href="/Semi_F_GDCC/admin/rsvGolfList.jsp">예약</a></li>      
                     <li><a href="/Semi_F_GDCC/admin/golfReviewList.jsp">리뷰</a></li>
                 </ul>
             </li>

@@ -44,6 +44,11 @@
 <title>Insert title here</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+h2{
+	text-align:center;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/admin/sidebar.jsp"></jsp:include>
@@ -51,7 +56,7 @@
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
 	<h2>사원 리스트 </h2>
-	<a href="/Semi_F_GDCC/admin/mainBoard.jsp">메인화면으로 돌아가기 </a>
+	
 	<table class="table table-hover">
 		<tr>
 			<th>ACTIVE</th>
