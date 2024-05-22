@@ -9,6 +9,7 @@
 %>
 <%
 	HashMap<String, Object> m = RoomDAO.selectRoom(roomNo);
+	System.out.println("m: " + m);
 %>
 <!DOCTYPE html>
 <html>
@@ -93,55 +94,55 @@ input, select {
 	<hr>
 	<h1>룸 정보 수정하기</h1>
 	<form method="post" action="/Semi_F_GDCC/admin/action/updateRoomAction.jsp?roomNo=<%=roomNo%>" enctype="multipart/form-data">
-	<table>
-		<tr>
-			<td>룸 no:</td>
-			<td><%=(Integer)(m.get("roomNo"))%></td>
-		</tr>
-		<tr>
-			<td>룸 등급:</td>
-			<td><input type="text" name="roomGrade" value="<%=(String)(m.get("roomGrade"))%>"></td>
-		</tr>
-		<tr>
-			<td>룸 가격:</td>
-			<td><input type="text" name="roomPrice" value="<%=(Integer)(m.get("roomPrice"))%>"></td>
-		</tr>
-		<tr>
-			<td>룸 정보:</td>
-			<td><textarea rows="5" cols="50" name="roomInfo"><%=(String)(m.get("roomInfo"))%></textarea></td>
-		</tr>
-		<tr>
-			<td>룸 최대 인원수:</td>
-			<td><input type="text" name="roomMax" value="<%=(Integer)(m.get("roomMax"))%>"></td>
-		</tr>
-		<tr>
-			<td>룸 상태:</td>
-			<td>
-			<select name="roomState">
-				<%
-					if(m.get("roomState").equals("공사중")){
-				%>
-					<option value="공사중" selected="selected">공사중</option>	
-					<option value="투숙가능">투숙가능</option>
-				<%
-					}else{
-				%>
-					<option value="공사중">공사중</option>	
-					<option value="투숙가능" selected="selected">투숙가능</option>
-				<%
-					}
-				%>
+		<table>
+			<tr>
+				<td>룸 no:</td>
+				<td><%=(Integer)(m.get("roomNo"))%></td>
+			</tr>
+			<tr>
+				<td>룸 등급:</td>
+				<td><input type="text" name="roomGrade" value="<%=(String)(m.get("roomGrade"))%>"     ></td>
+			</tr>
+			<tr>
+				<td>룸 가격:</td>
+				<td><input type="text" name="roomPrice" value="<%=(Integer)(m.get("roomPrice"))%>"></td>
+			</tr>
+			<tr>                          
+				<td>룸 정보:</td>
+				<td><textarea rows="5" cols="50" name="roomInfo"><%=(String)(m.get("roomInfo"))%></textarea></td>
+			</tr>
+			<tr>
+				<td>룸 최대 인원수:</td>
+				<td><input type="text" name="roomMax" value="<%=(Integer)(m.get("roomMax"))%>"></td>
+			</tr>
+			<tr>
+				<td>룸 상태:</td>
+				<td>
+				<select name="roomState">
+					<%
+						if(m.get("roomState").equals("공사중")){
+					%>
+						<option value="공사중" selected="selected">공사중</option>	
+						<option value="투숙가능">투숙가능</option>
+					<%
+						}else{
+					%>
+						<option value="공사중">공사중</option>	
+						<option value="투숙가능" selected="selected">투숙가능</option>
+					<%
+						}
+					%>
+					
+				</select>
 				
-			</select>
-			
-			</td>
-		</tr>
-		<tr>
-			<td>룸 이미지:</td>
-			<td><img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>" width="300" height="300"><input type="file" name="roomImg"></td>
-		</tr>
-	
-	</table>
+				</td>
+			</tr>
+			<tr>
+				<td>룸 이미지:</td>
+				<td><img src="/Semi_F_GDCC/admin/upload/<%=(String)(m.get("roomImg"))%>" width="300" height="300"><input type="file" name="roomImg"></td>
+			</tr>
+		
+		</table>
 		<div style="text-align:center;">
 			<button type="submit">룸 수정</button>
 			<a href="/Semi_F_GDCC/admin/adroomOne.jsp?roomNo=<%=roomNo%>">취소</a>

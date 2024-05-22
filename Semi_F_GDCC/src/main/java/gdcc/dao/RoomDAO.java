@@ -118,7 +118,7 @@ public class RoomDAO {
 	}
 	
 	// 룸 수정
-	public static int updateRoom(int roomNo, String roomGrade, int roomPrice, 
+	public static int updateRoom(int roomNo, String roomGrade, String roomInfo, int roomPrice,
 			int roomMax, String roomState, String fileName) throws Exception {
 		int row =0;
 		
@@ -126,17 +126,18 @@ public class RoomDAO {
 		Connection conn = DBHelper.getConnection();
 		
 		String sql = "UPDATE room_hotel SET room_grade =?, "
-				+ "room_price=?, room_max=?, room_state=?, room_img=?, update_date=NOW() "
+				+ "room_price=?, room_info=?, room_max=?, room_state=?, room_img=?, update_date=NOW() "
 				+ "WHERE room_no =? ";
 		
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, roomGrade);
 		stmt.setInt(2, roomPrice);
-		stmt.setInt(3, roomMax);
-		stmt.setString(4, roomState);
-		stmt.setString(5, fileName);
-		stmt.setInt(6, roomNo);
+		stmt.setString(3, roomInfo);
+		stmt.setInt(4, roomMax);
+		stmt.setString(5, roomState);
+		stmt.setString(6, fileName);
+		stmt.setInt(7, roomNo);
 		row = stmt.executeUpdate();
 		
 		conn.close();

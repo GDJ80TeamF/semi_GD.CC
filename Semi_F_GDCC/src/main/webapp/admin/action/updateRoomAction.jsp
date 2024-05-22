@@ -6,48 +6,62 @@
 <%@ page import="java.io.*" %>
 <%@ page import="java.nio.file.*" %>
 <%
-	System.out.println("=========================");
-	String roomGrade = request.getParameter("roomGrade");
-	System.out.println("=========================");
-	int roomPrice = Integer.parseInt(request.getParameter("roomPrice"));
-	System.out.println("=========================");
-	int roomMax = Integer.parseInt(request.getParameter("roomMax"));
-	String roomState = request.getParameter("roomState");
-	int roomNo = Integer.parseInt(request.getParameter("roomNo"));
-	
-	Part part = request.getPart("roomImg");
-	String originalName = part.getSubmittedFileName();
-	
-	// 원본이름에서 확장자만 분리
-    int dotIdx = originalName.lastIndexOf(".");
-    String ext = originalName.substring(dotIdx); // .png
-    
-    UUID uuid = UUID.randomUUID();
-    String fileName = uuid.toString().replace("-", "");
-    fileName = fileName + ext;
-	
-	System.out.println("roomGrade: " + roomGrade);
-	System.out.println("roomPrice: " + roomPrice);
-	System.out.println("roomMax: " + roomMax);
-	System.out.println("roomState: " + roomState);
-	System.out.println("roomImg: " + part);
+    int roomNo = Integer.parseInt(request.getParameter("roomNo"));
 	System.out.println("roomNo: " + roomNo);
+    String roomGrade = request.getParameter("roomGrade");
+    System.out.println("roomGrade: " + roomGrade);
+	String roomInfo = request.getParameter("roomInfo");
+	System.out.println("roomInfo: " + roomInfo);
 	
-	int row = RoomDAO.updateRoom(roomNo, roomGrade, roomPrice, roomMax, roomState, fileName);
-	
-		if(row == 1){
-			System.out.println("수정 성공");
-			InputStream is = part.getInputStream();
-			String filePath = request.getServletContext().getRealPath("/admin/upload");
-			File f = new File(filePath, fileName); // 빈파일
-			OutputStream os = Files.newOutputStream(f.toPath()); // os + file
-			is.transferTo(os);
-			
-			os.close();
-			is.close();
-			response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp");
-	}else{
-		System.out.println("수정 실패");
-		response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp?");
-	}
+    int roomPrice = Integer.parseInt(request.getParameter("roomPrice"));
+    System.out.println("roomPrice: " + roomPrice);
+    int roomMax = Integer.parseInt(request.getParameter("roomMax"));
+    System.out.println("roomMax: " + roomMax);
+    String roomState = request.getParameter("roomState");
+    System.out.println("roomState: " + roomState);
+    
+    Part part = request.getPart("roomImg");
+    String originalName = part.getSubmittedFileName();
+
+    String fileName = "";
+    if (originalName != null && !originalName.isEmpty()) {
+        // 원본이름에서 확장자만 분리
+        int dotIdx = originalName.lastIndexOf(".");
+        String ext = "";
+        
+        if (dotIdx != -1) {
+            ext = originalName.substring(dotIdx); // .png
+        }
+        
+        UUID uuid = UUID.randomUUID();
+        fileName = uuid.toString().replace("-", "") + ext;
+    }
+
+  /*   
+    System.out.println("roomInfo: " + roomInfo);
+    System.out.println("roomPrice: " + roomPrice);
+    System.out.println("roomMax: " + roomMax);
+    System.out.println("roomState: " + roomState);
+    System.out.println("roomImg: " + part);
+    System.out.println("roomNo: " + roomNo);
+    System.out.println("fileName: " + fileName); */
+    
+    int row = RoomDAO.updateRoom(roomNo, roomGrade, roomInfo, roomPrice, roomMax, roomState, fileName);
+    
+    if (row == 1) {
+        System.out.println("수정 성공");
+        if (originalName != null && !originalName.isEmpty()) {
+            InputStream is = part.getInputStream();
+            String filePath = request.getServletContext().getRealPath("admin/upload");
+            File f = new File(filePath, fileName); // 빈 파일
+            OutputStream os = Files.newOutputStream(f.toPath()); // os + file
+            is.transferTo(os);
+            os.close();
+            is.close();
+        }
+        response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp");
+    } else {
+        System.out.println("수정 실패");
+        response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp");
+    }
 %>

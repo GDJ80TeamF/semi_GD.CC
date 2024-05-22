@@ -85,13 +85,13 @@ a:hover {
 	</tr>
 	<tr>
 		<td>룸 이미지</td>
-		<td><img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>"></td>
+		<td><img src="/Semi_F_GDCC/admin/upload/<%=(String)(m.get("roomImg"))%>"></td>
 	</tr>
 		
 	</table>
 	<div style="text-align:center;margin-top:10px;margin-bottom:10px;">
 	<a href="/Semi_F_GDCC/admin/updateRoomForm.jsp?roomNo=<%=roomNo%>" class="btn btn-success">수정하기</a>
-	<a href="/Semi_F_GDCC/admin/adroomList.jsp" class="btn btn-success">돌아가기</a>
+	<a href="/Semi_F_GDCC/admin/roomList.jsp" class="btn btn-success">돌아가기</a>
 	</div>
 	</div>
 </body>

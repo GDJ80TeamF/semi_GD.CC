@@ -42,7 +42,7 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">HOTEL</a>
                 <ul class="dropdown-menu bg-success">
-                    <li><a href="/Semi_F_GDCC/admin/adroomList.jsp">호텔 룸</a></li>
+                    <li><a href="/Semi_F_GDCC/admin/roomList.jsp">호텔 룸</a></li>
                 
                     <li><a href="/Semi_F_GDCC/admin/complexList.jsp">부가 시설</a></li>
                    <li><a href="/Semi_F_GDCC/admin/bfMenuList.jsp">조식 메뉴</a></li>
