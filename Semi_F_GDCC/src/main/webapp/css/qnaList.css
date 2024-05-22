@@ -16,27 +16,45 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            color: #000; /* Set text color to black */
         }
 
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center; /* 텍스트 가운데 정렬 */
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #f2f2f2;
-        }
-
+        table th, table td {
+		    padding: 12px;
+		    text-align: left;
+		    border-bottom: 1px solid #ddd;
+		}
+		
+		table th {
+		    background-color: #f4f4f4;
+		    font-weight: bold;
+		}
+		
+		table tr:hover {
+		    background-color: #f1f1f1;
+		}
+		
+		thead th {
+		    padding: 12px; /* The same padding as tbody */
+		    line-height: 1.5; /* Adjust this value to match the line-height of tbody */
+		}
+		
+		tbody td {
+		    padding: 12px; /* Adjust padding as needed */
+		    line-height: 1.5; /* Adjust this value as needed */
+		    color: black !important;
+		    
+		}
+		
+		th:nth-child(2), td:nth-child(2) {
+		    width: 60%; /* Set width for the title column */
+		}
+		
+		th:nth-child(1), td:nth-child(1), 
+		th:nth-child(3), td:nth-child(3) {
+		    width: 10%; /* Set width for other columns */
+		}
+		
         a {
             text-decoration: none;
             color: #333;
