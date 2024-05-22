@@ -6,8 +6,11 @@
 <%@ page import="java.io.*" %>
 <%@ page import="java.nio.file.*" %>
 <%
+	System.out.println("=========================");
 	String roomGrade = request.getParameter("roomGrade");
+	System.out.println("=========================");
 	int roomPrice = Integer.parseInt(request.getParameter("roomPrice"));
+	System.out.println("=========================");
 	int roomMax = Integer.parseInt(request.getParameter("roomMax"));
 	String roomState = request.getParameter("roomState");
 	int roomNo = Integer.parseInt(request.getParameter("roomNo"));
@@ -35,7 +38,7 @@
 		if(row == 1){
 			System.out.println("수정 성공");
 			InputStream is = part.getInputStream();
-			String filePath = request.getServletContext().getRealPath("upload");
+			String filePath = request.getServletContext().getRealPath("/admin/upload");
 			File f = new File(filePath, fileName); // 빈파일
 			OutputStream os = Files.newOutputStream(f.toPath()); // os + file
 			is.transferTo(os);
