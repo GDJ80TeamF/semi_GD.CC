@@ -27,6 +27,15 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- 예약 버튼 -->
+    <style>
+   	.centered-container {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* 수직 중앙 정렬을 위한 선택 사항 */
+      height: 10vh; /* 전체 높이를 설정하여 수직 중앙 정렬을 확인할 수 있게 함 */
+    }
+    </style>
   </head>
   <body>
     
@@ -55,7 +64,7 @@
                         <%
 							  	if(session.getAttribute("loginCustomer") == null){
 						%>
-                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
                         	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
 							}else{
@@ -67,10 +76,9 @@
 							  	}
 						%>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -83,11 +91,11 @@
     </header>
     <!-- END head -->
 
-    <section class="site-hero overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+    <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_back.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span>   Hotel</span>
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To GODEE Hotel</span>
             <h1 class="heading">A Best Place To Stay</h1>
           </div>
         </div>
@@ -109,7 +117,9 @@
 			<!-- 에약 가능한지 확인 -->
             <form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
               <div class="row">
-             
+              
+             <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>
+                
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkinDate" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
@@ -124,36 +134,16 @@
                     <input type="date" name="checkoutDate" class="form-control">
                   </div>
                 </div>
-                
-                
-                <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
-                  <div class="row">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="adults" class="font-weight-bold text-black">Adults</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="adults" class="form-control">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="children" class="font-weight-bold text-black">Children</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="children" class="form-control">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
+                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  
                 </div>
+				<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+					
+				</div>	
+				<!-- 가능한 날짜 체크 -->
+              </div>
+              <div class="container centered-container">
+              
                 <div class="col-md-6 col-lg-3 align-self-end">
                   <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
                 </div>

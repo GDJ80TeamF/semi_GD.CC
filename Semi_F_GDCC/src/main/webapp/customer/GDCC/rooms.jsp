@@ -39,11 +39,15 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+    
+	<!-- 예약 버튼 -->
     <style>
-    	room_cover{
-    		width: 300px;
-   			height: 150px;
-    	}
+   	.centered-container {
+      display: flex;
+      justify-content: center;
+      align-items: center; /* 수직 중앙 정렬을 위한 선택 사항 */
+      height: 10vh; /* 전체 높이를 설정하여 수직 중앙 정렬을 확인할 수 있게 함 */
+    }
     </style>
   </head>
   <body>
@@ -68,25 +72,25 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
+                        <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
 							  	if(session.getAttribute("loginCustomer") == null){
 						%>
-                        	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
-                        	<li><a href="/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp">Join MemeberShip</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
 							}else{
 						%>
 							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
+							 
 						<%
 							  	}
 						%>
-                        <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -99,7 +103,7 @@
     </header>
     <!-- END head -->
 
-    <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+    <section class="site-hero inner-page overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/room_background.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
@@ -129,50 +133,26 @@
 
             <form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
               <div class="row">
+              <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkin_date" class="font-weight-bold text-black">Check In</label>
+                  <label for="checkinDate" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkin_date" class="form-control">
+                    <input type="date" id="checkinDate" class="form-control">
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkout_date" class="font-weight-bold text-black">Check Out</label>
+                  <label for="checkoutDate" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="text" id="checkout_date" class="form-control">
+                    <input type="date" id="checkoutDate" class="form-control">
                   </div>
                 </div>
-                <div class="col-md-6 mb-3 mb-md-0 col-lg-3">
-                  <div class="row">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="adults" class="font-weight-bold text-black">Adults</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="adults" class="form-control">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <label for="children" class="font-weight-bold text-black">Children</label>
-                      <div class="field-icon-wrap">
-                        <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                        <select name="" id="children" class="form-control">
-                          <option value="">1</option>
-                          <option value="">2</option>
-                          <option value="">3</option>
-                          <option value="">4+</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-3 align-self-end">
-                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                <!-- 예약 가능한지 체크하는 버튼 -->
+                <div class="container centered-container">
+                	<div class="col-md-6 col-lg-3 align-self-end">
+                  		<button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                	</div>
                 </div>
               </div>
             </form>
@@ -197,7 +177,7 @@
 		 <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
 		  <a href="/Semi_F_GDCC/customer/GDCC/roomOne.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>" class="room">
 		  	<figure class="img-wrap">
-                <img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
+                <img src="/Semi_F_GDCC/customer/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
               </figure>
           </a> 
               <div class="p-3 text-center room-info">

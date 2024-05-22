@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
- <head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sogo Hotel by Colorlib.com</title>
@@ -26,11 +26,11 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
- 
+    
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -48,21 +48,8 @@
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
                         <li><a href="index.html">Home</a></li>
-                        <%
-							  	if(session.getAttribute("loginCustomer") == null){
-						%>
-                        	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
-                        	<li><a href="/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp">Join MemeberShip</a></li>
-                        <%
-							}else{
-						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
-							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
-						<%
-							  	}
-						%>
                         <li><a href="rooms.html">Rooms</a></li>
-                        <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">About</a></li>
+                        <li class="active"><a href="about.html">About</a></li>
                         <li><a href="events.html">Events</a></li>
                         <li><a href="contact.html">Contact</a></li>
                         <li><a href="reservation.html">Reservation</a></li>
@@ -197,30 +184,6 @@
                     <img src="images/person_2.jpg" alt="">
                   </div>
                   <div class="name align-self-center">Jeffrey Neddery <span class="position">Marketing Director</span></div>
-                </div>
-              </div>
-            </div>
-          </div> <!-- .flip-container --> 
-        </div>
-         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="block-2"> <!-- .hover -->
-            <div class="flipper">
-              <div class="front" style="background-image: url(images/person_1.jpg);">
-                <div class="box">
-                  <h2>Jane Williams</h2>
-                  <p>Business Manager</p>
-                </div>
-              </div>
-              <div class="back">
-                <!-- back content -->
-                <blockquote>
-                  <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
-                </blockquote>
-                <div class="author d-flex">
-                  <div class="image mr-3 align-self-center">
-                    <img src="images/person_1.jpg" alt="">
-                  </div>
-                  <div class="name align-self-center">Jane Williams <span class="position">Business Manager</span></div>
                 </div>
               </div>
             </div>
@@ -393,5 +356,5 @@
     
 
     <script src="js/main.js"></script>
-</body>
+  </body>
 </html>

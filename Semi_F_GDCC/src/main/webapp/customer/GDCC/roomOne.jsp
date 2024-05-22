@@ -54,25 +54,25 @@
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
                       <ul class="list-unstyled menu">
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
+                       <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
 							  	if(session.getAttribute("loginCustomer") == null){
 						%>
-                        	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
-                        	<li><a href="/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp">Join MemeberShip</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
 							}else{
 						%>
 							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
+							 
 						<%
 							  	}
 						%>
-                        <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="reservation.html">Reservation</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -109,7 +109,7 @@
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
               <figure class="img-wrap">
-                <img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
+                <img src="/Semi_F_GDCC/customer/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
                 <h2><%=(String)(m.get("roomGrade"))%> Room</h2>
