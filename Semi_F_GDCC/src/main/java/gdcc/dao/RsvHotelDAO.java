@@ -349,4 +349,52 @@ public class RsvHotelDAO {
 		
 		return row;
 	}
+	//호출 : mainBoard.jsp
+	//param: X
+	//return: ArrayList<HashMap<String,Object>>
+	public static ArrayList<HashMap<String,Object>> checkinToday() throws Exception{
+		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT rh.*, c.cus_name,r.room_grade FROM rsv_hotel rh "
+				+ "INNER JOIN customer c ON rh.rsv_mail = c.cus_mail INNER JOIN room_hotel r ON rh.room_no = r.room_no "
+				+ "WHERE checkin_date = CURDATE() ORDER BY rh.rsv_no DESC LIMIT 5";
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			m.put("rsvNo", rs.getInt("rh.rsv_no"));
+			m.put("rsvName", rs.getString("c.cus_name"));
+			m.put("rsvGrade", rs.getString("r.room_grade"));
+			m.put("checkoutDate", rs.getString("rh.checkout_date"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+	}
+	//호출 : mainBoard.jsp
+	//param: X
+	//return: ArrayList<HashMap<String,Object>>
+	public static ArrayList<HashMap<String,Object>> checkoutToday() throws Exception{
+		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT rh.*, c.cus_name,r.room_grade FROM rsv_hotel rh "
+				+ "INNER JOIN customer c ON rh.rsv_mail = c.cus_mail INNER JOIN room_hotel r ON rh.room_no = r.room_no "
+				+ "WHERE checkout_date = CURDATE() ORDER BY rh.rsv_no DESC LIMIT 5";
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			m.put("rsvNo", rs.getInt("rh.rsv_no"));
+			m.put("rsvName", rs.getString("c.cus_name"));
+			m.put("rsvGrade", rs.getString("r.room_grade"));
+			m.put("checkinDate", rs.getString("rh.checkin_date"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+	}
 }
