@@ -95,7 +95,7 @@ select {
 						
 					</td>
 					<td>
-					<img src="/Semi_F_GDCC/upload/<%=(String)(m.get("roomImg"))%>">
+					<img src="/Semi_F_GDCC/admin/upload/<%=(String)(m.get("roomImg"))%>">
 					</td>
 					
 					<td><%=(String)(m.get("updateDate"))%></td>

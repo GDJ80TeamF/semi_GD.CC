@@ -15,6 +15,7 @@
 	
 	ArrayList<HashMap<String,Object>> list = RsvHotelDAO.checkinToday();
 	ArrayList<HashMap<String,Object>> list2 = RsvHotelDAO.checkoutToday();
+	ArrayList<HashMap<String,Object>> list3 = NoticeDAO.noticeListForMain();
 	
 %>
 <!DOCTYPE html>
@@ -25,12 +26,19 @@
 
 <link rel="stylesheet" href="./style.css">
 <style>
-h3,h4{
+h3,h5{
 	margin-left:20px;
 }
 table {
-  width: 50%;
+  width: 80%;
   border-collapse: collapse;
+  margin: 0 auto;
+}
+.tableNotice{
+	width: 90%;
+  border-collapse: collapse;
+  margin: 0 auto;
+
 }
 
 /* 테이블 헤더 스타일 */
@@ -64,6 +72,14 @@ a:hover {
   text-decoration: underline;
   color: #0056b3;
 }
+.title{
+	text-decoration:none;
+	color:black;
+}
+.title:hover{
+	text-decoration:none;
+	color: #0056b3;
+}
 </style>
 </head>
 <body>
@@ -71,10 +87,13 @@ a:hover {
 	<div class="main-container">
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
-	<h2 style="text-align:center;">메인보드</h2>
+	<h2 style="text-align:center;">MAIN</h2>
 	<hr>
+	<div>
+	<div style="float:left;width:50%;">
 	<h3><b>현재 예약 현황 >> </b></h3>
-	<h4>오늘 체크인 하시는 손님</h4>
+	<br>
+	<h5>오늘 체크인 하시는 손님</h5>
 	<div style="margin-left:20px;">
 	<div><a href="/Semi_F_GDCC/admin/rsvHotelList.jsp">전체 예약 확인 >> </a></div>
 	<br>
@@ -119,7 +138,7 @@ a:hover {
 	</table>
 	</div>
 	<br>
-	<h4>오늘 체크아웃 하시는 손님</h4>
+	<h5>오늘 체크아웃 하시는 손님</h5>
 	<div style="margin-left:20px;">
 	<div><a href="/Semi_F_GDCC/admin/rsvHotelList.jsp">전체 예약 확인 >> </a></div>
 	<br>
@@ -163,8 +182,59 @@ a:hover {
 	
 	</table>
 	</div>
+	</div>
+	<div style="float:right;width:50%">
+	<h3><b>현재 공지 >> </b></h3>
 	
+	<div>
+	<br>
+	<div style="margin-left:25px;"><a href="/Semi_F_GDCC/admin/noticeList.jsp">전체 공지 확인 >> </a></div>
+	<br>
+	<%
+	if(list3.size() == 0){
+	%>
+			<div>작성된 공지가 없습니다.</div>
+	<% 
+	}else{
+	%>
+	<table class="tableNotice">
+		<tr>
+			<th>공지번호 </th>
+			<th>게시자</th>
+			<th>제목</th>
+			
+		
+		</tr>
+		<tr>
+		<%
+			for(HashMap m :list3){
+		%>
+			<td><%=(Integer)m.get("noticeNo") %></td>
+			<td><%=(String)m.get("adminMail") %></td>
+			<td>
+			<a href="/Semi_F_GDCC/admin/noticeOne.jsp?noticeNo=<%=(Integer)m.get("noticeNo")%>" class="title"> 
+			<%=(String)m.get("noticeTitle")%>
+			</a>
+			</td>
+			</tr>
+		<% 
 	
+			}
+		
+			
+		%>
+	
+	<% 
+	}
+	
+	%>
+			
+
+	
+	</table>
+	</div>
+	</div>
+	</div>
 	
 	</div>
 	

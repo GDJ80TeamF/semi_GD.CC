@@ -20,6 +20,16 @@
 	// 공지 5개씩
 	int rowPerPage = 5;
 	int startRow = (currentPage-1) * rowPerPage;	
+	
+	//전체 행 개수 구하기 
+	int totalRow = NoticeDAO.countNotice();
+	
+	int lastPage = totalRow / rowPerPage; 
+	
+	//마지막 페이지가 안떨어질때를 위해서 분기
+	if(totalRow % rowPerPage != 0) {
+		lastPage = lastPage + 1;
+	   }
 %>
 
 <%
@@ -127,6 +137,21 @@ a:hover {
 		</table>
 	<div style="text-align:center;">
 	<a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminMail=<%=(String)(loginAdmin.get("adminMail"))%>" class="btnn">글 작성하기</a>
+	</div>
+	<div>														
+		<%
+			if(currentPage > 1){			
+		%>
+			<a href="/Semi_F_GDCC/admin/noticeList.jsp?currentPage=1">FIRST</a>
+			<a href="/Semi_F_GDCC/admin/noticeList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+		<%						
+			}if(currentPage < lastPage){
+		%>
+			<a href="/Semi_F_GDCC/admin/noticeList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
+			<a href="/Semi_F_GDCC/admin/noticeList.jsp?currentPage=<%=lastPage%>">LAST</a>
+		<%
+			}					
+		%>		
 	</div>
 	</div>
 </body>

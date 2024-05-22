@@ -149,5 +149,49 @@ public class NoticeDAO {
 		   conn.close();
 		   return row;
 	   }
+	// 공지 리스트
+		public static ArrayList<HashMap<String, Object>> 
+			noticeListForMain()throws Exception{
+			
+			ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+			
+			Connection conn1 = DBHelper.getConnection();
+			
+			String sql1 = "SELECT notice_no noticeNo, admin_mail adminMail, "
+					+ "notice_title noticeTitle, notice_content noticeContent "
+					+ "FROM notice "
+					+ "ORDER BY noticeNo DESC LIMIT 8";
+			
+			PreparedStatement stmt1 = conn1.prepareStatement(sql1);
+			
+			
+			ResultSet rs1 = stmt1.executeQuery();
+			
+			while(rs1.next()) {
+				HashMap<String, Object> m1 = new HashMap<String, Object>();
+				m1.put("noticeNo", rs1.getInt("noticeNo"));
+				m1.put("adminMail", rs1.getString("adminMail"));
+				m1.put("noticeTitle", rs1.getString("noticeTitle"));
+				m1.put("noticeContent", rs1.getString("noticeContent"));
+				list.add(m1);
+			}
+			
+			conn1.close();
+			return list;
+		}
+		//공지페이징 -총 행 개수 구하기 
+		public static int countNotice() throws Exception{
+			int totalRow = 0;
+			Connection conn = DBHelper.getConnection();
+			String sql = "SELECT COUNT(*) cnt FROM notice";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				totalRow = rs.getInt("cnt");
+			}
+			conn.close();
+			return totalRow;
+		}
 	  
 }

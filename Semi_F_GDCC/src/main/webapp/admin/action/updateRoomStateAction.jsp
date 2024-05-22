@@ -10,9 +10,9 @@
 	int row = RoomDAO.updateRoomState(roomNo, roomState);
 	if(row == 1){
 		System.out.println("상태 업데이트 성공");
-		response.sendRedirect("/Semi_F_GDCC/admin/adroomList.jsp");
+		response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp");
 	}else{
 		System.out.println("상태 업데이트 실패");
-		response.sendRedirect("/Semi_F_GDCC/admin/adroomList.jsp");
+		response.sendRedirect("/Semi_F_GDCC/admin/roomList.jsp");
 	}
 %>
