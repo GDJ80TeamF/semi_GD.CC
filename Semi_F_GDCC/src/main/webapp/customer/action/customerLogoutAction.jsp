@@ -3,6 +3,6 @@
 	System.out.println("session.invalidate()" +  session.getId());
 	session.invalidate();	// 세션 초기화(포맷)
 	System.out.println("session.invalidate()" +  session.getId());
-	response.sendRedirect("/Semi_F_GDCC/customer/GDCC/main.jsp");
+	response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
 	System.out.println("로그아웃 성공");
 %>

@@ -100,7 +100,8 @@
 						<%
 							  	}
 						%>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
@@ -197,6 +198,9 @@
 					</a>
 					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp">
 						MyQnA
+					</a>
+					<a href="/Semi_F_GDCC/customer/golf/rsvGolfList.jsp">
+						골프예약확인
 					</a>
 				</div>
 				<br>

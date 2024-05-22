@@ -55,7 +55,34 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 <head>
 <meta charset="UTF-8">
 <title>라운딩예약하기</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GDCC Hotel by Colorlib.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="css/fancybox.min.css">
+    
+    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+<!-- 여기가 원래 css쟈리 -->
 <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertNewRsvForm.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">
 </head>
 	<!-- 캘린더 API가져오기 -->
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
@@ -91,9 +118,75 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 		});
     </script>
 <body>
-<div class="title">
-	<h1>BOOKING</h1>
-</div>
+<header class="site-header js-site-header">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-8">
+
+
+            <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <!-- END menu-toggle -->
+            <div class="site-navbar js-site-navbar">
+              <nav role="navigation">
+                <div class="container">
+                  <div class="row full-height align-items-center">
+                    <div class="col-md-6 mx-auto">
+                    <!-- ë©ë´ë° -->
+                      <ul class="list-unstyled menu">
+                        <li class="active"><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Home</a></li>
+                        <%
+                          if(session.getAttribute("loginCustomer") == null){
+                  %>
+                           <li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                           <li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
+                        <%
+                     }else{
+                  %>
+                      <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
+                      <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
+                      
+                  <%
+                          }
+                  %>
+                        <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Restaurant</a></li>      
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+ </header>
+    <!-- END head -->
+  <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/css/img/grand.jpg)" data-stellar-background-ratio="0.5">
+  
+        <div class="row site-hero-inner justify-content-center align-items-center">
+          <div class="col-md-10 text-center" data-aos="fade-up">
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
+            <h1 class="heading">BOOKING</h1>
+          </div>
+        </div>
+
+  		<a class="mouse smoothscroll" href="#next">
+		   	<div class="mouse-icon">
+		   		<span class="mouse-wheel"></span>
+		 	</div>
+		</a>
+	
+  </section>
+
 <div class="container">
 	<div class="content">
 		<div id='calendar'> </div>
@@ -102,17 +195,19 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 		<%
 			if(checkSession == null){
 		%>
-			<span>원하는 날을 선택해주세요</span>
+			<span style="color : orange; font-weight: bold;">원하는 날을 선택해주세요</span>
 				<br><hr>
 					<form method="post" action="/Semi_F_GDCC/customer/action/checkDateCourseAction.jsp">
+					<br>
 						<label for="date">
-							라운딩 날짜
+							날짜
 						</label>
 					<input type="date" id="date" name="rsvDateCheck" min="<%=today %>" >
 				<br>
 					<label for="course">
 						시작코스
 					</label>
+					<br>
 					<input type="radio" id="course" name="rsvCourseCheck" value="IN"> IN코스
 					<input type="radio" id="course" name="rsvCourseCheck" value="OUT"> OUT코스
 				<br>
@@ -130,7 +225,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 						if(checkSession != null && checkSession.equals("T")){
 							//checkSession이 null이라는 것은 date랑 course를 체크했다는 것! 
 					%>
-						<span>원하는 날을 선택해주세요</span>
+				<span>원하는 날을 선택해주세요</span>
 					<br><hr>
 							<label for="date">
 					                라운딩 날짜
@@ -206,7 +301,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					        <label for="mail">
 					       	 	고객 mail
 					        </label>
-					        <input type="text" id = "mail" name="rsvMail" value="<%=cusMail%>">
+					        <input type="text" id = "mail" name="rsvMail" value="<%=cusMail%>" style="width : 200px;">
 				        <br>
 					        <label for = "member">
 					        	동반인원
@@ -221,7 +316,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					     		요청사항
 					        </label>
 					    <br>
-					        <textarea rows="3" cols="20"></textarea>
+					        <textarea rows="3" cols="30"></textarea>
 						<br>
 						<button type="submit">예약하기</button>
 					<%
@@ -231,5 +326,17 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 			</form>	
 		</div><!-- content2 -->
 	</div><!-- container마지막 -->	
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.stellar.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script> 
+    <script src="js/jquery.timepicker.min.js"></script> 
+    <script src="js/main.js"></script> 
 </body>
 </html>

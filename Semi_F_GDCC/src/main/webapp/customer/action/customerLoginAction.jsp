@@ -16,7 +16,7 @@
 	if(loginCustomer != null){
 		System.out.println("로그인 성공");
 		session.setAttribute("loginCustomer", loginCustomer);  
-		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/main.jsp");
+		response.sendRedirect("/Semi_F_GDCC/welcome.jsp");
 	}else{
 		System.out.println("로그인 실패");
 		String errMsg = URLEncoder.encode("아이디 비밀번호 확인해주세요." ,"utf-8");

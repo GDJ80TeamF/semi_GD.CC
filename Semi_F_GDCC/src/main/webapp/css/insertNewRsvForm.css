@@ -1,26 +1,47 @@
 @charset "UTF-8";
 
+
+	body{
+		font-family: "Gowun Dodum", sans-serif;
+		margin: 0;
+   		padding: 0;
+	}
 	.title{
-		text-align: center;
+		display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+        max-width: 50%; /* 수정된 부분 */
+        margin: 0 auto; /* 가운데 정렬을 위해 추가 */
+        margin-bottom: 20px;
+        margin-top: 20px;
+        color : gray;
 	}
 	.container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-/*             height: 100vh; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       	height: 90vh; 
+       	margin-top: 50px;
         }
     .content {
-        width: 27%; /* 내용의 너비를 조절 */
-        height : 60%;
+        width: 38%; /* 내용의 너비를 조절 */
+        height : 100%;       
     }
     .content2 {
     	width: 20%; /* 내용의 너비를 조절 */
-        height : 60%;
+        height : 100%;
     }
-
+	span{
+		font-size: 20px;
+		font-weight: bold;
+		color: orange;
+	}
 	#calendar {
-	  width: 400px; /* 부모 요소인 .container에 맞게 캘린더의 너비를 조절합니다. */
-	  height: 400px; /* 원하는 높이로 조절합니다. */
+	  width: 400px;
+	  height: 450px; 
+	  font-weight: bold;
+	  color : black;
 	}
 	::-webkit-scrollbar {
 	    display: none; /* Safari 및 Chrome 등 Webkit 기반 브라우저 */
