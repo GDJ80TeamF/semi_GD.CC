@@ -1,25 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="gdcc.dao.RoomDAO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.HashMap"%>
+<%@ page import="java.util.*" %>
+<%@ page import="gdcc.dao.*" %>
 <%
-	int currentPage = 1;
-	if(request.getParameter("currentPage") != null){
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	}
-	// 공지 5개씩
-	int rowPerPage = 5;
-	int startRow = (currentPage-1) * rowPerPage;
+	//인증 분기 세션 변수 이름 : loginCustomer
+		if(session.getAttribute("loginCustomer") == null){
+			response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+			return;
+		}
+		HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 	 
+		
+		String cusMail = (String)(login.get("cusMail"));
+	
+
 %>
 <%
-	ArrayList<HashMap<String, Object>> List = RoomDAO.selectRoom(startRow, rowPerPage);
+	String checkinDate = request.getParameter("checkinDate");
+	if(checkinDate == null){
+		checkinDate = " ";
+	}
+	String checkoutDate = request.getParameter("checkoutDate");
+	if(checkoutDate == null){
+		checkoutDate = " ";
+	}
+	System.out.println(checkinDate);
+	System.out.println(checkoutDate);
+
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>GDCC Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -39,9 +52,8 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-    
-	<!-- 예약 버튼 -->
-    <style>
+    <!-- 예약 버튼 -->
+      <style>
    	.centered-container {
       display: flex;
       justify-content: center;
@@ -49,10 +61,10 @@
       height: 10vh; /* 전체 높이를 설정하여 수직 중앙 정렬을 확인할 수 있게 함 */
     }
     </style>
+   
   </head>
-  <body>
-    
-    <header class="site-header js-site-header">
+<body>
+ <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
@@ -71,17 +83,18 @@
                 <div class="container">
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
+                    <!-- ë©ë´ë° -->
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
 							  	if(session.getAttribute("loginCustomer") == null){
 						%>
-                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
                         	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%
@@ -89,6 +102,7 @@
 						%>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">Q&A</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
@@ -102,17 +116,123 @@
       </div>
     </header>
     <!-- END head -->
-
-    <section class="site-hero inner-page overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/room_background.jpg)" data-stellar-background-ratio="0.5">
+     <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_back.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
-          <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">Rooms</h1>
-            <ul class="custom-breadcrumbs mb-4">
-              <li><a href="index.html">Home</a></li>
-              <li>&bullet;</li>
-              <li>Rooms</li>
-            </ul>
+          <div class="col-md-10 text-center" data-aos="fade-up">
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To GODEE Hotel</span>
+             <section class="section bg-light pb-0"  >
+      <div class="container">
+       
+        <div class="row check-availabilty" id="next">
+          <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+			<!-- 에약 가능한지 확인 -->
+            <form method="post" action="/Semi_F_GDCC/customer/GDCC/checkRoomList.jsp">
+              <div class="row">
+              
+             <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>
+                
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  <label for="checkinDate" class="font-weight-bold text-black">Check In</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="icon-calendar"></span></div>
+                    <input type="date" name="checkinDate" class="form-control">
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  <label for="checkoutDate" class="font-weight-bold text-black">Check Out</label>
+                  <div class="field-icon-wrap">
+                    <div class="icon"><span class="icon-calendar"></span></div>
+                    <input type="date" name="checkoutDate" class="form-control">
+                  </div>
+                </div>
+                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+                  
+                </div>
+				<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+					
+				</div>	
+				<!-- 가능한 날짜 체크 -->
+              </div>
+              <div class="container centered-container">
+              
+                <div class="col-md-6 col-lg-3 align-self-end">
+                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+            
+            <%
+
+	if(checkinDate == " " && checkoutDate == " "){
+%>
+	<form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
+	<table>
+		<tr>
+			<td>예약일시</td>
+			<td><input type="date" name="checkinDate" id="checkinDate"> ~ <input type="date" name="checkoutDate" id="checkoutDate"></td>
+		</tr>
+	</table>
+	
+	<button type="submit">예약 가능한 룸 확인하기!  </button>
+	</form>
+
+
+<% 
+	}else{
+%>
+	<form method="post" action="/Semi_F_GDCC/customer/hotel/insertNewRsvAction.jsp">
+	
+			<div>예약 일시:
+			<input type="text" name="checkinDate" value="<%=checkinDate%>" readonly>
+			 ~ 
+			<input type="text" name="checkoutDate" value="<%=checkoutDate%>" readonly></div>
+
+			<div>룸 선택:</div>
+			
+			<%
+				ArrayList<HashMap<String,Object>> rooms = RsvHotelDAO.selectRoomList(checkinDate, checkoutDate);
+				for(HashMap<String,Object> m:rooms){
+			%>
+			
+			<input type="radio" name="roomNo" value="<%=(Integer)m.get("roomNo") %>">
+			<div>룸 번호 : <%=(Integer)m.get("roomNo") %> </div>
+			<div>룸 등급 : <%=(String)m.get("roomGrade") %> </div>
+			<div>룸 가격 :<%=(Integer)m.get("roomPrice") %></div>
+			<div><%=(String)m.get("roomInfo") %></div>
+			<div><img src="/Semi_F_GDCC/upload/<%=(String)m.get("roomImg") %>" width="400" height="300"></div>
+			
+
+			
+			
+			
+			<%
+					
+				}
+			
+			%>
+			
+			<div>예약자 아이디 : <input type="text" value="<%=cusMail%>" readonly name="rsvMail"></div>
+			
+			<div>동반 인원 수 : <input type="number" name="rsvMember" min="1" max="4"></div>
+			
+			<div>요청 사항 : <textarea rows="5" cols="40" name="rsvRequest"></textarea></div>
+	
+	<div><button type="submit">예약하기! </button></div>
+	</form>
+
+
+
+<%
+	}
+
+%>
           </div>
         </div>
       </div>
@@ -125,120 +245,7 @@
     </section>
     <!-- END section -->
 
-    <section class="section pb-4">
-      <div class="container">
-       
-        <div class="row check-availabilty" id="next">
-          <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
-            <form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
-              <div class="row">
-              <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkinDate" class="font-weight-bold text-black">Check In</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkinDate" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkoutDate" class="font-weight-bold text-black">Check Out</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkoutDate" class="form-control">
-                  </div>
-                </div>
-                <!-- 예약 가능한지 체크하는 버튼 -->
-                <div class="container centered-container">
-                	<div class="col-md-6 col-lg-3 align-self-end">
-                  		<button class="btn btn-primary btn-block text-white">Check Availabilty</button>
-                	</div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
-
-    
-
-        <!-- 룸 리스트 -->	
-    <section class="section">
-      <div class="container">
-        <div class="row">
-        
-         <%
-				for(HashMap<String, Object> m : List){
-					
-		%>
-		 <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-		  <a href="/Semi_F_GDCC/customer/GDCC/roomOne.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>" class="room">
-		  	<figure class="img-wrap">
-                <img src="/Semi_F_GDCC/admin/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-          </a> 
-              <div class="p-3 text-center room-info">
-                <h2><%=(String)(m.get("roomGrade"))%> Room</h2>
-                <span class="text-uppercase letter-spacing-1"><%=(Integer)(m.get("roomPrice"))%>₩ / per night</span>
-              </div>
-          </div>
-		<%
-				}
-		%>
-        </div>
-      </div>
-    </section>
-
-    
-    <section class="section bg-light">
-
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade">Great Offers</h2>
-            <p data-aos="fade">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          </div>
-        </div>
-      
-        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
-          <a href="#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
-          <div class="text">
-            <span class="d-block mb-4"><span class="display-4 text-primary">250000₩</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
-            <h2 class="mb-4">Family Room(Mountain)</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
-          </div>
-        </div>
-        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="200">
-          <a href="#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
-          <div class="text order-1">
-            <span class="d-block mb-4"><span class="display-4 text-primary">300000₩</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
-            <h2 class="mb-4">Family Room(Ocean)</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-      <div class="container" >
-        <div class="row align-items-center">
-          <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-            <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
-          </div>
-          <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <footer class="section footer-section">
+	 <footer class="section footer-section">
       <div class="container">
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
@@ -308,5 +315,7 @@
     
 
     <script src="js/main.js"></script>
+	
+
 </body>
 </html>

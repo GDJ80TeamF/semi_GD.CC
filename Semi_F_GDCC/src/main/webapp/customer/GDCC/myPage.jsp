@@ -127,103 +127,31 @@
          
           <div style="background-color:white;">
 		
-            <h1 class="heading">	<h1> my Page</h1></h1>
-			<%-- <div>
-				<%=profile.get("cusProfile") %>
-			</div> --%>
+            
+			
 			 <div class="mb-3 mt-3">
-				<table>
-					<tr>
-						<th>
-							프로필
-						</th>
-						<td>
-							<img src="/Semi_F_GDCC/customer/upload/<%=profile.get("cusProfile")%>" width="100" height="100">
-						</td>
-					</tr>
-					<tr>
-						<th>
-							고객mail
-						</th>
-						<td>
-							<%=profile.get("cusMail") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							성함
-						</th>
-						<td>
-							<%=profile.get("cusName") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							연락처
-						</th>
-						<td>
-							<%=profile.get("cusContact") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							성별
-						</th>
-						<td>
-							<%=profile.get("cusGender") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							생년월일
-						</th>
-						<td>
-							<%=profile.get("cusBirth") %>
-						</td>
-					</tr>
-				</table>
-				
-				<div>
-					<a href="/Semi_F_GDCC/customer/updateMyInfoForm.jsp"> 
-						프로필 변경하기
-					</a>
-					<a href="/Semi_F_GDCC/customer/updatePwForm.jsp">
-						비밀번호 변경하기
-					</a>
-					<a href="/Semi_F_GDCC/customer/deleteCustomerForm.jsp">
-						회원탈퇴하기
-					</a>
-					<a href="/Semi_F_GDCC/customer/reviewListPerCustomer.jsp">
-						my후기
-					</a>
-					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp">
-						MyQnA
-					</a>
-					<a href="/Semi_F_GDCC/customer/golf/rsvGolfList.jsp">
-						골프예약확인
-					</a>
-				</div>
-				<br>
-				<div>
+      <div>
 					<table border="1">
+							<%
+								for(HashMap<String, Object> m : List){
+							%>
 						<tr>
 							<th>예약 번호</th>
 							<th>룸 번호</th>
 							<th>예약자 아이디 </th>
 						</tr>
 						<tr>
-							<%
-								for(HashMap<String, Object> m : List){
-							%>
 								<td><a href="/Semi_F_GDCC/customer/hotel/cusRsvHotelOne.jsp?rsvNo=<%=m.get("rsvNo")%>"><%=m.get("rsvNo")%></a></td>
 								<td><%=(Integer)m.get("roomNo")%></td>
 								<td><%=cusMail%></td>
+						</tr>
 							<%
 								}
 							%>
-						</tr>
 					</table>
 				</div>
+				
+				
           </div>
         </div>
       </div>

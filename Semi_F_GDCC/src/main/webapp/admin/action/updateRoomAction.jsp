@@ -36,15 +36,6 @@
         UUID uuid = UUID.randomUUID();
         fileName = uuid.toString().replace("-", "") + ext;
     }
-
-  /*   
-    System.out.println("roomInfo: " + roomInfo);
-    System.out.println("roomPrice: " + roomPrice);
-    System.out.println("roomMax: " + roomMax);
-    System.out.println("roomState: " + roomState);
-    System.out.println("roomImg: " + part);
-    System.out.println("roomNo: " + roomNo);
-    System.out.println("fileName: " + fileName); */
     
     int row = RoomDAO.updateRoom(roomNo, roomGrade, roomInfo, roomPrice, roomMax, roomState, fileName);
     

@@ -23,7 +23,7 @@
                     <p>Golf Club</p>
                 </div>
                 <div class="circle-item">
-                    <a href="/Semi_F_GDCC/customer/GDCC/golfMain.jsp" class="circle">
+                    <a href="/Semi_F_GDCC/customer/GDCC/main.jsp" class="circle">
                         <img src="/Semi_F_GDCC/css/img/hotel.jpg" alt="호텔">
                     </a>
                     <p>Hotel</p>

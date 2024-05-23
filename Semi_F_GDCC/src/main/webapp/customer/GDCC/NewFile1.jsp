@@ -1,22 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="gdcc.dao.RoomDAO"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="gdcc.dao.QnaDAO"%>
+<%@page import="gdcc.dao.NoticeDAO"%>
 <%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	int currentPage = 1;
-	if(request.getParameter("currentPage") != null){
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	}
-	// 공지 5개씩
-	int rowPerPage = 5;
-	int startRow = (currentPage-1) * rowPerPage;
+   HashMap<String,Object> loginMember 
+   = (HashMap<String,Object>)(session.getAttribute("loginCustomer"));
+   
+   String cusMail = request.getParameter("cusMail");
+   System.out.println(cusMail+ "<<==cusMail");
+   
+   
+   int currentPage = 1;
+   if(request.getParameter("currentPage") != null) {
+      currentPage = Integer.parseInt(request.getParameter("currentPage"));
+   }
+   
+   int rowPerPage = 10;
+   int startRow = (currentPage-1) * rowPerPage;
+   //페이징 lastPage 구하는 dao 호출 
+   int lastPage = QnaDAO.page();
+   System.out.println(lastPage + "<--lastPage QnAList param");
+   
+   //QnA리스트 출력하는 메서드
+   ArrayList<HashMap<String, Object>> list = QnaDAO.selectQnAList(startRow, rowPerPage);
 %>
-<%
-	ArrayList<HashMap<String, Object>> List = RoomDAO.selectRoom(startRow, rowPerPage);
-%>
+
 <!DOCTYPE html>
 <html>
-<head>
+ <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sogo Hotel by Colorlib.com</title>
@@ -39,16 +51,6 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-    
-	<!-- 예약 버튼 -->
-    <style>
-   	.centered-container {
-      display: flex;
-      justify-content: center;
-      align-items: center; /* 수직 중앙 정렬을 위한 선택 사항 */
-      height: 10vh; /* 전체 높이를 설정하여 수직 중앙 정렬을 확인할 수 있게 함 */
-    }
-    </style>
   </head>
   <body>
     
@@ -103,15 +105,15 @@
     </header>
     <!-- END head -->
 
-    <section class="site-hero inner-page overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/room_background.jpg)" data-stellar-background-ratio="0.5">
+    <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">Rooms</h1>
+            <h1 class="heading mb-3">Notice</h1>
             <ul class="custom-breadcrumbs mb-4">
               <li><a href="index.html">Home</a></li>
               <li>&bullet;</li>
-              <li>Rooms</li>
+              <li>Notice</li>
             </ul>
           </div>
         </div>
@@ -125,119 +127,125 @@
     </section>
     <!-- END section -->
 
-    <section class="section pb-4">
-      <div class="container">
-       
-        <div class="row check-availabilty" id="next">
-          <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
-
-            <form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
-              <div class="row">
-              <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkinDate" class="font-weight-bold text-black">Check In</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkinDate" class="form-control">
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
-                  <label for="checkoutDate" class="font-weight-bold text-black">Check Out</label>
-                  <div class="field-icon-wrap">
-                    <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkoutDate" class="form-control">
-                  </div>
-                </div>
-                <!-- 예약 가능한지 체크하는 버튼 -->
-                <div class="container centered-container">
-                	<div class="col-md-6 col-lg-3 align-self-end">
-                  		<button class="btn btn-primary btn-block text-white">Check Availabilty</button>
-                	</div>
-                </div>
-              </div>
-            </form>
-          </div>
-
-
-        </div>
-      </div>
-    </section>
-
-    
-
-        <!-- 룸 리스트 -->	
-    <section class="section">
-      <div class="container">
-        <div class="row">
+    <section class="section blog-post-entry bg-light" id="next">
+      <%-- <div class="container">
         
-         <%
-				for(HashMap<String, Object> m : List){
-					
-		%>
-		 <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
-		  <a href="/Semi_F_GDCC/customer/GDCC/roomOne.jsp?roomNo=<%=(Integer)(m.get("roomNo"))%>" class="room">
-		  	<figure class="img-wrap">
-                <img src="/Semi_F_GDCC/admin/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
-              </figure>
-          </a> 
-              <div class="p-3 text-center room-info">
-                <h2><%=(String)(m.get("roomGrade"))%> Room</h2>
-                <span class="text-uppercase letter-spacing-1"><%=(Integer)(m.get("roomPrice"))%>₩ / per night</span>
-              </div>
-          </div>
-		<%
+        <div class="row">
+       
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12 post mb-5" data-aos="fade-up" data-aos-delay="200">
+            <div class="media media-custom d-block mb-4 h-100">
+            
+              <div class="media-body">
+               <%
+				for(HashMap<String, Object>  m : List){
+			%>
+				<tr>
+					<td>
+						<a href="/Semi_F_GDCC/customer/cunoticeOne.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>">
+						<%=(Integer)(m.get("noticeNo"))%></a>
+					</td>
+					<h2>공지<%=(Integer)(m.get("noticeNo"))%></h2>
+					<td><a href="/Semi_F_GDCC/customer/cunoticeOne.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>"><%=(String)(m.get("noticeTitle"))%></a></td>
+					<td></td>
+				</tr>
+			<%
 				}
-		%>
+			%>
+              </div>
+            </div>
+          </div>
+        
+</div> --%>
+     <div class="container">
+    <h1>QnA 게시판</h1>
+    <a href="/Semi_F_GDCC/customer/insertQnAForm.jsp" class="write-button">글 쓰기</a>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>NO.</th>
+            <th>제목</th>
+            <th>작성자</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+           for(HashMap m : list) { 
+        %>
+            <tr>
+                <td>
+                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+                        <%=(Integer)(m.get("qnaNo"))%>
+                    </a>
+                </td>
+                <td>
+                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+                        <%=(String)(m.get("qnaTitle"))%>
+                    </a>
+                </td>
+                <td>
+                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+                        <%=(String)(m.get("cusMail"))%>
+                    </a>
+                </td>
+            </tr>
+        <%
+           }
+        %>
+        </tbody>
+    </table>
+    <hr style="margin-top: 20px;">
+    <!-- 페이징 버튼 -->
+    <div class="pagination">
+        <%
+           if(currentPage > 1){ 
+        %>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=1"> &nbsp;<< 처음 페이지 </a>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a>                   
+        <%
+           }
+        %>
+        <%
+           if(currentPage < lastPage){ 
+        %>   
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=currentPage+1%>"> 다음 >&nbsp; </a>
+            <a href="/Semi_F_GDCC/customer/QnAList.jsp?currentPage=<%=lastPage%>"> 마지막 페이지 >>&nbsp;</a>
+        <%
+           }
+        %>
+    </div>
+</div>
+        <div class="row" data-aos="fade">
+          <div class="col-12">
+            <div class="custom-pagination">
+              <ul class="list-unstyled">
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><span>...</span></li>
+                <li><a href="#">30</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     
-    <section class="section bg-light">
-
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-7">
-            <h2 class="heading" data-aos="fade">Great Offers</h2>
-            <p data-aos="fade">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          </div>
-        </div>
-      
-        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="100">
-          <a href="#" class="image d-block bg-image-2" style="background-image: url('images/img_1.jpg');"></a>
-          <div class="text">
-            <span class="d-block mb-4"><span class="display-4 text-primary">250000₩</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
-            <h2 class="mb-4">Family Room(Mountain)</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
-          </div>
-        </div>
-        <div class="site-block-half d-block d-lg-flex bg-white" data-aos="fade" data-aos-delay="200">
-          <a href="#" class="image d-block bg-image-2 order-2" style="background-image: url('images/img_2.jpg');"></a>
-          <div class="text order-1">
-            <span class="d-block mb-4"><span class="display-4 text-primary">300000₩</span> <span class="text-uppercase letter-spacing-2">/ per night</span> </span>
-            <h2 class="mb-4">Family Room(Ocean)</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary text-white">Book Now</a></p>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
+    
     <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-      <div class="container" >
-        <div class="row align-items-center">
-          <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-            <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
-          </div>
-          <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-            <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+        <div class="container" >
+          <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
+              <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
+            </div>
+            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
+              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    
+      </section>
+
     <footer class="section footer-section">
       <div class="container">
         <div class="row mb-4">
