@@ -7,5 +7,5 @@
 	System.out.println("checkinDate: " + checkinDate);
 	System.out.println("checkoutDate: " + checkoutDate);
 
-	response.sendRedirect("/Semi_F_GDCC/customer/hotel/insertNewRsvForm.jsp?checkinDate="+checkinDate+"&checkoutDate="+checkoutDate);
+	response.sendRedirect("/Semi_F_GDCC/customer/GDCC/insertNewRsvForm.jsp?checkinDate="+checkinDate+"&checkoutDate="+checkoutDate);
 %>

@@ -116,7 +116,7 @@
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 			<!-- 에약 가능한지 확인 -->
-            <form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
+            <form method="post" action="/Semi_F_GDCC/customer/GDCC/checkRoomList.jsp">
               <div class="row">
               
              <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>

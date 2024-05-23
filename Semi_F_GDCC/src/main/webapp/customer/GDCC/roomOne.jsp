@@ -109,7 +109,7 @@
         <div class="row">
           <div class="col-md-6 col-lg-4 mb-5" data-aos="fade-up">
               <figure class="img-wrap">
-                <img src="/Semi_F_GDCC/customer/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
+                <img src="/Semi_F_GDCC/admin/upload/<%=(String)(m.get("roomImg"))%>" alt="Free website template" class="img-fluid mb-3">
               </figure>
               <div class="p-3 text-center room-info">
                 <h2><%=(String)(m.get("roomGrade"))%> Room</h2>
