@@ -37,13 +37,11 @@
 <%
 	ArrayList<HashMap<String, Object>> List = RsvHotelDAO.rsvList(startRow, rowPerPage);
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+ <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GDCC Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -63,6 +61,7 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+<title>myPage</title>
 </head>
 <body>
 <header class="site-header js-site-header">
@@ -101,7 +100,8 @@
 						<%
 							  	}
 						%>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
@@ -117,7 +117,7 @@
       </div>
     </header>
     <!-- END head -->
-      <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
+    <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
@@ -126,21 +126,9 @@
             <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
          
           <div style="background-color:white;">
-		
-            
-			<%-- <div>
-				<%=profile.get("cusProfile") %>
-			</div> --%>
-			 <div class="mb-3 mt-3">
+				 <div class="mb-3 mt-3">
 				<table>
-					<tr>
-						<th>
-							프로필
-						</th>
-						<td>
-							<img src="/Semi_F_GDCC/customer/upload/<%=profile.get("cusProfile")%>" width="100" height="100">
-						</td>
-					</tr>
+					
 					<tr>
 						<th>
 							고객mail
@@ -165,58 +153,10 @@
 							<%=profile.get("cusContact") %>
 						</td>
 					</tr>
-					<tr>
-						<th>
-							성별
-						</th>
-						<td>
-							<%=profile.get("cusGender") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							생년월일
-						</th>
-						<td>
-							<%=profile.get("cusBirth") %>
-						</td>
-					</tr>
+
 				</table>
-				
-				<div>
-					<a href="/Semi_F_GDCC/customer/updateMyInfoForm.jsp"> 
-						프로필 변경하기
-					</a>
-					<a href="/Semi_F_GDCC/customer/updatePwForm.jsp">
-						비밀번호 변경하기
-					</a>
-					<a href="/Semi_F_GDCC/customer/deleteCustomerForm.jsp">
-						회원탈퇴하기
-					</a>
-					<a href="/Semi_F_GDCC/customer/reviewListPerCustomer.jsp">
-						my후기
-					</a>
-					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp">
-						MyQnA
-					</a>
-					<a href="/Semi_F_GDCC/customer/golf/rsvGolfList.jsp">
-						골프예약확인
-					</a>
-					<a href="/Semi_F_GDCC/customer/GDCC/rsvHotelList.jsp">호텔예약확인</a>
-				</div>
-          </div>
-        </div>
-      </div>
-</div>
-</div>
-   </div>
-</section>
-    <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row site-hero-inner justify-content-center align-items-center">
-          <div class="col-md-10 text-center" data-aos="fade-up">
-            <div>
-					<table border="1">
+
+				<table border="1">
 							<%
 								for(HashMap<String, Object> m : List){
 							%>
@@ -234,23 +174,19 @@
 								}
 							%>
 					</table>
-				</div>
-          </div>
+
+
+				<br>
+				<div>
+			 
         </div>
       </div>
+</div>
+</div>
+   </div>
+</section>
 
-      <a class="mouse smoothscroll" href="#next">
-        <div class="mouse-icon">
-          <span class="mouse-wheel"></span>
-        </div>
-      </a>
-    </section>
-    <!-- END section -->
-    
-
-<h1>호텔 예약 리스트</h1>
-				
-	<script src="js/jquery-3.3.1.min.js"></script>
+			 <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -267,6 +203,5 @@
     
 
     <script src="js/main.js"></script>
-    
 </body>
 </html>
