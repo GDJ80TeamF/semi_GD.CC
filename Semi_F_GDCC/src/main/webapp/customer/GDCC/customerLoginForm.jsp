@@ -64,10 +64,12 @@
 				  </div>
 				  <button type="submit" class="btn btn-primary">로그인</button>
 				</form>
-			<a href="/Semi_F_GDCC/customer/findIdForm.jsp">
+				  <br>
+			<a href="/Semi_F_GDCC/customer/findIdForm.jsp" style="text-decoration-line: none; color: black;">
 				ID찾기
 			</a>
-			<a href="/Semi_F_GDCC/customer/findPwForm.jsp">
+				&nbsp;
+			<a href="/Semi_F_GDCC/customer/findPwForm.jsp" style="text-decoration-line: none; color: black;">
 				비밀번호 찾기
 			</a>
 					</div>
