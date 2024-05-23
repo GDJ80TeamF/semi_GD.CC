@@ -7,7 +7,8 @@
    }
 
    .container {
-       width: 80%;
+       width: 80% !important; /* 전체 너비의 80%로 설정 */
+       max-width: 2000px; /* 최대 너비를 1200px로 설정 */
        margin: 0 auto;
        padding: 20px;
        background-color: #fff;

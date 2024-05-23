@@ -19,7 +19,7 @@ public class QnaDAO {
 		String sql = " SELECT qna_no qnaNo, cus_mail cusMail, qna_title qnaTitle, "
 					+ " qna_content qnaContent, create_date createDate, update_date updateDate "
 					+ " FROM qna "
-					+ " WHERE cus_mail = ? ";
+					+ " WHERE cus_mail = ? ORDER BY create_date DESC ";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, cusMail);

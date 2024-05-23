@@ -83,6 +83,7 @@
                           <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
                       </ul>
                     </div>
                   </div>
@@ -123,7 +124,7 @@
 	    <h1>QnA 상세보기</h1>
 	    <table>
 	        <tr>
-	            <th style="width: 2%;">No.</th>
+	            <th style="width: 3%;">No.</th>
 	            <td><%=(Integer)(map.get("qnaNo"))%></td>
 	        </tr>
 	        <tr>
@@ -142,7 +143,7 @@
 	        		<%=(String)(map.get("qnaContent"))%></td>
 	        </tr>      		
 	        <tr>
-	        	<th>작성일</th>
+	        	<th style="width: 2%;">작성일</th>
 	        	<td><%=(String)(map.get("createDate"))%></td>
 	        </tr>
 	        <tr>                                              
@@ -156,9 +157,9 @@
 	    <h1>QnA 댓글</h1>
 	    <table>
 	        <tr>
-	            <th>No.</th>
-	            <th>댓글 내용</th>
-	            <th>작성일</th>
+	            <th style="width: 10%;">No.</th>
+	            <th style="width: 80%;">댓글 내용</th>
+	            <th style="width: 10%;">작성일</th>
 	        </tr>
 	        <%
 	            for(HashMap m : list) { 

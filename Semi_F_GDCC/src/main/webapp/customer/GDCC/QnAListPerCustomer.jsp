@@ -7,7 +7,7 @@
 
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") == null){
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
 		return;
 	}
 %>
@@ -53,7 +53,7 @@
 <!----------------------  템플릿 ------------------------>
 <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/qnaListPerCustomer.css">
 </head>
-<body class="image">
+<body>
 <!----------------------  템플릿 ------------------------>
 <header class="site-header js-site-header">
       <div class="container-fluid">
@@ -93,6 +93,7 @@
                           <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
                       </ul>
                     </div>
                   </div>
@@ -104,11 +105,12 @@
       </div>
 </header>
 <!-- END head -->
-
+<br><br>
 <!----------------------  템플릿 ------------------------>
 <section class="section blog-post-entry bg-light" id="next">
+ 	<h1>MY QnA</h1>
 	<div class="container">
-	       <h1>MY QnA</h1>
+	      
 	       <table border="1">
 	           <tr>
 	               <th>NO.</th>
@@ -126,13 +128,22 @@
 	                   <td><%=(Integer)(m.get("qnaNo"))%></td>
 	                   <td><%=(String)(m.get("cusMail"))%></td>
 	                   <td><%=(String)(m.get("qnaTitle"))%></td>
-	                   <td><%=(String)(m.get("qnaContent"))%></td>
+	                   <td>
+						   <%
+						     String qnaContent = (String)(m.get("qnaContent"));
+						     if (qnaContent != null && qnaContent.length() > 5) { // 내용길이가 5글자보다 크면
+						         out.print(qnaContent.substring(0, 5) + "...");	  // 5글자까지 출력 + "..."
+						     } else {
+						         out.print(qnaContent);
+						     }
+						   %>
+					   </td>
 	                   <td><%=(String)(m.get("createDate"))%></td>
 	                   <td><%=(String)(m.get("updateDate"))%></td>
 	                   <td>
-	                       <a class="update" href="/Semi_F_GDCC/customer/updateQnAForm.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">수정</a>
+	                       <a class="update" href="/Semi_F_GDCC/customer/GDCC/updateQnAForm.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">수정</a>
 	                       <br>
-	                       <a class="delete" href="/Semi_F_GDCC/customer/action/deleteQnAAction.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">삭제</a>
+	                       <a class="delete" href="/Semi_F_GDCC/customer/GDCC/deleteQnAAction.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">삭제</a>
 	                   </td>
 	               </tr>
 	           <%

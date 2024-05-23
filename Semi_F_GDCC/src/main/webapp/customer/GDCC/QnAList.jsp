@@ -100,6 +100,7 @@
                           <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
                       </ul>
                     </div>
                   </div>
@@ -137,7 +138,7 @@
 <section class="section blog-post-entry bg-light" id="next">
 	<div class="container">
 	    <h1>QnA 게시판</h1>
-	    <a href="/Semi_F_GDCC/customer/insertQnAForm.jsp" class="write-button">글 쓰기</a>
+	    <a href="/Semi_F_GDCC/customer/GDCC/insertQnAForm.jsp" class="write-button">글 쓰기</a>
 	    <hr>
 	    <table>
 	        <thead>
@@ -153,17 +154,17 @@
 	        %>
 	            <tr>
 	                <td>
-	                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+	                    <a href="/Semi_F_GDCC/customer/GDCC/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
 	                        <%=(Integer)(m.get("qnaNo"))%>
 	                    </a>
 	                </td>
 	                <td>
-	                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+	                    <a href="/Semi_F_GDCC/customer/GDCC/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
 	                        <%=(String)(m.get("qnaTitle"))%>
 	                    </a>
 	                </td>
 	                <td>
-	                    <a href="/Semi_F_GDCC/customer/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
+	                    <a href="/Semi_F_GDCC/customer/GDCC/QnAOne.jsp?qnaNo=<%=(Integer)(m.get("qnaNo"))%>">
 	                        <%=(String)(m.get("cusMail"))%>
 	                    </a>
 	                </td>
@@ -179,16 +180,16 @@
 	        <%
 	        	if(currentPage > 1){ 
 	        %>
-	            <a href="/Semi_F_GDCC/customer/QnA-master/QnAList.jsp?currentPage=1"> &nbsp;<< 처음 페이지 </a>
-	            <a href="/Semi_F_GDCC/customer/QnA-master/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a>                   
+	            <a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp?currentPage=1"> &nbsp;<< 처음 페이지 </a>
+	            <a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a>                   
 	        <%
 	        	}
 	        %>
 	        <%
 	        	if(currentPage < lastPage){ 
 	        %>   
-	            <a href="/Semi_F_GDCC/customer/QnA-master/QnAList.jsp?currentPage=<%=currentPage+1%>"> 다음 >&nbsp; </a>
-	            <a href="/Semi_F_GDCC/customer/QnA-master/QnAList.jsp?currentPage=<%=lastPage%>"> 마지막 페이지 >>&nbsp;</a>
+	            <a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp?currentPage=<%=currentPage+1%>"> 다음 >&nbsp; </a>
+	            <a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp?currentPage=<%=lastPage%>"> 마지막 페이지 >>&nbsp;</a>
 	        <%
 	        	}
 	        %>

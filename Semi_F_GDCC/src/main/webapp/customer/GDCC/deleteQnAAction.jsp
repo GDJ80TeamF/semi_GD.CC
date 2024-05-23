@@ -13,10 +13,10 @@
 	
 	if(row == 1){
 		System.out.println("삭제성공");
-		response.sendRedirect("/Semi_F_GDCC/customer/QnAList.jsp"); //성공시
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/QnAList.jsp"); //성공시
 	} else {
 		System.out.println("삭제실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/QnAListPerCustomer.jsp"); //실패시			
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/QnAListPerCustomer.jsp"); //실패시			
 	}
 
 %>
