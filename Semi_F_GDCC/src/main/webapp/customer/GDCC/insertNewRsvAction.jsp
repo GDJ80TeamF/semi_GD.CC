@@ -24,10 +24,10 @@
 	int row = RsvHotelDAO.insertRsv(roomNo, checkinDate, checkoutDate, rsvMail, rsvMember, rsvRequest);
 	if(row != 0){
 		System.out.println("호텔 예약 성공!");
-		response.sendRedirect("/Semi_F_GDCC/customer/myPage.jsp?cusMail="+rsvMail);
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/myPage.jsp?cusMail="+rsvMail);
 	}else{
 		System.out.println("호텔 예약 실패!");
-		response.sendRedirect("/Semi_F_GDCC/customer/myPage.jsp?cusMail="+rsvMail);
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/myPage.jsp?cusMail="+rsvMail);
 	}
 
 

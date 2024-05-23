@@ -105,7 +105,6 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -125,15 +124,15 @@
             
             <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
          
-          <div style="background-color:white;">
-				 <div class="mb-3 mt-3">
+          <div style="background-color:white; padding:40px; border-radius:10px;">
+				 <div class="mb-3 mt-3;">
 				<table>
 					<tr>
 						<th>
 							프로필
 						</th>
 						<td>
-							<img src="/Semi_F_GDCC/customer/upload/<%=profile.get("cusProfile")%>" width="100" height="100">
+							<img src="/Semi_F_GDCC/customer/upload/<%=profile.get("cusProfile")%>" width="200" height="200" style="border-radius:50%;">
 						</td>
 					</tr>
 					<tr>

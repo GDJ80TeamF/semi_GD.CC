@@ -67,12 +67,12 @@
                         <%
 							  	if(session.getAttribute("loginCustomer") == null){
 						%>
-                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
                         	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%
@@ -81,7 +81,6 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -137,7 +136,7 @@
 <%
 				}
 %>
-        <div class="row" data-aos="fade">
+        <!-- <div class="row" data-aos="fade">
           <div class="col-12">
             <div class="custom-pagination">
               <ul class="list-unstyled">
@@ -149,8 +148,7 @@
               </ul>
             </div>
           </div>
-        </div>
-      </div>
+        </div> -->
     </section>
 
     

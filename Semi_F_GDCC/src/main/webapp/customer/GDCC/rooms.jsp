@@ -19,7 +19,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sogo Hotel by Colorlib.com</title>
+    <title>GGDCC Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -131,21 +131,21 @@
         <div class="row check-availabilty" id="next">
           <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
 
-            <form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
+            <form method="post" action="/Semi_F_GDCC/customer/GDCC/checkRoomList.jsp">
               <div class="row">
               <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkinDate" class="font-weight-bold text-black">Check In</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkinDate" class="form-control">
+                    <input type="date" name="checkinDate" class="form-control">
                   </div>
                 </div>
                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
                   <label for="checkoutDate" class="font-weight-bold text-black">Check Out</label>
                   <div class="field-icon-wrap">
                     <div class="icon"><span class="icon-calendar"></span></div>
-                    <input type="date" id="checkoutDate" class="form-control">
+                    <input type="date" name="checkoutDate" class="form-control">
                   </div>
                 </div>
                 <!-- 예약 가능한지 체크하는 버튼 -->

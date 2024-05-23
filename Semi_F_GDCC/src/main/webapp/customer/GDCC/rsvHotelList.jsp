@@ -166,7 +166,7 @@
 							<th>예약자 아이디 </th>
 						</tr>
 						<tr>
-								<td><a href="/Semi_F_GDCC/customer/hotel/cusRsvHotelOne.jsp?rsvNo=<%=m.get("rsvNo")%>"><%=m.get("rsvNo")%></a></td>
+								<td><a href="/Semi_F_GDCC/customer/GDCC/cusRsvHotelOne.jsp?rsvNo=<%=m.get("rsvNo")%>"><%=m.get("rsvNo")%></a></td>
 								<td><%=(Integer)m.get("roomNo")%></td>
 								<td><%=cusMail%></td>
 						</tr>

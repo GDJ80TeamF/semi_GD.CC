@@ -72,7 +72,6 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -141,7 +140,7 @@
 		<%
 			if((m.get("roomState")).equals("투숙가능")){
 		%>
-			<a href="/Semi_F_GDCC/customer/hotel/insertNewRsvForm.jsp">예약하기</a>
+			<a href="/Semi_F_GDCC/customer/GDCC/insertNewRsvForm.jsp">예약하기</a>
 		<%
 			}
 		%>

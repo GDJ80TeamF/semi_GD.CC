@@ -94,7 +94,6 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">Q&A</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -119,69 +118,132 @@
           </div>
         </div>
       </div>
-    
-<%
-
-	if(checkinDate == " " && checkoutDate == " "){
-%>
-	<form method="post" action="/Semi_F_GDCC/customer/hotel/checkRoomList.jsp">
-	<table>
-		<tr>
-			<td>예약일시</td>
-			<td><input type="date" name="checkinDate" id="checkinDate"> ~ <input type="date" name="checkoutDate" id="checkoutDate"></td>
-		</tr>
-	</table>
-	
-	<button type="submit">예약 가능한 룸 확인하기!  </button>
-	</form>
-
-
-<% 
-	}else{
-%>
-	<form method="post" action="/Semi_F_GDCC/customer/hotel/insertNewRsvAction.jsp">
-	
-			<div>예약 일시:
-			<input type="text" name="checkinDate" value="<%=checkinDate%>" readonly>
-			 ~ 
-			<input type="text" name="checkoutDate" value="<%=checkoutDate%>" readonly></div>
-
-			<div>룸 선택:</div>
+	<section class="section">
+      <div class="container">
+      <div class="col-md-6 mb-3 mb-lg-0 col-lg-3"></div>
+                
+                
 			
 			<%
-				ArrayList<HashMap<String,Object>> rooms = RsvHotelDAO.selectRoomList(checkinDate, checkoutDate);
-				for(HashMap<String,Object> m:rooms){
+			
+				if(checkinDate == " " && checkoutDate == " "){
 			%>
-			
-			<input type="radio" name="roomNo" value="<%=(Integer)m.get("roomNo") %>">
-			<div>룸 번호 : <%=(Integer)m.get("roomNo") %> </div>
-			<div>룸 등급 : <%=(String)m.get("roomGrade") %> </div>
-			<div>룸 가격 :<%=(Integer)m.get("roomPrice") %></div>
-			<div><%=(String)m.get("roomInfo") %></div>
-			<div><img src="/Semi_F_GDCC/admin/upload/<%=(String)m.get("roomImg") %>" width="400" height="300"></div>
-			
-
-			
-			
-			
-			<%
+				<form method="post" action="/Semi_F_GDCC/customer/GDCC/checkRoomList.jsp">
+					<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+	                  <label for="checkinDate" class="font-weight-bold text-black">Check In</label>
+	                  <div class="field-icon-wrap">
+	                    <div class="icon"><span class="icon-calendar"></span></div>
+	                    <input type="date" name="checkinDate" class="form-control">
+	                  </div>
+	                </div>
+	                <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+	                  <label for="checkoutDate" class="font-weight-bold text-black">Check Out</label>
+	                  <div class="field-icon-wrap">
+	                    <div class="icon"><span class="icon-calendar"></span></div>
+	                    <input type="date" name="checkoutDate" class="form-control">
+	                  </div>
+	                </div>
+	                 <div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+	                  
+	                </div>
+					<div class="col-md-6 mb-3 mb-lg-0 col-lg-3">
+						
+					</div>	
 					
-				}
+						<!-- 가능한 날짜 체크 -->
+	              </div>
+	              <div class="container centered-container">
+	              
+	                <div class="col-md-6 col-lg-3 align-self-end">
+	                  <button class="btn btn-primary btn-block text-white">Check Availabilty</button>
+	                </div>
+	              </div>
+				</form>
 			
+			
+			<% 
+				}else{
 			%>
+				
+				<form method="post" action="/Semi_F_GDCC/customer/GDCC/insertNewRsvAction.jsp">
+				<table>
+				<tr>
+					<th>
+						예약 일시:
+						<input type="text" name="checkinDate" value="<%=checkinDate%>" readonly>
+						 ~ 
+						<input type="text" name="checkoutDate" value="<%=checkoutDate%>" readonly>
+					</th>
 			
-			<div>예약자 아이디 : <input type="text" value="<%=cusMail%>" readonly name="rsvMail"></div>
+				<tr>
+				<tr>
+					<th>
+						룸 선택:
+						<%
+							ArrayList<HashMap<String,Object>> rooms = RsvHotelDAO.selectRoomList(checkinDate, checkoutDate);
+							for(HashMap<String,Object> m:rooms){
+						%>
+						
+					</th>
+				</tr>
+				<tr>
+					<td rowspan="2"></td>
+				</tr>
+				<tr>
+					
+				</tr>
+				<tr>
+					<td><input type="radio" name="roomNo" value="<%=(Integer)m.get("roomNo") %>"></td>
+				</tr>		
+				<tr>	
+					<th>룸 번호 : <%=(Integer)m.get("roomNo") %> </th>
+					
+				</tr>
+				
+				<tr>
+					<th>룸 등급 : <%=(String)m.get("roomGrade") %> </th>
+				</tr>
+				<tr>
+					<th>룸 가격 :<%=(Integer)m.get("roomPrice") %></th>
+				</tr>
+				<tr>
+					<th><%=(String)m.get("roomInfo") %></th>
+				</tr>
+				<tr>
+					<th><img src="/Semi_F_GDCC/admin/upload/<%=(String)m.get("roomImg") %>" width="400" height="300"></th>
+						
+						
+				</tr>
 			
-			<div>동반 인원 수 : <input type="number" name="rsvMember" min="1" max="4"></div>
-			
-			<div>요청 사항 : <textarea rows="5" cols="40" name="rsvRequest"></textarea></div>
-	
-	<div><button type="submit">예약하기! </button></div>
+							<br>
+						<%
+								
+							}
+						%>
+						
+				<tr>
+				<th>예약자 아이디 : <input type="text" value="<%=cusMail%>" readonly name="rsvMail"></th>
+				</tr>
+				<tr>
+				<th>동반 인원 수 : <input type="number" name="rsvMember" min="1" max="4"></th>
+				</tr>
+				<tr>
+				<th>요청 사항 : <br>
+				<textarea rows="5" cols="40" name="rsvRequest"></textarea></th>
+				</tr>
+				<tr>
+				<td><button type="submit" class="btn btn-primary">예약하기! </button></td>
+			</tr>
+		</table>
 	</form>
+			
 <%
 	}
 
-%>
+%>		
+              </div>
+    </section> 
+
     <!-- END section -->
 
 	 <footer class="section footer-section">
@@ -254,7 +316,13 @@
     
 
     <script src="js/main.js"></script>
-	
+				
+				
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 </body>
 </html>
