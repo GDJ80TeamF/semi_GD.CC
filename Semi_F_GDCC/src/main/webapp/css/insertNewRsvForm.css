@@ -25,17 +25,24 @@
        	margin-top: 50px;
         }
     .content {
-        width: 38%; /* 내용의 너비를 조절 */
-        height : 100%;       
+        width: 40%; /* 내용의 너비를 조절 */
+        height : 90%;       
     }
     .content2 {
-    	width: 20%; /* 내용의 너비를 조절 */
-        height : 100%;
+    	width: 30%; /* 내용의 너비를 조절 */
+        height : 90%;
     }
 	span{
 		font-size: 20px;
 		font-weight: bold;
 		color: orange;
+	}
+	label{
+		font-weight: bold;
+	}
+	.box{
+		text-align: center;
+		margin-bottom: 20px;
 	}
 	#calendar {
 	  width: 400px;

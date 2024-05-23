@@ -27,8 +27,8 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
 <!-- 원래 css자리 -->
- <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/aboutCourse.css">
- <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/aboutCourse.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">
 

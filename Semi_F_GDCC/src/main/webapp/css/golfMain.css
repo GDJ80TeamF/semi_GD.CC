@@ -1,0 +1,20 @@
+@charset "UTF-8";	
+
+	.weather{
+		margin-top: 50px;
+	}
+	.SeoulNowtemp{
+		font-family: "Dongle", sans-serif;
+		font-size: 50px;
+		color : ivory;
+	}
+	.SeoulLowtemp{
+		font-family: "Dongle", sans-serif;
+		font-size: 30px;
+		color : ivory;
+	}
+	.SeoulWindSpeed{
+		font-family: "Dongle", sans-serif;
+		font-size: 50px;
+		color : ivory;
+	}

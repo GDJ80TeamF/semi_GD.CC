@@ -24,6 +24,30 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- 날씨 부분 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+		    $(document).ready(function(){
+		        // 서울 날씨 정보 가져오기
+		        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric", function(data){
+		            var temperature = data.main.temp;
+		            var minTemperature = data.main.temp_min;
+		            var weatherIcon = data.weather[0].icon;
+		            var windSpeed = data.wind.speed;
+		
+		         
+		            $(".SeoulNowtemp").text("기온: " + temperature + "°C");
+		            $(".SeoulLowtemp").text("최저 기온: " + minTemperature + "°C");
+		            $(".SeoulWindSpeed").text("풍속: " + windSpeed + " m/s");
+		            $(".SeoulIcon").html("<img src='http://openweathermap.org/img/w/" + weatherIcon + ".png'>");
+		        });
+		    });
+		</script>
+		<!-- css추가 -->
+		<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/golfMain.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
 </head>
 <body>
 <!-- 헤드 로고 & 메뉴 토글 들어가는 부분 -->
@@ -87,6 +111,14 @@
           <div class="col-md-10 text-center" data-aos="fade-up">
             <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
             <h1 class="heading">GooDee Country Club</h1>
+            <!-- 추가 -->
+            <div class="weather">
+				<h3 class="SeoulIcon"></h3><!-- 아이콘 -->
+				<h3 class="SeoulNowtemp"></h3><!-- 현재기온 -->
+				<h3 class="SeoulWindSpeed"></h3><!-- 풍속 -->
+				<h3 class="SeoulLowtemp"></h3><!-- 최저기온 -->
+            </div>
+			<!--  -->
           </div>
         </div>
       </div>

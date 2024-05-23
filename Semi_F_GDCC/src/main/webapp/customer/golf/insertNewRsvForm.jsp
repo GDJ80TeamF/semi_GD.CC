@@ -57,6 +57,10 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 <title>라운딩예약하기</title>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>GDCC Hotel by Colorlib.com</title>
+    <!-- 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 템플릿 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -186,7 +190,6 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 		</a>
 	
   </section>
-
 <div class="container">
 	<div class="content">
 		<div id='calendar'> </div>
@@ -195,7 +198,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 		<%
 			if(checkSession == null){
 		%>
-			<span style="color : orange; font-weight: bold;">원하는 날을 선택해주세요</span>
+			<span style="color : orange; font-weight: bold;">⬅️원하는 날을 선택해주세요</span>
 				<br><hr>
 					<form method="post" action="/Semi_F_GDCC/customer/action/checkDateCourseAction.jsp">
 					<br>
@@ -211,7 +214,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					<input type="radio" id="course" name="rsvCourseCheck" value="IN"> IN코스
 					<input type="radio" id="course" name="rsvCourseCheck" value="OUT"> OUT코스
 				<br>
-					<button type="submit">T-TIME확인하기</button>
+					<button type="submit" class="btn btn-warning">T-TIME확인하기</button>
 				</form>
 			<%
 				}else{
@@ -225,7 +228,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 						if(checkSession != null && checkSession.equals("T")){
 							//checkSession이 null이라는 것은 date랑 course를 체크했다는 것! 
 					%>
-				<span>원하는 날을 선택해주세요</span>
+				<span>원하는 날짜를 선택하세요</span>
 					<br><hr>
 							<label for="date">
 					                라운딩 날짜
@@ -238,9 +241,10 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					            <input type="radio" id="course" name="rsvCourse" value="<%= checkCourse %>" checked="checked">
 					            	<%=checkCourse %>코스
 					      <br>
-					      		<label>
-					      			T-TIME체크하기
-					      		</label>
+					      		
+					      			<label>
+					      				가능 T-TIME 
+					      			</label>
 					      <br>
 					         <% 
 					         	HashSet<Integer> set = new HashSet<Integer>();
@@ -318,7 +322,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					    <br>
 					        <textarea rows="3" cols="30"></textarea>
 						<br>
-						<button type="submit">예약하기</button>
+						<button type="submit" class="btn btn-warning">예약하기</button>
 					<%
 						}
 					%>
@@ -326,6 +330,9 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 			</form>	
 		</div><!-- content2 -->
 	</div><!-- container마지막 -->	
+<div class="box">
+ 	회원권 관련 문의는 02-818-7950로 연락부탁드립니다. 
+</div>
 
 	<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>

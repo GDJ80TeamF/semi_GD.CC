@@ -1,23 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="gdcc.dao.*"%>
-<%@ page import = "java.sql.*" %>
-<%@ page import="java.util.*" %>
-<%	
-	 //rsvNo넘어오나 확인->디버깅확인완료
-	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
-		System.out.println(rsvNo + "<==rsvGolfOne.rsvNo");
-		
-	//rsvNo로 예약상세 불러오기->확인
-	
-	HashMap<String,Object> rsvList = RsvGolfDAO.selectRsvOne(rsvNo);
-		System.out.println(rsvList + "<==rsvGolfOne.rsvList");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GDCC Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
@@ -31,15 +18,49 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
-    
+
     <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-<title>myPage</title>
+    <!-- 날씨 부분 -->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" 
+    integrity="sha384-vuFJ2JiSdUpXLKGK+tDteQZBqNlMwAjhZ3TvPaDfN9QmbPb7Q8qUpbSNapQev3YF" 
+    crossorigin="anonymous">
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		 <script type="text/javascript">     
+		 $(document).ready(function() {      
+			 let weatherIcon = {        
+					 '01' : 'fas fa-sun',        
+					 '02' : 'fas fa-cloud-sun',        
+					 '03' : 'fas fa-cloud',        
+					 '04' : 'fas fa-cloud-meatball',        
+					 '09' : 'fas fa-cloud-sun-rain',       
+					 '10' : 'fas fa-cloud-showers-heavy',        
+					 '11' : 'fas fa-poo-storm',       
+					 '13' : 'far fa-snowflake',        
+					 '50' : 'fas fa-smog'      };     
+			 $.ajax({    url:'http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric',     
+					 dataType:'json',    
+					 type:'GET',    
+					 success:function(data){     
+						 var $Icon = (data.weather[0].icon).substr(0,2);      
+						 var $Temp = Math.floor(data.main.temp) + 'º';      
+						 var $city = data.name;       
+						 $('.CurrIcon').append('<i class="' + weatherIcon[$Icon] +'"></i>');     
+						 $('.CurrTemp').prepend($Temp);      $('.City').append($city);      }    })    });  
+		 </script>
+		<!-- css추가 -->
+		<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/golfMain.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- 헤드 로고 & 메뉴 토글 들어가는 부분 -->
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -63,25 +84,26 @@
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
-							  	if(session.getAttribute("loginCustomer") == null){
-						%>
-                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
-                        	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
+                          if(session.getAttribute("loginCustomer") == null){
+                  %>
+                           <li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                           <li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
-							}else{
-						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
-							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
-							 
-						<%
-							  	}
-						%>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
+                     }else{
+                  %>
+                      <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
+                      <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
+
+                  <%
+                          }
+                  %>
+                        <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">CLUB Restaurant</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">날씨확인하기</a></li>
+
                       </ul>
                     </div>
                   </div>
@@ -92,135 +114,88 @@
         </div>
       </div>
     </header>
-    <!-- END head -->
-    <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
+    <!-- END head 배경이미지 안에 들어가는 문구 -->
+<section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/css/img/grand.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
-            <div class="container">
-            
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
-         
-          <div style="background-color:white;">
-		
-            <h1 class="heading">	<h1> </h1></h1>
-			<%-- <div>
-				<%=profile.get("cusProfile") %>
-			</div> --%>
-			 <div class="mb-3 mt-3">
-				<div class="content">
-		<div>
-		<h1>예약상세보기</h1>
-			<table>
-				<tr>
-					<th>예약하신 e-mail</th>
-					<td><%=rsvList.get("rsvMail") %></td>
-				</tr>
-				<tr>
-					<th>라운딩 날짜</th>
-					<td><%=rsvList.get("rsvDate") %></td>
-				</tr>
-				<tr>
-					<th>시작코스</th>
-					<td><%=rsvList.get("rsvCourse") %></td>
-				</tr>
-				<tr>
-					<th>T-TIME</th>
-					<td>
-						<%
-							// rsvTtime을 정수로 바꿔주기
-							int rsvTtime = Integer.parseInt((String) rsvList.get("rsvTtime"));
-							
-							// rsvTtime enum에 따라서 시간에 맞춰서 출력
-							switch (rsvTtime) {
-							    case 1:
-							        out.print("11:00");
-							        break;
-							    case 2:
-							        out.print("11:15");
-							        break;
-							    case 3:
-							        out.print("11:30");
-							        break;
-							    case 4 :
-							    	out.print("11:45");
-							    	break;
-							    case 5 :
-							    	out.print("12:00");
-							    	break;
-							    case 6 :
-							    	out.print("12:15");
-							    	break;
-							    case 7 :
-							    	out.print("12:30");
-							    	break;
-							    case 8 :
-							    	out.print("12:45");
-							    	break;
-							    case 9 :
-							    	out.print("13:00");
-							    	break;
-							}
-						%>					
-					</td>
-				</tr>
-				<tr>
-					<th>요청사항</th>
-					<td>
-						<%
-							if(rsvList.get("rsvRequest") == null){	
-						%>
-								요청사항이 없습니다
-						<%
-							}else{
-						%>
-								<%=rsvList.get("rsvRequest") %>
-						<%
-							}
-						%>	
-					</td>
-				</tr>
-				<tr>
-					<th>라운딩 인원</th>
-					<td><%=rsvList.get("rsvMember") %></td>
-				</tr>
-				<tr>
-					<th>예약상태</th>
-					<td><%=rsvList.get("rsvState") %></td>
-				</tr>
-			</table>
-		<a href="/Semi_F_GDCC/customer/golf/updateRsvForm.jsp?rsvNo=<%=rsvNo%>">
-			예약변경신청
-		</a>
-		<a href="/Semi_F_GDCC/customer/golf/rsvCancelForm.jsp?rsvNo=<%=rsvNo%>"">
-			예약취소
-		</a>
-	</div>
-	</div><!-- 여기까지 box -->
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
+            <h1 class="heading">GooDee Country Club</h1>
+            <!-- 추가 -->
+            <div class="weather">      
+	            <div class="CurrIcon"></div>      
+	            <div class="CurrTemp"></div>      
+	            <div class="City"></div>
+            </div>
+			<!--  -->
           </div>
         </div>
       </div>
-</div>
-</div>
-   </div>
 </section>
-
-			 <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- END section -->
+     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
-    
-    
     <script src="js/aos.js"></script>
-    
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
-
-    
-
     <script src="js/main.js"></script>
+<!-- <!-- footer부분 -->    
+<footer class="section footer-section">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+             <li><a href="#">Rooms</a></li>0
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">The Rooms &amp; Suites</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Restaurant</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5 pr-md-5 contact-info">
+            <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li>
+            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 198 West 21th Street, <br> Suite 721 New York NY 10016</span></p>
+            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
+            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
+          </div>
+          <div class="col-md-3 mb-5">
+            <p>Sign up for our newsletter</p>
+            <form action="#" class="footer-newsletter">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email...">
+                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <p class="col-md-6 text-left">
+            Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+          </p>
+            
+          <p class="col-md-6 text-right social">
+            <a href="#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="#"><span class="fa fa-facebook"></span></a>
+            <a href="#"><span class="fa fa-twitter"></span></a>
+            <a href="#"><span class="fa fa-linkedin"></span></a>
+            <a href="#"><span class="fa fa-vimeo"></span></a>
+          </p>
+        </div>
+      </div>
+</footer>
 </body>
 </html>
