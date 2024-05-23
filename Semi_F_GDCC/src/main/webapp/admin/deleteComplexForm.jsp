@@ -6,7 +6,7 @@
 		response.sendRedirect("/Semi_F_GDCC/admin/adminLoginForm.jsp");
 		return;
 	}
-	// 로그린
+	// 로그인 
 	HashMap<String,Object> loginAdmin = (HashMap<String,Object>) (session.getAttribute("loginAdmin"));
 %>  
 <%
@@ -37,18 +37,36 @@
 <head>
 <meta charset="UTF-8">
 <title>complex 삭제 폼</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+/* 입력 필드 스타일 */
+input[type=text],input[type=password] {
+  width: 20%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+</style>
 </head>
 <body>
 <jsp:include page="/admin/sidebar.jsp"></jsp:include>
 	<div class="main-container">
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
-	정말 삭제하시겠습니까? 삭제하려면 아이디와 비번을 비교해야 됩니다.<br>
+	<div class="text-center">
+	정말 삭제하시겠습니까? 삭제하려면 아이디와 비번을 확인해야 됩니다.<br>
 	<form method="post" action="/Semi_F_GDCC/admin/action/deleteCkComplexAction.jsp">
-		아이디: <input type="text" name="checkId" value="<%=(String)(loginAdmin.get("adminMail"))%>"> <br>
+		아이디: <input type="text" name="checkId" value="<%=(String)(loginAdmin.get("adminMail"))%>"> 
+		<br>
 		비밀번호: <input type="password" name="checkPw">
 		<input type="text" name="complexNo" value=<%=complexNo%> style="display:none;">
-		<button type="submit">비교</button>
+		<br>
+		<div class="text-center">
+		<button type="submit" class="btn btn-primary">확인</button></div>
 	</form>
 	<%
 		if(ck.equals("true")){
@@ -64,6 +82,7 @@
 	<%
 		}
 	%>
+	</div>
 	</div>
 </body>
 </html>

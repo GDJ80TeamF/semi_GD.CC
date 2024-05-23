@@ -138,7 +138,8 @@ a:hover {
 	<div style="text-align:center;">
 	<a href="/Semi_F_GDCC/admin/insertNoticeForm.jsp?adminMail=<%=(String)(loginAdmin.get("adminMail"))%>" class="btnn">글 작성하기</a>
 	</div>
-	<div>														
+	<br>
+	<div style="text-align:center;">														
 		<%
 			if(currentPage > 1){			
 		%>

@@ -68,7 +68,7 @@
 	
 	
 	</table>
-	<div><a href="/Semi_F_GDCC/admin/mainBoard.jsp">돌아가기 </a></div>
+	<div class="text-center"><a href="/Semi_F_GDCC/admin/mainBoard.jsp" class="btn btn-primary">돌아가기 </a></div>
 	</div>
 </body>
 </html>

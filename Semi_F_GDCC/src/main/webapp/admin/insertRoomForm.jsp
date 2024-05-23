@@ -17,12 +17,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 <jsp:include page="/admin/sidebar.jsp"></jsp:include>
 	<div class="main-container">
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
+	<div class="text-center">
 	<form method="post" action="/Semi_F_GDCC/admin/action/insertRoomAction.jsp" enctype="multipart/form-data">
 		<h1>호텔 룸 추가</h1>
 		<div>
@@ -49,11 +52,19 @@
 			룸 이미지:
 			<input type="file" name="roomImg">
 		</div>
+		<br>
 		<div>
-			<button type="submit">룸 추가</button>
-			<a href="/Semi_F_GDCC/admin/roomList.jsp">취소</a>
+			<button type="submit" class="btn btn-primary">룸 추가</button>
+			
+		
 		</div>
+		
 	</form>
+	<br>
+	<div class="text-center">
+	<a href="/Semi_F_GDCC/admin/roomList.jsp">취소</a>
+	</div>
+	</div>
 	</div>
 </body>
 </html>
