@@ -83,7 +83,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 
 
 <!-- 여기가 원래 css쟈리 -->
-<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertNewRsvForm.css">
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertNewRsvForm.css"><!-- css파일연결 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">
@@ -125,7 +125,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -158,7 +158,6 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
                           }
                   %>
                         <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>

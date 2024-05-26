@@ -69,12 +69,11 @@
                   <%
                           }
                   %>
-                        <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">CLUB Restaurant</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">날씨확인하기</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Restaurant</a></li>  
                         
                       </ul>
                     </div>

@@ -48,13 +48,15 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+    <!-- css파일연결 -->
+    <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/rsvGolfList.css">
 <title>myPage</title>
 </head>
 <body>
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -81,7 +83,7 @@
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%
@@ -118,85 +120,85 @@
 			<%-- <div>
 				<%=profile.get("cusProfile") %>
 			</div> --%>
-			 <div class="mb-3 mt-3">
+	 	<div class="mb-3 mt-3">
+			<h2>Booking List</h2>
 				<div class="content">
-		<h1>예약리스트</h1>
-		<div>
-			<table>
-				<tr>
-					<th></th>
-					<th>예약번호</th>
-					<th>성함</th>
-					<th>예약날짜</th>
-					<th>코스</th>
-					<th>T-TIME</th>
-				</tr>
-				<%
-					for(HashMap<String,Object> m : rsvList){
-						
-				%>
-					<tr>
-						<td>
-							<a href="/Semi_F_GDCC/customer/golf/rsvGolfOne.jsp?rsvNo=<%=m.get("rsvNo")%>" style="font-size: 20px; font-weight: bold;">
-								상세보기
-							</a>
-						</td>
-						<td>
-							<%=m.get("rsvNo") %>
-						</td>
-						<td>
-							<%=m.get("cusName") %>님
-						</td>
-						<td>
-							<%=m.get("rsvDate") %>
-						</td>
-						<td>
-							<%=m.get("rsvCourse") %>
-						</td>
-						<td>
+					<div>
+						<table>
+							<tr>
+								<th>예약번호</th>
+								<th>성함</th>
+								<th>예약날짜</th>
+								<th>코스</th>
+								<th>T-TIME</th>
+								<th></th>
+							</tr>
 							<%
-								// rsvTtime을 정수로 바꿔주기
-								int rsvTtime = Integer.parseInt((String) m.get("rsvTtime"));
-								
-								// rsvTtime enum에 따라서 시간에 맞춰서 출력
-								switch (rsvTtime) {
-								    case 1:
-								        out.print("11:00");
-								        break;
-								    case 2:
-								        out.print("11:15");
-								        break;
-								    case 3:
-								        out.print("11:30");
-								        break;
-								    case 4 :
-								    	out.print("11:45");
-								    	break;
-								    case 5 :
-								    	out.print("12:00");
-								    	break;
-								    case 6 :
-								    	out.print("12:15");
-								    	break;
-								    case 7 :
-								    	out.print("12:30");
-								    	break;
-								    case 8 :
-								    	out.print("12:45");
-								    	break;
-								    case 9 :
-								    	out.print("13:00");
-								    	break;
+								for(HashMap<String,Object> m : rsvList){
+									
+							%>
+								<tr>
+									<td>
+										<%=m.get("rsvNo") %>
+									</td>
+									<td>
+										<%=m.get("cusName") %>님
+									</td>
+									<td>
+										<%=m.get("rsvDate") %>
+									</td>
+									<td>
+										<%=m.get("rsvCourse") %>
+									</td>
+									<td>
+										<%
+											// rsvTtime을 정수로 바꿔주기
+											int rsvTtime = Integer.parseInt((String) m.get("rsvTtime"));
+											
+											// rsvTtime enum에 따라서 시간에 맞춰서 출력
+											switch (rsvTtime) {
+											    case 1:
+											        out.print("11:00");
+											        break;
+											    case 2:
+											        out.print("11:15");
+											        break;
+											    case 3:
+											        out.print("11:30");
+											        break;
+											    case 4 :
+											    	out.print("11:45");
+											    	break;
+											    case 5 :
+											    	out.print("12:00");
+											    	break;
+											    case 6 :
+											    	out.print("12:15");
+											    	break;
+											    case 7 :
+											    	out.print("12:30");
+											    	break;
+											    case 8 :
+											    	out.print("12:45");
+											    	break;
+											    case 9 :
+											    	out.print("13:00");
+											    	break;
+											}
+										%>					
+									</td>
+									<td>
+										<a href="/Semi_F_GDCC/customer/golf/rsvGolfOne.jsp?rsvNo=<%=m.get("rsvNo")%>" style="font-size: 20px; font-weight: bold;">
+											상세보기
+										</a>
+									</td>
+								</tr>
+							<%
 								}
-							%>					
-						</td>
-					</tr>
-				<%
-					}
-				%>	
-			</table>
-		</div>
-	</div><!-- 여기까지가 box -->
+							%>	
+						</table>
+					</div>
+				</div><!-- 여기까지가 box -->
           </div>
         </div>
       </div>

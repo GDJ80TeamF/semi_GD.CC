@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+	.content{
+		 	 display: flex;
+		   	 justify-content: center;
+	    	 align-items: center;
+		 	}
+	table {
+		    width: 100%;
+		    border-collapse: collapse;
+			}
+	th, td {
+    padding: 9px;
+    text-align: center;
+}

@@ -118,77 +118,80 @@
 				<%=profile.get("cusProfile") %>
 			</div> --%>
 	 	<div class="mb-3 mt-3">
-			<h1>고객정보 수정하기</h1>
+			<h2>Change Profile</h2>
 				<div class="content">
 						<form method="post" action="/Semi_F_GDCC/customer/action/updateMyInfoAction.jsp" enctype="multipart/form-data">
-							<div>
-								<!-- 원래 기본 사진자리 -->
-								사진 변경하기
-							</div>
-								<div>
-								    <!-- 새로운 프로필 사진 업로드 필드 -->
-								    <label for="filename">프로필 사진 변경:</label>
-								    <input type="file" id="filename" name="cusProfile">
-								</div>
-									<table>
-										<tr>
-											<th>
-												<label for="mail">
-													고객메일
-												</label>
-											</th>
-											<td>
-												<input type="text" id="mail" name="cusMail"  value="<%=info.get("cusMail") %>" readonly>
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label for="name">
-													성함
-												</label>
-											</th>
-											<td>
-												<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
-											</td>
-										</tr>
-										<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->
-										<tr>
-											<th>
-												<label for="contact">
-													연락처
-												</label>
-											</th>
-											<td>
-												<input type="text" id="contact" name="cusContact" value="<%=info.get("cusContact") %>">
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label for="gender">
-													성별
-												</label>
-											</th>
-											<td>
-												<select name="cusGender">
-												    <option value="남" <%= info.get("cusGender").equals("남") ? "selected" : "" %>>남성</option>
-												    <option value="여" <%= info.get("cusGender").equals("여") ? "selected" : "" %>>여성</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label for="birth">
-													생년월일
-												</label>
-											</th>
-											<td>
-												<input type="date" id="birth" name="cusBirth" value="<%=info.get("cusBirth") %>" readonly>
-											</td>
-										</tr>
-									</table>
-								<button type="submit">변경하기</button>
-						</form>
+							<table>
+								<tr>
+									<th>
+										<label for="filename">사진변경 : </label>
+									</th>
+									<td>
+										<input type="file" id="filename" name="cusProfile">
+									</td>
+								</tr>
+								
+								<tr>
+									<th>
+										<label for="mail">
+											고객메일
+										</label>
+									</th>
+									<td>
+										<input type="text" id="mail" name="cusMail"  value="<%=info.get("cusMail") %>" readonly>
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<label for="name">
+											성함
+										</label>
+									</th>
+									<td>
+										<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<label for="birth">
+											생년월일
+										</label>
+									</th>
+									<td>
+										<input type="date" id="birth" name="cusBirth" value="<%=info.get("cusBirth") %>" readonly>
+									</td>
+								</tr>
+								<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->
+								<tr>
+									<th>
+										<label for="contact">
+											연락처
+										</label>
+									</th>
+									<td>
+										<input type="text" id="contact" name="cusContact" value="<%=info.get("cusContact") %>">
+									</td>
+								</tr>
+								<tr>
+									<th>
+										<label for="gender">
+											성별
+										</label>
+									</th>
+									<td>
+										<select name="cusGender">
+										    <option value="남" <%= info.get("cusGender").equals("남") ? "selected" : "" %>>남성</option>
+										    <option value="여" <%= info.get("cusGender").equals("여") ? "selected" : "" %>>여성</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						<button type="submit" class="btn btn-warning" style="color :ivory; font-weight: bold;">
+							변경하기
+						</button>
+					</form>
 				</div><!-- 여기까지가 box -->
+			<br>
           </div>
         </div>
       </div>
@@ -196,23 +199,16 @@
 </div>
    </div>
 </section>
-
-			 <script src="js/jquery-3.3.1.min.js"></script>
+	 <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
-    
-    
     <script src="js/aos.js"></script>
-    
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
-
-    
-
     <script src="js/main.js"></script>
 </body>
 </html>

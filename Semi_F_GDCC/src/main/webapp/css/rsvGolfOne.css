@@ -1,0 +1,19 @@
+@charset "UTF-8";
+	.content{
+	 	 display: flex;
+	   	 justify-content: center;
+    	 align-items: center;
+	 	}
+	 	
+	a{
+		color : ivory;
+		font-weight: bold;
+	}
+	
+	th{
+		font-weight: bold;
+		color : black;
+	}
+	.box{
+		height: 10px;
+	}
