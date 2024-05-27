@@ -88,7 +88,7 @@ public class AdminDAO {
 	public static boolean selectResetPw(String adminMail,String adminBirth,String adminContact) throws Exception{
 		boolean ck = false;
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT * FROM admin WHERE admin_mail =? and admin_birth=? and admin_contact=?";
+		String sql = "SELECT admin_mail,admin_name FROM admin WHERE admin_mail =? AND admin_birth=? AND admin_contact=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, adminMail);
 		stmt.setString(2, adminBirth);
@@ -146,7 +146,7 @@ public class AdminDAO {
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = DBHelper.getConnection();
 		//로그인한 본인 제외 admin 리스트 출력 
-		String sql = "SELECT * FROM admin WHERE admin_mail NOT IN(?) LIMIT ?,?";
+		String sql = "SELECT admin_mail,admin_name,admin_profile,admin_active FROM admin WHERE admin_mail NOT IN(?) LIMIT ?,?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, adminMail);
 		stmt.setInt(2, startRow);
@@ -208,7 +208,7 @@ public class AdminDAO {
 	public static HashMap<String,Object> selectMyPage (String adminMail) throws Exception{
 		HashMap<String,Object> m = new HashMap<String,Object>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT * FROM admin WHERE admin_mail =?";
+		String sql = "SELECT admin_mail,admin_name,admin_gender,admin_birth,admin_contact,admin_profile,update_date FROM admin WHERE admin_mail =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, adminMail);
 		ResultSet rs = stmt.executeQuery();
@@ -251,7 +251,7 @@ public class AdminDAO {
 		//db접근
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT admin_mail adminMail FROM admin where admin_mail = ? AND admin_pw = PASSWORD(?) ";
+		String sql = "SELECT admin_mail adminMail FROM admin WHERE admin_mail = ? AND admin_pw = PASSWORD(?) ";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, checkId);
 		stmt.setInt(2, checkPw);

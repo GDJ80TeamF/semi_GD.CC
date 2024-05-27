@@ -99,34 +99,22 @@ h2{
 	
 	</table>
 	<!-- 페이징 버튼 -->
-		<div style="display: table;margin-left: auto; margin-right: auto;">
-				
-				<ul style="text-align:center;">
-				
-				
-				<%
-					if(currentPage > 1){
-			
-				%>
-					<li ><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
-					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>
-	
-				<%	
-					}
-				
-					if(currentPage<lastPage){
-				%>
-					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
-					<li><a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
-				<%
-				
-					}
-				
-				%>
-				</ul>
-				
-			</div>
-			</div>
+		<div style="text-align:center;">														
+		<%
+			if(currentPage > 1){			
+		%>
+			<a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=1">FIRST</a>
+			<a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage-1%>">PRE</a>										
+		<%						
+			}if(currentPage < lastPage){
+		%>
+			<a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=currentPage+1%>">NEXT</a>
+			<a href="/Semi_F_GDCC/admin/adminList.jsp?currentPage=<%=lastPage%>">LAST</a>
+		<%
+			}					
+		%>		
+		</div>
+		</div>
 	
 </body>
 </html>

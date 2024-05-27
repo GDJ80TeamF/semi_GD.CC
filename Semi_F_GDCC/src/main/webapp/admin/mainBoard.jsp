@@ -25,6 +25,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="./style.css">
+
 <style>
 h3,h5{
 	margin-left:20px;
@@ -80,7 +81,29 @@ a:hover {
 	text-decoration:none;
 	color: #0056b3;
 }
+/*  현재날씨 추가 */
+.weather{
+		margin-top: 5px;
+		text-align:center;
+	}
+	.SeoulNowtemp{
+		font-family: "Dongle", sans-serif;
+		font-size: 15px;
+		color : black;
+	}
+	.SeoulLowtemp{
+		font-family: "Dongle", sans-serif;
+		font-size: 15px;
+		color : black;
+	}
+	.SeoulWindSpeed{
+		font-family: "Dongle", sans-serif;
+		font-size: 15px;
+		color : black;
+	}
+	
 </style>
+
 </head>
 <body>
 	<jsp:include page="/admin/sidebar.jsp"></jsp:include>
@@ -88,7 +111,18 @@ a:hover {
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
 	<h2 style="text-align:center;">MAIN</h2>
-	<hr>
+	
+	<!-- 날씨 api -->
+	<div class="weather">
+		 <!-- 아이콘 -->
+		<h5 class="SeoulIcon"></h5>
+		<!-- 현재기온 -->
+		<h5 class="SeoulNowtemp"></h5>
+		<!-- 풍속 -->
+		<h5 class="SeoulWindSpeed"></h5>
+		<!-- 최저기온 -->
+		<h5 class="SeoulLowtemp"></h5>
+	</div>
 	<div>
 	<div style="float:left;width:50%;">
 	<h3><b>현재 예약 현황 >> </b></h3>
@@ -237,15 +271,28 @@ a:hover {
 	</div>
 	
 	</div>
-	
-	
-	
-	
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 날씨 api -->
+
+<script>
+		    $(document).ready(function(){
+		        // 서울 날씨 정보 가져오기
+		        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric", function(data){
+		            var temperature = data.main.temp;
+		            var minTemperature = data.main.temp_min;
+		            var weatherIcon = data.weather[0].icon;
+		            var windSpeed = data.wind.speed;
+		
+		         
+		            $(".SeoulNowtemp").text("기온: " + temperature + "°C");
+		            $(".SeoulLowtemp").text("최저 기온: " + minTemperature + "°C");
+		            $(".SeoulWindSpeed").text("풍속: " + windSpeed + " m/s");
+		            $(".SeoulIcon").html("<img src='http://openweathermap.org/img/w/" + weatherIcon + ".png'>");
+		        });
+		    });
+</script>
+
 	
 
-
-	
-	
-	
 </body>
 </html>
