@@ -75,7 +75,6 @@
     padding: 10px 30px;
     border-bottom-left-radius : 7px;
     border-bottom-right-radius : 7px;
-    
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     text-decoration: none;
     color: ivory;
@@ -84,7 +83,7 @@
     transition: transform 0.1s ease-in-out;
     white-space: nowrap; /* 텍스트 줄바꿈 방지 */
 }
-
+ 
 .post-it:hover {
     transform: rotate(-2deg); /* 살짝 기울어지게 함 */
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
@@ -97,12 +96,7 @@
         <div class="row align-items-center">
           <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
-
-
             <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
-              <span></span>
-              <span></span>
-              <span></span>
             </div>
             <!-- END menu-toggle -->
 
@@ -144,19 +138,16 @@
       </div>
     </header>
     <!-- END head -->
-    <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
-     
+    <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)"> 
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
-          <!-- 햐얀박스 -->
+          <!-- 프로필 햐얀박스 -->
             <div class="container">
-            
             <span class="custom-caption text-uppercase text-white d-block mb-3">MY PROFILE</span>
-         
-          		<div style="background-color:white; border-radius:10px;">
-				
+          		<div style="background-color:white; border-radius:10px;">				
+          		<!-- 링크  -->
 				 <div>
-					<a href="/Semi_F_GDCC/customer/updateMyInfoForm.jsp" class="post-it"> 
+					<a href="/Semi_F_GDCC/customer/GDCC/updateMyInfoForm.jsp" class="post-it"> 
 						프로필 변경하기
 					</a>
 					<a href="/Semi_F_GDCC/customer/updatePwForm.jsp" class="post-it">
@@ -179,7 +170,7 @@
 					</a>
 				</div>
 				<br>
-				<!-- 프로핑 상세정보 -->
+				<!-- 프로필 상세정보 -->
 					<table style="margin-left:auto; margin-right:auto;">
 						<tr>
 							<th>
@@ -230,33 +221,27 @@
 							</td>
 						</tr>
 					</table>
-				<br>
-				<div>
-			 
-        </div>
-      </div>
-	</div>
-	</div>
-   </div>
-   </div>
-</section>
-
-			 <script src="js/jquery-3.3.1.min.js"></script>
+					<br>
+					<div>
+				 
+		        	</div>
+		      	 </div>
+				</div>
+			 </div>
+		   </div>
+		</section>
+	
+	<!-- 스크립트 -->
+	<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
-    
-    
     <script src="js/aos.js"></script>
-    
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
-
-    
-
     <script src="js/main.js"></script>
 </body>
 </html>

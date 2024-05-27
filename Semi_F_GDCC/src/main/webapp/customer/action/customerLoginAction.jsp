@@ -12,7 +12,8 @@
 	System.out.println("cusPw: " + cusPw);
 	
 	HashMap<String, String> loginCustomer = CustomerDAO.selectCusLogin(cusMail, cusPw); 
-	
+	// 작성한 아이디, 비밀번호
+	System.out.println("loginCustomer: " + loginCustomer);
 	if(loginCustomer != null){
 		System.out.println("로그인 성공");
 		session.setAttribute("loginCustomer", loginCustomer);  
