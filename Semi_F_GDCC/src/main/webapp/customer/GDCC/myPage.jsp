@@ -62,6 +62,34 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
 <title>myPage</title>
+<style>
+.post-it-container {
+    display: flex;
+    flex-wrap: wrap; /* 줄바꿈 허용 */
+    gap : 5px; /* 포스트잇 간의 간격 */;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+}
+
+.post-it {
+    background-color: #ED9595; /* 포스트잇 배경색 */
+    padding: 10px 30px;
+    border-bottom-left-radius : 7px;
+    border-bottom-right-radius : 7px;
+    
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    color: ivory;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.1s ease-in-out;
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.post-it:hover {
+    transform: rotate(-2deg); /* 살짝 기울어지게 함 */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+</style>
 </head>
 <body>
 <header class="site-header js-site-header">
@@ -117,96 +145,99 @@
     </header>
     <!-- END head -->
     <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
-      <div class="container">
+     
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
+          <!-- 햐얀박스 -->
             <div class="container">
             
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
+            <span class="custom-caption text-uppercase text-white d-block mb-3">MY PROFILE</span>
          
-          <div style="background-color:white; padding:40px; border-radius:10px;">
-				 <div class="mb-3 mt-3;">
-				<table>
-					<tr>
-						<th>
-							프로필
-						</th>
-						<td>
-							<img src="/Semi_F_GDCC/customer/upload/<%=profile.get("cusProfile")%>" width="200" height="200" style="border-radius:50%;">
-						</td>
-					</tr>
-					<tr>
-						<th>
-							고객mail
-						</th>
-						<td>
-							<%=profile.get("cusMail") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							성함
-						</th>
-						<td>
-							<%=profile.get("cusName") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							연락처
-						</th>
-						<td>
-							<%=profile.get("cusContact") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							성별
-						</th>
-						<td>
-							<%=profile.get("cusGender") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							생년월일
-						</th>
-						<td>
-							<%=profile.get("cusBirth") %>
-						</td>
-					</tr>
-				</table>
-
-				<div>
-					<a href="/Semi_F_GDCC/customer/updateMyInfoForm.jsp"> 
+          		<div style="background-color:white; border-radius:10px;">
+				
+				 <div>
+					<a href="/Semi_F_GDCC/customer/updateMyInfoForm.jsp" class="post-it"> 
 						프로필 변경하기
 					</a>
-					<a href="/Semi_F_GDCC/customer/updatePwForm.jsp">
+					<a href="/Semi_F_GDCC/customer/updatePwForm.jsp" class="post-it">
 						비밀번호 변경하기
 					</a>
-					<a href="/Semi_F_GDCC/customer/deleteCustomerForm.jsp">
+					<a href="/Semi_F_GDCC/customer/deleteCustomerForm.jsp" class="post-it">
 						회원탈퇴하기
 					</a>
-					<a href="/Semi_F_GDCC/customer/reviewListPerCustomer.jsp">
+					<a href="/Semi_F_GDCC/customer/reviewListPerCustomer.jsp" class="post-it">
 						my후기
 					</a>
-					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp">
+					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp" class="post-it">
 						MyQnA
 					</a>
-					<a href="/Semi_F_GDCC/customer/golf/rsvGolfList.jsp">
+					<a href="/Semi_F_GDCC/customer/golf/rsvGolfList.jsp" class="post-it">
 						골프예약확인
 					</a>
-					<a href="/Semi_F_GDCC/customer/GDCC/rsvHotelList.jsp">
+					<a href="/Semi_F_GDCC/customer/GDCC/rsvHotelList.jsp" class="post-it">
 						호텔예약확인
 					</a>
 				</div>
+				<br>
+				<!-- 프로핑 상세정보 -->
+					<table style="margin-left:auto; margin-right:auto;">
+						<tr>
+							<th>
+								프로필
+							</th>
+							<td>
+								<img src="/Semi_F_GDCC/customer/upload/<%=profile.get("cusProfile")%>" width="200" height="200" style="border-radius:50%;">
+							</td>
+						</tr>
+						<tr>
+							<th>
+								고객mail
+							</th>
+							<td>
+								<%=profile.get("cusMail") %>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								성함
+							</th>
+							<td>
+								<%=profile.get("cusName") %>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								연락처
+							</th>
+							<td>
+								<%=profile.get("cusContact") %>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								성별
+							</th>
+							<td>
+								<%=profile.get("cusGender") %>
+							</td>
+						</tr>
+						<tr>
+							<th>
+								생년월일
+							</th>
+							<td>
+								<%=profile.get("cusBirth") %>
+							</td>
+						</tr>
+					</table>
 				<br>
 				<div>
 			 
         </div>
       </div>
-</div>
-</div>
+	</div>
+	</div>
+   </div>
    </div>
 </section>
 
