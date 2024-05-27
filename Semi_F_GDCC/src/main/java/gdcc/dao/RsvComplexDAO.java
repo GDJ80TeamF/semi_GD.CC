@@ -157,7 +157,9 @@ public class RsvComplexDAO {
 	public static ArrayList<HashMap<String,Object>> selectRsvList (String cusMail) throws Exception{
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT c.*,hc.complex_name FROM rsv_complex c INNER JOIN rsv_hotel h ON c.rsv_no = h.rsv_no INNER JOIN hotel_complex hc ON c.rsv_place = hc.complex_no WHERE h.rsv_mail =?";
+		String sql = "SELECT c.rsv_comno,c.rsv_no,c.rsv_date,c.rsv_time,c.rsv_member,c.rsv_state,"
+				+ " c.create_date,hc.complex_name FROM rsv_complex c INNER JOIN rsv_hotel h ON c.rsv_no = h.rsv_no "
+				+ "INNER JOIN hotel_complex hc ON c.rsv_place = hc.complex_no WHERE h.rsv_mail =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1,cusMail);
 		ResultSet rs = stmt.executeQuery();
@@ -183,7 +185,9 @@ public class RsvComplexDAO {
 		public static HashMap<String,Object> selectRsvOne (int rsvComNo) throws Exception{
 			HashMap<String,Object> m = new HashMap<String,Object>();
 			Connection conn = DBHelper.getConnection();
-			String sql = "SELECT c.*,hc.complex_name FROM rsv_complex c INNER JOIN hotel_complex hc ON c.rsv_place = hc.complex_no WHERE c.rsv_comno=?";
+			String sql = "SELECT c.rsv_comno,c.rsv_no,c.rsv_place,c.rsv_date,c.rsv_time,c.rsv_member,c.create_date,c.update_date,"
+					+ " hc.complex_name FROM rsv_complex c "
+					+ "INNER JOIN hotel_complex hc ON c.rsv_place = hc.complex_no WHERE c.rsv_comno=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1,rsvComNo);
 			ResultSet rs = stmt.executeQuery();

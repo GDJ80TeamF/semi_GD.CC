@@ -26,8 +26,8 @@
 	
 	String adminProfile = null;
 	
-	if(profileOriginal.length() == 0){
-		adminProfile = "default.png";
+	if (profileOriginal == null || profileOriginal.isEmpty()) {
+        adminProfile = "default.png";
 	}else{
 		// 원본이름에서 .확장자 추출
 		String ext = profileOriginal.substring(profileOriginal.lastIndexOf("."));

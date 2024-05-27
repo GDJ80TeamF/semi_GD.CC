@@ -93,7 +93,7 @@ public class RsvGolfDAO {
 		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT * FROM golf_course";
+		String sql = "SELECT course_name,course_info FROM golf_course";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();

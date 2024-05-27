@@ -109,6 +109,10 @@ button:hover {
     color: red;
     margin-top: 20px;
 }
+ a{
+ text-decoration:none;
+
+}
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -134,6 +138,8 @@ button:hover {
             </div>
             <button type="submit">사원 인증하기</button>
         </form>
+        <br>
+        <a href="/Semi_F_GDCC/admin/adminLoginForm.jsp">취소 </a>
         <%
                 if(ck.equals("F")){			
         %>
@@ -156,6 +162,8 @@ button:hover {
             </div>
             <button type="submit">변경하기</button>
         </form>
+        <br>
+        <a href="/Semi_F_GDCC/admin/adminLoginForm.jsp">취소 </a>
         <%
                 if(!error.equals(" ")){
         %>

@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 로그인</title>
 <style>
 * {
     box-sizing: border-box;

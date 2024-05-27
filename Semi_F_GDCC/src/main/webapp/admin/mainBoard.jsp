@@ -22,86 +22,172 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인보드 </title>
 
 <link rel="stylesheet" href="./style.css">
 
 <style>
-h3,h5{
-	margin-left:20px;
+/* 기본 페이지 스타일 */
+body {
+	font-family: "Gowun Dodum", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
 }
+
+/* 메인 컨테이너 스타일 */
+.main-container {
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 90%;
+}
+
+/* 헤더 스타일 */
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-weight: bold;
+}
+
+h3{
+  margin-left: 20px;
+  color: #34495e;
+  background: #FDFD96;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid black;
+  
+}
+h4,h5{
+	margin-left: 20px;
+	color: #34495e;
+
+}
+
+
+/* 테이블 스타일 */
 table {
   width: 80%;
   border-collapse: collapse;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
-.tableNotice{
-	width: 90%;
+
+.tableNotice {
+  width: 90%;
   border-collapse: collapse;
   margin: 0 auto;
-
 }
 
-/* 테이블 헤더 스타일 */
 th {
-  background-color: #f2f2f2;
-  color: #333;
+  background-color: #ff7675;
+  color: #ffffff;
   font-weight: bold;
-  padding: 8px;
+  padding: 12px;
   text-align: left;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid #fab1a0;
 }
 
-/* 테이블 셀 스타일 */
 td {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  border-bottom: 1px solid #fab1a0;
 }
 
-/* 짝수 행 배경색 지정 */
-tr:nth-child(even) {
-  background-color: #f9f9f9;
+
+
+tr:hover {
+  background-color: #ffeaa7;
 }
 
 /* 링크 스타일 */
 a {
   text-decoration: none;
-  color: #007bff;
+  color: #00cec9;
 }
 
 a:hover {
   text-decoration: underline;
-  color: #0056b3;
+  color: #0984e3;
 }
-.title{
-	text-decoration:none;
-	color:black;
+
+.title {
+  text-decoration: none;
+  color: #2d3436;
 }
-.title:hover{
-	text-decoration:none;
-	color: #0056b3;
+
+.title:hover {
+  text-decoration: none;
+  color: #0984e3;
 }
-/*  현재날씨 추가 */
-.weather{
-		margin-top: 5px;
-		text-align:center;
-	}
-	.SeoulNowtemp{
-		font-family: "Dongle", sans-serif;
-		font-size: 15px;
-		color : black;
-	}
-	.SeoulLowtemp{
-		font-family: "Dongle", sans-serif;
-		font-size: 15px;
-		color : black;
-	}
-	.SeoulWindSpeed{
-		font-family: "Dongle", sans-serif;
-		font-size: 15px;
-		color : black;
-	}
-	
+
+/* 날씨 섹션 스타일 */
+.weather {
+  margin-top: 5px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.SeoulIcon {
+  vertical-align: middle;
+}
+
+.SeoulNowtemp, .SeoulLowtemp, .SeoulWindSpeed {
+  font-family: "Gowun Dodum", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  color: #2d3436;
+  margin-right: 10px;
+}
+
+.weather span {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+/* 추가 스타일링 */
+hr {
+  border: 0;
+  height: 1px;
+  background: #ff7675;
+  margin: 20px 0;
+}
+
+.button-link {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #00cec9;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-link:hover {
+  background-color: #0984e3;
+}
+
+/* 플로팅 스타일 */
+.float-left {
+  float: left;
+  width: 50%;
+}
+
+.float-right {
+  float: right;
+  width: 50%;
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
 </style>
 
 </head>
@@ -111,21 +197,23 @@ a:hover {
 		<jsp:include page="/admin/headerMainboard.jsp"></jsp:include>
 	<hr>
 	<h2 style="text-align:center;">MAIN</h2>
-	
+	<hr>
 	<!-- 날씨 api -->
+	<h4><b>골프 필드 현재 날씨 >> </b></h4>
+	
 	<div class="weather">
 		 <!-- 아이콘 -->
-		<h5 class="SeoulIcon"></h5>
+		<span class="SeoulIcon"></span>&nbsp;
 		<!-- 현재기온 -->
-		<h5 class="SeoulNowtemp"></h5>
+		<span class="SeoulNowtemp"></span>&nbsp;
 		<!-- 풍속 -->
-		<h5 class="SeoulWindSpeed"></h5>
+		<span class="SeoulWindSpeed"></span>&nbsp;
 		<!-- 최저기온 -->
-		<h5 class="SeoulLowtemp"></h5>
+		<span class="SeoulLowtemp"></span>
 	</div>
 	<div>
 	<div style="float:left;width:50%;">
-	<h3><b>현재 예약 현황 >> </b></h3>
+	<h3><b>예약 현황 >> </b></h3>
 	<br>
 	<h5>오늘 체크인 하시는 손님</h5>
 	<div style="margin-left:20px;">

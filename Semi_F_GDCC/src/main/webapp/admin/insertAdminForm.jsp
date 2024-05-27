@@ -204,7 +204,7 @@ div a{
             </div>
             <div class="input-group">
                 <label for="adminProfile">프로필 사진:</label>
-                <input type="file" id="adminProfile" name="adminProfile">
+                <input type="file" id="adminProfile" name="adminProfile" required>
             </div>
             <button type="submit">가입하기!</button>
         </form>

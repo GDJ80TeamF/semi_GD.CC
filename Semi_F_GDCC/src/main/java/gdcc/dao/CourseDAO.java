@@ -18,7 +18,7 @@ public class CourseDAO {
 		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT * FROM golf_course";
+		String sql = "SELECT course_name,course_state FROM golf_course";
 		
 		PreparedStatement stmt =conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
@@ -47,7 +47,7 @@ public class CourseDAO {
 		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql ="SELECT * FROM golf_course";
+		String sql ="SELECT course_name,course_state,course_info,create_date,update_date FROM golf_course";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();

@@ -245,7 +245,7 @@ public class RsvHotelDAO {
 	public static ArrayList<HashMap<String,Object>> selectRoomList (String checkinDate,String checkoutDate) throws Exception{
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT * FROM room_hotel WHERE room_no NOT IN(SELECT room_no FROM rsv_hotel "
+		String sql = "SELECT room_no,room_grade,room_price,room_info,room_max,room_img FROM room_hotel WHERE room_no NOT IN(SELECT room_no FROM rsv_hotel "
 				+ " WHERE (checkin_date BETWEEN ? AND ?) "
 				+ " AND (checkout_date BETWEEN ? AND ? )) AND room_state = '투숙가능'";
 		PreparedStatement stmt = conn.prepareStatement(sql);
@@ -355,7 +355,7 @@ public class RsvHotelDAO {
 	public static ArrayList<HashMap<String,Object>> checkinToday() throws Exception{
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT rh.*, c.cus_name,r.room_grade FROM rsv_hotel rh "
+		String sql = "SELECT rh.rsv_no,rh.checkout_date, c.cus_name,r.room_grade FROM rsv_hotel rh "
 				+ "INNER JOIN customer c ON rh.rsv_mail = c.cus_mail INNER JOIN room_hotel r ON rh.room_no = r.room_no "
 				+ "WHERE checkin_date = CURDATE() ORDER BY rh.rsv_no DESC LIMIT 5";
 		PreparedStatement stmt = null;
@@ -379,7 +379,7 @@ public class RsvHotelDAO {
 	public static ArrayList<HashMap<String,Object>> checkoutToday() throws Exception{
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT rh.*, c.cus_name,r.room_grade FROM rsv_hotel rh "
+		String sql = "SELECT rh.rsv_no,rh.checkin_date, c.cus_name,r.room_grade FROM rsv_hotel rh "
 				+ "INNER JOIN customer c ON rh.rsv_mail = c.cus_mail INNER JOIN room_hotel r ON rh.room_no = r.room_no "
 				+ "WHERE checkout_date = CURDATE() ORDER BY rh.rsv_no DESC LIMIT 5";
 		PreparedStatement stmt = null;

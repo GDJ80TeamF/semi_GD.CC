@@ -9,7 +9,7 @@ public class BfDAO {
 	public static ArrayList<HashMap<String,Object>> selectBfMenu() throws Exception{
 		ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT * FROM bf_menu";
+		String sql = "SELECT menu_no,menu_season,menu_main,menu_info,menu_img,update_date FROM bf_menu";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 		
@@ -32,7 +32,7 @@ public class BfDAO {
 	public static HashMap<String,Object> selectbfOne(int menuNo) throws Exception{
 		HashMap<String,Object> m = new HashMap<String,Object>();
 		Connection conn = DBHelper.getConnection();
-		String sql = "SELECT * FROM bf_menu WHERE menu_no = ?";
+		String sql = "SELECT menu_no,menu_season,menu_main,menu_info,menu_img,create_date,update_date FROM bf_menu WHERE menu_no = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, menuNo);
 		ResultSet rs = stmt.executeQuery();
