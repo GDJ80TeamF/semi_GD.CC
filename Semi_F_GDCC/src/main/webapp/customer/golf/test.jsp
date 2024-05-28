@@ -35,32 +35,48 @@
 
     <!-- jQuery를 사용하는 스크립트 -->
     <script>
-        $(document).ready(function(){
-            $("div#weatherCheck").hover(
-                function() {
-                    // 호버시 보여질 날씨 정보 요소들을 보이도록 설정합니다.
-                    $(".weather").show();
-                }, 
-                function() {
-                    // 호버를 벗어날 시 날씨 정보 요소들을 숨기도록 설정합니다.
-                    $(".weather").hide();
-                }
-            );
-            
-            // 서울 날씨 정보 가져오기
-            $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric", function(data){
-                var temperature = data.main.temp;
-                var minTemperature = data.main.temp_min;
-                var weatherIcon = data.weather[0].icon;
-                var windSpeed = data.wind.speed;
+    $(document).ready(function(){
+        $("div#weatherCheck").hover(
+            function() {
+                // 호버시 날씨 정보를 부드럽게 보이도록 설정합니다.
+                $(".weather").addClass('show');
+            }, 
+            function() {
+                // 호버를 벗어날 시 날씨 정보를 부드럽게 숨기도록 설정합니다.
+                $(".weather").removeClass('show');
+            }
+        );
+        
+        // 서울 날씨 정보 가져오기
+        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric", function(data){
+            var temperature = data.main.temp;
+            var minTemperature = data.main.temp_min;
+            var weatherIcon = data.weather[0].icon;
+            var windSpeed = data.wind.speed;
 
-                $(".SeoulNowtemp").text("기온: " + temperature + "°C");
-                $(".SeoulLowtemp").text("최저 기온: " + minTemperature + "°C");
-                $(".SeoulWindSpeed").text("풍속: " + windSpeed + " m/s");
-                $(".SeoulIcon").html("<img src='http://openweathermap.org/img/w/" + weatherIcon + ".png'>");
-            });
+            $(".SeoulNowtemp").text("기온: " + temperature + "°C");
+            $(".SeoulLowtemp").text("최저 기온: " + minTemperature + "°C");
+            $(".SeoulWindSpeed").text("풍속: " + windSpeed + " m/s");
+            $(".SeoulIcon").html("<img src='http://openweathermap.org/img/w/" + weatherIcon + ".png'>");
         });
+    });
     </script>
+    <style>
+   #weatherCheck {
+    display: flex;
+    justify-content: center;
+	}
+	
+	.weather {
+	    opacity: 0;
+	    transition: opacity 0.3s ease;
+	    text-align: center; /* 내용을 가로 방향으로 중앙 정렬 */
+	}
+	
+	.weather.show {
+	    opacity: 1;
+	}
+    </style>
 </head>
 <body>
 <!-- 헤드 로고 & 메뉴 토글 들어가는 부분 -->
@@ -125,9 +141,9 @@
             <h1 class="heading">GooDee Country Club</h1>
             <!-- 추가 -->
            <div id="weatherCheck">
-           			<h3 class="SeoulIcon"></h3><!-- 아이콘 -->
-           </div>
-			<div class="weather">
+           		<h4>🌈날씨확인하기</h4>
+			<div class="weather" style="width: 500px;">
+				<h3 class="SeoulIcon"></h3><!-- 아이콘 -->
 			    <h3 class="SeoulNowtemp"></h3><!-- 현재기온 -->
 			    <h3 class="SeoulWindSpeed"></h3><!-- 풍속 -->
 			    <h3 class="SeoulLowtemp"></h3><!-- 최저기온 -->

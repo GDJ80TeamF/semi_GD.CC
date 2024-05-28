@@ -107,89 +107,82 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
+          <br><br><br>
             <div class="container">
-            
             <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
-         
           <div style="background-color:white;">
-		
-            <h1 class="heading">	<h1> </h1></h1>
-			<%-- <div>
-				<%=profile.get("cusProfile") %>
-			</div> --%>
-	 	<div class="mb-3 mt-3">
-			<h2>Change Profile</h2>
-				<div class="content">
-						<form method="post" action="/Semi_F_GDCC/customer/action/updateMyInfoAction.jsp" enctype="multipart/form-data">
-							<table>
-								<tr>
-									<th>
-										<label for="filename">사진변경 : </label>
-									</th>
-									<td>
-										<input type="file" id="filename" name="cusProfile">
-									</td>
-								</tr>
-								
-								<tr>
-									<th>
-										<label for="mail">
-											고객메일
-										</label>
-									</th>
-									<td>
-										<input type="text" id="mail" name="cusMail"  value="<%=info.get("cusMail") %>" readonly>
-									</td>
-								</tr>
-								<tr>
-									<th>
-										<label for="name">
-											성함
-										</label>
-									</th>
-									<td>
-										<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
-									</td>
-								</tr>
-								<tr>
-									<th>
-										<label for="birth">
-											생년월일
-										</label>
-									</th>
-									<td>
-										<input type="date" id="birth" name="cusBirth" value="<%=info.get("cusBirth") %>" readonly>
-									</td>
-								</tr>
-								<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->
-								<tr>
-									<th>
-										<label for="contact">
-											연락처
-										</label>
-									</th>
-									<td>
-										<input type="text" id="contact" name="cusContact" value="<%=info.get("cusContact") %>">
-									</td>
-								</tr>
-								<tr>
-									<th>
-										<label for="gender">
-											성별
-										</label>
-									</th>
-									<td>
-										<select name="cusGender">
-										    <option value="남" <%= info.get("cusGender").equals("남") ? "selected" : "" %>>남성</option>
-										    <option value="여" <%= info.get("cusGender").equals("여") ? "selected" : "" %>>여성</option>
-										</select>
-									</td>
-								</tr>
-							</table>
-						<button type="submit" class="btn btn-warning" style="color :ivory; font-weight: bold;">
-							변경하기
-						</button>
-					</form>
+			 	<div class="mb-3 mt-3">
+					<h2>Change Profile</h2>
+					<br>
+								<form method="post" action="/Semi_F_GDCC/customer/action/updateMyInfoAction.jsp" enctype="multipart/form-data">
+									<table>
+										<tr>
+											<th>
+												<label for="filename">사진변경</label>
+											</th>
+											<td>
+												<input type="file" id="filename" name="cusProfile">
+											</td>
+										</tr>
+										<tr>
+											<th>
+												<label for="mail">
+													고객메일
+												</label>
+											</th>
+											<td>
+												<input type="text" id="mail" name="cusMail"  value="<%=info.get("cusMail") %>" readonly>
+											</td>
+										</tr>
+										<tr>
+											<th>
+												<label for="name">
+													성함
+												</label>
+											</th>
+											<td>
+												<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
+											</td>
+										</tr>
+										<tr>
+											<th>
+												<label for="birth">
+													생년월일
+												</label>
+											</th>
+											<td>
+												<input type="date" id="birth" name="cusBirth" value="<%=info.get("cusBirth") %>" readonly>
+											</td>
+										</tr>
+										<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->
+										<tr>
+											<th>
+												<label for="contact">
+													연락처
+												</label>
+											</th>
+											<td>
+												<input type="text" id="contact" name="cusContact" value="<%=info.get("cusContact") %>">
+											</td>
+										</tr>
+										<tr>
+											<th>
+												<label for="gender">
+													성별
+												</label>
+											</th>
+											<td>
+												<select name="cusGender">
+												    <option value="남" <%= info.get("cusGender").equals("남") ? "selected" : "" %>>남성</option>
+												    <option value="여" <%= info.get("cusGender").equals("여") ? "selected" : "" %>>여성</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								<button type="submit" class="btn btn-warning" style="color :ivory; font-weight: bold;">
+									변경하기
+								</button>
+							</form>
 				</div><!-- 여기까지가 box -->
 			<br>
           </div>
@@ -197,7 +190,6 @@
       </div>
 </div>
 </div>
-   </div>
 </section>
 	 <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>

@@ -54,7 +54,7 @@
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -111,6 +111,7 @@
             <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
             <h1 class="heading">GooDee Country Club</h1>
             <!-- 추가 -->
+            
             <div class="weather">
 				<h3 class="SeoulIcon"></h3><!-- 아이콘 -->
 				<h3 class="SeoulNowtemp"></h3><!-- 현재기온 -->

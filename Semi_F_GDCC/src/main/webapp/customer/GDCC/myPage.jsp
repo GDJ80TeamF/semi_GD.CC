@@ -6,7 +6,7 @@
 
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") == null){
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
 		return;
 	}
 %>
@@ -130,10 +130,10 @@
 					<a href="/Semi_F_GDCC/customer/GDCC/updateMyInfoForm.jsp" class="post-it"> 
 						프로필 변경하기
 					</a>
-					<a href="/Semi_F_GDCC/customer/updatePwForm.jsp" class="post-it">
+					<a href="/Semi_F_GDCC/customer/GDCC/updatePwForm.jsp" class="post-it">
 						비밀번호 변경하기
 					</a>
-					<a href="/Semi_F_GDCC/customer/deleteCustomerForm.jsp" class="post-it">
+					<a href="/Semi_F_GDCC/customer/GDCC/deleteCustomerForm.jsp" class="post-it">
 						회원탈퇴하기
 					</a>
 					<a href="/Semi_F_GDCC/customer/reviewListPerCustomer.jsp" class="post-it">
