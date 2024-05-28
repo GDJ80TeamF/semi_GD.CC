@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+//인증 분기 세션 변수 이름 : loginCustomer
+if(session.getAttribute("loginCustomer") == null){
+	response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
+	return;
+}
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>골프장 코스 소개</title>
+<title>그늘집</title>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>GDCC Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,12 +33,13 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-<!-- 원래 css자리 -->
-<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/aboutCourse.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">
-
+	<!-- 원래 css자리 -->
+	<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/aboutCourse.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+	<!-- new css연결하기 -->
+	<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/restaurant.css">
 </head>
 <body>
 <header class="site-header js-site-header">
@@ -91,7 +99,7 @@
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
             <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
-            <h1 class="heading">about course</h1>
+            <h1 class="heading">restaurant</h1>
           </div>
         </div>
      </div>
@@ -103,53 +111,21 @@
 	
   </section>
 <section>
-<main>
-        <!-- 18홀 코스 이미지 -->
-        <div class="courseImg">
-	        <img src="/Semi_F_GDCC/css/img/inout.png" alt="코스">
-        </div>
-        <div class="container">
-        	<div class="out">
-       		 <h2 style="text-align: center; color : #FFBB00; font-weight: bold;">OUT</h2>
-	           <img src="/Semi_F_GDCC/css/img/courseOut.jpeg" alt="Out 코스 사진">
-                    <h3>난이도 ⭐⭐⭐</h3>
-                    <p>다양한 지형과 긴 페어웨이 도전적인 장애물로 구성되어 있어 중급자에게 적합합니다</p>
-                    <h3>공략</h3>
-                    <p>
-                    	긴 페어웨이를 공략하기 위해서 정확한 티샷과 도전적인 세컨샷이 필수입니다
-                    	<br>
-                	    그린 주변의 벙커를 조심하세요
-               	    </p>
-                    <h3>그린 스피드 : 2.7</h3>
-                    <p>빠른 그린스피드는 아니지만 내리막 경사를 조심하세요</p>
-        	</div><!-- out마지막 -->
-        
-        	<div class="in">
-       		 <h2 style="text-align: center; color : #3DB7CC; font-weight: bold;">
-       		 	IN
-       		 </h2>
-            	<div class="course-content">
-              	  <img src="/Semi_F_GDCC/css/img/courseIn.jpeg" alt="In 코스 사진">
-                    <h3>난이도 ⭐⭐⭐⭐</h3>
-                    <p>짧고 좁은 페어웨이 빠른 그린으로 구성되어 있어 상급자에게 적합합니다.</p>
-                    <h3>공략</h3>
-                    <p>
-                    	욕심은 금물! 안전한 티샷이 매우 중요한 코스입니다
-                    <br>
-                    	블라인드 홀이 많기 때문에 정확한 방향을 조준하는 것이 중요합니다
-                    	<br>
-                    	그린 주변의 슬로프를 조심하세요.
-                    </p>
-                    <h3>그린 스피드 : 3.0 </h3>
-                    <p>
-                    	매우 빠르기 때문에 퍼팅 시 힘조절이 중요합니다
-                    	<br>
-                    	그린을 벗어나지 않게 조심하세요
-                    </p>
-           		</div>
-        	</div><!-- in마지막 -->
-        </div><!-- container마지막 -->
-       
+<main class="image-gallery" style="background-image: url('/Semi_F_GDCC/css/img/pin.jpeg'); background-size: cover; background-attachment: fixed;">
+  <div class="image-grid">
+    <div class="image-row">
+      <img src="/Semi_F_GDCC/css/img/menu.png" alt="Image 1">
+      <img src="/Semi_F_GDCC/css/img/origin.png" alt="Image 2">
+    </div>
+    <div class="image-row">
+      <img src="/Semi_F_GDCC/css/img/breakfast.png" alt="Image 3">
+      <img src="/Semi_F_GDCC/css/img/lunch.png" alt="Image 4">
+    </div>
+    <div class="image-row">
+      <img src="/Semi_F_GDCC/css/img/beverage.png" alt="Image 5">
+      <img src="/Semi_F_GDCC/css/img/alcohol.png" alt="Image 6">
+    </div>
+  </div>
  </main>
  </section>
 	<script src="js/jquery-3.3.1.min.js"></script>

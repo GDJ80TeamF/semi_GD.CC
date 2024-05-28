@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+	//인증 분기 세션 변수 이름 : loginCustomer
+	if(session.getAttribute("loginCustomer") == null){
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
+		return;
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +13,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>GDCC Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -24,30 +31,43 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- 날씨 부분 -->
+    <!-- css추가 -->
+    <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/golfMain.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+
+    <!-- jQuery 로드 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script>
-		    $(document).ready(function(){
-		        // 서울 날씨 정보 가져오기
-		        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric", function(data){
-		            var temperature = data.main.temp;
-		            var minTemperature = data.main.temp_min;
-		            var weatherIcon = data.weather[0].icon;
-		            var windSpeed = data.wind.speed;
-		
-		         
-		            $(".SeoulNowtemp").text("기온: " + temperature + "°C");
-		            $(".SeoulLowtemp").text("최저 기온: " + minTemperature + "°C");
-		            $(".SeoulWindSpeed").text("풍속: " + windSpeed + " m/s");
-		            $(".SeoulIcon").html("<img src='http://openweathermap.org/img/w/" + weatherIcon + ".png'>");
-		        });
-		    });
-		</script>
-		<!-- css추가 -->
-		<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/golfMain.css">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+
+    <!-- jQuery를 사용하는 스크립트 -->
+    <script>
+    $(document).ready(function(){
+        $("div#weatherCheck").hover(
+            function() {
+                // 호버시 날씨 정보를 부드럽게 보이도록 설정합니다.
+                $(".weather").addClass('show');
+            }, 
+            function() {
+                // 호버를 벗어날 시 날씨 정보를 부드럽게 숨기도록 설정합니다.
+                $(".weather").removeClass('show');
+            }
+        );
+        
+        // 서울 날씨 정보 가져오기
+        $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric", function(data){
+            var temperature = data.main.temp;
+            var minTemperature = data.main.temp_min;
+            var weatherIcon = data.weather[0].icon;
+            var windSpeed = data.wind.speed;
+
+            $(".SeoulNowtemp").text("MAX " + temperature + "°C");
+            $(".SeoulLowtemp").text("MIN " + minTemperature + "°C");
+            $(".SeoulWindSpeed").text("WIND " + windSpeed + " m/s");
+            $(".SeoulIcon").html("<img src='http://openweathermap.org/img/w/" + weatherIcon + ".png'>");
+        });
+    });
+    </script>
 </head>
 <body>
 <!-- 헤드 로고 & 메뉴 토글 들어가는 부분 -->
@@ -72,7 +92,7 @@
                     <div class="col-md-6 mx-auto">
                     <!-- ë©ë´ë° -->
                       <ul class="list-unstyled menu">
-                        <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
+                        <li class="active"><a href="/Semi_F_GDCC/welcome.jsp">Home</a></li>
                         <%
                           if(session.getAttribute("loginCustomer") == null){
                   %>
@@ -92,7 +112,7 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Restaurant</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">Restaurant</a></li>
                       </ul>
                     </div>
                   </div>
@@ -110,14 +130,16 @@
           <div class="col-md-10 text-center" data-aos="fade-up">
             <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
             <h1 class="heading">GooDee Country Club</h1>
-            <!-- 추가 -->
-            
-            <div class="weather">
-				<h3 class="SeoulIcon"></h3><!-- 아이콘 -->
-				<h3 class="SeoulNowtemp"></h3><!-- 현재기온 -->
-				<h3 class="SeoulWindSpeed"></h3><!-- 풍속 -->
-				<h3 class="SeoulLowtemp"></h3><!-- 최저기온 -->
-            </div>
+            <!-- 날씨추가 -->
+           <div id="weatherCheck">
+           		<h2>날씨확인하기</h2>
+           </div>
+			<div class="weather">
+       			<h3 class="SeoulIcon"></h3><!-- 아이콘 -->
+			    <h3 class="SeoulNowtemp"></h3><!-- 현재기온 -->
+			    <h3 class="SeoulLowtemp"></h3><!-- 최저기온 -->
+			    <h3 class="SeoulWindSpeed"></h3><!-- 풍속 -->
+			</div>
 			<!--  -->
           </div>
         </div>
@@ -135,6 +157,7 @@
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
     <script src="js/main.js"></script>
+
 <!-- <!-- footer부분 -->    
 <footer class="section footer-section">
       <div class="container">

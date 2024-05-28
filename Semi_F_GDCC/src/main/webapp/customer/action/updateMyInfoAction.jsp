@@ -49,12 +49,12 @@
 			inputStream.transferTo(outputStream);
 			
 			
-			response.sendRedirect("/Semi_F_GDCC/customer/myPage.jsp");
+			response.sendRedirect("/Semi_F_GDCC/customer/GDCC/myPage.jsp");
 		}else{
 			//update실패 -> updateMyInfoForm.jsp로 보내기
 			//오류 메세지
 			String errMsg = URLEncoder.encode("회원정보 수정에 실패했습니다." ,"utf-8");
-			response.sendRedirect("/Semi_F_GDCC/customer/updateMyInfoForm.jsp?errMsg=" + errMsg);
+			response.sendRedirect("/Semi_F_GDCC/customer/GDCC/updateMyInfoForm.jsp?errMsg=" + errMsg);
 		}
 	
 %>

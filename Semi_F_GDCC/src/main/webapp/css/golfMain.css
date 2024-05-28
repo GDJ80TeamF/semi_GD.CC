@@ -1,20 +1,34 @@
 @charset "UTF-8";	
 
 	.weather{
-		margin-top: 50px;
+		margin-top: 0px;
+		 opacity: 0;
+    	transition: opacity 0.3s ease;
+   
+		}
+	.weather.show {
+	    opacity: 1;
+	}
+	h2{
+		font-family : sans-serif;
+		margin-top : 30px;
+		color : ivory;
+		font-size: 20px;
+		background-color: gray;
+		border-radius: 10px;
 	}
 	.SeoulNowtemp{
 		font-family: "Dongle", sans-serif;
 		font-size: 50px;
 		color : ivory;
-	}
+		}
 	.SeoulLowtemp{
 		font-family: "Dongle", sans-serif;
 		font-size: 30px;
 		color : ivory;
-	}
+		}
 	.SeoulWindSpeed{
 		font-family: "Dongle", sans-serif;
 		font-size: 50px;
 		color : ivory;
-	}
+		}
