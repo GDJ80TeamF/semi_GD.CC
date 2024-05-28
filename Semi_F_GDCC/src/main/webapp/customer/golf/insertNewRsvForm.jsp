@@ -6,7 +6,7 @@
 <%
 	//인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") == null){
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
 		return;
 	}
 %>
@@ -83,7 +83,8 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 
 
 <!-- 여기가 원래 css쟈리 -->
-<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertNewRsvForm.css"><!-- css파일연결 -->
+<!-- css파일연결 -->
+<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertNewRsvForm.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">

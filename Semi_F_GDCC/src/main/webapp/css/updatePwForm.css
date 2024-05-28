@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+	label{
+		color : black;
+		font-weight: bold;
+	}
+	
+	button{
+		color : ivory !important;
+		font-weight: bold !important;
+	}

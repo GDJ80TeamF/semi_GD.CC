@@ -1,35 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="gdcc.dao.*"%>
-<%@ page import = "java.util.*" %>
-<%
-	//인증 분기 세션 변수 이름 : loginCustomer
-	if(session.getAttribute("loginCustomer") == null){
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
-		return;
-	}
-%>
-<%
-
-	//1.세션에서 고객 mail,pw가져오기
-	 HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 
-	 
-	 String cusMail = (String)(login.get("cusMail"));
-
-	//고객정보 가져오기
-	HashMap<String,Object> info 
-		=	CustomerDAO.selectCustomerInfo(cusMail);
-
-	
-%>
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GDCC Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -39,21 +18,56 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
-    
+
     <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- css파일연결 -->
-    <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/rsvGolfList.css">
-<title>myPage</title>
+    <!-- css추가 -->
+    <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/golfMain.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
+
+    <!-- jQuery 로드 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery를 사용하는 스크립트 -->
+    <script>
+        $(document).ready(function(){
+            $("div#weatherCheck").hover(
+                function() {
+                    // 호버시 보여질 날씨 정보 요소들을 보이도록 설정합니다.
+                    $(".weather").show();
+                }, 
+                function() {
+                    // 호버를 벗어날 시 날씨 정보 요소들을 숨기도록 설정합니다.
+                    $(".weather").hide();
+                }
+            );
+            
+            // 서울 날씨 정보 가져오기
+            $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=e5c25df9f0f40f8923682bd43dfc75d2&units=metric", function(data){
+                var temperature = data.main.temp;
+                var minTemperature = data.main.temp_min;
+                var weatherIcon = data.weather[0].icon;
+                var windSpeed = data.wind.speed;
+
+                $(".SeoulNowtemp").text("기온: " + temperature + "°C");
+                $(".SeoulLowtemp").text("최저 기온: " + minTemperature + "°C");
+                $(".SeoulWindSpeed").text("풍속: " + windSpeed + " m/s");
+                $(".SeoulIcon").html("<img src='http://openweathermap.org/img/w/" + weatherIcon + ".png'>");
+            });
+        });
+    </script>
 </head>
 <body>
+<!-- 헤드 로고 & 메뉴 토글 들어가는 부분 -->
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -73,25 +87,25 @@
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
-							  	if(session.getAttribute("loginCustomer") == null){
-						%>
-                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
-                        	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
+                          if(session.getAttribute("loginCustomer") == null){
+                  %>
+                           <li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                           <li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
-							}else{
-						%>
-							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
-							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
-							 
-						<%
-							  	}
-						%>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
+                     }else{
+                  %>
+                      <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
+                      <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
+
+                  <%
+                          }
+                  %>
+                       <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Restaurant</a></li>
                       </ul>
                     </div>
                   </div>
@@ -102,117 +116,91 @@
         </div>
       </div>
     </header>
-    <!-- END head -->
-    <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
+    <!-- END head 배경이미지 안에 들어가는 문구 -->
+<section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/css/img/grand.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
-            <div class="container">
-            
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
-         
-          <div style="background-color:white;">
-		
-            <h1 class="heading">	<h1> </h1></h1>
-			<%-- <div>
-				<%=profile.get("cusProfile") %>
-			</div> --%>
-	 	<div class="mb-3 mt-3">
-			<h1>고객정보 수정하기</h1>
-				<div class="content">
-						<form method="post" action="/Semi_F_GDCC/customer/action/updateMyInfoAction.jsp" enctype="multipart/form-data">
-							<div>
-								<!-- 원래 기본 사진자리 -->
-								사진 변경하기
-							</div>
-								<div>
-								    <!-- 새로운 프로필 사진 업로드 필드 -->
-								    <label for="filename">프로필 사진 변경:</label>
-								    <input type="file" id="filename" name="cusProfile">
-								</div>
-									<table>
-										<tr>
-											<th>
-												<label for="mail">
-													고객메일
-												</label>
-											</th>
-											<td>
-												<input type="text" id="mail" name="cusMail"  value="<%=info.get("cusMail") %>" readonly>
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label for="name">
-													성함
-												</label>
-											</th>
-											<td>
-												<input type="text" id="name" name="cusName" value="<%=info.get("cusName") %>">
-											</td>
-										</tr>
-										<!-- 비밀번호 변경은 myPage.jsp에서 따로 해야함 -->
-										<tr>
-											<th>
-												<label for="contact">
-													연락처
-												</label>
-											</th>
-											<td>
-												<input type="text" id="contact" name="cusContact" value="<%=info.get("cusContact") %>">
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label for="gender">
-													성별
-												</label>
-											</th>
-											<td>
-												<select name="cusGender">
-												    <option value="남" <%= info.get("cusGender").equals("남") ? "selected" : "" %>>남성</option>
-												    <option value="여" <%= info.get("cusGender").equals("여") ? "selected" : "" %>>여성</option>
-												</select>
-											</td>
-										</tr>
-										<tr>
-											<th>
-												<label for="birth">
-													생년월일
-												</label>
-											</th>
-											<td>
-												<input type="date" id="birth" name="cusBirth" value="<%=info.get("cusBirth") %>" readonly>
-											</td>
-										</tr>
-									</table>
-								<button type="submit">변경하기</button>
-						</form>
-				</div><!-- 여기까지가 box -->
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
+            <h1 class="heading">GooDee Country Club</h1>
+            <!-- 추가 -->
+           <div id="weatherCheck">
+           			<h3 class="SeoulIcon"></h3><!-- 아이콘 -->
+           </div>
+			<div class="weather">
+			    <h3 class="SeoulNowtemp"></h3><!-- 현재기온 -->
+			    <h3 class="SeoulWindSpeed"></h3><!-- 풍속 -->
+			    <h3 class="SeoulLowtemp"></h3><!-- 최저기온 -->
+			</div>
           </div>
         </div>
       </div>
-</div>
-</div>
-   </div>
 </section>
-
-			 <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- END section -->
+     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
-    
-    
     <script src="js/aos.js"></script>
-    
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
-
-    
-
     <script src="js/main.js"></script>
+
+<!-- <!-- footer부분 -->    
+<footer class="section footer-section">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+             <li><a href="#">Rooms</a></li>0
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5">
+            <ul class="list-unstyled link">
+              <li><a href="#">The Rooms &amp; Suites</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Restaurant</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 mb-5 pr-md-5 contact-info">
+            <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li>
+            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 198 West 21th Street, <br> Suite 721 New York NY 10016</span></p>
+            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
+            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
+          </div>
+          <div class="col-md-3 mb-5">
+            <p>Sign up for our newsletter</p>
+            <form action="#" class="footer-newsletter">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email...">
+                <button type="submit" class="btn"><span class="fa fa-paper-plane"></span></button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="row pt-5">
+          <p class="col-md-6 text-left">
+            Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+          </p>
+            
+          <p class="col-md-6 text-right social">
+            <a href="#"><span class="fa fa-tripadvisor"></span></a>
+            <a href="#"><span class="fa fa-facebook"></span></a>
+            <a href="#"><span class="fa fa-twitter"></span></a>
+            <a href="#"><span class="fa fa-linkedin"></span></a>
+            <a href="#"><span class="fa fa-vimeo"></span></a>
+          </p>
+        </div>
+      </div>
+</footer>
 </body>
 </html>
