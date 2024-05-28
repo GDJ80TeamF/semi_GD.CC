@@ -25,7 +25,7 @@
         }
 
 	.container {
-        width: 80%;
+        width: 40%;
         margin: 20px auto;
         background-color: #fff;
         padding: 20px;
@@ -77,6 +77,10 @@
 			<td><%=(Integer)(m.get("rsvNo"))%></td>													
 		</tr>
 		<tr>
+            <th>작성자</th>
+            <td><%=(String)(m.get("rsvMail"))%></td>
+        </tr>
+		<tr>
 			<th>별점</th>
 			<td>
 	        	<div class="rate">
@@ -96,7 +100,7 @@
 			<th colspan="2">내용</th>					
 		</tr>
 		<tr>
-			<td colspan="2" style="height: 400px;"><%=(String)(m.get("reviewContent"))%></td>
+			<td colspan="2" style="height: 200px;"><%=(String)(m.get("reviewContent"))%></td>
 		</tr>	
 		<tr>
 			<th>작성일</th>

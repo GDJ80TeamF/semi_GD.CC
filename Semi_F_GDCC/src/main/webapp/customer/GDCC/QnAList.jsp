@@ -101,6 +101,8 @@
                           <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">HOTEL REVIEW</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">GOLF REVIEW</a></li>
                       </ul>
                     </div>
                   </div>

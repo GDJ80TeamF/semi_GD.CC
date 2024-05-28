@@ -6,14 +6,25 @@
        padding: 0;
    }
 
-   .container {
-       width: 80% !important; /* 전체 너비의 80%로 설정 */
+   .container2 {
+       width: 100% !important; /* 전체 너비의 80%로 설정 */
        max-width: 2000px; /* 최대 너비를 1200px로 설정 */
        margin: 0 auto;
        padding: 20px;
        background-color: #fff;
        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       border-radius: 10px; /* 둥근 모서리 */
+       
    }
+   .container2 a {
+       text-decoration: none;
+}
+
+   .container2 a:hover {
+	   background-color: #ddd;
+	   border-radius: 5px;
+	   text-decoration: underline;
+}
 
    h1 {
        text-align: center;
@@ -77,3 +88,4 @@
        background-color: #ddd;
        border-radius: 5px;
    }
+   

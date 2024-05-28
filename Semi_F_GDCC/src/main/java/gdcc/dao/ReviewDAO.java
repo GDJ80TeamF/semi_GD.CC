@@ -90,8 +90,11 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore, create_date createDate "
-					+ "FROM review_hotel ORDER BY create_date DESC LIMIT ?,?";
+		String sql = "SELECT rv.rsv_no rsvNo, rv.review_title reviewTitle, rv.review_score reviewScore, "
+					+ " rv.create_date createDate, cus.cus_mail cusMail, cus.cus_profile cusProfile "
+					+ " FROM review_hotel rv INNER JOIN rsv_hotel rsv ON rv.rsv_no = rsv.rsv_no "
+					+ " INNER JOIN customer cus ON cus.cus_mail = rsv.rsv_mail "
+					+ " ORDER BY rv.create_date DESC LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, startRow);
@@ -104,6 +107,8 @@ public class ReviewDAO {
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewScore", rs.getInt("reviewScore"));
 			m.put("createDate", rs.getString("createDate"));
+			m.put("cusMail", rs.getString("cusMail"));
+			m.put("cusProfile", rs.getString("cusProfile"));
 			list.add(m);
 		}
 		conn.close();
@@ -119,8 +124,11 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT rsv_no rsvNo, review_title reviewTitle, review_score reviewScore, create_date createDate "
-					+ "FROM review_golf ORDER BY create_date DESC LIMIT ?,?";
+		String sql = "SELECT rv.rsv_no rsvNo, rv.review_title reviewTitle, rv.review_score reviewScore, "
+					+ " rv.create_date createDate, cus.cus_mail cusMail, cus.cus_profile cusProfile "
+					+ " FROM review_golf rv INNER JOIN rsv_golf rsv ON rv.rsv_no = rsv.rsv_no "
+					+ " INNER JOIN customer cus ON cus.cus_mail = rsv.rsv_mail "
+					+ " ORDER BY rv.create_date DESC LIMIT ?,?";
 			
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, startRow);
@@ -133,6 +141,8 @@ public class ReviewDAO {
 			m.put("reviewTitle", rs.getString("reviewTitle"));
 			m.put("reviewScore", rs.getInt("reviewScore"));
 			m.put("createDate", rs.getString("createDate"));
+			m.put("cusMail", rs.getString("cusMail"));
+			m.put("cusProfile", rs.getString("cusProfile"));
 			list.add(m);
 		}
 		conn.close();
@@ -188,11 +198,12 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT review_no reviewNo, rsv_no rsvNo, review_title reviewTitle, "
-				   + " review_content reviewContent, review_score reviewScore, "
-			  	   + " create_date createDate, update_date updateDate "
-				   + " FROM review_hotel "
-				   + " where rsv_no = ?";
+		String sql = "SELECT re.review_no reviewNo, re.rsv_no rsvNo, rsv.rsv_mail rsvMail, "
+					+ " re.review_title reviewTitle, re.review_content reviewContent, re.review_score reviewScore, "
+					+ " re.create_date createDate, re.update_date updateDate "
+					+ " FROM review_hotel re INNER JOIN rsv_hotel rsv"
+					+ " ON re.rsv_no = rsv.rsv_no"
+					+ " where re.rsv_no = ?";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, rsvNo);
@@ -202,6 +213,7 @@ public class ReviewDAO {
 			resultMap = new HashMap<String, Object>();
 			resultMap.put("reviewNo", rs.getInt("reviewNo"));
 			resultMap.put("rsvNo", rs.getInt("rsvNo"));
+			resultMap.put("rsvMail", rs.getString("rsvMail"));
 			resultMap.put("reviewTitle", rs.getString("reviewTitle"));
 			resultMap.put("reviewContent", rs.getString("reviewContent"));
 			resultMap.put("reviewScore", rs.getInt("reviewScore"));
@@ -221,11 +233,12 @@ public class ReviewDAO {
 		// DB연동
 		Connection  conn = DBHelper.getConnection();
 				
-		String sql = "SELECT review_no reviewNo, rsv_no rsvNo, review_title reviewTitle, "
-				   + " review_content reviewContent, review_score reviewScore, "
-			  	   + " create_date createDate, update_date updateDate "
-				   + " FROM review_golf "
-				   + " where rsv_no = ?";
+		String sql = "SELECT re.review_no reviewNo, re.rsv_no rsvNo, rsv.rsv_mail rsvMail, "
+					+ " re.review_title reviewTitle, re.review_content reviewContent, re.review_score reviewScore, "
+					+ " re.create_date createDate, re.update_date updateDate "
+					+ " FROM review_golf re INNER JOIN rsv_golf rsv "
+					+ " ON re.rsv_no = rsv.rsv_no "
+					+ " where re.rsv_no = ?";
 				
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, rsvNo);
@@ -235,6 +248,7 @@ public class ReviewDAO {
 			resultMap = new HashMap<String, Object>();
 			resultMap.put("reviewNo", rs.getInt("reviewNo"));
 			resultMap.put("rsvNo", rs.getInt("rsvNo"));
+			resultMap.put("rsvMail", rs.getString("rsvMail"));
 			resultMap.put("reviewTitle", rs.getString("reviewTitle"));
 			resultMap.put("reviewContent", rs.getString("reviewContent"));
 			resultMap.put("reviewScore", rs.getInt("reviewScore"));

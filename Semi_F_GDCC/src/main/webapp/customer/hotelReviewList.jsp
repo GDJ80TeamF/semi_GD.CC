@@ -53,7 +53,7 @@
         }
         
 	.container {
-		width: 80%;
+		width: 30%;
         margin: 20px auto;
         background-color: #fff;
         padding: 20px;
@@ -138,37 +138,44 @@
 			}
 		%>
    		 </select>
+   		 
+    <br>
     <table>
-        <tr>
-            <th>rsvNo</th>
-            <th>reviewScore</th>
-            <th>reviewTitle</th>
-            <th>게시 날짜</th>
-        </tr>
-        <% for(HashMap m : hotelReviewList) { %>
-        <tr>
-            <td>
+        <%
+        	for(HashMap m : hotelReviewList) { 
+        %>
+        	<br>
+			<span>No.</span>				
+			<span>
                 <a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
                     <%=(Integer)(m.get("rsvNo"))%></a>
-            </td>
-            <td>
-           		<div class="rate">
-                    <% 
-	                    int reviewScore = (Integer)(m.get("reviewScore"));
-	                    int widthPercentage = reviewScore * 10;
-                    %>
-                    <span style="width: <%= widthPercentage %>%"></span>
-                </div>
-            </td>
-            <td>
-                <a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
-                    <%=(String)(m.get("reviewTitle"))%></a>
-            </td>
-            <td>
-            	<%=(String)(m.get("createDate"))%>
-            </td>            
-        </tr>
-        <% } %>
+			</span>
+	        <tr>	        	
+	        	<td colspan="2">
+	           		<div class="rate">
+	                    <% 
+		                    int reviewScore = (Integer)(m.get("reviewScore"));
+		                    int widthPercentage = reviewScore * 10;
+	                    %>
+	                    <span style="width: <%= widthPercentage %>%"></span>
+	                </div>
+	            </td>
+	        </tr>
+	        <tr>	
+	        	<td colspan="2">
+	                <a href="/Semi_F_GDCC/customer/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
+	                    <%=(String)(m.get("reviewTitle"))%></a>
+	            </td>
+	        </tr>
+	        <tr>      
+	            <th style="width:20%">작성일</th>
+	            <td>
+	            	<%=(String)(m.get("createDate"))%>
+	            </td>            
+	        </tr>
+        <%
+        	} 
+        %>
     </table>
     
     <!-- Pagination -->

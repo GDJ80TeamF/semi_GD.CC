@@ -72,7 +72,6 @@
 		background: url(https://aldo814.github.io/jobcloud/html/images/user/star02.png);
 		width: auto;height: 20px;
 		}
-
 </style>
 </head>
 <body style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)">
@@ -135,26 +134,26 @@
 	<div class="row site-hero-inner justify-content-center align-items-center">
 		<div class="col-md-10 text-center" data-aos="fade-up">
 			<span class="custom-caption text-uppercase text-white d-block  mb-3"> 
-				MY GOLF REVIEW
+				<br>MY HOTEL REVIEW
 			</span>           
 	        <!--  <div style="background-color:white; padding:100px; border-radius:10px;"> -->
 			<div class="mb-3 mt-6;">
 			<div class="container2">
-			<a href="/Semi_F_GDCC/customer/GDCC/reviewListPerCustomer.jsp">GOLF REVIEW</a> / 
-			<a href="/Semi_F_GDCC/customer/GDCC/reviewListPerCustomer2.jsp">HOTEL REVIEW</a>			 	      		  
-				<table border="1">
+			<a href="/Semi_F_GDCC/customer/GDCC/reviewListPerCustomer2.jsp">HOTEL REVIEW</a> /
+			 <a href="/Semi_F_GDCC/customer/GDCC/reviewListPerCustomer.jsp">GOLF REVIEW</a>	      
+		        <table border="1">
 					<tr>
-						<th style="width:5%">rsvNo</th>
+						<th style="width:5%">No.</th>
 						<th style="width:10%">reviewScore</th>
 						<th style="width:15%">reviewTitle</th>
 						<th style="width:15%">reviewContent</th>			
-						<th style="width:20%">rsvDate</th>
+						<th style="width:20%">stayDate</th>
 						<th style="width:10%">createDate</th>
 						<th style="width:10%">updateDate</th>
 						<th style="width:10%">&nbsp;</th>
 					</tr>
 					<%
-						for(HashMap m : golfReviewList) {
+						for(HashMap m : hotelReviewList) {				
 					%>
 						<tr>
 							<td><%=(Integer)(m.get("rsvNo"))%></td>
@@ -164,7 +163,7 @@
 					                	int reviewScore = (Integer)(m.get("reviewScore"));
 					                	int widthPercentage = reviewScore * 10;
 					            	%>
-					    	        <span style="width: <%= widthPercentage %>%"></span>
+					    	        <span style="width: <%= widthPercentage%>%"></span>
 						        </div>
 					        </td>
 							<td><%=(String)(m.get("reviewTitle"))%></td>
@@ -177,15 +176,15 @@
 							          out.print(reviewContent);
 							      }
 							   %>
-							</td>								
-							<td><%=(String)(m.get("rsvDate"))%></td>	
+							</td>					
+							<td><%=(String)(m.get("checkinDate"))%> ~ <%=(String)(m.get("checkoutDate"))%></td>
 							<td><%=(String)(m.get("createDate"))%></td>
 							<td><%=(String)(m.get("updateDate"))%></td>
 							<td>
-								<a class="update" href="/Semi_F_GDCC/customer/GDCC/updateGolfReviewForm.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">수정</a>
+								<a class="update" href="/Semi_F_GDCC/customer/GDCC/updateHotelReviewForm.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">수정</a>		
 								<br>
-								<a class="delete" href="/Semi_F_GDCC/customer/GDCC/deleteGolfReviewAction.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">삭제</a>
-							</td>
+								<a class="delete" href="/Semi_F_GDCC/customer/GDCC/deleteHotelReviewAction.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">삭제</a>
+							</td>			
 						</tr>
 					<%
 						}
@@ -193,41 +192,37 @@
 				</table>
 				<table border="1">
 					<tr>
-						<th style="width:25%">rsvNo</th>
-						<th style="width:30%">startCourse</th>
-						<th style="width:30%">rsvDate</th>
-						<th>&nbsp;</th>
-						<th>&nbsp;</th>
+						<th style="width:30%">rsvNo</th>
+						<th style="width:45%">stayDate</th>
+						<th style="width:13%">&nbsp;</th>
 					</tr>
 					<%
-						for(HashMap m : golfRsvNoList) {
-							//골프리뷰 작성유무 확인시키는 메서드
-							boolean reviewCk = ReviewDAO.golfReviewCk(cusMail, (Integer)(m.get("rsvNo")));
+						for(HashMap m : hotelRsvNoList) {
+							//리뷰 작성유무 확인시키는 메서드
+							boolean reviewCk = ReviewDAO.hotelReviewCk(cusMail, (Integer)(m.get("rsvNo")));
 					%>
 					<tr>
 						<td><%=(Integer)(m.get("rsvNo"))%></td>
-						<td><%=(String)(m.get("rsvCourse"))%></td>
-						<td><%=(String)(m.get("rsvDate"))%></td>
-						<td>&nbsp;</td>
+						<td><%=(String)(m.get("checkinDate"))%>&nbsp; ~ &nbsp;<%=(String)(m.get("checkoutDate"))%></td>
 						<%
-							if(gs.equals("예약완료")) {
+							if(hs.equals("예약완료")) {
 						%>
 							<td>만료 후 활성화</td>
 						<%
-							}else if(gs.equals("예약만료")) {// 예약만료시에만 리뷰쓸수있게 /이전건 리뷰작성안하고 새로운 예약시 이전리뷰는 작성못함
+							}else if(hs.equals("예약만료")) {		// 예약만료시에만 리뷰쓸수있게
 								if(reviewCk == false) {	// 리뷰값이 없으면 쓸수있게
 						%>
 								<td>
-									<a href="/Semi_F_GDCC/customer/GDCC/insertGolfReviewForm.jsp?rsvNo=
-											<%=(Integer)(m.get("rsvNo"))%>">리뷰 쓰기</a>
+									<a href="/Semi_F_GDCC/customer/GDCC/insertHotelReviewForm.jsp?rsvNo=
+												<%=(Integer)(m.get("rsvNo"))%>">리뷰 쓰기</a>
 								</td>
 						<%
-							}else{	// 리뷰값이 있으면 작성불가
+								} else {	// 리뷰값이 있으면 작성불가				
 						%>
 								<td>작성 완료</td>
 						<%
+								}
 							}
-						}
 						%>
 					</tr>
 					<%

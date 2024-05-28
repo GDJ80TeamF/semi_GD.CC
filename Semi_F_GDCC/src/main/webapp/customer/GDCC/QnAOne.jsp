@@ -84,6 +84,8 @@
                           <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">HOTEL REVIEW</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">GOLF REVIEW</a></li>
                       </ul>
                     </div>
                   </div>
@@ -121,58 +123,52 @@
 
 <section class="section blog-post-entry bg-light" id="next">
 	<div class="container">
-	    <h1>QnA 상세보기</h1>
-	    <table>
+		<h1>상세 페이지</h1>
+	    <span>No.<%=(Integer)(map.get("qnaNo"))%></span>
+	    <table>	           
 	        <tr>
-	            <th style="width: 3%;">No.</th>
-	            <td><%=(Integer)(map.get("qnaNo"))%></td>
-	        </tr>
-	        <tr>
-	        	<th style="width: 2%;">작성자</th>
-	        	<td><%=(String)(map.get("cusMail"))%></td>
+	        	<th style="width: 10%;">작성자</th>
+	        	<td colspan="3"><%=(String)(map.get("cusMail"))%></td>
 	        </tr>
 	        <tr>
 	        	<th>제목</th>
-	        	<td><%=(String)(map.get("qnaTitle"))%></td>
+	        	<td colspan="3"><%=(String)(map.get("qnaTitle"))%></td>
 	        </tr>
 	        <tr>
-	        	<th class="content-column" colspan="2">내용</th>
+	        	<th class="content-column" colspan="4">내용</th>
 	        </tr>
 	        <tr>
-	        	<td colspan="2" style="width: 35%; height: 200px;">
+	        	<td colspan="4" style="width: 35%; height: 200px;">
 	        		<%=(String)(map.get("qnaContent"))%></td>
 	        </tr>      		
 	        <tr>
-	        	<th style="width: 2%;">작성일</th>
-	        	<td><%=(String)(map.get("createDate"))%></td>
-	        </tr>
-	        <tr>                                              
-	            <th>수정일</th>
-	            <td><%=(String)(map.get("updateDate"))%></td>
+	        	<th style="width: 10%;">작성일</th>
+	        	<td style="width: 30%;"><%=(String)(map.get("createDate"))%></td>
+	        	<th style="width: 10%;">수정일</th>
+	            <td style="width: 30%;"><%=(String)(map.get("updateDate"))%></td>
 	        </tr>
 	    </table>
 	</div>
-	
+	<br>
 	<div class="container">
-	    <h1>QnA 댓글</h1>
-	    <table>
-	        <tr>
-	            <th style="width: 10%;">No.</th>
+	    <h2>관리자 답글</h2>
+	<%
+		for(HashMap m : list) { 
+	%>
+		<span>No.<%=(Integer)(m.get("commentNo"))%></span>
+		<table>
+	        <tr>	         
 	            <th style="width: 80%;">댓글 내용</th>
-	            <th style="width: 10%;">작성일</th>
+	            <th style="width: 15%;">작성일</th>
 	        </tr>
-	        <%
-	            for(HashMap m : list) { 
-	        %>
-	        <tr>
-	            <td style="width: 5%;"><%=(Integer)(m.get("commentNo"))%></td>
+	        <tr>	        
 	            <td><%=(String)(m.get("commentContent"))%></td>
 	            <td style="width: 15%;"> <%=(String)(m.get("createDate"))%> </td>
-	        </tr>
-	        <%
-	            }
-	        %>
+	        </tr>	        
 	    </table>
+	<%
+		}
+	%>
 	</div>
 </section>
 

@@ -18,11 +18,11 @@
 	int rowPerPage = 10;
 	int startRow = (currentPage-1) * rowPerPage;
 	//페이징 lastPage 구하는 dao 호출 
-	int lastPage = ReviewDAO.golfReviewPage();
-	System.out.println(lastPage + "<--lastPage golfReviewList param");
+	int lastPage = ReviewDAO.hotelReviewPage();
+	System.out.println(lastPage + "<--lastPage hotelReviewList param");
 	
-	//골프리뷰 출력하는 메서드
-	//ArrayList<HashMap<String, Object>> golfReviewList = ReviewDAO.selectGolfReviewList(startRow, rowPerPage);
+	//호텔리뷰 출력하는 메서드
+	//ArrayList<HashMap<String, Object>> hotelReviewList = ReviewDAO.selectHotelReviewList(startRow, rowPerPage);
 	
 	// 선택한 별점에 대한 처리 추가
     int score = 0;
@@ -30,12 +30,12 @@
         score = Integer.parseInt(request.getParameter("score"));
     }
 
- 	// 별점이 선택되었으면 별점별 골프 리뷰 출력하는 메서드, 그렇지 않으면 전체 리뷰 출력하는 메서드
-    ArrayList<HashMap<String, Object>> golfReviewList;
+ 	// 별점이 선택되었으면 별점별 호텔 리뷰 출력하는 메서드, 그렇지 않으면 전체 리뷰 출력하는 메서드
+    ArrayList<HashMap<String, Object>> hotelReviewList;
     if (score > 0) {
-        golfReviewList = ReviewDAO.golfReviewPerScore(score, startRow, rowPerPage);
+    	hotelReviewList = ReviewDAO.hotelReviewPerScore(score, startRow, rowPerPage);
     } else {
-        golfReviewList = ReviewDAO.selectGolfReviewList(startRow, rowPerPage);
+    	hotelReviewList = ReviewDAO.selectHotelReviewList(startRow, rowPerPage);
     }
 %>
 <!DOCTYPE html>
@@ -145,6 +145,7 @@
                           <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                           <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
+                          <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">REVIEW</a></li>
                       </ul>
                     </div>
                   </div>
@@ -161,11 +162,11 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">QnA</h1>
+            <h1 class="heading mb-3">HOTEL REVIEW</h1>
             <ul class="custom-breadcrumbs mb-4">
               <li><a href="index.html">Home</a></li>
               <li>&bullet;</li>
-              <li>QnA</li>
+              <li>HOTEL REVIEW</li>
             </ul>
           </div>
         </div>
@@ -181,71 +182,73 @@
 <!----------------------  템플릿 ------------------------>
 <section class="section blog-post-entry bg-light" id="next">
 	<div class="container">
-		<h1>Golf Review List</h1>
-		점수 : <select onchange="location = this.value;">
-				<option value="/Semi_F_GDCC/customer/golfReviewList.jsp" selected="selected">선택</option>
-			<%
-				for(int i=1; i<=10; i++){
-			%>
+ <b>점수 :</b> <select onchange="location = this.value;">
+		<option value="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp" selected="selected">선택</option>
+	<%
+		for(int i=1; i<=10; i++){
+	%>
 				
-				<option value="/Semi_F_GDCC/customer/golfReviewList.jsp?score=<%=i%>"><%=i%>점</option>
-			<%
-				}
-			%>
-	   		 </select>
-	   		 
-	    <br>
-		<table>		
-			<%
-				for(HashMap m : golfReviewList) {
-			%>
-				<br>
-				<span>No.</span>				
-				<span>
-					<a href="/Semi_F_GDCC/customer/golfReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
-							<%=(Integer)(m.get("rsvNo"))%></a>
-				</span>
-				<tr>				
-					<td colspan="2">
-		           		<div class="rate">
-		                    <% 
-			                    int reviewScore = (Integer)(m.get("reviewScore"));
-			                    int widthPercentage = reviewScore * 10;
-		                    %>
-		                    <span style="width: <%= widthPercentage %>%"></span>
-		                </div>
-		            </td>
-		         </tr>
-		         <tr>   
-		            
-					<td colspan="2">
-						<a href="/Semi_F_GDCC/customer/golfReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
-							<%=(String)(m.get("reviewTitle"))%></a>
-					</td>
-				</tr>
-				<tr>
-					<th style="width:20%">작성일</th>
-					<td>
-	            		<%=(String)(m.get("createDate"))%>
-	            	</td>  
-				</tr>
-			<%
-				}
-			%>
-			
+		<option value="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp?score=<%=i%>"><%=i%>점</option>
+	<%
+		}
+	%>
+	   </select>	   		 
+	    <br><hr>				
+	<%
+		for(HashMap m : hotelReviewList) {
+	%>
+		<table>	
+			<div>No.
+				<a href="/Semi_F_GDCC/customer/GDCC/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
+						<%=(Integer)(m.get("rsvNo"))%></a>
+			</div>
+			<tr>
+				<td style="width:150px"><%=(String)(m.get("cusMail"))%></td>								
+				<td style="width:300px">&nbsp;</td>				
+				<td>&nbsp;</td>
+		    	<th style="width:10%">작성일</th>		    	
+			</tr>
+			<tr>   
+		        <td>
+		        	<img src="/Semi_F_GDCC/customer/upload/<%=(String)(m.get("cusProfile"))%>"
+		        			 width="100" height="100" style="border-radius:50%;">		        	
+		        </td>
+		        <td>
+		       		<div class="rate">
+	                   <% 
+		               		int reviewScore = (Integer)(m.get("reviewScore"));
+		               		int widthPercentage = reviewScore * 10;
+	                   %>
+	                   <span style="width: <%= widthPercentage %>%"></span>
+		        	</div>
+		    	</td>  
+				<td>
+					<a href="/Semi_F_GDCC/customer/GDCC/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
+						<%=(String)(m.get("reviewTitle"))%></a>
+				</td>
+				<td>
+	           		<%=(String)(m.get("createDate"))%>
+	           	</td> 
+			</tr>
 		</table>
+		<hr>		
+	<%
+		}
+	%>
+			
+		
 		<!-- 페이징 버튼 -->
 		<div class="pagination">														
 			<%
 				if(currentPage > 1){			
 			%>
-				<a href="/Semi_F_GDCC/customer/golfReviewList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
-				<a href="/Semi_F_GDCC/customer/golfReviewList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>											
+				<a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a></li>
+				<a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a></li>											
 			<%						
 				}if(currentPage < lastPage){
 			%>
-				<a href="/Semi_F_GDCC/customer/golfReviewList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
-				<a href="/Semi_F_GDCC/customer/golfReviewList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
+				<a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a></li>
+				<a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a></li>
 			<%
 				}					
 			%>		

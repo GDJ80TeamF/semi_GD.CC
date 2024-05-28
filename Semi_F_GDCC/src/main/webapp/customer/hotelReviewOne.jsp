@@ -80,6 +80,10 @@
             <td><%=(Integer)(m.get("rsvNo"))%></td>
         </tr>
         <tr>
+            <th>작성자</th>
+            <td><%=(String)(m.get("rsvMail"))%></td>
+        </tr>
+        <tr>
             <th>별점</th>
             <td>
                 <div class="rate">
