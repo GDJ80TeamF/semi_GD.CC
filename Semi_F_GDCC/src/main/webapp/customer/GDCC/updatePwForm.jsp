@@ -4,7 +4,7 @@
 <%
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") == null){
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
 		return;
 	}
 %>
@@ -14,6 +14,13 @@
 	 HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 	 
 
 	 String cusMail = (String)(login.get("cusMail"));
+	 
+	 
+	//에러메세지 출력
+	String error = request.getParameter("error");
+	if(error == null){
+		error = " ";
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -125,6 +132,15 @@
 				<br><br>
 					<button type="submit" class="btn btn-warning"> 변경 </button>
 				</form>
+				<%
+					if(!error.equals(" ")){
+				%>
+					<div><%=error%></div>
+				
+				<% 
+					}
+				
+				%>
        		</div>
       </div>
      </div>

@@ -174,6 +174,7 @@ public class CustomerDAO {
 		int row = 0;
 			System.out.println(mail + "<===이거 메일임");
 			System.out.println(oldPw + "<==이거 옛날비번");
+			
 		
 			Connection conn = DBHelper.getConnection();
 			
@@ -377,4 +378,5 @@ public class CustomerDAO {
 	conn.close();
 	return ck;
 }	
+	
 }
