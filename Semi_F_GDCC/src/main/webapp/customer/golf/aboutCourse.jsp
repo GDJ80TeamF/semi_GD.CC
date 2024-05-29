@@ -72,7 +72,7 @@
                         <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">Restaurant</a></li>  
                         
                       </ul>
@@ -113,7 +113,11 @@
        		 <h2 style="text-align: center; color : #FFBB00; font-weight: bold;">OUT</h2>
 	           <img src="/Semi_F_GDCC/css/img/courseOut.jpeg" alt="Out 코스 사진">
                     <h3>난이도 ⭐⭐⭐</h3>
-                    <p>다양한 지형과 긴 페어웨이 도전적인 장애물로 구성되어 있어 중급자에게 적합합니다</p>
+                    <p>
+                    	다양한 지형과 긴 페어웨이 도전적인 장애물로 구성되어 있어 
+                    	<br>
+                    	중급자에게 적합합니다
+                    </p>
                     <h3>공략</h3>
                     <p>
                     	긴 페어웨이를 공략하기 위해서 정확한 티샷과 도전적인 세컨샷이 필수입니다
@@ -131,7 +135,11 @@
             	<div class="course-content">
               	  <img src="/Semi_F_GDCC/css/img/courseIn.jpeg" alt="In 코스 사진">
                     <h3>난이도 ⭐⭐⭐⭐</h3>
-                    <p>짧고 좁은 페어웨이 빠른 그린으로 구성되어 있어 상급자에게 적합합니다.</p>
+                    <p>
+                    	짧고 좁은 페어웨이 빠른 그린으로 구성되어 있어 
+                  		<br>
+                  		상급자에게 적합합니다.
+               		</p>
                     <h3>공략</h3>
                     <p>
                     	욕심은 금물! 안전한 티샷이 매우 중요한 코스입니다

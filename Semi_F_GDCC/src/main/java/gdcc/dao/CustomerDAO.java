@@ -172,6 +172,8 @@ public class CustomerDAO {
 	
 	public static int insertPw(String mail, String oldPw, String newPw) throws Exception{
 		int row = 0;
+			System.out.println(mail + "<===이거 메일임");
+			System.out.println(oldPw + "<==이거 옛날비번");
 		
 			Connection conn = DBHelper.getConnection();
 			

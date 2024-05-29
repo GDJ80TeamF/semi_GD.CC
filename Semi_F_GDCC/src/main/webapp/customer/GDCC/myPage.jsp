@@ -95,7 +95,7 @@
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%
@@ -121,7 +121,7 @@
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
           <!-- 프로필 햐얀박스 -->
-          <br><br><br><br>
+          <br><br><br><br><br><br>
             <div class="container">
             <span class="custom-caption text-uppercase text-white d-block mb-3">MY PROFILE</span>
           		<div style="background-color:white; border-radius:10px;">				
@@ -136,10 +136,10 @@
 					<a href="/Semi_F_GDCC/customer/GDCC/deleteCustomerForm.jsp" class="post-it">
 						회원탈퇴하기
 					</a>
-					<a href="/Semi_F_GDCC/customer/reviewListPerCustomer.jsp" class="post-it">
+					<a href="/Semi_F_GDCC/customer/GDCC/reviewListPerCustomer.jsp" class="post-it">
 						my후기
 					</a>
-					<a href="/Semi_F_GDCC/customer/QnAListPerCustomer.jsp" class="post-it">
+					<a href="/Semi_F_GDCC/customer/GDCC/QnAListPerCustomer.jsp" class="post-it">
 						MyQnA
 					</a>
 					<a href="/Semi_F_GDCC/customer/golf/rsvGolfList.jsp" class="post-it">

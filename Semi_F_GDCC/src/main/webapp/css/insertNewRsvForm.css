@@ -15,41 +15,56 @@
         margin: 0 auto; /* 가운데 정렬을 위해 추가 */
         margin-bottom: 20px;
         margin-top: 20px;
-        color : gray;
+        color : black;
 	}
+	.form{
+	    background-image: url('/Semi_F_GDCC/css/img/pin.jpeg');
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	    background-position: center;
+	    padding: 20px; /* 내용과의 간격을 조절하기 위해 padding 추가 */}
 	.container {
-        display: flex;
+   	    display: flex;
         justify-content: center;
         align-items: center;
        	height: 90vh; 
        	margin-top: 50px;
+       	background-color : white;
+        padding: 20px;
+        margin-bottom: 35px;
         }
+    .container2 {
+	    background-color: white;
+	    padding: 20px;
+	    opacity: 1.5; /* 전체적인 투명도 조절 */
+	    }
     .content {
-        width: 40%; /* 내용의 너비를 조절 */
-        height : 90%;       
-    }
+	        width: 40%; /* 내용의 너비를 조절 */
+	        height : 90%;       
+	    }
     .content2 {
-    	width: 30%; /* 내용의 너비를 조절 */
-        height : 90%;
-    }
+	    	width: 30%; /* 내용의 너비를 조절 */
+	        height : 90%;
+	    }
 	span{
-		font-size: 20px;
-		font-weight: bold;
-		color: orange;
-	}
+			font-size: 20px;
+			font-weight: bold;
+			color : black !important;
+		}
 	label{
-		font-weight: bold;
-	}
+			font-weight: bold;
+		}
 	.box{
-		text-align: center;
-		margin-bottom: 20px;
-	}
+			text-align: center;
+			margin-bottom: 20px;
+		}
+		
 	#calendar {
-	  width: 400px;
-	  height: 450px; 
-	  font-weight: bold;
-	  color : black;
-	}
+		  width: 400px;
+		  height: 450px; 
+		  font-weight: bold;
+		  color : black;
+		}
 	::-webkit-scrollbar {
-	    display: none; /* Safari 및 Chrome 등 Webkit 기반 브라우저 */
-	}
+		    display: none; /* Safari 및 Chrome 등 Webkit 기반 브라우저 */
+		}

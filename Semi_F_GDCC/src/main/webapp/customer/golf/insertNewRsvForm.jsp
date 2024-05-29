@@ -81,13 +81,13 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
 
-
 <!-- 여기가 원래 css쟈리 -->
 <!-- css파일연결 -->
 <link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/insertNewRsvForm.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
 </head>
 	<!-- 캘린더 API가져오기 -->
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
@@ -161,8 +161,8 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
                         <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Restaurant</a></li>      
+                        <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">Restaurant</a></li>      
                       </ul>
                     </div>
                   </div>
@@ -190,6 +190,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 		</a>
 	
   </section>
+<div class="form">
 <div class="container">
 	<div class="content">
 		<div id='calendar'> </div>
@@ -198,7 +199,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 		<%
 			if(checkSession == null){
 		%>
-			<span style="color : orange; font-weight: bold;">⬅️원하는 날을 선택해주세요</span>
+			<span style="color : orange; font-weight: bold;">원하는 날을 선택해주세요</span>
 				<br><hr>
 					<form method="post" action="/Semi_F_GDCC/customer/action/checkDateCourseAction.jsp">
 					<br>
@@ -214,7 +215,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					<input type="radio" id="course" name="rsvCourseCheck" value="IN"> IN코스
 					<input type="radio" id="course" name="rsvCourseCheck" value="OUT"> OUT코스
 				<br>
-					<button type="submit" class="btn btn-warning">T-TIME확인하기</button>
+					<button type="submit" class="btn btn-warning" style="color : ivory; font-weight: bold;">T-TIME확인하기</button>
 				</form>
 			<%
 				}else{
@@ -322,7 +323,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					    <br>
 					        <textarea rows="3" cols="30"></textarea>
 						<br>
-						<button type="submit" class="btn btn-warning">예약하기</button>
+						<button type="submit" class="btn btn-warning" style="color : ivory; font-weight: bold;" >예약하기</button>
 					<%
 						}
 					%>
@@ -330,9 +331,8 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 			</form>	
 		</div><!-- content2 -->
 	</div><!-- container마지막 -->	
-<div class="box">
- 	회원권 관련 문의는 02-818-7950로 연락부탁드립니다. 
 </div>
+
 
 	<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
