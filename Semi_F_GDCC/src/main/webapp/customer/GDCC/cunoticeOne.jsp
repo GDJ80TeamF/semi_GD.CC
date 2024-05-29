@@ -1,24 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="gdcc.dao.NoticeDAO"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	int currentPage = 1;
-	if(request.getParameter("currentPage") != null){
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-	}
-	// 공지 5개씩
-	int rowPerPage = 5;
-	int startRow = (currentPage-1) * rowPerPage;	
-%>
+	// parameter 값
+	int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 
+	// 디버깅
+	System.out.println("noticeNo: " + noticeNo);
+%>
 <%
-	ArrayList<HashMap<String, Object>> List = NoticeDAO.selectNotice(startRow, rowPerPage);
+	HashMap<String, Object> m = NoticeDAO.selectNoticeOne(noticeNo);
 %>
 <!DOCTYPE html>
 <html>
- <head>
-    <meta charset="utf-8">
+<head>
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sogo Hotel by Colorlib.com</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,9 +38,11 @@
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
     
-  </head>
-  <body>
-    
+
+<title>공지 상세정보</title>
+
+</head>
+<body>
     <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
@@ -92,8 +91,7 @@
         </div>
       </div>
     </header>
-    <!-- END head -->
-
+<!-- END head -->
     <section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
@@ -115,52 +113,27 @@
       </a>
     </section>
     <!-- END section -->
-
-<section class="section blog-post-entry bg-light" id="next">
+ <section class="section blog-post-entry bg-light" id="next">
  <div class="container">
   <table class="table table-striped">
-    <thead>
-      <tr>  
-      	<th>공지 번호</th>
-       	<th>공지 내용</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
- <%
-				for(HashMap<String, Object>  m : List){
-%>
-    
-    	<td style="color:#000000 !important"><%=(Integer)(m.get("noticeNo"))%></td>
-    	<td>
-    	<a href="/Semi_F_GDCC/customer/GDCC/cunoticeOne.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>" style="color:#000000 !important">
-    	<b><%=(String)(m.get("noticeTitle"))%></b>
-    	</a></td>
-    	</tr>
-    </tbody>
-<%
-				}
-%>
+   		<tr>
+			<td style="color:#000000 !important">공지 번호</td>
+			<td style="color:#000000 !important"><b><%=(Integer)(m.get("noticeNo"))%></b></td>
+		</tr>
+		<tr>
+			<td style="color:#000000 !important">제목 </td>
+			<td style="color:#000000 !important"><b><%=(String)(m.get("noticeTitle"))%></b></td>
+		</tr>
+		<tr>
+			<td style="color:#000000 !important">내용 </td>
+			<td style="color:#000000 !important"><b><%=(String)(m.get("noticeContent"))%></b></td>
+		</tr>
   </table>
 </div>
- <!-- <div class="row" data-aos="fade">
-          <div class="col-12">
-            <div class="custom-pagination">
-              <ul class="list-unstyled">
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><span>...</span></li>
-                <li><a href="#">30</a></li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
-    </section>
-
-    
-    
-    <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
+</section>
+ 
+ 
+<section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
         <div class="container" >
           <div class="row align-items-center">
             <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
