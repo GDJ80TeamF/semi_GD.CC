@@ -176,7 +176,7 @@ public class CustomerDAO {
 			Connection conn = DBHelper.getConnection();
 			
 			String sql ="INSERT INTO customer_pw_history(cus_mail,cus_pw) SELECT ?,PASSWORD(?) WHERE "
-					+ "(SELECT cus_pw FROM cus_pw_history WHERE cus_mail =? ORDER BY create_date DESC LIMIT 1)=PASSWORD(?) "
+					+ "(SELECT cus_pw FROM customer_pw_history WHERE cus_mail =? ORDER BY create_date DESC LIMIT 1)=PASSWORD(?) "
 					+ "AND NOT EXISTS (SELECT cus_pw FROM (SELECT cus_pw FROM customer_pw_history "
 					+ "WHERE cus_mail=?) "
 					+ "AS recent_history WHERE cus_pw =PASSWORD(?))";
