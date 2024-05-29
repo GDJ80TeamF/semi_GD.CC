@@ -2,6 +2,13 @@
 <%@ page import="java.net.*"%>
 <%@ page import = "java.sql.*"%>
 <%@ page import = "java.util.*"%>
+<%
+	//인증 분기 세션 변수 이름 : loginCustomer
+	if(session.getAttribute("loginCustomer") == null){
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
+		return;
+	}
+%>
 <!DOCTYPE html>
 <html>
  <head>
@@ -58,7 +65,7 @@
                 <div class="container">
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
-                    <!-- ë©ë´ë° -->
+                    
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
@@ -75,6 +82,7 @@
 						<%
 							  	}
 						%>
+                        <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">GolfMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">Q&A</a></li>

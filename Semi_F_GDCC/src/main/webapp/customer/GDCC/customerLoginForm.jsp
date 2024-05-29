@@ -73,6 +73,7 @@
 					<a href="/Semi_F_GDCC/customer/findPwForm.jsp" style="text-decoration-line: none; color: black;">
 						비밀번호 찾기
 					</a>
+					<a href="/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp">회원가입</a>
 				</div>
 					<div class="col"></div>
 				</div>
@@ -94,5 +95,7 @@
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
     <script src="js/main.js"></script>
+    <script>
+</script>
 </body>
 </html>

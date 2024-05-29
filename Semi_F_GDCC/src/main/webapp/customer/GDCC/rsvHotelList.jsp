@@ -105,7 +105,6 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -123,53 +122,28 @@
           <div class="col-md-10 text-center" data-aos="fade-up">
             <div class="container">
             
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Reservation Hotel</span>
          
           <div style="background-color:white;">
 				 <div class="mb-3 mt-3">
-				<table>
-					
-					<tr>
-						<th>
-							고객mail
-						</th>
-						<td>
-							<%=profile.get("cusMail") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							성함
-						</th>
-						<td>
-							<%=profile.get("cusName") %>
-						</td>
-					</tr>
-					<tr>
-						<th>
-							연락처
-						</th>
-						<td>
-							<%=profile.get("cusContact") %>
-						</td>
-					</tr>
-
-				</table>
-
-				<table border="1">
-							<%
-								for(HashMap<String, Object> m : List){
-							%>
+				
+				<table style="margin-left:auto; margin-right:auto;">
 						<tr>
 							<th>예약 번호</th>
 							<th>룸 번호</th>
 							<th>예약자 아이디 </th>
+							<th>조식예약여부</th>
 						</tr>
+					<%
+						for(HashMap<String, Object> m : List){
+					%>
 						<tr>
 								<td><a href="/Semi_F_GDCC/customer/GDCC/cusRsvHotelOne.jsp?rsvNo=<%=m.get("rsvNo")%>"><%=m.get("rsvNo")%></a></td>
 								<td><%=(Integer)m.get("roomNo")%></td>
 								<td><%=cusMail%></td>
+								<td><a href="/Semi_F_GDCC/customer/GDCC/rsvOne.jsp?rsvNo=<%=m.get("rsvNo")%>">조식예약 확인</a></td>
 						</tr>
+ 
 							<%
 								}
 							%>
@@ -178,15 +152,15 @@
 
 				<br>
 				<div>
-			 
+			 </div>
+			 </div>
         </div>
       </div>
 </div>
 </div>
    </div>
 </section>
-
-			 <script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

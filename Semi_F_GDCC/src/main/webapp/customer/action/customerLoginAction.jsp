@@ -21,6 +21,6 @@
 	}else{
 		System.out.println("로그인 실패");
 		String errMsg = URLEncoder.encode("아이디 비밀번호 확인해주세요." ,"utf-8");
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp?errMsg=" + errMsg);
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp?errMsg=" + errMsg);
 	}
 %>
