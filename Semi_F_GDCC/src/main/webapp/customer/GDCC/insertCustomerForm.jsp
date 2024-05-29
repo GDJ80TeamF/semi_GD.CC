@@ -135,7 +135,7 @@
 					
 				</form>
 					
-				<form method="post" action="/Semi_F_GDCC/customer/action/insertCustomerAction.jsp">
+				<form method="post" action="/Semi_F_GDCC/customer/action/insertCustomerAction.jsp" enctype="multipart/form-data">
 					
 						<!-- T일때만 사용 가능 -->
 						<%
@@ -149,96 +149,46 @@
 						<%
 							}
 						%>
-						
-						<div class="form-group">
-                                <label>이름</label>
-                                <input type="text" name="cusName">
-                            </div>
-                            <div class="form-group">
-                                <label>비밀번호</label>
-                                <input type="password" name="cusPw">                        
-                            </div>
-                            <div class="form-group">
-                                <label>성별</label>
-                                <input type="text" name="cusGender">
-                            </div>
-                            <div class="form-group">
-                                <label>생년월일</label>
-                                <input type="date" name="cusBirth">
-                            </div>
-                            <div class="form-group">
-                                <label>전화번호</label>
-                                <input type="text" name="cusContact">
-                            </div>
-                            <div class="form-group">
-                                <label>프로필</label>
-                                <input type="file" name="cusProfile">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">회원가입 완료</button>        
-                            </div>        
-						
-							
-				</form>
+						<table style="margin-left:auto; margin-right:auto;">
+							<tr>
+								<td>이름</td>
+                                <td><input type="text" name="cusName"></td>
+							</tr>
+							<tr>
+								<td>비밀번호</td>
+								<td> <input type="password" name="cusPw"></td>
+							</tr>
+							<tr>
+								<td>성별</td>
+								<td>
+									<input type="radio" name="cusGender" value="남" required> 남
+	                                <input type="radio" name="cusGender" value="여" required> 여
+                                </td>
+							</tr>
+							<tr>
+								<td>생년월일</td>
+								<td><input type="date" name="cusBirth"></td>
+							</tr>
+							<tr>
+								<td>전화번호</td>
+								<td> <input type="text" name="cusContact"></td>
+							</tr>
+							<tr>
+								<td>프로필</td>
+								<td><input type="file" name="cusProfile"></td>
+							</tr>
+						</table>
+						<br>
+						<button type="submit" class="btn btn-primary">회원가입 완료</button>
+					</form>
 				</div>
 			</div>
 		</div>
   	</div>
   </div>
 </section>
-	<%-- <h1>회원가입</h1>
-	<form method="post" action="/Semi_F_GDCC/customer/action/customerCheckIdAction.jsp" enctype="multipart/form-data" >
-		아이디:
-		<input type="email" name="checkId" value=<%=checkId%>>
-		<button type="submit">아이디 중복 체크</button>
-		<br><span><%=msg%></span>
-	</form>
-		
-		<form method="post" action="/Semi_F_GDCC/customer/action/insertCustomerAction.jsp">
-			<div>
-				<!-- T일때만 사용 가능 -->
-				<%
-					if(ck.equals("T")){
-				%>
-				<input type="text" name="cusMail" readonly="readonly" value="<%=checkId%>" style="display:none">
-				<%
-					}else if(ck.equals("F")){
-				%>
-				<input type="text" name="cusMail" readonly="readonly" style="display:none">
-				<%
-					}
-				%>
-			</div>
-		<div>
-			이름:
-			<input type="text" name="cusName">
-		</div>
-		<div>
-			비밀번호:
-			<input type="text" name="cusPw">
-		</div>
-		<div>
-			성별:
-			<input type="text" name="cusGender">
-		</div>
-		<div>
-			생년월일:
-			<input type="date" name="cusBirth">
-		</div>
-		<div>
-			전화번호:
-			<input type="text" name="cusContact">
-		</div>
-		<div>
-			프로필:
-			<input type="file" name="cusProfile">
-		</div>
-		<div>
-			<button type="submit">회원가입 완료</button>
-		</div>
-	</form> --%>
 
-    
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
