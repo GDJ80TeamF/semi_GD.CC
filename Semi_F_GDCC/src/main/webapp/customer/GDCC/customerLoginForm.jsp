@@ -66,11 +66,11 @@
 					  <button type="submit" class="btn btn-primary">로그인</button>
 					</form>
 					  <br>
-					<a href="/Semi_F_GDCC/customer/findIdForm.jsp" style="text-decoration-line: none; color: black;">
+					<a href="/Semi_F_GDCC/customer/GDCC/findIdForm.jsp" style="text-decoration-line: none; color: black;">
 						ID찾기
 					</a>
 						&nbsp;
-					<a href="/Semi_F_GDCC/customer/findPwForm.jsp" style="text-decoration-line: none; color: black;">
+					<a href="/Semi_F_GDCC/customer/GDCC/findPwForm.jsp" style="text-decoration-line: none; color: black;">
 						비밀번호 찾기
 					</a>&nbsp;
 					<a href="/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp" style="text-decoration-line: none; color: black;">

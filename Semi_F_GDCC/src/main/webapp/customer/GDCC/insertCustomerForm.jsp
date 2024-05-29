@@ -122,9 +122,9 @@
 	<div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
+           <span class="custom-caption text-uppercase text-white d-block mb-3">회원가입</span>
             <div class="container">
 				<div class="bg-white border shadow-sm p-3 mb-5 bg-body-tertiary rounded">	
-				<h1 style="text-align: center;">회원가입</h1>
 				<form method="post" action="/Semi_F_GDCC/customer/action/customerCheckIdAction.jsp" enctype="multipart/form-data" >
 					  <div class="form-group">
                                 <label>아이디</label>
