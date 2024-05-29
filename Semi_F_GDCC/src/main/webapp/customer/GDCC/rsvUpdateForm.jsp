@@ -118,11 +118,11 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">RSV<br>BREAK FAST</h1>
+            <h1 class="heading mb-3">RSV UPDATE<br>BREAK FAST</h1>
             <ul class="custom-breadcrumbs mb-4">
               <li><a href="index.html">Home</a></li>
               <li>&bullet;</li>
-              <li>RSV BREAK FAST</li>
+              <li>RSV UPDATE BREAK FAST</li>
             </ul>
           </div>
         </div>
@@ -139,8 +139,7 @@
 		<div class="row">
 		<div class="col"></div>          
 			<div class="mt-5 col-7 bg-white border shadow-sm p-3 mb-5 bg-body-tertiary rounded">
-			<h1>조식 예약 수정</h1>
-			<h3>머무시는 일정</h3>
+			<h3>투숙 기간</h3>
 			<div><%=(String)map.get("checkinDate")%> ~ <%=(String)map.get("checkoutDate")%></div>
 			<form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/rsvUpdateAction.jsp">
 	        	<div class="mb-3 mt-3">

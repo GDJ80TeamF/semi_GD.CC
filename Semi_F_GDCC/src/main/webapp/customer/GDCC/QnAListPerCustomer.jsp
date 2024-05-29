@@ -24,14 +24,14 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="utf-8">
+	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
+    
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=|Roboto+Sans:400,700|Playfair+Display:400,700">
-
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
@@ -39,7 +39,6 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
     <link rel="stylesheet" href="css/fancybox.min.css">
-    
     <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
 
@@ -55,7 +54,6 @@
         <div class="row align-items-center">
           <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
-
 
             <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
               <span></span>
@@ -104,7 +102,7 @@
 </header>
 <!-- END head -->
 <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
-<div class="container">
+<div class="container1">
 	<div class="row site-hero-inner justify-content-center align-items-center">
 		<div class="col-md-10 text-center" data-aos="fade-up">
 		<span class="custom-caption text-uppercase text-white d-block  mb-3">MY QnA</span>

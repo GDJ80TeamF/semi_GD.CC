@@ -71,3 +71,25 @@
 	button:hover {
 	    background-color: #2980b9;
 	}
+	table.rounded-table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+    }
+    table.rounded-table th,
+    table.rounded-table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    table.rounded-table th:first-child {
+        border-top-left-radius: 10px;
+    }
+    table.rounded-table th:last-child {
+        border-top-right-radius: 10px;
+    }
+    table.rounded-table td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+    table.rounded-table td:last-child {
+        border-bottom-right-radius: 10px;
+    }
