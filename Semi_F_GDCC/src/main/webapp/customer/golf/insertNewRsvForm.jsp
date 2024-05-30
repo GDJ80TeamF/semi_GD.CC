@@ -162,7 +162,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">Restaurant</a></li>      
+                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">HalfwayHouse</a></li>      
                       </ul>
                     </div>
                   </div>

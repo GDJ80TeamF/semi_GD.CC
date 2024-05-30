@@ -68,7 +68,54 @@
         });
     });
     </script>
+    <style>
+    .circle {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        border-radius: 50%;
+        background-color: white;
+        text-align: center;
+        margin: 0 30px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.5); /* 투명한 배경색 */
+    }
 
+    .circle-container {
+        text-align: center;
+        margin-top: 50px; /* 아래로 내리기 위해 변경 */
+        
+    }
+    .circle:hover {
+    	color : orange;
+    }
+
+    .weather {
+        display: none;
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+    }
+
+    .weather.show {
+        display: block;
+    }
+
+    .site-hero-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 150px; /* 아래로 내리기 위해 변경 */
+    }
+
+    .circle:hover + .weather {
+        display: block;
+    }
+    </style>
     
 </head>
 <body>
@@ -107,7 +154,7 @@
                         <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">HalfwayHouse</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">Restaurant</a></li>
                       </ul>
                     </div>
                   </div>
@@ -127,19 +174,9 @@
             <h1 class="heading">GooDee Country Club</h1>
             
             <div class="circle-container">
-                <div class="circle" id="booking">
-                	<a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">
-                		booking
-                	</a>
-                </div>
-                <div class="circle" id="course">
-                	<a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">
-                		course
-                	</a>
-                </div>
-                <div class="circle" id="weatherCheck">            	
-                		weather
-               	</div>
+                <div class="circle" id="booking">booking</div>
+                <div class="circle" id="course">course</div>
+                <div class="circle" id="weatherCheck">weather</div>
             </div>
             
             <div class="weather">
@@ -172,24 +209,25 @@
         <div class="row mb-4">
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="/Semi_F_GDCC/welcome.jsp">home</a></li>
-              <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">reservation</a></li>
-              <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">course</a></li>
-              <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">HalfwayHouse</a></li>
-              
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Terms &amp; Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+             <li><a href="#">Rooms</a></li>0
             </ul>
           </div>
           <div class="col-md-3 mb-5">
             <ul class="list-unstyled link">
-              <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Hotel Rooms</a></li>
-             
+              <li><a href="#">The Rooms &amp; Suites</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Restaurant</a></li>
             </ul>
           </div>
           <div class="col-md-3 mb-5 pr-md-5 contact-info">
-            <li>Yeongjonghaeannam-ro 321beon-gil,<br> Incheon Jung-gu, Unseo-dong, 184</li>
-            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span>Yeongjonghaeannam-ro 321beon-gil, <br> Incheon Jung-gu, Unseo-dong, 184</span></p>
-            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> 02)8187950</span></p>
-            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span>GDCC@GD.com</span></p>
+            <li>198 West 21th Street, <br> Suite 721 New York NY 10016</li>
+            <p><span class="d-block"><span class="ion-ios-location h5 mr-3 text-primary"></span>Address:</span> <span> 198 West 21th Street, <br> Suite 721 New York NY 10016</span></p>
+            <p><span class="d-block"><span class="ion-ios-telephone h5 mr-3 text-primary"></span>Phone:</span> <span> (+1) 435 3533</span></p>
+            <p><span class="d-block"><span class="ion-ios-email h5 mr-3 text-primary"></span>Email:</span> <span> info@domain.com</span></p>
           </div>
           <div class="col-md-3 mb-5">
             <p>Sign up for our newsletter</p>

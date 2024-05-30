@@ -82,7 +82,7 @@ if(session.getAttribute("loginCustomer") == null){
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">Restaurant</a></li>  
+                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">HalfwayHouse</a></li>  
                         
                       </ul>
                     </div>
@@ -100,7 +100,7 @@ if(session.getAttribute("loginCustomer") == null){
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
             <span class="custom-caption text-uppercase text-white d-block  mb-3">Enjoy Premium<span class="fa fa-star text-primary"> Golfing </span></span>
-            <h1 class="heading">restaurant</h1>
+            <h1 class="heading">Halfway House</h1>
           </div>
         </div>
      </div>

@@ -86,7 +86,7 @@
                     <div class="col-md-6 mx-auto">
                     <!-- ë©ë´ë° -->
                       <ul class="list-unstyled menu">
-                        <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
+                        <li class="active"><a href="/Semi_F_GDCC/welcome.jsp">Home</a></li>
                         <%
 							  	if(session.getAttribute("loginCustomer") == null){
 						%>
@@ -104,7 +104,6 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                       </ul>
                     </div>
