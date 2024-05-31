@@ -60,7 +60,7 @@
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
             <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
@@ -86,7 +86,7 @@
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">My page</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">My page</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%
@@ -95,10 +95,9 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">REVIEW</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">Reviews</a></li>
                       </ul>
                     </div>
                   </div>
@@ -110,7 +109,7 @@
       </div>
 </header>
 <!-- END head -->
-<section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+<section class="site-hero inner-page overlay" style="background-image: url(/Semi_F_GDCC/css/img/courseOut.jpeg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
@@ -130,10 +129,12 @@
         </div>
       </a>
 </section>
+<br><br>
 <section>
 	<div class="container">
 	<form method="post" action="/Semi_F_GDCC/customer/GDCC/insertGolfReviewAction.jsp">
 		<table>
+		<h1>INSERT GOLF REVIEW</h1>
 			<tr>
 				<th style="width:10%">RSV NO.</th>
 				<td><input style="width:5%" type="text" name="rsvNo" value="<%=rsvNo%>"></td>

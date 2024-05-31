@@ -24,10 +24,10 @@
 	
 	if(row == 1){
 		System.out.println("수정성공");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelBf/rsvOne.jsp?rsvNo="+rsvNo); //성공시
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/rsvOne.jsp?rsvNo="+rsvNo); //성공시
 	} else {
 		System.out.println("수정실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelBf/rsvUpdateForm.jsp"); //실패시 다시 수정 페이지로			
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/rsvUpdateForm.jsp"); //실패시 다시 수정 페이지로			
 	}
 
 

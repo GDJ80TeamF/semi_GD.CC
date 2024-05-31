@@ -63,7 +63,7 @@
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
             <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
@@ -98,11 +98,10 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">HOTEL REVIEW</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">GOLF REVIEW</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">Golf Reviews</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">Hotel Reviews</a></li>
                       </ul>
                     </div>
                   </div>
@@ -118,11 +117,11 @@
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
-            <h1 class="heading mb-3">RSV UPDATE<br>BREAK FAST</h1>
+            <h1 class="heading mb-3">RSV MODIFY<br>BREAK FAST</h1>
             <ul class="custom-breadcrumbs mb-4">
               <li><a href="index.html">Home</a></li>
               <li>&bullet;</li>
-              <li>RSV UPDATE BREAK FAST</li>
+              <li>RSV MODIFY BREAK FAST</li>
             </ul>
           </div>
         </div>
@@ -134,6 +133,7 @@
         </div>
       </a>
 </section>
+<br>
 <section>
 	<div class="container">
 		<div class="row">
@@ -172,13 +172,12 @@
 	            	<input type="number" class="form-control" value="<%=(String)map.get("rsvMember")%>" name="rsvMember" min="1">
 	            </div>                  
 	            	<input type="hidden" value="<%=rsvMenu%>" name="rsvMenu">
-	
 	            	<button type="submit" class="btn btn-primary">예약 수정</button>
 			</form>
 	        </div>
 		<div class="col"></div>
 	    </div>
-	</div>
+	</div><br>
 </section>
 
 <script src="js/jquery-3.3.1.min.js"></script>

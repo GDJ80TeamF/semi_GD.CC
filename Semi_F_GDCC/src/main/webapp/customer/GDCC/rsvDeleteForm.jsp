@@ -1,11 +1,5 @@
-<%@ page import="gdcc.dao.*"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*"%>
-<%@ page import="java.net.*"%>
-<%@ page import="java.util.*"%>
-<%@ page import="java.text.SimpleDateFormat"%>
-<%@ page import="java.util.Date"%>
-<%@ page import="java.text.ParseException"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") == null){
@@ -14,17 +8,27 @@
 	}
 %>
 <%
-	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
-	System.out.println(rsvNo + "<-- rsvNo rsvOne.jsp param ");
 
-	// rsvNo에 따라 조식예약정보 출력하는 메서드 / 상세보기
-	ArrayList<HashMap<String, Object>> list = RsvBfDAO.selectRsvOne(rsvNo);
+	String checkId = request.getParameter("checkId");
+	if(checkId == null) {
+		checkId = "";
+	}
+	String ck = request.getParameter("ck");
+	if(ck == null) {
+		ck = "";
+	}
 	
-	// 현재 날짜 구하기
-	Date currentDate = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // SimpleDateFormat을 사용하여 날짜 형식 지정
-    Date rsvDate = null; // 예약 날짜를 Date 객체로 변환할 변수 초기화
+	String msg = "";
+	if(ck.equals("T")) {
+		msg = "인증 되셨습니다";
+	} else if(ck.equals("F")) {
+		msg = "아이디 또는 비밀번호를 확인하세요";
+	}
+	int rsvNo = Integer.parseInt(request.getParameter("rsvNo"));
+	System.out.println(rsvNo + "<-- rsvNo rsvDeleteForm.jsp param ");
 	
+	int rsvBfno = Integer.parseInt(request.getParameter("rsvBfno"));
+	System.out.println(rsvBfno + "<-- rsvBfno rsvDeleteForm.jsp param ");
 %>
 <!DOCTYPE html>
 <html>
@@ -49,15 +53,34 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
-   	<!-- css -->
-   	<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/qnaListPerCustomer.css">
-<title></title>
+    <!-- css -->
+   	<link rel="stylesheet" type="text/css" href="/Semi_F_GDCC/css/rsvDeleteForm.css">
+<title>Insert title here</title>
+<style>
+	.button {
+		background-color: #f2f2f2; /* 기본 배경색을 밝은 그레이로 설정합니다. */
+		color: #333; /* 기본 텍스트 색상을 어두운 그레이로 설정합니다. */
+		border: 1px solid #ccc; /* 테두리를 회색으로 설정합니다. */
+		padding: 10px 20px; /* 버튼의 내부 여백을 설정합니다. */
+		font-size: 16px; /* 버튼의 글꼴 크기를 설정합니다. */
+		cursor: pointer; /* 커서 모양을 포인터로 설정합니다. */
+		transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* 호버 효과를 부드럽게 만듭니다. */
+		width: 100%;
+		height: 50px;
+		border-radius: 10px; /* 버튼을 둥글게 만듭니다. */
+	}
+	.button:hover {
+		background-color: #e0e0e0; /* 호버 시 배경색을 조금 더 어둡게 설정합니다. */
+		color: #222; /* 호버 시 텍스트 색상을 어둡게 설정합니다. */
+		border-color: #999; /* 호버 시 테두리 색상을 어둡게 설정합니다. */
+	}
+</style>
 </head>
 <body>
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
             <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
@@ -107,78 +130,52 @@
 </header>
 <!-- END head -->
 <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
-	<div class="container">
+
 		<div class="row site-hero-inner justify-content-center align-items-center">
 		<div class="col-md-10 text-center" data-aos="fade-up">
-		<span class="custom-caption text-uppercase text-white d-block  mb-3">RSV BREAK FAST</span>
-            <br>
+		<span class="custom-caption text-uppercase text-white d-block  mb-3"><h1 style="color: white; font-size: 55px;">WARNING</h1><br>아이디와 패스워드를 입력하세요</span>
 	        <!--  <div style="background-color:white; padding:100px; border-radius:10px;"> -->
-			<div class="mb-3 mt-6;">
 			<div class="container2">
-			<table border="1">
-				<tr>
-					<th style="width:5%">RSV NO.</th>
-					<th style="width:10%">예약날짜</th>
-					<th style="width:5%">예약시간</th>
-					<th style="width:5%">동반인원</th>
-					<th style="width:8%">예약상태</th>
-					<th style="width:5%">메뉴</th>
-					<th style="width:15%">메뉴 소개</th>
-					<th style="width:5%">이미지</th>
-					<th style="width:5%">&nbsp;</th>					
-					<th style="width:5%">&nbsp;</th>
-				</tr>
-				<%	
-					for(HashMap m : list) {
-				        // 예약 날짜 가져오기
-				        String rsvDateStr = (String) m.get("rsvDate");
-				        try { // 날짜 문자열을 Date 객체로 변환
-				            rsvDate = sdf.parse(rsvDateStr);
-				        } catch (ParseException e) {
-				            e.printStackTrace(); // 예외 처리
-				        }
-				%>
-				<tr>
-					<td><%=(Integer)(m.get("rsvNo"))%></td>	
-					<td><%=(String)(m.get("rsvDate"))%></td>	
-					<td><%=(String)(m.get("rsvTime"))%></td>
-					<td><%=(Integer)(m.get("rsvMember"))%>명</td>	
-					<td><%=(String)(m.get("rsvState"))%></td>	
-					<td><%=(String)(m.get("menuMain"))%></td>
-					<td><%=(String)(m.get("menuInfo"))%></td>
-					<td><%=(String)(m.get("menuImg"))%></td>
-					
-				<%
-				        // 현재 날짜와 예약 날짜 비교
-				        if (currentDate.compareTo(rsvDate) <= 0) { // 현재 날짜가 예약 날짜 이후인 경우
-				%>
-					<td>
-						<a href="/Semi_F_GDCC/customer/GDCC/rsvUpdateForm.jsp?rsvNo=<%=rsvNo%>&
-									rsvBfno=<%=(Integer)(m.get("rsvBfno"))%>">변경</a>
-					</td>
-					<td>		
-					<a href="/Semi_F_GDCC/customer/GDCC/rsvDeleteForm.jsp?rsvNo=<%=rsvNo%>&
-									rsvBfno=<%=(Integer)(m.get("rsvBfno"))%>">취소</a>
-					</td>
-				<%
-				        } else {
-				            // 현재 날짜가 예약 날짜 이전인 경우 버튼 숨김
-				%>
-				            <td>만료</td>
-				            <td>&nbsp;</td>			      
-				<%
-				        }
-				%>
-				</tr>
-				<%
-					}
-				%>
-			</table>
+			<div class="mb-3 mt-6;">
+			
+			<div style="margin: 0 auto; width: 50%;">			
+				<form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/rsvDeleteCkAction.jsp">
+					<table>
+						<tr>
+							<td>ID :</td>
+							<td>
+								<input type="text" name="checkId">
+								<input type="hidden" name="rsvNo" value="<%=rsvNo%>">
+								<input type="hidden" name="rsvBfno" value="<%=rsvBfno%>">
+							</td>
+						</tr>
+						<tr>
+							<td>PW :</td>
+							<td>
+								<input type="password" name="checkPw">
+								
+							</td>
+						</tr>																				
+					</table>
+					<button class="button" type="submit">입 력</button>
+				</form>
+				<br>	
+				<div><%=msg%></div>
+				<div>
+					 <%
+						if(ck.equals("T")) {
+					 %>
+						<a href="/Semi_F_GDCC/customer/hotelBf/action/rsvDeleteAction.jsp?rsvNo=<%=rsvNo%>&
+									rsvBfno=<%=rsvBfno%>">취소</a>
+					 <%
+						} 
+					 %>
+				</div>
+			</div>
 			</div>
 	    	</div>
 		</div>
-	</div>	
-	</div>
+	</div>		
 </section>
 
 <script src="js/jquery-3.3.1.min.js"></script>

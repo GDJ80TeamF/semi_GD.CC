@@ -57,15 +57,17 @@
 <!----------------------  템플릿 ------------------------>
 </head>
 <style>
-
-	
+	h1 {
+		text-align: center;
+		}
+        
 </style>
 <body>
 <!----------------------  템플릿 ------------------------>
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
             <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
@@ -96,13 +98,13 @@
                   	<%
                         }
                   	%>
-                          <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
-                          <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                          <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
-                          <li><a href="/Semi_F_GDCC/customer/GDCC/reservation.jsp">Reservation</a></li>
-                          <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
-                          <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">HOTEL REVIEW</a></li>
-                          <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">GOLF REVIEW</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">Golf Reviews</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">Hotel Reviews</a></li>
                       </ul>
                     </div>
                   </div>
@@ -138,8 +140,9 @@
 
 <!----------------------  템플릿 ------------------------>
 <section class="section blog-post-entry bg-light" id="next">
+
 	<div class="container">
-	    <h1>QnA 게시판</h1>
+	    <h1>QnA 게시판</h1><br>
 	    <a href="/Semi_F_GDCC/customer/GDCC/insertQnAForm.jsp" class="write-button">글 쓰기</a>
 	    <hr>
 	    <table>
@@ -176,7 +179,6 @@
 	        %>
 	        </tbody>
 	    </table>
-	    <hr style="margin-top: 20px;">
 	    <!-- START 페이징 버튼 -->
 	    <div class="pagination">
 	        <%

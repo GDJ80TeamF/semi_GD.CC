@@ -77,11 +77,10 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">HOTEL REVIEW</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">GOLF REVIEW</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">Golf Reviews</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">Hotel Reviews</a></li>
                       </ul>
                     </div>
                   </div>
@@ -113,10 +112,12 @@
         </div>
       </a>
 </section>
+<br><br>
 <section>
 	<div class="container">
     <form method="post" action="/Semi_F_GDCC/customer/GDCC/insertQnAAction.jsp">
         <table>
+        <h1>INSERT QnA</h1>
             <tr>
                 <th>아이디 :</th>
                 <td>

@@ -23,10 +23,10 @@
 	
 	if(row == 1){
 		System.out.println("입력성공");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelBf/rsvOne.jsp?rsvNo="+rsvNo); //성공시
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/rsvOne.jsp?rsvNo="+rsvNo); //성공시
 	} else {
 		System.out.println("입력실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelBf/insertRsvForm.jsp"); //실패시 다시 입력 페이지로			
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/insertRsvForm.jsp"); //실패시 다시 입력 페이지로			
 	}
 
 %>

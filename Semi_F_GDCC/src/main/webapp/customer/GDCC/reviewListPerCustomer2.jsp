@@ -78,7 +78,7 @@
 <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
-          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
+          <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/welcome.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
           <div class="col-6 col-lg-8">
 
 
@@ -114,9 +114,10 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Hotel Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">Golf Main</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">Golf Reviews</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">Hotel Reviews</a></li>
                       </ul>
                     </div>
                   </div>
@@ -130,7 +131,7 @@
 <!-- END head -->
 <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
 <br><br><br><br>
-<div class="container">
+<div class="container1">
 	<div class="row site-hero-inner justify-content-center align-items-center">
 		<div class="col-md-10 text-center" data-aos="fade-up">
 			<span class="custom-caption text-uppercase text-white d-block  mb-3"> 
@@ -168,14 +169,16 @@
 					        </td>
 							<td><%=(String)(m.get("reviewTitle"))%></td>
 							<td>
-							    <%
-							      String reviewContent = (String)(m.get("reviewContent"));
-							      if (reviewContent != null && reviewContent.length() > 5) { // 내용길이가 5글자보다 크면
-							          out.print(reviewContent.substring(0, 5) + "...");	  // 5글자까지 출력 + "..."
-							      } else {
-							          out.print(reviewContent);
-							      }
-							   %>
+								<a href="/Semi_F_GDCC/customer/GDCC/hotelReviewOne.jsp?rsvNo=<%=(Integer)(m.get("rsvNo"))%>">
+								    <%
+								      String reviewContent = (String)(m.get("reviewContent"));
+								      if (reviewContent != null && reviewContent.length() > 5) { // 내용길이가 5글자보다 크면
+								          out.print(reviewContent.substring(0, 5) + "...");	  // 5글자까지 출력 + "..."
+								      } else {
+								          out.print(reviewContent);
+								      }
+								   %>
+								</a>
 							</td>					
 							<td><%=(String)(m.get("checkinDate"))%> ~ <%=(String)(m.get("checkoutDate"))%></td>
 							<td><%=(String)(m.get("createDate"))%></td>

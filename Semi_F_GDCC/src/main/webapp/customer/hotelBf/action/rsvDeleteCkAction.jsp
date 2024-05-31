@@ -20,10 +20,10 @@
 	boolean ck = CustomerDAO.selectIdPwCk(checkId, checkPw);
 	if(ck == false){
 		System.out.println("인증 실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelBf/rsvDeleteForm.jsp?rsvNo="+rsvNo+"&rsvBfno="+rsvBfno+"&checkId="+checkId+"&ck=F");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/rsvDeleteForm.jsp?rsvNo="+rsvNo+"&rsvBfno="+rsvBfno+"&checkId="+checkId+"&ck=F");
 	}else{
 		System.out.println("인증 성공 ");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelBf/rsvDeleteForm.jsp?rsvNo="+rsvNo+"&rsvBfno="+rsvBfno+"&checkId="+checkId+"&ck=T");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/rsvDeleteForm.jsp?rsvNo="+rsvNo+"&rsvBfno="+rsvBfno+"&checkId="+checkId+"&ck=T");
 								
 	}
 
