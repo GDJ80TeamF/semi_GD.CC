@@ -116,7 +116,7 @@
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = { 
-	        center: new kakao.maps.LatLng(37.436971, 126.455974), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(37.437018, 126.455932), // 지도의 중심좌표
 	        level: 4 // 지도의 확대 레벨
 	    };
 	
@@ -128,7 +128,7 @@
 	      
 	// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
 	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-	    markerPosition = new kakao.maps.LatLng(37.436971, 126.455974); // 마커가 표시될 위치입니다
+	    markerPosition = new kakao.maps.LatLng(37.437018, 126.455932); // 마커가 표시될 위치입니다
 	
 	// 마커를 생성합니다
 	var marker = new kakao.maps.Marker({
