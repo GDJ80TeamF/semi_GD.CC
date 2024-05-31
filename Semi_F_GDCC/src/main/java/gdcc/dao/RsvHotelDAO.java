@@ -290,6 +290,33 @@ public class RsvHotelDAO {
 		
 	}
 	
+	// 고객 호텔 리스트
+	public static ArrayList<HashMap<String, Object>> selectCuRsvList(String cusMail) throws Exception{
+		ArrayList<HashMap<String,Object>> list = 
+				 new ArrayList<HashMap<String,Object>>();
+		
+		Connection  conn = DBHelper.getConnection();
+		
+		String sql = "SELECT rsv_no, room_no "
+				+ "FROM rsv_hotel "
+				+ "WHERE rsv_mail=? ";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, cusMail);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()){
+			
+			HashMap<String,Object> m = new HashMap<String,Object>();
+			m.put("rsv_no", rs.getInt("rsv_no"));
+			m.put("room_no", rs.getInt("room_no"));
+			list.add(m);
+		}
+		conn.close();
+		return list;	
+	}
+	
+	
 	// 고객 호텔 예약 변경
 	// 호출
 	public static int updateCusRsv(int rsvNo, String rsvMail, String cusCheckIn, String cusCheckOut, int cusMember, String cusRequest) throws Exception {

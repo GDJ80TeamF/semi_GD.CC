@@ -3,7 +3,7 @@
 <%
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") != null){
-		response.sendRedirect("/Semi_F_GDCC/customer/main.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/main.jsp");
 		return;
 	}
 %>

@@ -6,22 +6,22 @@
 
 	// 인증 분기 세션 변수 이름 : loginCustomer
 	if(session.getAttribute("loginCustomer") == null){
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
 		return;
 	}
 %>
 <%
-	//1.세션에서 고객 mail가져오기
+	 //1.세션에서 고객 mail가져오기
 	 HashMap<String, Object> login = (HashMap<String, Object>)(session.getAttribute("loginCustomer")); 	 
 
 	 String cusMail = (String)(login.get("cusMail"));
-	 	System.out.println(cusMail + "myPage.cusMail");
+	 System.out.println(cusMail + "myPage.cusMail");
 	
 	
-	//2.DAO랑 연결시켜서 고객정보 select쿼리 가져오기
-	HashMap<String, Object> profile = CustomerDAO.selectCustomerInfo(cusMail);
+	 //2.DAO랑 연결시켜서 고객정보 select쿼리 가져오기
+	 HashMap<String, Object> profile = CustomerDAO.selectCustomerInfo(cusMail);
 		
-		System.out.println(profile + "<==myPage.profile");
+	 System.out.println(profile + "<==myPage.profile");
 
 	
 %>
@@ -35,7 +35,7 @@
 	int startRow = (currentPage-1) * rowPerPage;	
 %>
 <%
-	ArrayList<HashMap<String, Object>> List = RsvHotelDAO.rsvList(startRow, rowPerPage);
+	ArrayList<HashMap<String, Object>> List = RsvHotelDAO.selectCuRsvList(cusMail);
 %>
 <!DOCTYPE html>
 <html>
@@ -61,6 +61,21 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+    <style>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100px;
+}
+
+th, td {
+  text-align: left;
+  padding: 20px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+</style>
 <title>myPage</title>
 </head>
 <body>
@@ -83,18 +98,18 @@
                 <div class="container">
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
-                    <!-- ë©ë´ë° -->
+                    <!-- 헤더메뉴 -->
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
 							  	if(session.getAttribute("loginCustomer") == null){
 						%>
-                        	<li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
-                        	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
+                        	<li><a href="/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp">Join MemeberShip</a></li>
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%
@@ -105,6 +120,7 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/about.jsp">About</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/hotelBf/bfInfo.jsp">Breakfast Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -122,44 +138,42 @@
           <div class="col-md-10 text-center" data-aos="fade-up">
             <div class="container">
             
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">Reservation Hotel</span>
-         
-          <div style="background-color:white;">
-				 <div class="mb-3 mt-3">
-				
-				<table style="margin-left:auto; margin-right:auto;">
-						<tr>
-							<th>예약 번호</th>
-							<th>룸 번호</th>
-							<th>예약자 아이디 </th>
-							<th>조식예약여부</th>
-						</tr>
-					<%
-						for(HashMap<String, Object> m : List){
-					%>
-						<tr>
-								<td><a href="/Semi_F_GDCC/customer/GDCC/cusRsvHotelOne.jsp?rsvNo=<%=m.get("rsvNo")%>"><%=m.get("rsvNo")%></a></td>
-								<td><%=(Integer)m.get("roomNo")%></td>
-								<td><%=cusMail%></td>
-								<td><a href="/Semi_F_GDCC/customer/GDCC/rsvOne.jsp?rsvNo=<%=m.get("rsvNo")%>">조식예약 확인</a></td>
-						</tr>
- 
-							<%
-								}
-							%>
-					</table>
+            <span class="custom-caption text-uppercase text-white d-block mb-3" style="border-radius:10px;">Reservation Hotel</span>
+         	<br>
+         	<div style="background-color:white; border-radius:10px;">
+         	
+					<table style="margin-left:auto; margin-right:auto; ">
+							<tr>		
+								<th>예약 번호</th>
+								<th>룸 번호</th>
+								<th>예약자 아이디 </th>
+								<th>조식예약여부</th>
+							</tr>
+						<%
+							for(HashMap<String, Object> m : List){
+						%>
+							<tr>
+									<td><a href="/Semi_F_GDCC/customer/GDCC/cusRsvHotelOne.jsp?rsvNo=<%=m.get("rsv_no")%>"><%=m.get("rsv_no")%></a></td>
+									<td><%=(Integer)m.get("room_no")%></td>
+									<td><%=cusMail%></td>
+									<td><a href="/Semi_F_GDCC/customer/GDCC/rsvOne.jsp?rsvNo=<%=m.get("rsv_no")%>">조식예약 확인</a></td>
+							</tr>
+	 
+								<%
+									}
+								%>
+						</table>
 
-
-				<br>
-				<div>
-			 </div>
+						<br>
+					<div>
+			 	</div>
 			 </div>
         </div>
       </div>
+	</div>
 </div>
-</div>
-   </div>
 </section>
+
 	<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-migrate-3.0.1.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -167,15 +181,9 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/jquery.stellar.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
-    
-    
     <script src="js/aos.js"></script>
-    
     <script src="js/bootstrap-datepicker.js"></script> 
     <script src="js/jquery.timepicker.min.js"></script> 
-
-    
-
     <script src="js/main.js"></script>
 </body>
 </html>

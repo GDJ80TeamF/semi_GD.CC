@@ -66,7 +66,7 @@
  
   </head>
 <body>
-    <header class="site-header js-site-header">
+        <header class="site-header js-site-header">
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp"><img src="/Semi_F_GDCC/customer/GDCC/images/GDCC_main.png" width="150"></a></div>
@@ -85,7 +85,7 @@
                 <div class="container">
                   <div class="row full-height align-items-center">
                     <div class="col-md-6 mx-auto">
-                    <!-- ë©ë´ë° -->
+                    
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
@@ -102,10 +102,12 @@
 						<%
 							  	}
 						%>
+                        <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">GolfMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">Q&A</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/hotelBf/bfInfo.jsp">Breakfast Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -116,94 +118,91 @@
         </div>
       </div>
     </header>
+    
     <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
             <div class="container">
             
-            <span class="custom-caption text-uppercase text-white d-block  mb-3">MY PROFILE</span>
+            <span class="custom-caption text-uppercase text-white d-block  mb-3">Hotel Reservartion Detail</span>
          
-          <div style="background-color:white;">
+          	<div style="background-color:white; border-radius:10px;">
 				 <div class="mb-3 mt-3">
-	<h1>예약 상세정보</h1>
-		<table style="margin-left:auto; margin-right:auto; ">
-			<tr>
-				<th>예약한 성함</th>
-				<th>mail</th>
-				<th>체크인 날짜</th>
-				<th>체크아웃 날짜</th>
-				<th>인원수</th>
-				<th>요청사항</th>
+					<table style="margin-left:auto; margin-right:auto; ">
+						<tr>
+							<th>예약한 성함</th>
+							<th>mail</th>
+							<th>체크인 날짜</th>
+							<th>체크아웃 날짜</th>
+							<th>인원수</th>
+							<th>요청사항</th>
+							
+						</tr>
+			
+					
+						<tr>
+							<td><%=list.get("name") %>님</td>
+							<td><%=list.get("mail") %></td>
+							<%   
+			                 // 예약 날짜 가져오기
+			                 String rsvDateStr = (String)list.get("checkin");
+			                 try { // 날짜 문자열을 Date 객체로 변환
+			                     rsvDate = sdf.parse(rsvDateStr);
+			                 } catch (ParseException e) {
+			                     e.printStackTrace(); // 예외 처리
+			                 }
+			        	 	%>
+			
+							<td><%=list.get("checkin") %></td>
+							<td><%=list.get("checkout") %></td>
+							<td><%=list.get("member") %>명</td>
+							<td>
+								<%
+									//요청사항이 없음.
+									if(list.get("request").equals("")){
+												
+								%>
+										<div>요청사항이 없습니다</div>
+								<%
+									//요청사항 있음
+									}else{
+												
+								%>
+										<%=list.get("request") %>
+								<%
+									}
+								%>
+							</td>
+						</tr>
+					</table>
 				
-			</tr>
-
-		
-			<tr>
-				<td><%=list.get("name") %>님</td>
-				<td><%=list.get("mail") %></td>
-				<%   
-                 // 예약 날짜 가져오기
-                 String rsvDateStr = (String)list.get("checkin");
-                 try { // 날짜 문자열을 Date 객체로 변환
-                     rsvDate = sdf.parse(rsvDateStr);
-                 } catch (ParseException e) {
-                     e.printStackTrace(); // 예외 처리
-                 }
-        	 	%>
-
-				<td><%=list.get("checkin") %></td>
-				<td><%=list.get("checkout") %></td>
-				<td><%=list.get("member") %>명</td>
-				<td>
-					<%
-						//요청사항이 없음.
-						if(list.get("request").equals("")){
-									
-					%>
-							<div>요청사항이 없습니다</div>
-					<%
-						//요청사항 있음
-						}else{
-									
-					%>
-							<%=list.get("request") %>
-					<%
-						}
-					%>
-				</td>
-			</tr>
+							<%
+				                 // 현재 날짜와 예약 날짜 비교
+				                 if (currentDate.compareTo(rsvDate) <= 0) { // 현재 날짜가 예약 날짜 이후인 경우
+				         	%>
+				         		  
+					               		<a href="/Semi_F_GDCC/customer/hotel/updateRsvForm.jsp?rsvNo=<%=rsvNo%>">예약 변경</a> 
+										<a href="/Semi_F_GDCC/customer/hotel/rsvCancelForm.jsp?rsvNo=<%=rsvNo%>">예약 취소</a> 
+					           		
+				         		
+				         	<%
+				                 } else {
+				                     // 현재 날짜가 예약 날짜 이전인 경우 버튼 숨김
+					         %>
+					                     예약 만료로 수정 불가      
+					         <%
+					                 }
+					         %>
 			
-			
-
-		</table>
-	
-				<%
-	                 // 현재 날짜와 예약 날짜 비교
-	                 if (currentDate.compareTo(rsvDate) <= 0) { // 현재 날짜가 예약 날짜 이후인 경우
-	         	%>
-	         		  
-		               		<a href="/Semi_F_GDCC/customer/hotel/updateRsvForm.jsp?rsvNo=<%=rsvNo%>">예약 변경</a> 
-							<a href="/Semi_F_GDCC/customer/hotel/rsvCancelForm.jsp?rsvNo=<%=rsvNo%>">예약 취소</a> 
-		           		
-	         		
-	         	<%
-	                 } else {
-	                     // 현재 날짜가 예약 날짜 이전인 경우 버튼 숨김
-		         %>
-		                     예약 만료로 수정 불가      
-		         <%
-		                 }
-		         %>
-
-			
+						
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</div>
-		</section>
+	</div>
+</section>
 
 		<!-- 스크립트 -->
 	<script src="js/jquery-3.3.1.min.js"></script>

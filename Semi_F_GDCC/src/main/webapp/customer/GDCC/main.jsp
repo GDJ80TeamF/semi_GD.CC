@@ -87,6 +87,7 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">Q&A</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/hotelBf/bfInfo.jsp">Breakfast Reservation</a></li>
                       </ul>
                     </div>
                   </div>
@@ -280,7 +281,9 @@
         <div class="row justify-content-center text-center mb-5">
           <div class="col-md-7">
             <h2 class="heading text-white" data-aos="fade">Our Restaurant Menu</h2>
-            <p class="text-white" data-aos="fade" data-aos-delay="100">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+            <p class="text-white" data-aos="fade" data-aos-delay="100">
+            	<a href="/Semi_F_GDCC/customer/hotelBf/insertRsvForm.jsp">조식 예약하기</a>
+            </p>
           </div>
         </div>
         <div class="food-menu-tabs" data-aos="fade">

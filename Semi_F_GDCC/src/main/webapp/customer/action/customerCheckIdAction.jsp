@@ -10,8 +10,8 @@
 	
 	boolean cusCkId = CustomerDAO.customerCheckId(checkId);
 	if(cusCkId == false) {
-		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp?checkId=" + checkId+"&ck=F");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/inserCustomerForm.jsp?checkId=" + checkId+"&ck=F");
 	}else{
-		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/insertCustomerForm.jsp?checkId=" + checkId+"&ck=T");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/inserCustomerForm.jsp?checkId=" + checkId+"&ck=T");
 	}
 %>
