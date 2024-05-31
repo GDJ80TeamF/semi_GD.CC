@@ -33,6 +33,13 @@
 	// 공지 5개씩
 	int rowPerPage = 5;
 	int startRow = (currentPage-1) * rowPerPage;	
+	
+	 
+		//에러메세지 출력
+		String error = request.getParameter("error");
+		if(error == null){
+			error = " ";
+		}
 %>
 <%
 	ArrayList<HashMap<String, Object>> List = RsvHotelDAO.rsvList(startRow, rowPerPage);
@@ -201,6 +208,15 @@
 						</tr>
 					</table>
 					<br>
+					<%
+						if(!error.equals(" ")){
+					%>
+						<div><%=error%></div>
+					
+					<% 
+						}
+					
+					%>
 					<div>
 				 
 		        	</div>

@@ -15,12 +15,6 @@
 
 	 String cusMail = (String)(login.get("cusMail"));
 	 
-	 
-	//에러메세지 출력
-	String error = request.getParameter("error");
-	if(error == null){
-		error = " ";
-	}
 %>
 <!DOCTYPE html>
 <html>
@@ -132,15 +126,6 @@
 				<br><br>
 					<button type="submit" class="btn btn-warning"> 변경 </button>
 				</form>
-				<%
-					if(!error.equals(" ")){
-				%>
-					<div><%=error%></div>
-				
-				<% 
-					}
-				
-				%>
        		</div>
       </div>
      </div>
