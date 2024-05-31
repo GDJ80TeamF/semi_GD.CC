@@ -158,11 +158,12 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
                   <%
                           }
                   %>
-                        <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">HotelMain</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">HalfwayHouse</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">Reviews</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">HalfwayHouse</a></li>      
+                        <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>      
                       </ul>
                     </div>
                   </div>
@@ -321,7 +322,7 @@ String today = String.format("%04d-%02d-%02d", year, month, day);
 					     		요청사항
 					        </label>
 					    <br>
-					        <textarea rows="3" cols="30"></textarea>
+					        <textarea rows="3" cols="30" name="rsvRequest"></textarea>
 						<br>
 						<button type="submit" class="btn btn-warning" style="color : ivory; font-weight: bold;" >예약하기</button>
 					<%
