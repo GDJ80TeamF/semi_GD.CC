@@ -154,7 +154,7 @@ public class CustomerDAO {
 			Connection conn = DBHelper.getConnection();
 			
 			String sql ="INSERT INTO customer_pw_history(cus_mail, cus_pw, create_date) "
-					+ "VALUES(?, ?, NOW())";
+					+ "VALUES(?, PASSWORD(?), NOW())";
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 				stmt.setString(1, mail);
@@ -208,7 +208,7 @@ public class CustomerDAO {
 		
 		String sql ="INSERT INTO customer_pw_history(cus_mail, cus_pw) SELECT ?,PASSWORD(?) "
 				+ "WHERE NOT EXISTS (SELECT cus_pw FROM(SELECT cus_pw From customer_pw_history WHERE cus_mail=?) "
-				+ "AS recent_histhory WHERE cus_pw = ? )";
+				+ "AS recent_histhory WHERE cus_pw = PASSWORD(?) )";
 		
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
@@ -260,7 +260,7 @@ public class CustomerDAO {
 			
 			Connection conn = DBHelper.getConnection();
 			
-			String sql ="DELETE FROM customer WHERE cus_mail = ? AND cus_pw = ?";
+			String sql ="DELETE FROM customer WHERE cus_mail = ? AND cus_pw = PASSWORD(?)";
 			
 			PreparedStatement stmt = conn.prepareStatement(sql);
 				stmt.setString(1, cusMail);
