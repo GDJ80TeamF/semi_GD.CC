@@ -17,12 +17,12 @@
 	if(delete != 0){
 		//성공
 		System.out.println("삭제성공");
-		response.sendRedirect("/Semi_F_GDCC/customer/customerLoginForm.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
 		
 	}else{
 		//실패
 		System.out.println("삭제실패");
-		response.sendRedirect("/Semi_F_GDCC/customer/deleteCustomerForm.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/deleteCustomerForm.jsp");
 		
 	}
 
