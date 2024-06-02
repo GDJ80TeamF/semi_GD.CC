@@ -101,7 +101,7 @@ public class RsvHotelDAO {
 	ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>> ();
 	Connection conn = DBHelper.getConnection();
 				
-	String sql = "SELECT rsv_no,checkin_date,checkout_date FROM rsv_hotel WHERE rsv_mail = ? AND rsv_state='예약완료'";
+	String sql = "SELECT rsv_no,checkin_date,checkout_date FROM rsv_hotel WHERE rsv_mail = ? AND checkout_date > NOW()";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	stmt.setString(1, cusMail);
 	ResultSet rs = stmt.executeQuery();
