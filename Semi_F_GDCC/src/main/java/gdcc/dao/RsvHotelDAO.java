@@ -291,7 +291,7 @@ public class RsvHotelDAO {
 	}
 	
 	// 고객 호텔 리스트
-	public static ArrayList<HashMap<String, Object>> selectCuRsvList(String cusMail) throws Exception{
+	public static ArrayList<HashMap<String, Object>> selectCuRsvList(String cusMail, int startRow, int rowPerPage) throws Exception{
 		ArrayList<HashMap<String,Object>> list = 
 				 new ArrayList<HashMap<String,Object>>();
 		
@@ -299,9 +299,12 @@ public class RsvHotelDAO {
 		
 		String sql = "SELECT rsv_no, room_no "
 				+ "FROM rsv_hotel "
-				+ "WHERE rsv_mail=? ";
+				+ "WHERE rsv_mail=? "
+				+ "ORDER BY checkin_date DESC LIMIT ?, ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, cusMail);
+			stmt.setInt(2, startRow);
+			stmt.setInt(3, rowPerPage);
 		
 		ResultSet rs = stmt.executeQuery();
 		
@@ -315,7 +318,26 @@ public class RsvHotelDAO {
 		conn.close();
 		return list;	
 	}
-	
+	// 고객 리스트 count
+	public static int RsvHotelpage() throws Exception{
+		int lastPage = 0;
+		int rowPerPage = 5;
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT COUNT(*) FROM rsv_hotel";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		int totalRow = 0;
+		if(rs.next()){
+			totalRow = rs.getInt("count(*)");
+		}
+		lastPage = totalRow/rowPerPage;
+		if(totalRow%rowPerPage != 0){
+			lastPage = lastPage +1;
+		}
+		conn.close();
+		return lastPage;
+	}
 	
 	// 고객 호텔 예약 변경
 	// 호출

@@ -84,7 +84,7 @@
 						%>
                         <li><a href="/Semi_F_GDCC/customer/golf/golfMain.jsp">GolfMain</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rooms.jsp">Rooms</a></li>
-                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelComplex/insertRsvForm.jsp">Hotel Complex</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/rsvComplexList.jsp">Hotel Complex</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">Q&A</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>

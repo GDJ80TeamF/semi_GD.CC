@@ -33,9 +33,11 @@
 	// 공지 5개씩
 	int rowPerPage = 5;
 	int startRow = (currentPage-1) * rowPerPage;	
+	int lastPage = RsvHotelDAO.RsvHotelpage();
+	System.out.println("lastPage" + lastPage);
 %>
 <%
-	ArrayList<HashMap<String, Object>> List = RsvHotelDAO.selectCuRsvList(cusMail);
+	ArrayList<HashMap<String, Object>> List = RsvHotelDAO.selectCuRsvList(cusMail, startRow, rowPerPage);
 %>
 <!DOCTYPE html>
 <html>
@@ -137,7 +139,6 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade-up">
             <div class="container">
-            
             <span class="custom-caption text-uppercase text-white d-block mb-3" style="border-radius:10px;">Reservation Hotel</span>
          	<br>
          	<div style="background-color:white; border-radius:10px;">
@@ -157,12 +158,18 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 									<td><%=(Integer)m.get("room_no")%></td>
 									<td><%=cusMail%></td>
 									<td><a href="/Semi_F_GDCC/customer/GDCC/rsvOne.jsp?rsvNo=<%=m.get("rsv_no")%>">조식예약 확인</a></td>
+									
 							</tr>
 	 
 								<%
 									}
 								%>
 						</table>
+						<a class="btn btn-primary" href="/Semi_F_GDCC/customer/GDCC/rsvComplexList.jsp">부대시설예약확인</a><br>
+						<a href="/Semi_F_GDCC/customer/GDCC/rsvHotelList.jsp?currentPage=1"> << 처음 페이지&nbsp; </a>
+						<a href="/Semi_F_GDCC/customer/GDCC/rsvHotelList.jsp?currentPage=<%=currentPage-1%>">&nbsp; < 이전 </a>										
+						<a href="/Semi_F_GDCC/customer/GDCC/rsvHotelList.jsp?currentPage=<%=currentPage+1%>">&nbsp;&nbsp; 다음 > </a>
+						<a href="/Semi_F_GDCC/customer/GDCC/rsvHotelList.jsp?currentPage=<%=lastPage%>"> &nbsp;마지막 페이지 >></a>
 
 						<br>
 					<div>
