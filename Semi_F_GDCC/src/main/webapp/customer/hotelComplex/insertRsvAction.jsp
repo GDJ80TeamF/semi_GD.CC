@@ -21,10 +21,10 @@
 	
 	if(row != 0){
 		System.out.println("호텔 부가시설 예약 성공");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelComplex/rsvComplexList.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/rsvComplexList.jsp");
 	}else{
 		System.out.println("호텔 부가시설 예약 실패 ");
-		response.sendRedirect("/Semi_F_GDCC/customer/hotelComplex/rsvComplexList.jsp");
+		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/rsvComplexList.jsp");
 	}
 
 

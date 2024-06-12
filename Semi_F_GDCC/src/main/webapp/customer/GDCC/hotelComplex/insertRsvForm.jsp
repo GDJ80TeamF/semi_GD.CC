@@ -321,7 +321,7 @@
 	}else if(rsvPlace != " " && rsvDate != " " && rsvNo !=" "){
 %>
 
-<form method="post" action="/Semi_F_GDCC/customer/GDCC/hotelComplex/insertRsvAction.jsp" style="text-align:center;">
+<form method="post" action="/Semi_F_GDCC/customer/hotelComplex/insertRsvAction.jsp" style="text-align:center;">
 <table style=" margin-left:auto; margin-right:auto;">
 		<tr>
 			<td>호텔 예약번호</td>

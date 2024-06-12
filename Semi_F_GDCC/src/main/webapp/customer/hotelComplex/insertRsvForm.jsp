@@ -222,7 +222,7 @@
 	}else if(rsvPlace != " " && rsvDate != " " && rsvNo !=" "){
 %>
 
-<form method="post" action="/Semi_F_GDCC/customer/hotelComplex/insertRsvAction.jsp">
+<form method="post" action="/Semi_F_GDCC/customer/GDCC/hotelComplex/insertRsvAction.jsp">
 <table>
 		<tr>
 			<td>호텔 예약번호</td>
@@ -286,7 +286,7 @@
 	
 		</table>
 		<button type="submit">예약하기 </button>
-		<a href="/Semi_F_GDCC/customer/hotelComplex/insertRsvForm.jsp?rsvNo=<%=rsvNo%>">다른 날짜 선택 </a>
+		<a href="/Semi_F_GDCC/customer/hotelComplex/GDCC/insertRsvForm.jsp?rsvNo=<%=rsvNo%>">다른 날짜 선택 </a>
 		</form>
  			<% 
 				}else if(times.size() == 0){
