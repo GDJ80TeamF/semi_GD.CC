@@ -220,7 +220,7 @@
   </header>
     <section class="container"> 
       <header>Sign Up</header>
-     <form method="post" action="/Semi_F_GDCC/customer/action/customerCheckIdAction.jsp" enctype="multipart/form-data" class="form">
+     <form method="post" action="/Semi_F_GDCC/customer/action/customerCheckIdAction.jsp" class="form">
             <div class="column">
             <div class="input-box">
               <label>Email Address</label>
