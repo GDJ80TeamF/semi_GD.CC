@@ -52,6 +52,12 @@
 	int insertCustomer = CustomerDAO.insertCustomer(cusMail, cusName, cusPw, cusGender, cusBirth, cusContact, cusFilename);
 	
 	if(insertCustomer == 1){
+		String uploadPath = request.getServletContext().getRealPath("customer/upload");
+		System.out.println(uploadPath);
+		File file = new File(uploadPath, cusFilename);
+		InputStream inputStream = part.getInputStream(); 
+		OutputStream outputStream = Files.newOutputStream(file.toPath()); 
+		inputStream.transferTo(outputStream);
 		System.out.println("회원가입 성공");
 		int update = CustomerDAO.updatePw(cusMail, cusPw);
 		response.sendRedirect("/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp");
