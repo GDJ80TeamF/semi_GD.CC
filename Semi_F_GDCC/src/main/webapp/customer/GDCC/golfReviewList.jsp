@@ -200,7 +200,8 @@
 <!----------------------  템플릿 ------------------------>
 <section class="section blog-post-entry bg-light" id="next">
 	<div class="container">
- <b>점수 :</b> <select onchange="location = this.value;">
+ 		<b>점수 :</b> 
+ 		<select onchange="location = this.value;">
 		<option value="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp" selected="selected">선택</option>
 	<%
 		for(int i=1; i<=10; i++){

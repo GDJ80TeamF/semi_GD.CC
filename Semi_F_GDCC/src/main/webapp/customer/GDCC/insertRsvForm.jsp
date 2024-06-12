@@ -110,7 +110,7 @@
       </div>
 </header>
 <!-- END head -->
-<section class="site-hero inner-page overlay" style="background-image: url(images/hero_4.jpg)" data-stellar-background-ratio="0.5">
+<section class="site-hero inner-page overlay" style="background-image: url(images/restaurant.jpg)" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row site-hero-inner justify-content-center align-items-center">
           <div class="col-md-10 text-center" data-aos="fade">
@@ -149,7 +149,7 @@
 	            %>
 	            	<label for="rsvDate" class="form-label">예약 날짜:</label>
 	                <input type="date" class="form-control" name="rsvDate" 
-	                        min="<%= java.time.LocalDate.now() %>"max="<%= lastDayOfThirdMonth %>">
+	                        min="<%=(String)map.get("checkinDate")%>"max="<%=(String)map.get("checkoutDate")%>">
 	            </div>
 	            <div class="mb-3">
 	            	<label for="rsvTime" class="form-label">예약 시간:</label>

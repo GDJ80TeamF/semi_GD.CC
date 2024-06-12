@@ -25,7 +25,7 @@
 	<br>
 	<span>*주말 및 공휴일 이용 시 골프장 이용객이 많아 주차장이 다소 혼잡하여 양해 부탁 드립니다. (주차 소요 시간: 평균 20분 이상)</span>
 </div>
-	<br><button><a href="/Semi_F_GDCC/customer/hotelBf/insertRsvForm.jsp">예약하기</a></button>
+	<br><button><a href="/Semi_F_GDCC/customer/GDCC/insertRsvForm.jsp">예약하기</a></button>
 	
 
 

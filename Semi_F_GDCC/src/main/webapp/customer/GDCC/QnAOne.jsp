@@ -68,12 +68,12 @@
                   	<%
 						if(session.getAttribute("loginCustomer") == null){
                     %>
-                    	  <li><a href="/Semi_F_GDCC/customer/customerLoginForm.jsp">Login</a></li>
+                    	  <li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
                           <li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
                     <%
                      	}else{
                   	%>
-	                      <li><a href="/Semi_F_GDCC/customer/myPage.jsp">Mypage</a></li>
+	                      <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">Mypage</a></li>
 	                      <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
                       
                   	<%
