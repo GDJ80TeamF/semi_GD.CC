@@ -141,7 +141,7 @@
 			<form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/insertRsvAction.jsp">
 	        	<div class="mb-3 mt-3">
 					<label for="rsvNo" class="form-label">RSV NO.</label>
-					<input type="number" class="form-control" value="<%=(Integer)map.get("rsvNo")%>" name="rsvNo">
+					<input type="number" class="form-control" value="<%=(Integer)map.get("rsvNo")%>" name="rsvNo" readonly="readonly">
 				</div>   
 	            <div class="mb-3">
 	            <%

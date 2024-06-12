@@ -129,11 +129,11 @@
 		<h1>MODIFY QnA</h1>
 			<tr>
 				<th>아이디 :</th>
-				<td><input style="width:30%" type="text" value="<%=(String)(m.get("cusMail"))%>" name="cusMail"></td>
+				<td><input style="width:30%" type="text" value="<%=(String)(m.get("cusMail"))%>" name="cusMail" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th>qnaNo :</th>
-				<td><input style="width:30%" type="text" value="<%=qnaNo%>" name="qnaNo"></td>
+				<td><input style="width:30%" type="text" value="<%=qnaNo%>" name="qnaNo" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th style="width: 15%;">제목 :</th>

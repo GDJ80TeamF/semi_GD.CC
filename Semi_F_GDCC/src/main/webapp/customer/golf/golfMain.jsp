@@ -106,6 +106,7 @@
                         <li><a href="/Semi_F_GDCC/customer/golf/aboutCourse.jsp">Course</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/insertNewRsvForm.jsp">Booking</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/restaurant.jsp">HalfwayHouse</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">QnA</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/golfReviewList.jsp">Reviews</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/golf/direction.jsp">Direction</a></li>

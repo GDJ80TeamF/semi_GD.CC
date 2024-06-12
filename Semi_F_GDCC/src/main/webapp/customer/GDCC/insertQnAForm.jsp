@@ -121,7 +121,7 @@
             <tr>
                 <th>아이디 :</th>
                 <td>
-                	<input style="width:30%" type="text" name="cusMail" value="<%=(String)login.get("cusMail")%>" style="">
+                	<input style="width:30%" type="text" name="cusMail" value="<%=(String)login.get("cusMail")%>" readonly="readonly">
                 </td>
             </tr>
             <tr>

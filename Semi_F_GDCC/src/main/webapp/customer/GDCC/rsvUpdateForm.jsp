@@ -144,9 +144,9 @@
 			<form method="post" action="/Semi_F_GDCC/customer/hotelBf/action/rsvUpdateAction.jsp">
 	        	<div class="mb-3 mt-3">
 					<label for="rsvNo" class="form-label">예약 번호:</label>
-					<input type="number" class="form-control" value="<%=(Integer)map.get("rsvNo")%>" name="rsvNo">
+					<input type="number" class="form-control" value="<%=(Integer)map.get("rsvNo")%>" name="rsvNo" readonly="readonly">
 					<label for="rsvNo" class="form-label">조식예약 번호:</label>
-					<input type="number" class="form-control" value="<%=rsvBfno%>" name="rsvBfNo">
+					<input type="number" class="form-control" value="<%=rsvBfno%>" name="rsvBfNo" readonly="readonly">
 				</div>   
 	            <div class="mb-3">
 	            <%

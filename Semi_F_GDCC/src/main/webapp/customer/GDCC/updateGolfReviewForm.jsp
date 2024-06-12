@@ -143,7 +143,7 @@
 		<h1>UPDATE GOLF REVIEW</h1>
 			<tr>
 				<th style="width:10%">RSV NO.</th>
-				<td><input style="width:5%" type="text" value="<%=rsvNo%>" name="rsvNo"></td>
+				<td><input style="width:5%" type="text" value="<%=rsvNo%>" name="rsvNo" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th style="width:10%">평점</th>

@@ -78,7 +78,7 @@
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">My page</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">My page</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%

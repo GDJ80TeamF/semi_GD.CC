@@ -83,7 +83,7 @@
                         <%
 							}else{
 						%>
-							 <li><a href="/Semi_F_GDCC/customer/myPage.jsp">My page</a></li>
+							 <li><a href="/Semi_F_GDCC/customer/GDCC/myPage.jsp">My page</a></li>
 							 <li><a href="/Semi_F_GDCC/customer/action/customerLogoutAction.jsp">LogOut</a></li>
 							 
 						<%
@@ -107,17 +107,19 @@
 </header>
 <!-- END head -->
 <section class="site-hero overlay" style="background-image: url(/Semi_F_GDCC/customer/GDCC/images/hotel_background.png)" data-stellar-background-ratio="0.5">
+	<br>
 	<div class="container">
 		<div class="row site-hero-inner justify-content-center align-items-center">
 		<div class="col-md-10 text-center" data-aos="fade-up">
-		<span class="custom-caption text-uppercase text-white d-block  mb-3">RSV BREAK FAST</span>
+		<span class="custom-caption text-uppercase text-white d-block  mb-3">RSV BREAK FAST LIST</span>
             <br>
 	        <!--  <div style="background-color:white; padding:100px; border-radius:10px;"> -->
 			<div class="mb-3 mt-6;">
 			<div class="container2">
+			<a href="/Semi_F_GDCC/customer/GDCC/bfInfo.jsp">R E S E R V A T I O N</a>
 			<table border="1">
 				<tr>
-					<th style="width:5%">RSV NO.</th>
+					<th style="width:5%">NO.</th>
 					<th style="width:10%">예약날짜</th>
 					<th style="width:5%">예약시간</th>
 					<th style="width:5%">동반인원</th>

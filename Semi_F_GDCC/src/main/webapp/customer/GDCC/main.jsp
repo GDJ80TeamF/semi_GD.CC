@@ -69,7 +69,7 @@
                       <ul class="list-unstyled menu">
                         <li class="active"><a href="/Semi_F_GDCC/customer/GDCC/main.jsp">Home</a></li>
                         <%
-							  	if(session.getAttribute("loginCustomer") == null){
+							if(session.getAttribute("loginCustomer") == null){
 						%>
                         	<li><a href="/Semi_F_GDCC/customer/GDCC/customerLoginForm.jsp">Login</a></li>
                         	<li><a href="/Semi_F_GDCC/customer/insertCustomerForm.jsp">Join MemeberShip</a></li>
@@ -87,6 +87,7 @@
                         <li><a href="/Semi_F_GDCC/customer/GDCC/rsvComplexList.jsp">Hotel Complex</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/notice.jsp">Notice</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/QnAList.jsp">Q&A</a></li>
+                        <li><a href="/Semi_F_GDCC/customer/GDCC/hotelReviewList.jsp">Reviews</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/direction.jsp">Direction</a></li>
                         <li><a href="/Semi_F_GDCC/customer/GDCC/bfInfo.jsp">Breakfast Reservation</a></li>
                       </ul>
