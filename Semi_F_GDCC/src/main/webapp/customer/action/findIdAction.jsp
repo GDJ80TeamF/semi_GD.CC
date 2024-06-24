@@ -21,10 +21,10 @@
 		
 		if(cusMail == null || cusMail.isEmpty()){
 			System.out.println("메일찾기 실패");
-			response.sendRedirect("/Semi_F_GDCC/customer/findIdForm.jsp?msg=F");
+			response.sendRedirect("/Semi_F_GDCC/customer/GDCC/findIdForm.jsp?msg=F");
 		}else{
 			
 			System.out.println("메일찾기 성공");
-			response.sendRedirect("/Semi_F_GDCC/customer/findIdForm.jsp?msg=T&mail="+mail);
+			response.sendRedirect("/Semi_F_GDCC/customer/GDCC/findIdForm.jsp?msg=T&mail="+mail);
 		}
 %>

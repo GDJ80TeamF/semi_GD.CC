@@ -252,8 +252,10 @@
 		<td><%= (String)m.get("rsvTime")%></td>
 		<td><%= (String)m.get("rsvState")%></td>
 		<td><a class="btn blue" href="/Semi_F_GDCC/customer/GDCC/rsvComplexOne.jsp?rsvComNo=<%=(Integer)m.get("comNo")%>">상세보기 </a></td>
-		<td><a class="btn red" href="/Semi_F_GDCC/customer/GDCC/cancelRsvForm.jsp?rsvComNo=<%=(Integer)m.get("comNo")%>">취소하기 </a></td>
+		<td><a class="btn red" href="javascript:void(0);" 
+             onclick="checkDateAndCancel('<%= (String)m.get("rsvDate") %>', <%= (Integer)m.get("comNo") %>);">취소하기 </a></td>
 		</tr>
+		
 		<%
 			}
 		
@@ -264,5 +266,18 @@
  		<div><a class="btn blue" href="/Semi_F_GDCC/customer/GDCC/hotelComplex/insertRsvForm.jsp">호텔 시설 새로운 예약하기 !</a></div>
 	</div>
 	</section>
+	<script>
+		function checkDateAndCancel(rsvDate, rsvComNo) {
+	        let today = new Date();
+	        let reservationDate = new Date(rsvDate);
+	        
+	        if (reservationDate < today) {
+	        	console.log(today);
+	            alert("이미 지난 예약은 취소할 수 없습니다.");
+	        } else {
+	            window.location.href = '/Semi_F_GDCC/customer/GDCC/cancelRsvForm.jsp?rsvComNo=' + rsvComNo;
+	        }
+	    }
+	</script>
 </body>
 </html>

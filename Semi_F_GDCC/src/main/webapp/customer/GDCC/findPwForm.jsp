@@ -68,7 +68,7 @@
 							</label>
 						</th>
 						<td>
-							<input type="text" id="mail" name="cusMail">
+							<input type="text" id="mail" name="cusMail" required>
 						</td>
 					</tr>
 					<tr>
@@ -78,7 +78,7 @@
 							</label>
 						</th>
 						<td>
-							<input type="text" id="contact" name="cusContact">
+							<input type="text" id="contact" name="cusContact" required>
 						</td>
 					</tr>
 					<tr>
@@ -88,7 +88,7 @@
 							</label>
 						</th>
 						<td>
-							<input type="text" id="name" name="cusName">
+							<input type="text" id="name" name="cusName" required>
 						</td>
 					</tr>
 				</table>

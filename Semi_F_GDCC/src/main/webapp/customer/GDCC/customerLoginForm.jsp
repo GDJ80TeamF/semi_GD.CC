@@ -57,11 +57,11 @@
 					<form method="post" action="/Semi_F_GDCC/customer/action/customerLoginAction.jsp">
 					  <div class="mb-3 mt-3">
 					    <label for="email" class="form-label">Email:</label>
-					    <input type="text" class="form-control" placeholder="Enter email" name="cusMail">
+					    <input type="text" class="form-control" placeholder="Enter email" name="cusMail" required>
 					  </div>
 					  <div class="mb-3">
 					    <label for="pwd" class="form-label">Password:</label>
-					    <input type="password" class="form-control" placeholder="Enter password" name="cusPw">
+					    <input type="password" class="form-control" placeholder="Enter password" name="cusPw" required>
 					  </div>
 					  <button type="submit" class="btn btn-primary">로그인</button>
 					</form>

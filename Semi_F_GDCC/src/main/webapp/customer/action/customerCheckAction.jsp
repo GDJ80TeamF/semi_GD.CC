@@ -19,10 +19,10 @@
 		
 		if(mail == null || findMail.isEmpty()){
 			System.out.println("찾기 실패");
-			response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=F");
+			response.sendRedirect("/Semi_F_GDCC/customer/GDCC/findPwForm.jsp?msg=F");
 		}else{
 			
 			System.out.println("찾기 성공");
-			response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=T&mail="+mail);
+			response.sendRedirect("/Semi_F_GDCC/customer/GDCC/findPwForm.jsp?msg=T&mail="+mail);
 		}
 %>

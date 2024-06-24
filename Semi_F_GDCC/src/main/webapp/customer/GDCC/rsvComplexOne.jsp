@@ -157,7 +157,8 @@
 	
 	</table>
 	<div><a class="btn blue" href="/Semi_F_GDCC/customer/GDCC/rsvComplexList.jsp?cusMail=<%=cusMail%>">리스트로 돌아가기 </a>
-	<a class="btn blue" href="/Semi_F_GDCC/customer/GDCC/updateComplexRsvForm.jsp?rsvComNo=<%=rsvComNo%>">예약 정보 변경하기 </a></div>
+	<a class="btn blue" href="javascript:void(0);" onclick="checkDateAndCancel('<%= (String)m.get("rsvDate") %>', <%= (Integer)m.get("comNo") %>);">
+		예약 정보 변경하기 </a></div>
 	<div><a class="btn blue" href="/Semi_F_GDCC/customer/GDCC/hotelComplex/insertRsvForm.jsp">호텔 시설 새로운 예약하기 !</a></div>
 	</div>
 	</div>
@@ -166,6 +167,19 @@
 	</div>
 	
 	</section>
+<script>
+		function checkDateAndCancel(rsvDate, rsvComNo) {
+	        let today = new Date();
+	        let reservationDate = new Date(rsvDate);
+	        
+	        if (reservationDate < today) {
+	        	console.log(today);
+	            alert("이미 지난 예약은 변경할 수 없습니다.");
+	        } else {
+	            window.location.href = '/Semi_F_GDCC/customer/GDCC/updateComplexRsvForm.jsp?rsvComNo=' + rsvComNo;
+	        }
+	    }
+	</script>
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/popper.min.js"></script>

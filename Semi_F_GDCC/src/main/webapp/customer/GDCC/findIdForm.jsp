@@ -66,7 +66,7 @@
 							</label>
 						</th>
 						<td>
-							<input type="text" id ="name" name ="cusName">
+							<input type="text" id ="name" name ="cusName" required>
 						</td>
 					</tr>
 					<tr>
@@ -76,7 +76,7 @@
 							</label>
 						</th>
 						<td>
-							<input type="date" id ="birth" name ="cusBirth">
+							<input type="date" id ="birth" name ="cusBirth" required>
 						</td>
 					</tr>
 					<tr>
@@ -86,7 +86,7 @@
 							</label>
 						</th>
 						<td>
-							<input type="text" id ="contact" name ="cusContact" placeholder="01012345678(-없이 입력)">
+							<input type="text" id ="contact" name ="cusContact" placeholder="01012345678(-없이 입력)" required>
 						</td>
 					</tr>
 				</table>

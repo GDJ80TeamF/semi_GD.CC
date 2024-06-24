@@ -191,7 +191,7 @@
 		<tr>
 			<td>예약날짜</td>
 			<td>
-			<input type="date" name="rsvDate" min="<%=(String)date.get("checkinDate")%>" max="<%=(String)date.get("checkoutDate")%>">
+			<input type="date" name="rsvDate" min="<%=(String)date.get("checkinDate")%>" max="<%=(String)date.get("checkoutDate")%>" required>
 			
 			</td>
 	
@@ -281,7 +281,7 @@
 			</td> 
 			<tr>
 			<td>예약 인원 </td>
-			<td><input type="number" min="1" max="6" name="rsvMember"></td>
+			<td><input type="number" min="1" max="6" name="rsvMember" required></td>
 		</tr>
 	
 		</table>

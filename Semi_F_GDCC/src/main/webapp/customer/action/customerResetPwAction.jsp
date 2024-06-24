@@ -24,7 +24,7 @@
 		if(update2 == 1){
 			
 			System.out.println("변경성공!");
-			response.sendRedirect("/Semi_F_GDCC/customer/findPwForm.jsp?msg=G");
+			response.sendRedirect("/Semi_F_GDCC/customer/GDCC/findPwForm.jsp?msg=G");
 		}else{
 			System.out.println("변경실패!");
 		}
