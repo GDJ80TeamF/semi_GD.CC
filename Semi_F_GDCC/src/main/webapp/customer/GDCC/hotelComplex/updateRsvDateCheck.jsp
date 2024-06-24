@@ -4,7 +4,7 @@
 	int rsvComNo = Integer.parseInt(request.getParameter("rsvComNo"));
 	String rsvDate = request.getParameter("rsvDate");
 	
-	response.sendRedirect("/Semi_F_GDCC/customer/hotelComplex/updateRsvForm.jsp?rsvComNo="+rsvComNo+"&rsvDate="+rsvDate);
+	response.sendRedirect("/Semi_F_GDCC/customer/updateRsvForm.jsp?rsvComNo="+rsvComNo+"&rsvDate="+rsvDate);
 
 
 %>
