@@ -126,7 +126,7 @@
 					<th style="width:8%">예약상태</th>
 					<th style="width:5%">메뉴</th>
 					<th style="width:15%">메뉴 소개</th>
-					<th style="width:5%">이미지</th>
+					<th style="width:10%">이미지</th>
 					<th style="width:5%">&nbsp;</th>					
 					<th style="width:5%">&nbsp;</th>
 				</tr>
@@ -148,7 +148,7 @@
 					<td><%=(String)(m.get("rsvState"))%></td>	
 					<td><%=(String)(m.get("menuMain"))%></td>
 					<td><%=(String)(m.get("menuInfo"))%></td>
-					<td><%=(String)(m.get("menuImg"))%></td>
+					<td><img src="/Semi_F_GDCC/admin/upload/<%=(String)(m.get("menuImg"))%>" width="100%" height="100%"></td>
 					
 				<%
 				        // 현재 날짜와 예약 날짜 비교

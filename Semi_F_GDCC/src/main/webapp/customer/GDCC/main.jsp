@@ -284,7 +284,7 @@
           <div class="col-md-7">
             <h2 class="heading text-white" data-aos="fade">Our Restaurant Menu</h2>
             <p class="text-white" data-aos="fade" data-aos-delay="100">
-            	<a href="/Semi_F_GDCC/customer/hotelBf/insertRsvForm.jsp">조식 예약하기</a>
+            	<a href="/Semi_F_GDCC/customer/GDCC/insertRsvForm.jsp">조식 예약하기</a>
             </p>
           </div>
         </div>
@@ -414,21 +414,9 @@
     </section>
     
     <!-- END section -->
-    
-    <section class="section bg-image overlay" style="background-image: url('images/hero_4.jpg');">
-        <div class="container" >
-          <div class="row align-items-center">
-            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
-              <h2 class="text-white font-weight-bold">A Best Place To Stay. Reserve Now!</h2>
-            </div>
-            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
-              <a href="reservation.html" class="btn btn-outline-white-primary py-3 text-white px-5">Reserve Now</a>
-            </div>
-          </div>
-        </div>
-      </section>
 
-	  <footer class="section footer-section">
+
+<footer class="section footer-section">
   <div class="container">
     <div class="row mb-4">   
         <span class="ion-ios-location h5 mr-3 text-primary"></span>
